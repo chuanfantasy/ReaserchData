@@ -1,0 +1,298 @@
+第 46 卷 第 10 期 2020 年 10 月
+
+自 动 化 学 报 ACTA AUTOMATICA SINICA
+
+Vol. 46, No. 10 October, 2020
+
+工业人工智能发展方向
+柴天佑 1, 2, 3
+摘 要 本文结合工业自动化和信息技术在工业革命中的作用以及制造与生产全流程决策、控制以及运行管理的现状和智 能化发展方向的分析, 提出了发展工业人工智能的必要性. 通过对人工智能技术的涵义、发展简史和发展方向的分析以及自 动化与人工智能研究与应用的核心目标、实现方式、研究对象与研究方法等方面的对比分析, 提出了工业人工智能技术的涵 义. 通过对工业人工智能和工业自动化的研究对象与研究目标对比分析, 提出了工业人工智能的研究方向和研究思路与 方法. 关键词 工业自动化, 制造与生产流程智能化, 知识工作自动化与智能化, 工业人工智能 引用格式 柴天佑. 工业人工智能发展方向. 自动化学报, 2020, 46(10): 2005−2012 DOI 10.16383/j.aas.c200796
+Development Directions of Industrial Artificial Intelligence
+CHAI Tian-You1, 2, 3
+Abstract In this article, the necessity of developing industrial artificial intelligence is proposed, by combining the role of industrial automation and information technology in the industrial revolution and the analysis of the current situation of decisionmaking, control, and operation management in the entire manufacturing and production process as well as the development direction of intelligent development. Then, the concept of industrial artificial intelligence technology is presented through the analysis of the meaning, development history and development direction of artificial intelligence technology, as well as the comparative analysis on the similarity and difference in core objectives, implementation methods, research objects, and research methods of automation and artificial intelligence research and application. Moreover, the directions, ideas and methods of research on industrial artificial intelligence are proposed through the comparative analysis on research objects and objectives of industrial artificial intelligence and industrial automation. Key words Industrial automation, intellectualization of manufacturing and production process, automation and intellectualization of knowledge work, industrial artificial intelligence Citation Chai Tian-You. Development directions of industrial artificial intelligence. Acta Automatica Sinica, 2020, 46(10): 2005−2012
+
+智能制造已成为公认的提升制造业整体竞争力
+的国家战略. 以德国工业 4.0 为代表的智能制造的
+技术基础是信息物理融合系统 (CPS). CPS 是美国
+基金会在 2008 年提出的, CPS 是指将计算资源与物
+收稿日期 2020-09-25 录用日期 2020-10-13 Manuscript received September 25, 2020; accepted October 13, 2020 国家自然科学基金委重大项目 (61991400, 61991404), 中国工程院 咨询研究重大项目 (2019-ZD-12), 2020 年度辽宁省科技重大专项计 划 (2020JH1/10100008) 资助 Supported by National Natural Science Foundation of China (61991400, 61991404), China Institute of Engineering Consulting Research Project (2019-ZD-12), and Science and Technology Major Project 2020 of Liaoning Province (2020JH1/10100008) 本文责任编委 贺威 Recommended by Associate Editor HE Wei 1. 东北大学流程工业综合自动化国家重点实验室 沈阳 110819 2. 国家冶金自动化工程技术研究中心 沈阳 110819 3. 东北大学工 业人工智能研究院 沈阳 110819 1. State Key Laboratory of Synthetical Automation for Process Industries, Northeastern University, Shenyang 110819 2. National Engineering Research Center of Metallurgy Automation, Shenyang 110819 3. Institute of Industrial Artificial Intelligence, Northeastern University, Shenyang 110819
+
+理资源紧密融合与协同, 使得系统的适应性、自治 力、效率、功能、可靠性、安全性和可用性远超过今 天的系统[1].
+近年来, 人工智能的发展为智能制造提供了新 的技术基础. 美国国家技术委员会的《国家人工智能 研究与发展战略计划》 (2016.10) 提出, AI 改进制造 过程调度, 增强制造过程的柔性, 改进产品质量、降 低成本[2]. 2018 年 5 月, 美国白宫举行 “美国工业人 工智能峰会”, 发表声明: 重点发展具有高影响、面向 特定领域的 AI, 应用于美国工业来增强美国劳动力 素质, 提高他们的工作效率, 更好地服务客户[3]. 美国科学基金会关于 “美国工业人工智能”发表声 明: 人工智能可能使美国工业的各个环节产生变革, 为先进制造创造新的希望[4]. 美国 2020 和 2021 财 务预算优先支持的研发领域指出: 支持智能和数字 化制造, 特别是结合工业物联网、机器学习和 AI 的 制造系统[5−6]. 德国继 “工业 4.0”平台之后, 2017 年
+
+2006
+
+自 动 化 学 报
+
+46 卷
+
+9 月启动开发和应用 “学习系统”计划, 使未来的工 作和生产更加灵活和节省资源. 德国联邦政府人工 智能战略提出, 促进 AI 的开发与应用面向经济, 经 济是下一步 AI 研究的推动力[7]. 中国工程院制造强 国战略研究 (三期) 的 “新一代人工智能引领下的智 能制造研究报告”提出: 新一代智能制造作为我国智 能制造的第二阶段 (2025-2035) 的战略目标是使我 国智能制造技术和应用水平走在世界前列[8].
+虽然 Science 文章[9] 指出, AI 系统开发者普遍 认识到, 机器学习将对工业产生广泛影响, 但是, “人 工智能发展到深度学习没有考虑如何应用于制造过 程”, “多尺度、多源信息获取、预报模型和资源计划 决策与控制过程集成是智能制造中的挑战难题”[10]. 为了使工业人工智能在智能制造中发挥不可取代的 作用, 加快我国制造业向数字化、网络化、智能化发 展进程, 本文以制造与生产全流程智能化为应用场 景, 提出了工业人工智能的涵义、研究方向和研究 思路与方法.
+1 工业自动化与信息技术在工业革命
+中的作用
+工业自动化与信息技术在工业革命中的作用如 图 1 所示. 在第一次工业革命时, 出现了以蒸汽机为 动力的机械生产设备. 例如, 1784 年, 出现了机器织 布机. 蒸汽代替了人的体力, 实现了生产动力的变 革. 为了使织布机和其他机器保持恒定转速, 1788 年, 吉姆斯·瓦特成功地改造了离心调速器. 离 心调速器是一个比例控制器, 反馈控制实现了蒸汽 机调速的自动化, 但是比例控制会产生稳态误差, 后 来的调速器加入了积分作用[11−12]. 从此, 调速器成了
+
+蒸汽机不可分割的一部分. 蒸汽机与调速器的广泛 应用推动了第一次工业革命. 工业革命往往伴随着 动力的变革和使能技术的变革. 在第二次工业革命 时, 电力代替了蒸汽成为工业生产的动力. PID 控制与逻辑控制应用于电力工业, 实现了传送带的 自动化. 使传送带于 1870 年开始在辛辛那提屠宰场 使用, 推动了基于劳动分工和以电为动力的大规模 生产, 形成了第二次工业革命. 工业过程往往是由多 个回路组成的复杂被控对象, 难以用精确数学模型 描述. 大规模工业生产的需求、计算机和通讯技术 的发展并与工业自动化技术相结合, 催生了一种专 门的计算机控制系统—逻辑程序控制器 (PLC). 1969 年, 美国 Modicon 公司推出了 084 PLC[13]. 该 PLC 控制系统可以将多个回路的传感器和执行机 构通过设备网与控制系统连接起来, 可以方便地进 行多个回路的控制、设备的顺序控制和监控. 1975 年, Honeywell 和 Yokogawa 公司研制了可以应用于大 型工业过程的分布式控制系统 (DCS)[14]. 以组态软 件为基础的控制软件、过程监控软件的广泛应用使 得生产线的自动化程度更高, 推动了第三次工业革命.
+工业过程的运行优化需求使得实时优化 (RTO) 和模型预测控制 (MPC) 技术形成的工业过程运行 优化软件广泛应用于可以建立数学模型的石化工业 过程. 针对具体的难以建立数学模型的工业过程, 高 技术公司开发的基于工艺模型的开环设定控制软件 和基于数据驱动的智能运行优化控制技术的运行优 化控制软件越来越多地应用于难以建立数学模型的 冶金工业过程, 取得了显著的效果[15−16].
+大规模的工业生产迫切需要生产企业的管理高 效化. PLC 和 DCS 与管理计算机、实时数据库和关 系数据库相结合的计算机管控系统开始应用于工业
+
+图 1 工业自动化与信息技术在工业革命中的作用 Fig.1 The role of industrial automation and information technology in the industrial revolution
+
+10 期
+
+柴天佑: 工业人工智能发展方向
+
+2007
+
+生产中. 自动化技术与信息技术开始应用于企业管 理. 20 世纪 60 年代初, 计算机财务系统问世, 从此 人工的管理方式开始逐渐被计算机管理系统代替. 20 世 纪 60 年代末 70 年代初, 财务系统扩充了物料计划 功能, 发展成为物料需求计划系统 (Material requirements planning, MRP). 20 世纪 70 年代末 80 年代 初, MRP 系统中增加了车间报表管理系统、采购系 统等, 于是发展成为 MRPⅡ. 但是 MRPⅡ不能配置 资源, 因此配置资源计划系统 (Distribution resource planning, DRP) 出现了, 单一功能的制造过程管理系 统 (如质量管理系统) 也相继出现. 到 20 世纪 80 年 代末 90 年代初, MRPⅡ逐渐演变为企业资源计划 (Enterprise resource planning, ERP), DRP 演变为供 应链管理 (Supply chain management, SCM), 而车间 层应用的专业化制造管理系统演变成集成的制造执 行系统 (Manufacturing execution system, MES)[17−18]. ERP 和 MES 广泛应用于生产企业, 显著提高了企 业的竞争力[19]. 三次工业革命实现了操作工作自动 化、企业管理与决策的信息化.
+随着 5G 为代表的移动互联网、边缘计算与云 计算的发展, 催生了工业互联网. 工业互联网为获得 工业大数据创造了条件. 大数据驱动的人工智能技 术的发展以及科学研究模式与方法的变化, 如 CPS 和汇聚研究[20] 的出现, 促进了制造业向数字 化、网络化和智能化发展. 第四次工业革命将实现 制造业知识工作的自动化与智能化.
+
+制造与生产全流程的决策、控制与运行管理的 现状如图 2 所示. 由企业管理者通过 ERP 系统获得 的企业资源信息, 凭经验和知识决策企业的包括产 品质量、产量、能耗、物耗、成本在内的综合生产指 标的目标值范围; 生产管理者通过 MES 系统获得 的生产信息, 凭经验和知识决策制造与生产全流程 的生产指标的目标值范围; 运行管理与工艺工程师 通过管控系统获得的生产工况信息和感觉、视觉、 听觉、触觉获得的生产信息, 凭经验和知识决策反 映制造装备或工业过程产品加工的质量、效率、消 耗的运行指标目标值范围; 操作者根据运行指标目 标值范围和生产实际情况凭经验和知识决策控制系 统指令; 控制系统控制制造与生产全流程的加工装 备 (过程), 使被控装备 (过程) 的输出跟踪控制指令, 从而将加工产品的质量、效率、消耗的运行指标和 制造与生产全流程的生产指标控制在目标值范围内.
+因此, 制造与生产全流程的决策、控制与运行 管理是图 3 所示的人参与的信息物理系统. 操作者 与知识工作者根据信息系统获得的生产信息和通过 感觉、视觉、听觉、触觉获得的多源异构生产信息, 利用大脑的学习认知和分析决策能力, 依靠经验和 知识决策企业综合生产指标、制造与生产全流程的 生产指标、运行指标和控制系统指令. 由于人难以 及时准确地感知动态变化的运行工况, 难以及时准 确地处理异构信息, 人的决策行为制约发展[21]. 因 此, 难以实现制造与生产全流程的全局优化.
+
+2 制造与生产全流程智能化
+
+2.2 制造与生产全流程智能化
+
+2.1 制造与生产全流程决策、控制与运行管理现 状分析
+
+制造与生产全流程智能化的涵义是以企业高效 化与绿色化为目标, 以实现制造与生产全流程的管 理与决策智能优化与加工装备 (过程) 智能自主控
+
+企业综合生产指标
+企业资源计划系统 ERP
+
+制造执行系统 MES
+生产指令 工艺参数
+
+控制指令 控制系统1
+
+控制指令 控制系统
+
+控制指令 控制系统 n
+
+原料
+
+加工装备 (过程) 1
+
+加工装备 (过程)
+
+产品 加工装备 (过程)
+n
+
+图 2 制造与生产全流程的决策、控制与运行管理的现状 Fig.2 Current situation of decision-making, control and operation management manufacturing and production process
+
+2008
+
+自 动 化 学 报
+
+操作者与知识工作者
+
+学习认知 大脑
+
+分析决策 大脑
+
+决策 结果
+生产 信息
+
+感知
+视觉、听觉、 触觉…
+
+生产 信息
+
+信息系统 资源计划系统 (ERP) 制造执行系统 (MES) 控制系统 (PLC/DCS)
+
+物理系统
+制造流程
+原料 产品
+
+46 卷
+
+图 3 人参与的信息物理系统 Fig.3 Human participation in information physics systems
+
+企业综合生产指标
+企业资源计划系统 ERP
+制造执行系统 MES
+生产指令 工艺参数
+
+人机合作的管理与 决策智能化系统
+
+规划者、管理者、 决策者
+
+原料
+
+控制指令 控制系统 1
+加工装备 (过程) 1
+
+控制指令 控制系统
+加工装备 (过程)
+
+控制指令 控制系统 n
+
+加工装备 (过程) n
+
+产品
+
+智能自主控制系统 1
+
+智能自主控制系统
+
+智能自主控制系统 n
+
+图 4 制造与生产全流程智能化 Fig.4 Intelligent manufacturing and production process
+
+制为特征的制造模式. 如图 4 所示, 将操作者的知识 工作实现自动化, 将控制系统和加工装备 (过程) 变 革为智能自主控制系统; 将企业管理者和生产管理 者的知识工作智能化; 将 ERP 和 MES 变革为人机 合作的管理与决策智能化系统; 将企业资源计划系 统、制造执行系统、装备 (过程) 控制系统组成企业 三层结构变革为如图 5 所示的由人机合作的管理与 决策智能化系统和智能自主控制系统组成的两层结 构. 制造与生产全流程的决策、控制与运行管理将 变革为如图 6 所示的 CPS 系统. 由图 6 可以看出, 制造与生产全流程的智能化将图 3 中的操作者与知 识工作者的知识工作实现自动化和智能化. 因此, CPS 系统中的知识工作者是规划者、管理者和决策 者[22].
+人机合作的管理与决策智能化系统实时感知市 场信息、生产条件和制造流程生产状况; 以企业高 效化和绿色化为目标, 实现企业综合生产指标、制
+
+造与生产全流程生产指标、运行指标、生产指令与 控制指令集成优化决策; 计划与调度一体化决策, 远 程与移动可视化监控决策过程动态性能, 自学习与 自优化决策; 人与智能优化决策系统合作, 使决策者 在动态变化环境下精准优化决策[23−24]. 智能自主控 制系统使装备 (过程) 运行的决策与控制模式发生 颠覆性改变: 决策模式由开环决策、事后校正转变 为闭环反馈决策、实时预测自优化校正; 控制模式 由开环设定、反馈控制转变为自适应闭环优化、自 主协同控制. 智能自主控制系统感知生产条件的变 化, 相互协同, 以管理与决策智能化系统的优化决策 为目标, 实现制造与生产全流程全局优化.
+3 工业人工智能
+制造与生产全流程智能化对以数学模型或因果 关系数据驱动的建模、控制和优化的自动化科学与 技术提出了挑战. 大数据驱动的人工智能技术为实
+
+10 期
+
+柴天佑: 工业人工智能发展方向
+
+2009
+
+企业 资源计划
+(ERP)
+制造执行系统 (MES)
+装备 (过程) 控制系统 DCS (PCS)
+
+市场信息 生产条件
+
+规划者、管理者、 决策者
+
+人机合作的管理与决策智能化系统
+
+智能自主 控制系统1
+
+智能自主 控制系统
+
+智能自主 控制系统 n
+
+图 5 制造流程由三层结构变革为智能化两层结构 Fig.5 The manufacturing process changed from three-layer structure to intelligent two-layer structure
+
+优秀知识工作者
+
+认知学习 大脑
+
+分析决策 大脑
+
+感知
+视觉、听觉、 触觉...
+
+智能系统
+
+自成 长型 知识库
+认知 学习 系统
+
+高性能 智能控制
+智能预测与 自优化
+智能感知与 工况识别
+
+物理系统 制造流程
+
+物质流 能源流
+
+物质流 信息流
+能源流
+重大耗能设备 产品
+
+图 6 制造与生产流程 CPS 系统 Fig.6 Manufacturing and production process CPS
+
+现制造与生产全流程智能化提供了新的方法和技 术. 为此, 本文简述人工智能技术的涵义、发展简史 与发展方向.
+3.1 人工智能的涵义、发展简史与发展方向
+人工智能没有一个统一的明确定义, 但是可以 分为强人工智能和弱人工智能. 强人工智能指具有 与人一样的智慧和全面的智能. 一些人认为强人工 智能无法真正实现. 当前的人工智能是弱人工智能 或窄人工智能. 它可以下棋或者开车, 但是不能两者 兼备, 缺乏通用性[25]. 强人工智能有两个特点: 1) 针 对人类能完成的任务; 2) 具有与人一样的智慧、具 有与人类一样的感知、认识、学习和推理的全面智 能. 弱人工智能有两个特点: 1) 针对一个特定任务; 2) 要求比人做的好. 美国总统行政办公室《人工智 能、自动化及经济报告》 (2016.12) 指出, AI 是单一 技术, 而是应用于特定任务的技术集合[26]; 斯坦福大 学人工智能百年研究《人工智能和 2030 的生活》 (2016.9) 指出, 广义定义: 人工智能是一种致力于使 机器智能化的活动, 而智能是指系统在其所处环境
+
+中具有预见和合适功能的品质; 学术研究角度的定 义: 人工智能最初作为计算机科学中的一个分支, 研 究人工合成智能的智能特性[27]. 德国人工智能战略 概述 (2018.7) 指出, 作为一门科学学科, 人工智能指 的是一个研发训练计算机 (或机器) 来执行以前只 有人类才有能力的智能行为的方法的研究领域[ . 28] 无论是作为国家战略的人工智能定义还是学术定 义, AI 的研究和应用多年来始终秉持一个核心目 标, 即, 使人的智能行为实现自动化或复制[29].
+“人工智能”一词在 1956 年 John McCarth 组织 的达特茅斯暑期研究项目的讨论会上提出, 探究机 器可以在哪些方面模仿人的智能. 但是, 具有人工智 能特征的技术想法早已存在: 18 世纪, 托马斯·贝叶 斯 (Thomas Bayes)—推理事件的概率提供计算框架; 19 世纪, 乔治·布尔 (George Boole) 提出逻辑推理可 以像求解方程组那样被系统地执行; 20 世纪之交, 第一台电子计算机与感知和自主行动的第一代机器 人的问世掀起了第一次人工智能的高潮. 阿兰·图 灵 (Alan Turning) 1950 年发表 “计算机和智能”设 想, 提出建造计算机模拟人类智能的可能性, 怎样测
+
+2010
+
+自 动 化 学 报
+
+46 卷
+
+试人工智能、机器怎样自主学习. 日本等国开始研 发具有模拟人类智能的计算机. 随后几十年, 人工智 能的研究几经起伏, 研究出现难题远超预期, 因此, 人工智能的研究处于低潮.
+在 20 世纪 90 年代后期, 人们的研究开始转向 弱人工智能, 即关注人工智能在特定领域的应用研 究, 人工智能的研究进入加速阶段. 其中, 最重要的 两个领域分别是图像识别和医疗诊断. 在 1997 年, IBM 开发的计算机 “深蓝”战胜了国际象棋世界冠军 Gamy Kasparov. 苹果 Siri、IBM 回答计算机 Waston 回答游戏节目获胜. 在本世纪, 美国国防高级研 究计划局成功举办了无人驾驶汽车大赛.
+2010 年以后, 三大因素促使人工智能发展浪潮. 第一个因素来自政府、电子商务、商业、社交媒体、 科学和政府提供可用的大数据; 第二个因素是强大 的计算能力使大数据的应用成为可能; 第三个因素 是高科技产业, 特别是互联网公司, 增加在人工智能 领域的投资, 将机器学习应用到公司所有产品中, 如 搜索、广告、油管或是谷歌应用商店等取得了明显 的效果. 特别是, 深度学习技术快速发展. 深度学习 应用于图像识别领域, 使图像的识别结果的错误率 从模式识别技术的最好结果—错误率 26 % (2011 年) 降低到 3.5% (2015 年), 低于人类识别图像的最好 结果—错误率 5 %; 基于深度学习的博弈游戏技术 阿尔法狗打败人类围棋冠军表明, 在博弈游戏领域, 人工智能技术超过人[2, .27]
+目前, 大数据驱动的人工智能技术通过训练大 数据、学习过程和学习函数获得准确度很高的结果, 但无法解释结果为什么准确. 人工智能技术的发展 方向为可解释的 AI (XAI), 通过训练大数据、新的 学习过程和可解释的模型获得可解释的准确结果[30]. 基于统计的、无模型的机器学习方法存在严重的理 论局限, 难以用于推理和回溯, 难以作为强人工智能 的基础[31]. 实现类人智能和强人工智能需要在机器 学习系统中加入 “实际模型的导引”[32]. 人工智能技 术领域的另一个发展方向是建立智能系统[27]. 美国 国际战略研究所 《美国机器智能国家战略报告》 (2018.3) 指出, 很难估计计算机控制系统在不久的将来可以 实现哪些功能. 机器智能系统在企业、政府、和全球 居民的日常生活中占据越来越重要的角色[33].
+3.2 自动化与人工智能的相互关系
+虽然深度学习和游戏博弈技术适用于完备的信 息空间, 但是人工智能技术的发展方向—可解释人 工智能和智能系统为研究制造业知识工作自动化与 智能化提供了新的方法和技术. 将人工智能技术、
+
+工业自动化技术、工业互联网与制造业的领域知识 工作相结合, 以研发补充和增强知识工作者能力的 AI 算法和 AI 系统为目标, 发展工业人工智能技术, 使实现制造业智能化成为可能.
+虽然对自动化和人工智能的界定并不明确, 且 随时间推移不断变化, 但自动化的研究和应用始终 秉持一个核心目标—减少和减轻人的体力和脑力劳 动, 提高工作效率、效益和效果. 人工智能的研究和 应用秉持的核心目标—使人的智能行为实现自动化 或复制. 自动化与人工智能的实现手段都是通过算 法和系统, 它们的共同点是通过机器延伸和增加人 类的感知、认知、决策、执行的功能, 增加人类认识 世界和改造世界的能力, 完成人类无法完成的特定 任务或比人类更有效地完成特定任务. 它们的不同 点在于研究对象和研究方法不同. 自动化是针对通 过机理分析、采用微分方程或代数方程可以建立数 学模型的研究对象, 利用输入输出表示的因果关系 小数据, 建立建模、控制与优化的理论和技术. 人工 智能是针对机理不清、难以建立数学模型但对象的 输入输出是处于完备信息空间的大数据的研究对 象, 采用基于统计的、无模型的机器学习方法, 建立 建模、控制与优化的理论和技术. 人工智能在短期 内的核心经济成效是将以前无法实现自动化的任务 实现自动化[34].
+3.3 工业人工智能的涵义、研究方向和研究思路 与方法
+目前, 制造与生产全流程的决策、控制与运行 管理中仍然依靠人凭经验和知识来完成的工作涉及 到工业自动化和人工智能技术难以应用的复杂系 统, 即机理不清, 难以建立数学模型, 输入与输出相 关信息处于开放环境、不确定的变化中, 信息难以 获取及感知, 决策目标多尺度多冲突. 当前, 学术界 与产业界开始了工业人工智能的研究[22, . 35−40] 虽然 对工业人工智能的界定并不明确且随时间的推移不 断变化, 工业人工智能研究与应用的核心目标是: 针 对产品与工艺设计、经营管理与决策、制造流程运 行管理与控制等工业生产活动中目前只能依靠人的 感知、认知、分析与决策能力和经验与知识来完成 的影响经济效益的知识工作, 实现知识工作的自动 化与智能化, 来显著提高社会经济效益. 工业人工智 能的实质是将人工智能技术与具体的工业场景相结 合, 实现设计模式创新、生产智能决策、资源优化配 置等创新应用. 使工业系统具备自感知、自学习、自 执行、自决策、自适应的能力, 以适应变幻不定的工 业环境, 并完成多样化的工业任务, 最终达到提升企
+
+10 期
+
+柴天佑: 工业人工智能发展方向
+
+2011
+
+业洞察力, 提高生产效率或设备产品性能[41]. 工业自动化与工业人工智能在工业生产活动中
+的发展目标对比分析如下: 针对制造与生产流程中 的装备或工业过程, 工业自动化的研究目标是实现 装备和工业过程的自动控制和控制系统设定值的优 化, 研发控制技术及软件和运行优化技术及软件. 针 对产品与工艺设计、生产管理与决策, 工业自动化 的研究目标是实现设计、生产管理与决策的信息化, 研发设计软件、ERP、MES 等工业软件. 针对仍然依 靠人来控制和管理的装备与工业过程, 工业人工智 能的研究目标是实现装备和工业过程控制与运行的 集成优化, 研发补充和增加人能力的 AI 算法和 AI 系统、制造与生产全流程的运行管理与控制一体 化软件. 针对依靠知识工作者来完成的产品与工艺 设计、生产管理与决策, 工业人工智能的研究目标 是实现知识工作自动化与智能化, 研制大数据驱动 的运行工况的识别、预测与决策的 AI 算法和 AI 系 统、人机合作的管理与决策智能化软件、产品与工 艺设计过程中补充和增强知识工作者能力的 AI 系统.
+结合制造业的发展现状和实现智能化的需求和 工业人工智能的发展目标, 工业人工智能的研究方 向为: 1) 复杂工业环境下运行工况的多尺度多源信 息的智能感知与识别; 2) 复杂工业环境下基于 5G 的多源信息快速可靠的传输技术; 3) 系统辨识 与深度学习相结合的复杂工业系统智能建模、数字 孪生与可视化技术; 4) 关键工艺参数与生产指标的 预测与追溯; 5) 复杂工业系统的智能自主控制技术; 6) 人机合作的智能优化决策; 7) 智能优化决策与控 制一体化技术; 8) “端-边-云”协同实现工业人工智 能算法的实现技术.
+为了取得工业人工智能的研究成果, 需要我们 借鉴人工智能取得重大进展的研究经验以及数据驱 动的人工智能、移动互联网、边缘计算和云计算驱 动的工业互联网时代改变科研的进行方式和研究思 维方式, 例如信息物理融合系统 CPS[1]、会聚研究[20]. 汇聚研究是一种新的研究范式和研究思维方式, 其 特点是: 问题驱动—具有挑战性的科学研究难题或 社会需求中的重大挑战难题; 跨学科合作研究—整 合来自不同学科的知识、方法和专业知识, 形成新 的框架来促进科学发现和创新. 学科方法和技术的 结合是解决复杂问题的唯一或最佳方案, 团队科学 正在成为一种更典型的研究模式[42]. 为此提出如下 研究思路与方法:
+1) 需求驱动, 找准问题, 即知识工作者通过感 知、认知、决策、执行来完成的影响效益的知识工作, 选好应用场景; 2) 确定研究目标, 即以最优秀的知
+
+识工作者为参考目标, 达到与超越最优秀的知识工 作者的工作效果; 3) 采用 CPS 思想, 研制面向特定 应用领域的工业人工智能系统, 使系统的适应性、 自主性、效率、功能、可靠性、安全性和感知与认知 的准确性、决策与控制的精准优化远超今天的系统; 4) 基础研究、研发、实验与工业应用相结合. 5) 采用 汇聚研究的思想, 将基于机理分析的模型与工业大 数据紧密融合与协同, 模型驱动的自动化与数据驱 动的人工智能技术紧密融合与协同, 移动互联网、 边缘计算、云计算等与计算机管控系统紧密融合与 协同, 工业互联网的研究与面向各种制造流程的 AI 算法和 AI 系统研究紧密融合与协同, 汇聚各学 科研究力量, 长期持续开展学科交叉和跨学科合作 研究.
+4 结论
+通过对工业自动化和信息技术在工业革命中的 作用以及制造与生产全流程智能化的分析, 可以看 到三次工业革命实现了操作工作自动化、企业管理 与决策信息化. 第四次工业革命将实现知识工作的 自动化与智能化. 为此, 需要将人工智能技术、工业 自动化技术、工业互联网与制造业的领域知识工作 紧密融合与协同, 以实现制造业智能化为目标, 研发 补充和增强知识工作者能力的 AI 算法和 AI 系统, 发展工业人工智能技术. 本文通过对工业自动化和 工业人工智能的相互关系的对比分析, 提出了工业 人工智能的涵义、研究方向和研究思路与方法.
+为了使我国在工业人工智能和工业互联网的研 究与应用走在世界前列, 需要一大批具有跨学科研 究能力的创新型工程科技人才. 这就需要重新审视 和考虑现行的专业人才培养模式、研究经费资助机 制、评价机制、产学研合作机制等, 并进行必要的改革.
+References
+1 Cyber-Physical Systems. Program Announcements & Information. The National Science Foundation, 4201 Wilson Boulevard, Arlington, Virginia 22230, USA. 2008-09-30[Online], available: http://www.nsf. gov/publications/pub_summ.jsp?ods_key=nsf08611, July 21, 2009.
+2 National Science and Technology Council, Networking and Information Technology Research and Development Subcommittee U.S. The national artificial intelligence research and development strategic plan[Online], available: https://www.nitrd.gov/PUBS/national_ai_rd_ strategic_plan.pdf.
+3 Executive Office of the President U.S. Summary of the 2018 White House Summit on Artificial Intelligence for American Industry, Executive Office of the President U.S., USA, 2018.
+4 National Science Foundation U.S. Statement on artificial intelligence for American industry[Online], available: https://www.nsf.gov/news/ news_summ.jsp?cntn_id=245418, May 10, 2018
+5 Executive Office of the President U.S. Fiscal Year 2021 Administration Research and Development Budget Priorities: Memorandum for the heads of executive departments and agencies[Online], available: https://www.whitehouse.gov/wp-content/uploads/2019/08/FY-21-RD-
+
+2012
+
+自 动 化 学 报
+
+46 卷
+
+Budget-Priorities.pdf, 2019.
+6 Executive Office of the President U.S. Fiscal Year 2020 Administration Research and Development Budget Priorities: Memorandum for the heads of executive departments and agencies[Online], available: https://www.whitehouse.gov/wp-content/uploads/2018/07/M-18-22.pdf, 2018.
+7 Federal Republic of Germany. Strategy Artificial Intelligence of the Federal Government. 2018.
+8 The Research Group for Research on Intelligent Manufacturing Development Strategy. Research on intelligent manufacturing development strategy in China. Engineering Science, 2018, 20(4): 1−8 ("新一代人工智能引领下的智能制造研究"课题组. 中国智能制造发 展战略研究. 中国工程科学, 2018, 20(4): 1−8)
+9 Jordan M I, Mitchell T M. Machine learning: Trends, perspectives, and prospects. Science, 2015, 349(6245): 255−260
+10 Kusiak A. Smart manufacturing must embrace big data. Nature, 2017, 544(7648): 23−25
+11 Mayr O. Zur Frühgeschichte der Technischen Regelungen. R. Massachusetts: MIT Press, 1970.
+12 Bennett S. A History of Control Engineering 1800-1930. London: Peter Peregrinus, 1979.
+13 Morley D. Programmable controllers: How it all began. Intech, 2008, 55(8): Article No. 82
+14 Strothman J. M and C Technology History More than a century of measuring and controlling industrial processes. Intech, 1995, 42(6): 52−78
+15 Darby M L, Nikolaou M, Jones J, Nicholson D. RTO: An overview and assessment of current practice. Journal of Process Control, 2011, 21(6): 874−884
+16 Chai T Y, Qin S J, Wang H. Optimal operational control for complex industrial processes. Annual Reviews in Control, 2014, 38(1): 81−92
+17 Chai Tian-You, Zheng Bing-Lin, Hu Yi, Huang Xiao-Ling. Current research situation and development of manufacturing execution systems. Control Engineering of China, 2005, 12(6): 505−510 (柴天佑, 郑秉霖, 胡毅, 黄肖玲. 制造执行系统的研究现状和发展趋 势. 控制工程, 2005, 12(6): 505−510)
+18 Hakason B. Execution-Driven Manufacturing Management for Competitive Advantage, MESA White Paper 5, Manufacturing Execution Systems Assoc, USA, 1997.
+19 Chai Tian-You. Development directions of automation science and technology. Acta Automatica Sinica, 2018, 44(11): 1923−1930 (柴天佑. 自动化科学与技术发展方向. 自动化学报, 2018, 44(11): 1923−1930)
+20 National Science Foundation. Convergence research at NSF[Online], available: https://www.nsf.gov/od/oia/convergence/index.jsp, 2018.
+21 Gil Y, Greaves M, Hendler J, Hirsh H. Amplify scientific discovery with artificial intelligence. Science, 2014, 346(6206): 171−172
+22 Chai Tian-You. Artificial intelligence research challenges in intelligent manufacturing processes. Bulletin of National Natural Science Foundation of China, 2018, 32(3): 251−256 (柴天佑. 制造流程智能化对人工智能的挑战. 中国科学基金, 2018, 32(3): 251−256)
+23 Chai Tian-You. Industrial process control systems: Research status and development direction. Scientia Sinica Informationis, 2016, 46(8): 1003−1015 (柴天佑. 工业过程控制系统研究现状与发展方向. 中国科学: 信息 科学, 2016, 46(8): 1003−1015)
+24 Chai Tian-You, Ding Jin-Liang. Smart and optimal manufacturing for process industry. Strategic Study of CAE, 2018, 20(4): 51−58 (柴天佑, 丁进良. 流程工业智能优化制造. 中国工程科学, 2018, 20(4): 51−58)
+25 Hutson M. AI Glossary: Artificial intelligence, in so many words. Science, 2017, 357(6346): Article No. 19
+26 Executive Office of the President U.S. Artificial intelligence, automation, and the economy[Online], available: https://www.iotforall.com/artificial-intelligence-automation-economy, 2016.
+
+27 Artificial Intelligence and Life in 2030, One Hundred Year Study on Artificial Intelligence (AI100), Report of the 2015-2016 Study Panel, Stanford University, USA, 2016.
+28 Dietmar Harhoff, Stefan Heumann, Nicola Jentzsch, Philippe Lorenz. Outline for a German Strategy for Artificial Intelligence[Online], available: https://www.ip.mpg.de/fileadmin/ipmpg/content/aktuelles/Outline_for_a_German_Artificial_Intelligence_Strategy.pdf, 2018.
+29 Executive Office of the President, National Science and Technology Council, Committee on Technology, U.S. Preparing for the future of artificial intelligence[Online], available: https://www.linkedin.com/ pulse/preparing-future-artificial-intelligence-sergiu-robu, 2016.
+30 Defense Advanced Research Projects Agency (DARPA) U.S., Explainable Artificial Intelligence (XAI) 2017.
+31 Pearl J. Theoretical impediments to machine learning with seven sparks from the causal revolution. In: Proceedings of the 11th ACM International Conference on Web Search and Data Mining. Marina Del Rey, USA: ACM, 2018.
+32 Bareinboim E, Pearl J. Causal inference and the data-fusion problem. Proceedings of the National Academy of Sciences of the United States of America, 2016, 113(27): 7345−7352
+33 Carter W A, Kinnucan E, Elliot J. A National Machine Intelligence Strategy for the United States, Center for Strategic and International Studies U.S., USA, 2018.
+34 Executive Office of the President, National Science and Technology Council, Committee on Technology, U.S. Preparing for the Future of Artificial Intelligence, Executive Office of the President U.S., USA, 2016.
+35 Huawei Cloud BU. Industrial AI Development White Paper. 2018
+36 Lee J, Davari H, Singh J, Pandhare V. Industrial artificial intelligence for industry 4.0-based manufacturing systems. Manufacturing Letters, 2018, 18: 20−23
+37 Palhares R M, Yuan Y, Wang Q. Artificial intelligence in industrial systems. IEEE Transactions on Industrial Electronics, 2019, 66(12): 9636−9640
+38 Lee, Singh J, Azamfar M. Industrial artificial intelligence. arXiv: 1908.02150v1, 2019.
+39 Munakata T. Commercial and industrial AI. Communications of the ACM, 1994, 37(3): 23−26
+40 Munakata T. New horizons in commercial and industrial AI. Communications of The ACM, 1995, 38(11): 28−31
+41 工 业 互 联 网 产 业 联 盟 . 工 业 智 能 白 皮 书 [ O n l i n e ] , 获 取 自 : https://tech.sina.com.cn/roll/2020-07-06/doc-iircuyvk2170592.shtml, 2020.
+42 National Academies of Sciences, Engineering, and Medicine. Graduate STEM Education for the 21st Century, The National Academies Press, USA, 2018.
+柴天佑　中国工程院院士, 东北大学 教授. IEEE Fellow, IFAC Fellow, 欧亚 科学院院士. 主要研究方向为自适应 控制, 智能解耦控制, 流程工业综合自 动化理论、方法与技术. E-mail: tychai@mail.neu.edu.cn (CHAI Tian-You　Academician of
+Chinese Academy of Engineering, professor at Northeastern University, and academician of the International Eurasian Academy of Sciences. His research interest covers adaptive control, intelligent decoupling control, and integrated automation thoery, method and technology of industrial process.)
+

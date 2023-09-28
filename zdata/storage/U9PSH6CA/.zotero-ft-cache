@@ -1,0 +1,210 @@
+
+JavaScript is disabled on your browser. Please enable JavaScript to use all the features on this page. Skip to main content Skip to article
+Elsevier logo ScienceDirect
+
+    Journals & Books 
+
+My Account Sign in
+
+    Access through  your institution
+    Purchase PDF 
+
+Article preview
+
+    Abstract
+    Introduction
+    Section snippets
+    References (160)
+    Cited by (100)
+    Recommended articles (6) 
+
+Elsevier
+Journal of Manufacturing Systems
+Volume 64 , July 2022, Pages 372-389
+Journal of Manufacturing Systems
+Review
+Digital twin modeling
+Author links open overlay panel Fei Tao a , Bin Xiao a , Qinglin Qi a b , Jiangfeng Cheng a , Ping Ji b
+Show more
+Add to Mendeley
+Share
+Cite
+https://doi.org/10.1016/j.jmsy.2022.06.015 Get rights and content
+Abstract
+
+The digital twin is an emerging and vital technology for digital transformation and intelligent upgrade. Driven by data and model, the digital twin can perform monitoring, simulation, prediction, optimization, and so on. Specifically, the digital twin modeling is the core for accurate portrayal of the physical entity, which enables the digital twin to deliver the functional services and satisfy the application requirements. Therefore, this paper provides systematic research of current studies on the digital twin modeling. Since the digital twin model is a faithful reflection of the digital twin modeling performance, a comprehensive and insightful analysis of digital twin models is given first from the perspective of the application field, hierarchy, discipline, dimension, universality, and functionality. Based on the analysis of digital twin models, current studies on the digital twin modeling are classified and analyzed according to the six modeling aspects within the digital twin modeling theoretical system proposed in our previous work. Meanwhile, enabling technologies and tools for the digital twin modeling are investigated and summarized. Finally, observations and future research recommendations are presented.
+Introduction
+
+The increasing production intricacy in a more demanding market is gathering momentum for the integration of the physical and digital world. At the same time, human’s escalating practical needs for industrial products are challenging the digital model’s capability to interact with the physical object. The digital twin was conceived in this context and has sparked a far-reaching industry revolution [1], [2]. In 2003, the concept of the digital twin was originally proposed by Michael Grieves [3] in his product lifecycle management course at the University of Michigan. In the beginning, digital twins were employed primarily in the military and aerospace. Currently, the digital twin is in a period of rapid development [4]. As seen in Fig. 1, more than 1000 papers concerning the digital twin have been published in each of the three consecutive years since 2019. By the end of 2021, 2934 papers were published in the year. Besides the surging number of papers year by year, the digital twin was listed as top 10 strategic technology trends by Gartner company for three consecutive years, ranking No. 5 in 2017 [5], and No. 4 in 2018 [6], 2019 [7]. In 2020, Gartner also listed the digital twin as an emerging technology for the next 5–10 years. At that time, representations of the digital twin for the real and virtual worlds will be ubiquitous [8].
+
+The digital twin has progressed from theoretical research to pragmatic implementation, whereas the model is a paramount constituent of the digital twin and a prerequisite for successful digital twin applications. In virtual space, based on the attributes of the physical entity, the digital twin model can be expressed in four model dimensions: geometry, physics, behavior, and rule [9]. The geometric model describes the geometric shape and assembly relationships of the physical entity. The physical model reflects the physical properties, characteristics and constraints of the physical entity. The behavioral model represents the dynamic behavior of the physical entity in response to the internal and external mechanisms. The rule model incorporates historical data and can exploit tacit knowledge, making the digital twin model smarter. By incorporating multidisciplinary knowledge, the multidimensional digital twin model can perform functions like prognostication, optimization, and control in the digital world.
+
+However, the effective digital twin model needs to be built from multiple digital twin modeling aspects. In our previous work [10], the digital twin modeling theoretical system was proposed, which deconstructed and investigated the digital twin modeling from the six aspects of model construction, model assembly, model fusion, model verification, model modification, and model management. Model construction integrates the knowledge in related disciplines to construct the elementary digital twin model, like unit level digital twin model in a specific application field. More complex digital twin model can be obtained through model assembly of elementary digital twin models in the spatial dimension. In case assembled model in spatial dimension cannot portray the internal mechanisms of the object or the production process comprehensively and incisively, model fusion in multiple fields, disciplines, and model dimensions is required after model assembly. Model verification for the constructed and assembled or fused digital twin model is also a necessity. If the digital twin model fails to address the physical production requirements, further model modification is essential to secure the accuracy of the digital twin model. Crucial as well, model management provides services, including the management of digital twin models in the model library and the processing and utilization of data and knowledge generated in the digital twin modeling. Hence, as the basis for the digital twin model-driven approach and imperative requirement for digital twin functionality implementation, the digital twin modeling drives the practical deployment of the digital twin technology in the relevant domains and industries.
+
+In this paper, a systematic review of current research on the digital twin modeling and its result, i.e., the digital twin model, will be presented mainly in terms of the four model dimensions and six modeling aspects mentioned above.
+
+The digital twin has been an ongoing area of concern in various industries recently. Correspondingly, a high volume of publications on the digital twin modeling have been published, of which several reviews.
+
+Barricelli et al. [11] reviewed current studies on the definitions of the digital twin and analyzed the difference between them. Lim et al. [12] summarized the concepts of the digital twin and the related techniques within the full life cycle. In the design phase of the full life cycle, Leng et al. [13] overviewed the digital twin frameworks. Errandonea et al. [14] conducted further review studies in the digital twin maintenance phase of the full life cycle.
+
+These studies reviewed the digital twin definitions, concepts, and frameworks from various viewpoints, such as the full life cycle. However, as key elements for the digital twin applications, the modeling and model require more focused research. Therefore, a systematic review of the digital twin modeling and model from multiple perspectives is needed.
+
+Melesse et al. [15] performed a systematic literature review to provide an assessment of the utility of the digital twin model in industrial operations and highlight the challenges in its implementation. In the review work of Wright et al. [16], they underlined the essence of the differences between models and digital twins, overviewed some crucial advantages of employing digital twin models, and recommended orientations for further research to explore its maximum potential. Lechler et al. [17] overviewed and explained the relationship between the functionality of the digital twin model and its application fields. Meanwhile, a new digital twin model in the manufacturing context was introduced. Berri et al. [18] provided a review of digital twin models regarding the fluid-dynamic behavior in electro-hydraulic servo valves. The comparison and evaluation of the precision of digital twin models were illustrated as well.
+
+These publications conducted detailed surveys of the functions of the digital twin model for different objects or scenarios in manufacturing. However, current review works focus on the functional representation of the digital twin model at the surface layer, while overlooking the analysis of the model attributes and features at the deep layer, which shapes the digital twin model. Meanwhile, digital twin models have been evolving and applied in various fields, but the current review works focus only on the manufacturing domain. It is absent a thorough and insightful summary of the similarities, differences, and connections between the multiple attributes and functionalities of digital twin models in various application fields.
+
+Rasheed et al. [19] reviewed the current methods and techniques used in the model construction aspect of the digital twin model. The existing challenges associated with the digital twin model construction were also elucidated, along with the authors’ informative proposals and insights. Bordeleau et al. [20] reviewed diverse model-driven engineering technologies used in model construction that potentially contribute to solving the digital twin modeling challenges mentioned. Ríos et al. [21] offered a digital twin modeling review about measurement uncertainty within data transfer standards and how it relates to testing data when constructing the model. Andronas et al. [22] summarized and addressed the limitations of existing techniques for the digital twin modeling of the flexible material.
+
+For system-level digital twin models such as production equipment or the shop floor, their modeling is complex system engineering which is infeasible to construct the entire model in one go. Therefore, based on proper model management, it is necessary to assemble and fuse unit-level digital twin models and verify and modify the modeling validity. These papers reviewed the digital twin modeling perceptively from different viewpoints. However, current studies stagnated in model construction and neglected other aspects of the digital twin modeling including model assembly, model fusion, model verification, model modification and management. Also, related reviews lack a summary and analysis of the specific aspects of the digital twin modeling and the enabling technologies and tools in each aspect. Moreover, the existing research on technologies and tools for the digital twin modeling is discrete and divorced, where no universal and coherent analysis, generalization, and elaboration for both is in progress.
+
+The digital twin model is the foundation and container for the digital twin functionality, while the digital twin modeling is the groundwork for the digital twin model-driven methodology. Therefore, via an exhaustive and incisive overview, this paper aims to:
+
+    1)
+
+    Provide a comprehensive summary and analysis of the currently available digital twin models in terms of the application field, hierarchy, discipline, dimension, universality, and functionality.
+    2)
+
+    Classify and analyze the existing research on the digital twin modeling according to the six modeling aspects within the digital twin modeling theoretical system.
+    3)
+
+    Investigate the enabling technologies and tools accessible in the six digital twin modeling aspects.
+    4)
+
+    Propose future research orientations and prospective approaches to resolving existing problems and emerging challenges in the digital twin modeling.
+
+The rest of this article is organized as follows. Section 2 introduces the literature classification criteria and review methodology. Section 3 analyzes the digital twin model from multiple perspectives. Section 4 researches the digital twin modeling from multiple aspects. Section 5 summarizes enabling technologies and tools used in different aspects of the digital twin modeling. Several observations and future research recommendations are given in Section 6. At last, the conclusions and future work are provided in Section 7.
+Section snippets
+Classification criteria
+
+The fundamental literature classification criterion in this study is based on the application field of the digital twin model. digital twin models in various application fields are deconstructed, classified, and summarized from the perspective of the hierarchy, discipline, dimension, universality, and functionality. As a way to realize the digital twin model in different fields, the digital twin modeling in the publications reviewed is deconstructed and categorized into corresponding modeling
+Multi-perspective analysis of the digital twin model
+
+Among these 296 academic publications, the 12 publications mainly focus on the macroscopic framework, modeling procedures and methodologies, the technologies, and the tools used in modeling, which will be covered in later sections. In the remaining 284 publications, digital twin models derive from architectures or paradigms and application examples in case studies. As shown in Fig. 2, these publications are classified by the application fields of their digital twin models. Because one reviewed
+Multi-aspect analysis of the digital twin modeling
+
+The digital twin modeling is digital modeling in virtual space for the properties, methods, behaviors, and other characteristics of the physical asset. In the following section, the digital twin modeling will be illustrated from the six modeling aspects within the digital twin modeling theoretical system with several application cases.
+Enabling technologies and tools in the digital twin modeling
+
+There is still a mountain of challenges for technologies and tools that remain to be resolved for the digital twin modeling. Meanwhile, current research concentrates on frameworks, processes, and know-what at the macro level rather than specific technologies, tools, and know-how at the micro-level [119]. Furthermore, the digital twin modeling is a highly intricate process that entails a time-intensive orientation, fine-tuning, and refinement. This section, therefore, surveys and studies the
+Observations and recommendations
+
+This work provides a thorough review of over 300 publications. Therein, Fastidious data statistics and analytics on various properties of the digital twin model and dissimilar modeling aspects of the digital twin modeling have been conducted. Accordingly, there are some observations and recommendations expounded as follows:
+Conclusions and future work
+
+Since the first introduction of the terminology and the first application in aerospace, the digital twin has been rapidly advancing from concept to application in recent years. Along with this, the research and applications of digital twins are increasingly in-depth and specific. Therefore, the digital twin model as the cornerstone of the digital twin technology and the digital twin modeling as the golden touch for this cornerstone have received more and more attention. This paper provides a
+Declaration of Competing Interest
+
+The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
+Acknowledgments
+
+This work is financially supported in part by grants from Key Project of International (Regional) Cooperation and Exchange Programs of NSFC ( 52120105008 ), in part by National Natural Science Foundation of China (NSFC) under Grant 52005024 , and in part by grants from project No. G-YZ3N.
+References (160)
+
+    F. Tao et al.
+    Data-driven smart manufacturing
+    J Manuf Syst
+    (2018)
+    I. Errandonea et al.
+    Digital twin for maintenance: a literature review
+    Comput Ind
+    (2020)
+    J. Leng et al.
+    Digital twins-based smart manufacturing system design in industry 4.0: a review
+    J Manuf Syst
+    (2021)
+    T.Y. Melesse et al.
+    Digital twin models in industrial operations: a systematic literature review
+    Procedia Manuf
+    (2020)
+    D. Andronas et al.
+    On modelling and handling of flexible materials: a review on digital twins and planning systems
+    Procedia CIRP
+    (2021)
+    P. Aivaliotis et al.
+    Methodology for enabling digital twin using advanced physics-based modelling in predictive maintenance
+    Procedia CIRP
+    (2019)
+    R. Vrabič et al.
+    Digital twins understanding the added value of integrated models for through-life engineering services
+    Procedia Manuf
+    (2018)
+    G. Angjeliu et al.
+    Development of the simulation model for digital twin applications in historical masonry buildings: the integration between numerical and experimental reality
+    Comput Struct
+    (2020)
+    G. Aversano et al.
+    Digital twin of a combustion furnace operating in flameless conditions: reduced-order model development from CFD simulations
+    Proc Combust Inst
+    (2021)
+    S. Liu et al.
+    Digital twin modeling method based on biomimicry for machining aerospace components
+    J Manuf Syst
+    (2021)
+
+View more references
+Cited by (100)
+
+    Guidelines for designing a digital twin for Li-ion battery: A reference methodology
+    2023, Energy
+    Show abstract
+    Production logistics digital twins: Research profiling, application, challenges and opportunities
+    2023, Robotics and Computer-Integrated Manufacturing
+    Show abstract
+    Meta-model-based shop-floor digital twin architecture, modeling and application
+    2023, Robotics and Computer-Integrated Manufacturing
+    Show abstract
+    Digital twin framework using agent-based metaheuristic optimization
+    2023, Engineering Applications of Artificial Intelligence
+    Show abstract
+    Multi-dimensional modeling and abnormality handling of digital twin shop floor
+    2023, Journal of Industrial Information Integration
+    Show abstract
+    Building digital twinning: Data, information, and models
+    2023, Journal of Building Engineering
+    Show abstract
+
+View all citing articles on Scopus
+Recommended articles (6)
+
+    Research article
+    Building a right digital twin with model engineering
+    Journal of Manufacturing Systems, Volume 59, 2021, pp. 151-164
+    Show abstract
+    Research article
+    Review of digital twin applications in manufacturing
+    Computers in Industry, Volume 113, 2019, Article 103130
+    Show abstract
+    Research article
+    Digital Twin-driven smart manufacturing: Connotation, reference model, applications and research issues
+    Robotics and Computer-Integrated Manufacturing, Volume 61, 2020, Article 101837
+    Show abstract
+    Research article
+    The connotation of digital twin, and the construction and application method of shop-floor digital twin
+    Robotics and Computer-Integrated Manufacturing, Volume 68, 2021, Article 102075
+    Show abstract
+    Research article
+    An update method for digital twin multi-dimension models
+    Robotics and Computer-Integrated Manufacturing, Volume 80, 2023, Article 102481
+    Show abstract
+    Research article
+    Digital twin modeling method based on biomimicry for machining aerospace components
+    Journal of Manufacturing Systems, Volume 58, Part B, 2021, pp. 180-195
+    Show abstract
+
+View full text
+© 2022 The Society of Manufacturing Engineers. Published by Elsevier Ltd. All rights reserved.
+Elsevier logo with wordmark
+
+    About ScienceDirect
+    Remote access
+    Shopping cart
+    Advertise
+    Contact and support
+    Terms and conditions
+    Privacy policy 
+
+We use cookies to help provide and enhance our service and tailor content and ads. By continuing you agree to the use of cookies .
+
+All content on this site: Copyright © 2023 Elsevier B.V., its licensors, and contributors. All rights are reserved, including those for text and data mining, AI training, and similar technologies. For all open access content, the Creative Commons licensing terms apply.
+RELX group home page
+Feedback
