@@ -1,0 +1,2136 @@
+COMMUNICATIONS THEORIES
+
+Distributed Edge Cooperation and Data Collection for Digital Twins of Wide-Areas
+
+Mancong Kang, Xi Li*, Hong Ji, Heli Zhang
+Key Laboratory of Universal Wireless Communications, Beijing University of Posts and Telecommunications, Beijing 100876, China * The corresponding author, email: lixi@bupt.edu.cn
+Cite as: M. Kang, X. Li, et al., ªDistributed edge cooperation and data collection for digital twins of wide-areas,º China Communications, vol. 20, no. 8, pp. 177-197, 2023. DOI: 10.23919/JCC.fa.2023-0202.202308
+
+Abstract: Digital twins for wide-areas (DT-WA) can model and predict the physical world with high ﬁdelity by incorporating an artiﬁcial intelligence (AI) model. However, the AI model requires an energy-consuming updating process to keep pace with the dynamic environment, where studies are still in infancy. To reduce the updating energy, this paper proposes a distributed edge cooperation and data collection scheme. The AI model is partitioned into multiple sub-models deployed on different edge servers (ESs) co-located with access points across wide-area, to update distributively using local sensor data. To reduce the updating energy, ESs can choose to become either updating helpers or recipients of their neighboring ESs, based on sensor quantities and basic updating convergencies. Helpers would share their updated sub-model parameters with neighboring recipients, so as to reduce the latter updating workload. To minimize system energy under updating convergency and latency constraints, we further propose an algorithm to let ESs distributively optimize their cooperation identities, collect sensor data, and allocate wireless and computing resources. It comprises several constraint-release approaches, where two child optimization problems are solved, and designs a largescale multi-agent deep reinforcement learning algorithm. Simulation shows that the proposed scheme can efﬁciently reduce updating energy compared with the
+Received: Mar. 22, 2023 Revised: May. 24, 2023 Editor: Guanglin Zhang
+
+baselines. Keywords: digital twin; smart city; multi-agent deep reinforcement learning; resource allocation
+I. INTRODUCTION
+Digital twin (DT) is a cutting-edge technology that creates a digital replica of a physical entity based on advanced modeling technologies and real-time physical data [1]. With the advent of 6G, there has been a call to establish DTs for geographically wide-areas (ªDT-WAº) [2], which can fuse the physical and digital worlds to facilitate large-scale monitoring, prevalidation, prediction, and intelligent management in various ﬁelds, such as transportation, water resources management, city planning, building construction and emergency orchestration [3]. For instance, DT-WAs have been built to forecast city ﬂood [4] and forest ﬁre [5]. According to the International Data Corporation, the global investment in DT-WA is expected to reach $107.826 billion by 2025, with a compound annual growth rate of 34.13% over ﬁve years.
+A critical component of DT-WA is the behavior model of the physical world, which can be used to pre-validate proposals and predict future states for advanced management. In particular, it is expected to be realized using an artiﬁcial intelligence (AI) model [6], which would be established in a distributed form with a large quantity of sub-models deployed on different edge servers, co-located with different access points (APs), so as to capture various locations in the wide-
+
+© China Communications Magazine Co., Ltd. · August 2023
+
+177
+
+area. Speciﬁcally, the AI model needs to incorporate a distributed updating process to maintain its predicting and simulation accuracy for the dynamic environment. That is, sub-models on different ESs should regularly update their parameters, more precisely the integrated learning networks (e.g., deep neural networks), based on the collected local sensor data. However, due to the extensive coverage of DT-WA, the updating process of the whole AI model would consume a massive amount of energy. Nevertheless, the study of the updating process is still in its early stages, despite its great potential for wide application.
+To address the energy issues in the updating process, we identify six distinct features in the AI model of DTWA:
+• Sub-models quantity: The AI model consists of a large number of sub-models on different ESs to model every part of the wide-area. For example, a DT-WA for city ﬂood predictions requires to deploy sub-models in various locations such as different river banks, buildings, roads, and mountain areas [4].
+• Sub-models heterogeneous: Sub-models on different ESs would be heterogeneous. Their structures and learning goals may be different depending on their local features. For example, the submodels on ESs connected with APs in mountains may need to predict the future soil moistures, while river banks predict the water levels.
+• Sensors heterogeneous: The updating process relies data from various kinds of sensors, such as monitors and thermo-hygrometers. They may have distinct communication requirements, such as enhanced mobile broadband (eMBB) and ultrareliable low latency communications (URLLC). Furthermore, different sub-models may rely on different types of sensors at varying levels.
+• Sensors uneven availability: The distribution of heterogeneous sensors across different ESs is not uniform. Moreover, their availabilities are dynamically changing, determined by their current battery levels which are inﬂuenced by the sensor activations, transmitting powers, and the speeds of solar charging. Consequently, the size of collected local datasets on different ESs may vary, inducing dissimilar sub-model updating convergencies and energies.
+
+• Neighboring similarity: Sub-models on neighboring ESs may exhibit similar updating patterns, due to the ensemble change of system environment. For example, sub-models for adjacent river banks and mountain areas may have partially similar model architectures to infer future water level or soil moisture based on the present air humid and monitoring image. It offers an opportunity for neighbors to partially share their updating parameters.
+• Community beneﬁt: Each ES needs to act on the basis of community beneﬁt. Individual sacriﬁce is encouraged to minimize the whole system cost. It is different from traditional multi-users/ESs scenarios [7], where each entity wants to minimize its own cost while achieving a good social welfare.
+Based on the above features, this paper proposes a distributed edge cooperation and data collection scheme to reduce the overall updating energy of DTWA. Considering the sub-models on adjacent ESs may exhibit similar updating trends, each ES can choose to become either an updating helper or a recipient of its neighboring ESs, based on the quantities of available sensors, environmental changes, and basic updating convergencies. ESs with more available sensors are more likely to become helpers to reduce the system energy, since larger collected datasets can assist sub-models to achieve higher updating convergency with lower computing energy [8]. Each helper ﬁrst activates some of its local heterogeneous sensors to collect sensor data and update its sub-model, then sends the updated sub-model parameters to its neighboring recipient ESs. Each recipient combines the useful part from its helper’s parameters with its local sub-model to increase its basic updating convergency. Then, the recipient ES only needs to further update its sub-model based on local sensor data to capture local features with reduced workload. This approach enables a helper ES to save the updating energy of several neighboring recipient ESs, which can reduce the overall system energy.
+Moreover, to facilitate the ESs decision making process, we investigate a cooperation and resource allocation problem, with the aim to minimize the longterm system energy under high updating convergencies and low latencies. It is complex due to three rea-
+
+178
+
+© China Communications Magazine Co., Ltd. · August 2023
+
+sons. Firstly, each ES’s action can have a ripple effect on many other ESs in the network, making it challenging for each ES to make optimal decisions with only local information. This is compounded by the large number of ESs with a random topology. Secondly, the activations of different types of sensors must consider their different impacts on the local sub-model, their availabilities and their inﬂuences on each other during wireless transmission process. Thirdly, the dynamic environment leads to varying updating similarities among neighboring ESs and dynamic updating workload for each sub-model. Meanwhile, the sensor battery levels are constantly changing. Each ES must consider not only the current situation but also the historical and potential future conditions when cooperating, activating sensors, and allocating resources.
+In view of the above issues, we propose a distributed cooperation and resource allocation algorithm. First, the problem is reformulated as a decentralized partially observable Markov decision process (Dec-POMDP), where each ES needs to dynamically decide its cooperation identity, activate heterogeneous sensors, and allocate wireless and computing resources, based on its surrounding observations. Then, to reduce the problem complexity, we solve two child optimization problems to minimize the local computing energy on all ESs and the surrounding energy on helper ESs, respectively. After that, we design a distributed large-scale multi-agent proximal policy optimization algorithm to solve the Dec-POMDP. Simulation results show that the proposed scheme can effectively reduce the DT-WA updating energy compared with the baselines.
+The contribution can be summarized as follows:
+• The paper closes the gap of studying the updating process for AI model in DT-WA, and designs a cooperation and data collection scheme for it to reduce its overall updating energy.
+• An optimization problem is carefully established, where ESs needs to dynamically adjust their cooperative identities, activate heterogenous sensors and allocate wireless and computing resources, with the aim to minimize the average long-term overall updating energy, under updating convergency and latency requirement.
+• We propose a distributed algorithm to solve the problem. The original problem is transformed
+
+into a Dec-POMDP. Then, the Dec-POMDP is simpliﬁed by solving two child optimization problems. Finally, distributed large-scale multiagent proximal policy optimization algorithm is proposed for each ESs to individually optimize its action.
+• Simulation shows that the proposed edge cooperation and data collection scheme can efﬁciently reduce DT-WA updating energy under high updating convergency and low latency compared with the baselines.
+The remainder of our work is organized as follows. Section II gives the related works. Section III and Section IV gives the system model and problem formulation, respectively. Section V designs an algorithm to solve the problem. Simulation results and discussions are given in Section VI. Finally, we conclude this paper in Section VII.
+II. RELATED WORKS
+This section brieﬂy summarizes the existing works of DTs in wireless networks, and the previous works on DT-WA.
+2.1 Digital Twins in Wireless Networks
+Existing researches in wireless communication ﬁeld mainly studied DT for services and wireless networks. On the one hand, researchers have proposed several updating schemes for service DTs. They normally leveraged the federated learning (FL) to learn the common feature in different devices with similar DT model structures, to obtain global DT model for speciﬁc services (e.g., trafﬁc predictions) [9, 10]. For instance, authors in [9] proposed an asynchronous model update scheme to efﬁciently aggregate the global service DT on base station (BS) based on the local DTs trained on different IoT devices. On the other hand, researchers have leveraged network DTs to capture the real-time network states for resource optimizations [11, 12]. For example, authors in [12] proposed a DTassisted task ofﬂoading scheme, where BS can make optimal ofﬂoading decisions based on the network DT by obtaining the state of computation resource on different user devices. They rarely studied the updating process for network DTs, since network DTs are
+
+© China Communications Magazine Co., Ltd. · August 2023
+
+179
+
+mainly consisted of DTs of man-made network elements and mobile devices [13]. These DTs can be provided by manufacturers, which are comparatively more stable, controllable and predictable than the nature environment in DT-WA, therefore do not need frequent updating process.
+In summary, service DTs usually assume similar model structures within networks, whose FL-based updating strategies can not be applied to DT-WA to update the heterogeneous sub-models in DT-WA. Moreover, network DTs do not need such frequent updating process as DT-WA. Therefore, their strategies are not applicable for DT-WA.
+2.2 Digital Twins of Wide-areas
+DT-WA has two basic functions, monitoring and modeling the physical world. On the one hand, to realize the monitoring function, researchers have explored various three-dimensional (3D) reconstructing technologies to highly restore the 3D state of the physical world in digital space [3]. Others developed efﬁcient data synchronizing schemes to collect massive physical data via wireless networks to synchronize the digital counterpart [14]. On the other hand, to realize the modeling function, researches have explored various modeling technics for DT-WA [15]. In particular, the deep learning algorithm has been seen as one of the most prevail modeling approaches [6, 16]. For instance, authors in [16] combined semantic knowledge with deep neural network (DNN) to presenting and reasoning the DT-WA, so as to identify events and make decision automatically.
+However, the study for updating the AI model in DT-WA is still in its infancy. It is critical for the pre-validation and predicting performance in DT-WA, which has a wide potential use in various ﬁelds. To close the gap, this paper studies the updating process, and solves its energy challenge by designing an energy-efﬁcient edge cooperation and data collection scheme.
+III. SYSTEM MODEL
+3.1 Preliminaries
+Large quantities of ESs co-located with different APs are distributed across the wide-area, which are denoted by a set F = (1, 2, · · · , F ). A DT-WA is
+
+established for the system, whose AI model is denoted by M. It is divided into multiple local submodels {Mi|i ∈ F} deployed on different ESs for distributed updating, as depicted in Figure 1. Distance between two APs is di,j (i, j ∈ F ). The set of neighboring ESs of ES i is denoted by Bi = {j|di,j < dth, j ∈ F }, where dth is the distance threshold between their connected APs. ESs can share their updated sub-model parameters with their neighbors to save each others energy in each updating circle. The solar-powered heterogeneous sensors under ES i include eMBB sensors and URLLC sensors, which are denoted by two sets DiB = {1, 2, · · · , NiB} (i ∈ F ) and DiU = {1, 2, · · · , NiU} (i ∈ F ), where NiB and NiU are the numbers of different type of sensors, respectively. Time is discretized into updating circles, which is denoted by T = {1, 2, · · · , t, · · · , +∞}.
+3.2 Dataset Collecting Process
+In each updating circle, each ES activates part of its available heterogenous sensors and collects sensor data through wireless communication. The collected data is used for updating its local sub-model Mi. The heterogenous sensors are divided into URLLC-type and eMBB-type depending on their transmitted datatypes, where we use superscript ‘B’ and ‘U’ to distinguish their variables, respectively. The multiplexing method for mixed eMBB and URLLC transmission is based on the well-known puncture approach [17]. Speciﬁcally, each updating circle are divided into K time slots, denoted by {1, · · · , k, · · · , K}. Each slot is further divided into 10 mini-slots with a length of Ts (0.1ms). The eMBB-type sensors continuously transmitting its dataset within allocated bandwidth, whereas the URLLC packets can pre-emptively overlap the eMBB trafﬁc in each mini-slot.
+3.2.1 URLLC-Type Sensors
+To avoid co-channel interference, different ESs use orthogonal frequencies to collect datasets from its local sensors. The bandwidth used by each ES is B. We use a binary variable viU,n(t) to denote whether a URLLCtype sensor n under ES i connected AP is available to activate, i.e., having enough energy to work. If viU,n(t) = 1, it is available, and vise versa. We use a binary variable giU,n(t) to denote whether sensor n is activated. If giU,n(t) = 1, it is activated, and vise versa.
+
+180
+
+© China Communications Magazine Co., Ltd. · August 2023
+
+Figure 1. Distributed edge cooperation and data collection for updating the AI model in DT-WA.
+
+Only available sensors can be activated, i.e.,
+
+is modiﬁed into [18]:
+
+giU,n(t) ≤ viU,n(t).
+
+(1)
+
+It spontaneously generates and sends datasets to the local ES, with a probability of q in each mini-slot. The packet size in one transmission is:
+
+SU = sU · lU,
+
+(2)
+
+where lU is the number of samples in a dataset, sU is the bit size of one sample. Its transmission rate can no longer achieve Shannon capacity because of the ﬁniteblocklength, where the instantaneous achievable rate
+
+R(t, k) ≈
+
+■
+
+■
+
+■
+
+B ln 2 ■ln (1 + γ(t, k)) −
+
+V (t, k) TsB
+
+fQ−1
+
+(ε(t,
+
+k))■
+
+,
+
+(3)
+where N0 is the noise spectral density, γ(t, k) = H(t, k)PiU,k(t, k)/(N0B) is the received SNR, H(t, k) is the instant channel gain, V (t, k) = 1 − [1 + γ(t, k)]−2, fQ−1(·) is the inverse function of the Qfunction, ε(t, k) is the decoding error probability. PiU,n is the ﬁxed transmitting power of the n-th URLLC
+sensor under ES i. It can not adapt to the instant
+channel gain because the CSI cannot be applied to the
+
+© China Communications Magazine Co., Ltd. · August 2023
+
+181
+
+URLLC transmission. Different URLLC sensors de-
+termine their transmitting power PiU,n according to [19] to achieve decoding error probability εUth under transmission rate RU = SU/Ts.
+
+3.2.2 EMBB-Type Sensors
+We use a binary variable viB,n(t) to denote whether a eMBB-type sensor n under ES i is available to activate, i.e., having enough energy to work. If viB,n(t) = 1, it is available, and vise versa. We use a binary variable giB,n(t) to denote whether sensor n is activated. If giB,n(t) = 1, it is activated, and vise versa. Only available sensors can be activated, i.e.,
+
+giB,n(t) ≤ viB,n(t).
+
+(4)
+
+The activated eMBB sensors equally divide the bandwidth of ES i. Therefore, according to the Shannon equation, the wireless transmission rate of each sensor under ES i is
+
+RiB(t) =
+
+(1
+
+−
+
+qisum(t))Bis(t)
+
+log2
+
+( 1
+
++
+
+H(t, k)pBi,n(t, N0Bis(t)
+
+k) )
+
+=
+
+(1
+
+−
+
+qisum(t))Bis(t)
+
+·
+
+log2
+
+( 1
+
++
+
+PiB,r(t) ) N0Bis(t)
+
+,
+
+(5)
+
+where Bis(t) = B/(ΣNn=iB1 giB,n(t)), qisum(t) =
+
+10q
+
+ΣNiU
+n=1
+
+giU,n(t)/Ts
+
+is
+
+the
+
+ratio
+
+of
+
+time-resource
+
+oc-
+
+cupied by the URLLC sensors. For simplicity, differ-
+
+ent eMBB sensors under ES i achieve the same target receiving power PiB,r(t) in the t-th updating circle, by
+adapting their instant transmitting powers according to
+
+the instant channel gain under given wireless decoding error probability ϵBth with the power scheme in [20].
+
+3.3 Cooperation and Updating Process
+3.3.1 ESs Cooperation Process
+During an updating circle, ﬁrst, each ES chooses its cooperative identity (helper or recipient), which uses a binary variable mi(t) to convey. mi(t) = 1 denotes the ES chooses to be a helper, while mi(t) = 0 denotes a recipient. All of the ESs that choose to be helpers are gathered into a helper set H(t) = {i|mi(t) = 1, i ∈
+
+K}, which is unknown to any ES. Similarly, the ESs that choose to be recipients are gathered into a recipient set O(t) = {i|mi(t) = 0, i ∈ K}. Then, all of ESs broadcast their identities to their neighboring ESs through wired link between APs, so that each recipient know the helpers in its neighborhoods. The recipient would randomly choose a helper from its neighborhoods, which is denoted by
+
+{ j,
+oi(t) = null,
+
+j ∈ Bi∗, if Bi∗ /= ∅, if Bi∗ = ∅,
+
+(6)
+
+where i ∈ O(t) and Bi∗ = Bi ∩ H(t). They would send an informing message to their helpers. Then, each helper is aware of its recipients, which can be represented by a set
+
+Gi(t) = {j|oj(t) = i, j ∈ O(t)}, i ∈ H(t). (7)
+
+After that, helper i (i ∈ H(t)) updates its submodel Mi based on its local data. Then, it shares the updated sub-model parameters with its recipients through wired channels with a negligible latency. Each recipient j (j ∈ Gi(t)) extracts the useful part in Mi, and incorporates it into its old sub-model Mj to increase its basic updating convergency. Then, the recipient further updates its sub-model Mj based on its local data.
+
+3.3.2 Sub-Model Local Updating Process
+Helper ESs would start to update their local sub-model based on their heterogenous sensor data after their helper identities have been determined. Recipient ESs start to update their local sub-model based on sensor data after receiving their helpers’ sub-model parameters. For the local sub-model on ES i, its learning network (commonly a deep neural network) can be divided into two child networks that can be independently updated using eMBB and URLLC dataset, which are later integrated into an entire learning network using mixed eMBB-URLLC dataset to further update.
+
+IV. PROBLEM FORMULATION
+
+182
+
+© China Communications Magazine Co., Ltd. · August 2023
+
+Our goal is to let the ESs individually make decisions, e.g., choosing cooperative identity, to update their local sub-models in DT-WA under updating convergency and latency requirements, with the aim to minimize the long-term system energy. Next, we give the mathmetical relationships between the decision variables with different performance metrics (i.e., updating convergency, latency, system energy). Then, we give our optimization problem.
+
+4.1 Updating Latency
+At the beginning of each updating circle, each ES chooses to be a helper or recipient, and decides to activate local heterogeneous sensors. Then, they begin to collect the local data from their local sensors. After that, each helper ES updates local sub-model based on the local sensoring data. Then, it sends the updated sub-model to its recipient ESs. Each recipient partly combine its helper sub-model with its old sub-model and further updates it using local dataset.
+First, we give the heterogeneous data collecting delay of all ES. Considering the URLLC packets puncture the eMBB data streams in the wireless transmission process, the transmission delay of heterogeneous data is equal to the eMBB transmission delay. Besides, each ES would determine the received power for its local eMBB sensors, which is in the same value for different sensors. It leads to a same transmission rate RiB(t) of all eMBB sensors under ES i, according to Eq. (5). The transmission delay would be
+
+Dit(t)
+
+=
+
+sB · lB RiB(t) ,
+
+(8)
+
+where lB is the number of samples in a dataset generated by a eMBB sensor, sB is the bit size of one sam-
+
+ple. Second, we give the local updating delay of all ES,
+where each ES uses computing resources and collected data to update its sub-model parameters. On ES i, the computing workload of its sub-model Mi comprises three parts, which are eMBB and URLLC-data related child network updating and integrated updating, given as
+
+■ |
+
+CiB(t) = IiB(t) · QBi (t) · cB,
+
+■
+
+CiU(t) = IiU(t) · QUi (t) · cU,
+
+| ■
+
+CiInt(t) = IiInt(t) · min{QBi (t), QUi (t)} · cInt,
+
+(9)
+
+where cB, cU, cInt are the computing workloads of
+
+one piece of data sample in different child net-
+
+work or the integrated learning network, IiB(t), IiU(t) and IiInt(t) are training iterations in different sub-
+
+processes, which are determined by resource op-
+
+timization algorithm on each ES. QBi (t) = l ·
+
+ΣNiB
+n=1
+
+giB,n(t),
+
+QUi (t)
+
+=
+
+l
+
+·
+
+ΣNiU
+n=1
+
+giU,n(t)
+
+are
+
+the
+
+size
+
+of datasets in different sub-processes. Then, the whole
+
+computing workload is
+
+Ci(t) = CiB(t) + CiU(t) + CiInt(t). (10)
+
+The computing latency on ES i is
+
+Dic(t) = Ci(t)/fi(t),
+
+(11)
+
+where fi(t) is the allocated computation resource on ES i.
+Based on the above data collecting and ES computing delay, the overall updating latency of sub-model on every ES, including helpers and recipients, can be calculated by (12).
+
+{ Di(t) =
+
+Dit(t) + Dic(t), if i ∈ H(t) or oi(t) = ∅, max{Dit(t), Doi(t)(t)} + Dic(t), else.
+
+(12)
+
+In (12), the ﬁrst line gives the overall updating delay of each helper ES and the recipient ES without matched helpers, the second line gives the delay of each recipient ES. The sub-model transmission delay between helper ES and its recipient ES can be omitted because of large wired transmission capacity.
+
+4.2 Updating Convergency
+In the distributed DT-WA model updating scenario, we study the updating convergency of the sub-model on each ES. In each updating circle, due to the dynamic environment changes, the sub-model on an ES may not
+
+© China Communications Magazine Co., Ltd. · August 2023
+
+183
+
+be able to faithfully replicate the behavior model of its
+physical environment. The mismatch is reﬂected in the basic updating convergency (1−exp(ubi ase(t))), where ubi ase(t)) is the basic convergency factor. It is inﬂuenced by both the updating convergency in the last up-
+dating circle and the volume of environment changes
+after the latest updates. In particular, for recipient ESs,
+the basic convergency factor is also inﬂuenced by its
+helper sub-model, which could increase their original
+values. Commonly, the transition function of the ba-
+
+sic convergency factor is unknown, due to the unstructured environment changes.
+In the local computing process of every ES, helper or recipient, the updating convergency depends on the sub-model structure, dataset dimension, and training iteration times. In detail, the updating convergency is jointly determined by the three sub-processes, including eMBB and URLLC-related child network updating and integrated updating, as given in Eq. (13).
+
+εi(t) = 1 − e−ubi ase(t) · e · e · e . −kiBIiB(t)·[QBi (t)]v −kiUIiU(t)·[QUi (t)]v −kiIntIiInt(t)·[min{QBi (t),QUi (t)}]v
+
+■ ■■ ■ ■ ■■ ■ ■ ■■ ■ ■
+
+■■
+
+■
+
+Basic divergency. EMBB child network. URLLC child network.
+
+Integrated network.
+
+(13)
+
+In the Eq. (13), the convergency performance
+of each sub-process [8] is jointly determined by dataset dimension QBi (t), QUi (t) and QIint(t) = [min{QBi (t), QUi (t)}], and training iteration times IiB(t), IiU(t) and IiInt(t). kiB, kiU, kiInt indicates different degrees of importance of different types data in
+sub-model i. v is determined by the objective func-
+tions in sub-models.
+
+4.3 ES Computing Energy
+Each ES computing energy is determined by the computing resources fi(t), computing workload Ci(t) and computing time Dic(t) in the local updating process, given by [21]
+
+Ei(t) = κ · fi3(t)Dic(t) = κ · [Ci(t)]3/[Dic(t)]2, (14)
+where κ is the effectively switched capacitor coefﬁcient. In the t-th updating circle, the system energy consumption is the sum of all ES computing energy
+
+F
+
+Σ
+
+E(t) = Ei(t).
+
+(15)
+
+i=1
+
+4.4 Sensor Transition Functions
+We give the transition functions of the availability and remaining energy for URLLC and eMBB sensors.
+When an URLLC sensor is activated, its consumed energy in this updating circle is a ﬁxed value (PiU,n · q). Therefore, the remaining energy of a URLLC sensor
+
+n in the beginning of the (t + 1)-th updating circle is
+
+EiU,n(t + 1) = [EiU,n(t) − giU,n(t) · PiU,n · q]+
+
++ EiU,n,r(t),
+
+(16)
+
+where EiU,n,r(t) is the amount of solar energy harvested in the present updating circle, which is unknown at the beginning of the updating circle when ES makes cooperating decisions. If the remaining energy is larger than a working threshold, then it is available to use in the next updating circle. That is
+
+{
+
+viU,n(t + 1) =
+
+1, 0,
+
+if EiU,n(t + 1) ≥ EiU,n,th, else,
+
+(17)
+
+where the working threshold EiU,n,th is equal to the consumed energy when it is activated EiU,n,th = PiU,n · q.
+The remaining energy of an eMBB sensor n in the beginning of the next updating circle is
+EiB,n(t + 1) =
+DiB,,nt (t)
+[EiB,n(t) − giB,n(t) Σ 10TspBi,n(t, k)]+ + Eid,n,r(t),
+k=1
+(18) where DiB,n,t(t) is the transmission time in the present updating circle, which is a discrete in time slots. Eid,n,r(t) is the amount of solar energy harvested in the present updating circle, which is unknown at the beginning of the updating circle. If the remaining energy is larger than a working threshold, then it is available
+
+184
+
+© China Communications Magazine Co., Ltd. · August 2023
+
+to use in the next updating circle. That is
+
+{
+
+viB,n(t + 1) =
+
+1, 0,
+
+if EiB,n(t + 1) ≥ EtBh, else.
+
+(19)
+
+The consumed energy on an eMBB sensor is dynamically changing in different updating circles. Therefore, working threshold can not be set by the energy consumption. To guarantee the energy consumption under the remaining energy on eMBB sensors, the following energy constraint should be met
+
+DiB,,nt (t)
+Σ 10TspBi,n(t, k) ≤ EiB,n(t),
+k=1
+
+∀i ∈ F , n ∈ DiB. (20)
+
+4.5 Objective
+The aim of this paper is to minimize the average longterm energy of the overall DT-WA updating system, under updating convergency and latency constraint, formulated by
+
+1
+
+TF
+ΣΣ
+
+min
+
+lim
+
+{m,f ,PB,r,gB,gU,I} T →∞ T
+
+Ei(t),
+
+t=1 i=1
+
+s.t. C1 : giB,n(t) ≤ viB,n(t), ∀i ∈ F , n ∈ DiB,
+
+C2 : giU,n(t) ≤ viU,n(t), ∀i ∈ F , n ∈ DiU,
+
+DiB,,nt (t)
+C3 : Σ 10TspBi,n(t, k) ≤ EiB,n(t),
+k=1
+
+C4 : εi(t) ≥ εth, ∀t ∈ {1, · · · , ∞},
+
+C5 : Di(t) ≤ Dth, ∀t ∈ {1, · · · , ∞}, (21)
+
+where m = {mi(t)|i ∈ F }, f = {fi(t)|i ∈ F }, PB,r = {PiB,r(t)|i ∈ F }, gB = {giB,n(t)|n ∈ DiB, i ∈ F }, gU = {giU,n(t)|n ∈ DiU, i ∈ F }, I = {Ii(t)|i ∈
+F}. C1 and C2 express that only those sensors with
+
+abundant energy are available to be activated. C3 lim-
+
+its the eMBB sensors energy consumption under their
+
+remaining energy. C4 and C5 limit the updating con-
+
+vergency and latency, which are critical metrics in AI
+
+applications [22].
+
+From Eq. (9) and Eq. (13), we can see that more ac-
+
+tivated sensors would lead to a less computing work-
+
+load under given convergency requirement. This in-
+
+sight indicates that ESs with more available sensors
+
+are more likely to be the helpers to reduce its surrounding energy. However, the cooperation process requires helpers to reduce their computing latency, so as to leave more time for their recipients to further compute. It would increase the computing energy of helper, inducing energy sacriﬁce.
+V. COOPERATION AND RESOURCE ALLOCATION ALGORITHM
+5.1 Overview of Whole Algorithm
+We employ multi-agent deep reinforcement learning (MA-DRL) to facilitate the ESs decision making process with the aim to minimize the system energy. Each ES deploys a DRL agent which dynamically generate decisions (e.g., allocate resources) based on local environment (e.g., number of available sensors) in the beginning of each updating circle, to collaboratively update sub-models for DT-WA in the dynamic environment. Each agent would experience two phases, including ofﬂine training and online implementing. In the ofﬂine training phase, each ES trains its agent’s actor network and critic network based on the interacting performance with physical environment. In the online implementing phase, each ES uses its trained actor network to generate actions.
+To reach the goal, ﬁrst, we reformulates the original problem as a Dec-POMDP. Then, the dimensions of action and state vectors are reduced, where a child optimization problem is solved to minimize the local computing energy of each ES. After that, several constraint-released methods are designed to meet the sub-model updating convergency and latency requirements, where another child optimization problem is solved to minimize the surrounding energies of helper ESs. Moreover, we introduce the mean-ﬁeld theory to propose a distributed large-scale MA-DRL which is feasible for the large-scale agent scenario. Finally, we give the overall algorithm and computing complexity.
+5.2 Dec-POMDP Formulation
+The original problem can be reformulated into a Dec-POMDP described by a tuple ⟨S, A, P, R, O, γ>, where each element is given as follows:
+5.2.1 State Space
+
+© China Communications Magazine Co., Ltd. · August 2023
+
+185
+
+In the distributed DT-WA model updating process, the where Si is the local state space of ES i given by Eq. global state space is deﬁned as S = {Si|i ∈ F }, (22).
+
+((
+
+)
+
+Si =
+
+si =
+
+{viB,n}n∈DiB
+
+,
+
+{viU,n
+
+}
+n∈DiB
+
+,
+
+{EiB,n
+
+}
+n∈DiB
+
+,
+
+{EiU,n
+
+}
+n∈DiB
+
+,
+
+ubi ase
+
+|viB,n ∈ {0, 1}, viU,n ∈ {0, 1},
+
+ubi ase ∈ [0, 1], EiB,n ∈ (0, EmBax), EiU,n ∈ (0, EmUax)) .
+
+(22)
+
+In the Eq. (22), viB,n and viU,n are the availability variables of eMBB sensors and URLLC sensors under ES i, EiB,n and EiU,n are the sensor remaining energy, ubi ase is the basic convergency factor.
+
+5.2.2 Action Space
+The global action space is deﬁned as A = {Ai|i ∈ F}, where Ai is the local action space of ES i given by Eq. (23).
+
+Ai
+
+=
+
+(ai
+
+=
+
+( mi
+
+,
+
+{giB,n}n∈DiB
+
+,
+
+{giU,n
+
+}n∈DiB
+
+,
+
+pBi ,r
+
+,
+
+fi
+
+,
+
+IiB
+
+,
+
+IiU
+
+,
+
+IiInt
+
+)
+
+|mi
+
+∈
+
+{0, 1}, giB,n
+
+∈
+
+{0, 1}, giU,n
+
+∈
+
+{0, 1},
+
+pBi ,r ∈ [PmBi,nr , PmBa,rx], fi ∈ [0, fmax], IiB ∈ {0, 1, · · · , ∞}, IiU ∈ {0, 1, · · · , ∞}, IiInt ∈ {0, 1, · · · , ∞}, ) .
+
+(23)
+
+In the Eq. (23), mi is the cooperative identity chosen by ES i, giB,n and giU,n are the activating variables of eMBB sensors and URLLC sensors under ES i, pBi ,r is the received power at BS connected with ES i, fi
+is the amount of allocated computing resources at ES i, IiB, IiU, IiInt are the training iteration time for eMBB and URLLC data-related child networks and the in-
+tegrated network in the sub-model on ES i, respec-
+tively. The actions needs to meet system constrains
+in C1 − C5.
+
+5.2.3 System State Transition Probability
+The transition probability of global state is related with the transition probability of local states:
+Π P (s(t + 1)|s(t), a(t)) = P (si(t + 1)|si(t), ai(t)),
+i∈F
+(24) where the transition probability of local states is related with the local actions and local observations by Eq. (25). From the Eq. (25), the transition probability is unknown due to the random solar energy harvesting on sensors and randomly changing environment.
+
+P (si(t + 1)|si(t), ai(t))
+
+=
+
+Π
+
+P
+
+( viB,n(t
+
++
+
+1)|viB,n(t),
+
+EiB,n(t),
+
+giB,n(t),
+
+pBi ,r(t))
+
+×
+
+Π
+
+P (viU,n(t + 1)|viU,n(t), EiU,n(t), giU,n(t))
+
+n∈DiB ■
+
+■■
+See Eq. (18) and (19) with unknown harvested energy.
+
+■
+
+n∈DiU
+
+■
+
+See
+
+(16)
+
+and
+
+(17)
+
+with
+
+■■
+unknown
+
+harvested
+
+energy.
+
+■
+
+×
+
+Π
+
+P
+
+( EiB,n(t
+
++
+
+1)|EiB,n(t),
+
+giB,n(t),
+
+pBi ,r
+
+) (t)
+
+×
+
+Π
+
+P (EiU,n(t + 1)|EiU,n(t), giU,n(t))
+
+n∈DiB ■
+
+■■
+See (18) with unknown harvested energy.
+
+■
+
+n∈DiU
+
+■
+See
+
+(16))
+
+with
+
+■■
+unknown
+
+harvested
+
+■
+energy.
+
+× P (ubi ase(t + 1)|ubi ase(t), ai(t)) .
+
+■
+
+■■
+
+■
+
+Randomly related with the current convergency (13).
+
+(25)
+
+5.2.4 Reward Function
+Each ES can only know local and neighboring observations, based on which it learns to minimize the long-
+
+term average system energy. Considering each ES’s decision mainly inﬂuence itself and neighboring energy consumption, and the local reward function can
+
+186
+
+© China Communications Magazine Co., Ltd. · August 2023
+
+only be designed based on the neighboring information, we design the local reward function to be
+
+Ri(si(t), {sj(t)}j∈Bi , ai(t), {aj(t)}j∈Bi )
+
+Σ = −Ei(t) − Ej(t),
+
+(26)
+
+j∈Bi
+
+which considers both the local and neighboring energy consumption. It reﬂects the main energy impact of each ES’s decision on system energy, and thus can lead the ESs to jointly achieve an approximate minimized overall energy.
+
+5.2.5 Observations
+The joint observation space is a set of local observation space O = {Oi|i ∈ F}, the latter can be deﬁned to be the same as the local state space Si. Similarly, observation vector oi is deﬁned to be the same as local state vector si.
+
+5.2.6 Discount Factor
+The goal of each agent is to learn policies to maximize the long-term discounted accumulated reward. Therefore, we set the discount factor γ as 0.99 to make the agent’s goal consistent with aim to minimize the longterm system energy.
+
+5.3 Transformation in Observation and Action
+We use two approaches to reduce the dimensions of the instant local observation vector oi(t) and action vector ai(t), which could facilitate the latter learning process in the MA-DRL algorithm.
+
+5.3.1 Replacing Large Sensor-Related Vectors into Single Elements
+
+The dimension of instant local observation and action
+
+is unacceptably large. The main reason is that the dimension of sensor availability vectors {viB,n(t)}n∈DiB, {viU,n(t)}n∈DiU, and the remaining battery vector {EiB,n(t)}n∈DiB , {EiU,n(t)}n∈DiU are equal to the number of heterogenous sensors under ES i, which can be
+
+very large. To cope with the problem, we replace the
+
+sensor availability vectors with the number of avail-
+
+able and
+
+NheiUte,vro(tg)en=eouΣ s snNe=niUs1ovriUs,nN(ti)B.,v
+
+(t) = Then,
+
+ΣNiB
+n=1
+
+viB,n(t)
+
+we sort the
+
+available sensors according to their remaining energies
+
+and channel gains, and choose the ﬁrst NiB,a(t) and NiU,a(t) sensors to activate. This process can delete
+
+the remaining energy vectors from action vector,
+
+and replace the large-dimensional activating vectors
+{giB,n(t)}n∈DiB , {giU,n(t)}n∈DiU by NiB,a(t), NiU,a(t). The constraints in this process include the activation
+
+constraint and energy constraint on sensors:
+
+NiB,a(t) ≤ NiB,v(t), NiU,a(t) ≤ NiU,v(t), C3. (27)
+
+5.3.2 Replacing Iteration Number with Convergency Variable
+In action vector, the training iteration times IiB(t), IiU(t) and IiInt(t) have continues-like action spaces, which is extremely large. Moreover, it inﬂuences the reward through complex relationships in energy consumptions and updating convergencies, which makes it difﬁcult for agents to learn to generate the optimal iteration number. To cope with the problem, we rewrite the constraint C3 into (28).
+
+ubi ase(t) + (kBIiB(t) · [QBi (t)]v + kUIiU(t) · [QUi (t)]v + kIntIiInt(t) · [min{QBi (t), QUi (t)}]v)
+
+■ ■■ ■ ■
+zibase (t)·A
+
+■■
+zi(t)·A
+
+■ (28)
+
+= (zibase(t) + zi(t))A ≥ A.
+
+In (28), A = − ln(1 − εth). In (28), we introduce two new variables zibase(t) and zi(t), which are named as (new) basic convergency factor and conver-
+gency variable, where
+
+zi(t) ≥ 1 − zibase(t).
+
+(29)
+
+© China Communications Magazine Co., Ltd. · August 2023
+
+Equation (28) gives the relationships between the convergency variable with the training iteration times IiB(t), IiU(t) and IiInt(t), and the dataset dimensions QBi (t). Next, we want to transform the action vector by (30).
+187
+
+ai(t) = (NiB,a(t), NiU,a(t), IiB(t), IiU(t), IiInt(t), · · · )
+
+⇒ (NiB,a(t), NiU,a(t), zi(t), · · · ) .
+
+(30)
+
+In (30), the training iteration times IiB(t), IiU(t) and IiInt(t) become dependent variables of the con-
+vergency variable zi(t) and sensor activated numbers
+
+NiB,a(t), NiU,a(t). To do this, we formulate a problem to minimize the
+local computing energy in (31).
+
+min
+IiB (t),IiU (t),IiInt (t)
+
+IiB(t)
+
+·
+
+QBi (t)
+
+·
+
+cB
+
++
+
+IiU(t)
+
+·
+
+QUi (t)
+
+·
+
+cU
+
++
+
+IiInt(t)
+
+·
+
+min{QBi (t),
+
+QUi (t)}
+
+·
+
+cInt,
+
+(31)
+
+s.t. kUIiU(t) · [QUi (t)]v + kBIiB(t) · [QBi (t)]v + kIntIiInt(t) · min{QBi (t), QUi (t) = zi(t) · A.
+
+It is to ﬁnd the optimal iteration times under given sensor numbers NiB,a(t), NiU,a(t) and convergency factor zi(t), where QB = lBNiB,a(t), QU =
+
+lUNiU,a(t) in (31). It can be easily transformed into (32) by combining the equation in (31) into the mini-
+mization problem.
+
+■
+
+■
+
+min
+IiB (t),IiU (t)
+
+| ||IiB(t) |
+
+·
+
+QBi (t)cB
+
++
+
+IiU(t)QUi (t)cU
+
++
+
+zi(t)
+
+·
+
+A
+
+−
+
+(kUIiU(t) · [QUi (t)]v + kBIiB(t) kInt · min{QBi (t), QUi (t)}v−1
+
+·
+
+[QBi (t)]v)
+
+|
+·cInt|| |
+
+■
+
+■
+
+■
+
+■■
+
+■
+
+IiInt(t)·min{QBi (t),QUi (t)}
+
+■
+
+=
+
+IiB
+
+min
+(t),IiU(t)
+
+| | | ■
+
+kInt
+
+zi(t) · A · min{QBi (t),
+
+cInt QUi (t)}v−1
+
++
+
+IiB
+
+(t)QBi (t)
+
+(
+
+kIntcB
+
+min{QBi (t), QUi (t)}v−1 − kBcIntQBi (t)v−1 kInt · min{QBi (t), QUi (t)}v−1
+
+)
+
+■
+
+■■
+
+■
+
+①
+
+■
+
++
+
+IiU(t)
+
+·
+
+QUi (t)
+
+(
+
+kIntcU
+
+·
+
+min{QBi (t), QUi (t)}v−1 − kUcIntQUi (t)v−1 kInt · min{QBi (t), QUi (t)}v−1
+
+)| | | ■
+
+.
+
+(32)
+
+■
+
+■■
+
+■
+
+②
+
+Then, the optimal iterations can be derived as depen- variable, which is given in (33). dent variables of dataset dimensions and convergency
+
+■
+| | ■
+
+IiB(t)∗
+
+=
+
+0, IiU(t)∗
+
+=
+
+0, IiInt(t)∗
+
+=
+
+, zi(t)·A
+kInt·min{QBi (t),QUi (t)}v
+
+if ①
+
+≥
+
+0, ②
+
+≥
+
+0,
+
+IiB(t)∗
+
+= 0, IiU(t)∗
+
+=
+
+zi(t)·A kU·[QUi (t)]v
+
+,
+
+IiInt(t)∗
+
+= 0,
+
+if ② < 0,
+
+cUkBQBi (t)v kUQUi (t)v−1
+
+≤ cBQBi (t),
+
+| | ■
+
+IiB(t)∗
+
+=
+
+zi(t)·A kB·[QBi (t)]v
+
+,
+
+IiU
+
+(t)∗
+
+= 0, IiInt(t)∗
+
+= 0,
+
+if ① < 0,
+
+cUkBQBi (t)v kUQUi (t)v−1
+
+> cBQBi (t).
+
+(33)
+
+The corresponding workload is given in (34).
+
+188
+
+© China Communications Magazine Co., Ltd. · August 2023
+
+■
+|||Ci(t) | |
+
+=
+
+kiInt
+
+·
+
+zi(t) · A · cInt min{QBi (t), QUi (t)}v−1
+
+,
+
+if ① ≥ 0, ② ≥ 0,
+
+|
+
+|
+
+|
+
+| ■
+Ci(t)
+| |
+
+=
+
+zi(t) · A · cU kiU · [QUi (t)]v−1
+
+,
+
+if ① ≥ 0, ② < 0, or ① < 0, ② < 0,
+
+cUkiBQBi (t)v kiUQUi (t)v−1
+
+≤ cBQBi (t),
+
+(34)
+
+|
+
+|
+
+| | | ||■Ci(t)
+
+=
+
+zi(t) · A · cB kiB · [QBi (t)]v−1
+
+,
+
+if ① < 0, ② ≥ 0, or ① < 0, ② < 0,
+
+cUkiBQBi (t)v kiUQUi (t)v−1
+
+> cBQBi (t).
+
+The equation gives us an insight that if the avail-
+
+able number of one type of sensor is obviously larger
+
+than the other one (e.g., QBi (t) > QUi (t) and
+
+kInt cB kB cInt
+
+<
+
+QBi (t) QUi (t)
+
+),
+
+it
+
+is
+
+better
+
+to
+
+only
+
+activate
+
+the
+
+former
+
+type
+
+of sensor, to meet the convergency requirement while
+
+saving the latter sensor remaining energy for future up-
+
+dating circles.
+
+Therefore, the modiﬁed observation and action vec-
+
+tors are
+
+oi(t)
+
+=
+
+(NiB,v(t),
+
+NiU,v(t),
+
+) zibase(t)
+
+,
+
+i
+
+∈
+
+F
+
+,
+
+ai(t)
+
+=
+
+( mi(t),
+
+NiB,a(t),
+
+NiU,a(t),
+
+pBi ,r(t),
+
+fi(t),
+
+) zi(t)
+
+,
+
+s.t. (27), (29), C5. (35)
+
+5.4 Constraint-Released Methods
+
+constraint-MG into MG.
+
+5.4.1 Latency Constraint
+
+The ªsurrounding energyº refers to total computing
+
+energy of each helper and its recipients. To meet la-
+
+tency constraint, helpers need to determine the com-
+
+puting resource allocation for itself and its recipients.
+
+The detail is given as follows.
+
+Latency and energy are negatively correlated. The
+
+updating time of each helper is part of the updating
+
+time of their recipients. Take the helper i and its re-
+
+cipient set Gi for example. We set the total updat-
+
+ing latency of recipients equal to the latency thresh-
+
+old. Then, we formulate a child optimization prob-
+
+lem to minimize the helper and its recipients energy
+
+Eisurr(t)
+
+=
+
+Ei(t)
+
++
+
+Σ
+j∈Gi
+
+Ej (t)
+
+by
+
+ﬁnding
+
+the
+
+opti-
+
+mal computing latency Dic(t) of helper i in (36).
+
+We employ different constraint-released methods to meet different constraints in (35) to change the
+
+min
+Dic (t)
+
+Eisurr(t)
+
+=
+
+min
+Dic (t)
+
+κ · [Ci(t)]3 [Dic(t)]2
+
++
+
+Σ
+j∈Gi
+
+[Dth
+
+κ · [Cj(t)]3 − Dit(t) − Dic(t)]2
+
+,
+
+■ ■■ ■ ■
+
+■■
+
+■
+
+(36)
+
+Ei(t)
+
+Ej (t)
+
+s.t., Dic(t) + Dit(t) < Dth.
+
+Its derivative with respect to Dic(t) is given in (37).
+
+Eisurr(t)′
+
+=
+
+2κ
+
+·
+
+−[Ci(t)]3
+
+·
+
+[Dth − Dit(t) − Dic(t)]3 + [Dic(t)]3 · [Dth − Dit(t)
+
+[Dic(t)]3
+
+·
+
+Σ
+j∈Gi
+
+[Cj (t)]3
+
+− Dic(t)]3
+
+.
+
+(37)
+
+In (37), the denominator is always positive because of the latency constraint in (36). Therefore, the sign of the derivative is determined by the numerator which
+
+is strictly increasing with the increase of computing
+latency Dic(t). Moreover, the numerator becomes zero when the Dic(t) is equal to the value in (38), which
+
+© China Communications Magazine Co., Ltd. · August 2023
+
+189
+
+indicates the optimizing objective in (36) is a concave function, and (38) gives the optimal computing time of helper i and its recipients.
+
+Dic(t)∗
+
+=
+
+Ci(t) · (Dth − Dit(t)) Ci(t) + [Σj∈Gi Cj3(t)]1/3
+
+,
+
+(38)
+
+Djc(t)∗ = Dth − Dit(t) − Dic(t)∗, j ∈ Gi.
+
+Given the optimal computing time, the optimal computation resource is fi(t) = Ci(t)/Dic(t)∗. Thus, the computation resource is reduced from the action vec-
+tor by
+
+ai(t)
+
+=
+
+( mi(t),
+
+NiB,a(t),
+
+NiU,a(t),
+
+pBi ,r(t),
+
+fi(t),
+
+) zi(t)
+
+⇒
+
+( mi(t),
+
+NiB,a(t),
+
+NiU,a(t),
+
+pBi ,r(t),
+
+) zi(t)
+
+.
+
+(39)
+
+5.4.2 Accuracy Constraint
+For a helper, if its convergency action variable do not meet constraint, a punishment is multiplied with the reward function
+
+ri(t) = −(Ei(t) + EBi(t)) · pai (t), (40)
+
+where pai (t)
+
+=
+
+( 1
+
++
+
+[
+
+1−zibase (t)−zi (t) 1−zibase (t)
+
+]+) .
+
+For a re-
+
+cipient, its sub-model’s basic updating convergency is
+
+modiﬁed when receiving helper’s sub-model parame-
+
+ters. Then, if the recipient’s convergency variable does
+
+not meet the constraint, it is rectiﬁed to meet the re-
+
+quirement by
+
+zj(t) = min{zj(t), 1 − zjbase(t)}.
+
+(41)
+
+The computing resource needs to recalculated based on the rectiﬁed convergency variable and the optimal
+
+latency in (38).
+5.4.3 Sensor’s Constraint
+Constraints in (27) includes sensors activating constraints and energy constraints. The activating constraints limit the sensor activating number under their available number. To deal with this constraint, we let the agent actor network generate normalized activating number, and scale it with the number of available sensors. The energy constraints convey that the energy consumption of sensors cannot surpass its remaining battery energy. The energy constraint of URLLC sensor has been met in its activating constraint.
+5.5 Distributed Large-Scale MA-DRL
+Multi-agent deep reinforcement learning (MA-DRL) has been proved as an effective approach to solve DecPOMDP [23]. In particular, multi-agent proximal policy optimization (MA-PPO) [23] has emerged as an outstanding algorithm to speed up the training convergence and obtain high rewards. However, it only work well under a small number of agents (2 ∼ 4) because of the dimensional curse, and relies on centralized training process which can cause heavy communication cost.
+To tackle the dimensional curse, we leverage the mean-ﬁeld theory to modify the value function (critic network) and actor function (actor network) in MAPPO. Speciﬁcally, the mean-ﬁeld theory conveys that the joint inﬂuences from other agents on one agent may be approximated as the mean inﬂuence from neighboring agents in a massive agents scenario. Inspired by this theory, ﬁrst, we found that the value function Viϕ(s) [23] in MA-PPO can be reduced into a dependent variable of local observation oi(t) and mean neighboring observation in our content, which could dramatically reduce its input dimension, as proved by Eq. (42).
+
+Viϕ(s)
+
+=
+
+1 |Bi|
+
+Σ Viϕ(oi, oj)
+j∈Bi
+
+=
+
+1 |Bi|
+
+[ Σ Viϕ(oi, oi−) + ∇oi− Viϕ(oi, oi−)δoi,j
+j∈Bi
+
++
+
+1 2
+
+δoi,j
+
+∇2
+si,j
+
+Viϕ
+
+(oi
+
+,
+
+si,j
+
+)δ
+
+oi,j
+
+]
+
+■
+
+■
+
+=
+
+Viϕ(oi, oi−)
+
++
+
+∇oi− Viϕ(oi, oi−)
+
+·
+
+1 ■
+|Bi|
+
+Σ
+j∈Bi
+
+δoi,j ■
+
++
+
+1 2|Bi|
+
+Σ
+j∈Bi
+
+[ δoi,j
+
+·
+
+∇2
+si,j
+
+Viϕ
+
+(oi
+
+,
+
+si,j
+
+)
+
+·
+
+] δoi,j
+
+(42)
+
+=
+
+Viϕ(oi,
+
+oi−)
+
++
+
+1 2|Bi|
+
+Σ
+j∈Bi
+
+Ti (oj )
+
+≈
+
+Viϕ(oi,
+
+oi−).
+
+190
+
+© China Communications Magazine Co., Ltd. · August 2023
+
+The ﬁrst equality in (42) satisﬁes because the local
+
+reward ri(t) can be approximated to only dependent
+
+on local observation oi(t) and neighboring observa-
+
+tions oj(t) (j ∈ Bi), according to (26). Ti(oj) ≜
+
+[ δoi,j
+
+·
+
+∇2
+oi,j
+
+Viϕ
+
+(oi
+
+,
+
+oi,j )
+
+·
+
+] δoi,j
+
+is
+
+the
+
+Taylor
+
+polyno-
+
+mial’s remainder with si,j = oi− + ϵi,jδoi,j and ϵi,j ∈
+
+[0, 1]. Ti(oj) is bounded within a symmetric interval [−2M, 2M ] when Viϕ(oi, oj) is M -smooth [24].
+
+Second, we slightly increase the input dimension of
+
+actor function πiθ(oi) in MA-PPO to make it easier
+
+to learn the optimal decision. Speciﬁcally, we pro-
+
+vide it with more information through its input, adding
+
+the mean neighboring observation as another indepen-
+dent variable in the actor function, i.e., πiθ(oi) ⇒ πiθ(oi, oi−). The effectiveness of the modiﬁcations is
+proved in the simulation part by comparing the pro-
+
+posed algorithm with the traditional MA-PPO algo-
+
+rithm.
+
+5.6 Overall of Proposed Algorithm
+Each ES deploys a PPO agent according to the proposed distributed large-scale MA-PPO algorithm. We change all of the action values into a (10 × 1) one-hot form (except for the binary variable mi(t)), as a ratio to the maximum action values, from 0/10 to 10/10. Each agent has a critic network and actor network, both of them are in fully-connected structure. The dimensions of the input, hidden and output layer in a critic network are LCI = 4, LCH × 2 = 128 × 2, and 1, respectively, whose dimensions in an actor network are LAI = 4, LAH × 2 = 128 × 2, LAO = 32, respectively. For the activated functions, the output layer of critic network is activated by the Linear function, and actor network is Softmax function. Their hidden layers are activated by ReLU function. In addition, each agent would experience ofﬂine training and online implementing. The ofﬂine training phase is presented in Algorithm 1. First, to reduce the action and state space, we replace the large-dimensional variables of sensor related elements. Meanwhile, the training iteration variables are reduced by solving the neighboring energy minimization problem. Then, the algorithm alternates between sampling and training. During the sampling stage, each agent interacts with the environment, and uses several constraint-released methods to meet the DT-WA updating requirements. The training stage utilizes the sampling dataset to update the
+
+Algorithm 1. Ofﬂine training phase of cooperation and re-
+
+source allocation.
+
+1: Initialization: For each ES, initialize the critic
+
+and actor network,heterogeneous sensors number,
+
+remaining energy vector and basic updating con-
+
+vergencies.
+
+2: /* Reducing state and action spaces */
+
+3: Modify the sensor related vector according to
+
+5.3.1 and replace training iteration variables ac-
+
+cording to (33).
+
+4: for step = 1, 2, ..., stepmax do 5: /* Sampling */ 6: for i = 1, 2, ..., Lbatch do
+
+7: For each ES i, initialize an empty dataset Bi.
+
+8:
+
+for t = 1, 2, ..., Lstep do
+
+9:
+
+Each ES i uses πi(oi, o¯i) to determine
+
+mi(t), NiB,a(t), NiU,a(t), pBi ,r(t), zi(t).
+
+10:
+
+/* Constraint-Released Methods 2 and 3
+
+*/
+
+11:
+
+Rectify zi(t) and calculate optimal training
+
+iteration time.
+
+12:
+
+Each recipient ES randomly chooses a
+
+neighboring helper.
+
+13:
+
+Each helper calculates the optimal comput-
+
+ing resource fi(t), updates its local sub-
+
+model and sends it to its recipients.
+
+14:
+
+/* Constraint-Released Methods 1 and 2
+
+*/
+
+15:
+
+Each recipient ES recalculate their optimal
+
+training iteration time and computation re-
+
+source and update their local sub-models.
+
+16:
+
+Calculate reward for each agent.
+
+17: end for
+
+18: Calculate advantage function for each agent.
+
+19: Save interacting data into dataset Bi.
+
+20: end for
+
+21: /* Training */
+
+22: Update πi(oi, o¯i) and Qi(oi, o¯i) based on
+
+dataset Bi.
+
+23: Bi ← ∅. 24: end for
+
+actor and critic network on each ES. In the online implementing phase, each ES would use its trained actor network to generate actions.
+
+© China Communications Magazine Co., Ltd. · August 2023
+
+191
+
+Table 1. System parameters.
+
+Parameter
+
+Value
+
+Parameter
+
+Value
+
+N0 κ ϕ K Nmin, Nmax dth EtBh
+
+−174 dBm/Hz 10−28
+8 × 1010 1000 1, 40 280 m 1J
+
+lB, lU cB, cU
+Dth B εth sB, sU q
+
+100, 10 1000 FLOPs
+5s 10 MHz
+0.9 10000, 100 bits
+0.001
+
+5.7 Computation Complexity
+
+The ofﬂine training phase is shown in Algorithm 1,
+
+whose computing complexity is mainly determined by
+
+the structure of the actor network and critic network
+
+on each ES. In detail, the computing complexity of an
+
+actor
+
+network
+
+is
+
+O
+
+( LAI
+
+×
+
+LAH
+
++
+
+LAH2
+
++
+
+LAH
+
+×
+
+) LAO .
+
+The computing complexity of a critic network is
+
+( O LCI × LCH
+
++ LCH2 + LCH
+
+) ×1 .
+
+Therefore,
+
+the
+
+total
+
+computing complexity of Algorithm 1 is
+
+O
+
+( LAI LAH
+
++
+
+LAH2
+
++
+
+LAHLAO
+
++
+
+LCI LCH
+
++
+
+LCH2
+
++
+
+) LCH
+
+.
+
+(43)
+
+In the online implementing phase, each ES uses
+
+its trained actor network to generate decisions.
+
+Therefore, its computing complexity is equal to
+
+the computing complexity of an actor network
+
+O
+
+( LAI
+
+×
+
+LAH
+
++
+
+LAH2
+
++
+
+LAH
+
+×
+
+) LAO .
+
+Notice
+
+that,
+
+since
+
+the algorithm has reached convergency in the ofﬂine
+
+training phase, its execution time in the implementing
+
+phase can be omitted because of the small computing
+
+complexity of the actor network.
+
+VI. SIMULATION RESULTS AND DISCUSSIONS
+To prove the capability of the proposed algorithm under large amount of agents, we randomly deploy 50 ESs co-located with APs in 3500 × 3500 square meter, compared with only 2 ∼ 4 agents in traditional MADRL. The path loss model between ES connected AP with sensors is 38.46 + 20 log10(d) [25]. System parameters are given in Table 1. We choose four typical baselines for comparison:
+
+50
+
+40
+
+y (km)
+
+30
+
+20
+
+A
+
+10
+
+0
+
+0
+
+10
+
+20
+
+30
+
+40
+
+50
+
+x (km)
+
+(a) MA-PPO algorithm.
+
+50
+
+40
+
+y (km)
+
+30
+
+20
+
+A
+
+10
+
+0
+
+0
+
+10
+
+20
+
+30
+
+40
+
+50
+
+x (km)
+
+(b) Greedy algorithm.
+
+3500
+
+3000
+
+2500
+
+y (m)
+
+2000
+
+1500
+A
+1000
+
+500
+
+0
+
+0
+
+1000
+
+2000
+
+3000
+
+x (m)
+
+(c) Proposed algorithm.
+
+Figure 2. Mean cooperative identities under different algorithms. Each point represents an ES, whose size is proportional to its local sensors quantity, which is randomly chosen from [Nmin, Nmax]. The point color represents the longterm mean cooperative identity of each ES. It changes from black to red to present identity from recipient to helper.
+
+192
+
+© China Communications Magazine Co., Ltd. · August 2023
+
+Mean overall energy
+Energy consumption (kJ)
+
+106 7 6 5 4 3 2 1 0
+50
+
+Proposed algorithm, K=50, Dth=5s MA-PPO algorithm, K=50, Dth=5s Proposed algorithm, K=20, Dth=5s MA-PPO algorithm, K=20, Dth=5s Proposed algorithm, K=50, Dth=15s MA-PPO algorithm, K=50, Dth=15s
+104
+15
+
+10
+
+5
+
+0
+
+100
+
+150
+
+200
+
+250
+
+100
+
+150
+
+200
+
+250
+
+Iteration
+
+Figure 3. Convergency performance.
+
+• MA-PPO: It is a well-known MA-DRL algorithm based on centralized training process. Existing works have used it to develop resource allocation strategies [26].
+• Greedy, Random and Non-cooperative (NC) algorithms: The Greedy algorithm [27] sets the ESs with more than the average sensors to be helpers (ªstrong ESsº). The Random algorithm [27] randomly sets ESs to be helpers, while NC sets no ESs to be helpers.
+Figure 3 gives the convergency performances of the traditional MA-PPO and the proposed algorithm. It shows that the energy consumption of MA-PPO is approximately six times larger than the proposed algorithm when reaching convergencies, under different ES numbers and updating latency requirements. It is due to two reasons. First, the proposed algorithm greatly reduces the dimension of critic network, by condensing its input into most valuable information. This makes it easy to train the critic network. Second, neighboring information is provided to the actor network, which makes it easier to generate a good action that is beneﬁcial for the whole community.
+Figure 2 gives the mean cooperative identities of different ESs under different algorithms. It proves the inefﬁcacy of MA-PPO in Figure 2a, where no ES chooses to be helper, no matter of whether it is proper for it to become a helper of its neighbors or not. On the contrary, both of the Greedy algorithms and proposed algorithm have multiple helpers, as shown in Figure 2b and Figure 2c, respectively. Speciﬁcally, Figure
+
+Figure 4. Mean cooperative identity vs. Different number of sensors under local and neighbor ESs.
+
+20
+
+19.57
+
+Proposed algorithm
+
+Greedy algorithm 17.39
+
+NC algorithm 15 MA-PPO algorithm
+
+19.6 17.3
+
+10
+
+5
+
+4.12
+
+2.87
+
+1.25
+
+1.08
+
+1.45
+
+0.36
+0
+
+0.02 0.03
+
+Helper
+
+Neighbors
+
+Total
+
+Surrounding energy of helper A
+
+Figure 5. Contribution of A sacriﬁces for its surrounding energy.
+
+4 shows that ESs with more local sensors while its neighbors having less sensors, more tend to become helpers. This mode can bring down system energy as explained in Subsection 4.5. Moreover, the proposed algorithm has much less helpers than the Greedy, according to Figure 2b and Figure 2c. Remember that a helper would sacriﬁce its own energy to reduce its surrounding energy (Subsection 3.3). It illustrates that the proposed algorithm learns to sacriﬁce ES with a higher efﬁciency.
+We take the ES A (pointed out in Figure 2) as an example to show the effectiveness of the helper sacriﬁce
+
+© China Communications Magazine Co., Ltd. · August 2023
+
+193
+
+(a) Different AP numbers.
+
+Figure 7. Mean transmitting power of eMBB sensors under different number of available heterogenous sensors.
+
+(b) Different updating latencies.
+Figure 6. System energies under different number of ESs and updating latencies in different algorithms.
+
+Figure 8. Mean number of activated URLLC sensors under
+different number of available heterogenous sensors. Solid line represents kiU = 1, kiB = 5, while dotted line represents kiU = 1, kiB = 1.
+
+behavior. Figure 5 sequentially gives the mean energy consumption of A, its neighbors (red circle in Figure 2) and the sum of two. When a ªstrong ESº becomes a helper, it can sacriﬁce its own energy to reduce the total energy of the surrounding area. In Figure 5, A’s energy consumption (360 J) in the proposed algorithm is much larger than the NC and MA-PPO algorithms (20 J and 30 J). However, it signiﬁcantly reduces A’s neighbors energy to 1080 J compared with other algorithms. As a result, it leads to a smaller total surrounding energy (1450 J). The Greedy algorithm also sacriﬁces helper A to reduce its neighboring energy, whose total surrounding energy is smaller than NC and
+
+MA-PPO. However, in the Greedy algorithm, all of the ªstrong ESsº, no matter whether their neighbors have abundant sensors or not, are appointed as helpers. It leads to a low sacriﬁce efﬁciency and high neighboring energy.
+Figure 6 compares the mean overall system energy in different algorithms, under different numbers of APs/ESs and convergence latency thresholds. Specifically, different numbers of APs represents different resolutions and scales of the DT-WA system map. The proposed algorithm can obtain a smaller system energy than other algorithms under different network scales. Additionally, different DT-WA applications
+
+194
+
+© China Communications Magazine Co., Ltd. · August 2023
+
+may have different requirements on the convergence latency. The ﬁgure shows that the proposed algorithm can achieve different latency requirements with the minimum energy consumption compared with other algorithms. Its well energy performance is due to the effective ESs cooperating process. That is, the proposed algorithm has a higher sacriﬁce efﬁciency than the Greedy, and thus has a smaller energy consumption. By comparison, the Random algorithm sometimes generates proper cooperation strategy, which makes its average energy a little bit better than NC algorithm. The MA-PPO keeps to generate poor cooperation strategies, which makes it behave even worse than the NC algorithm.
+Figure 7 gives the mean transmitting power of eMBB sensors under different number of available heterogenous sensors. On the one hand, more URLLC sensors would lead to more punctures on eMBB trafﬁcs, which would reduce the time-frequency resources for eMBB trafﬁcs, and thus increase eMBB transmission delay. In this case, eMBB sensors would emit more transmitting power to keep its transmission latency acceptable. On the other hand, eMBB sensors evenly divide the wireless bandwidth for transmission. A large number of eMBB sensors would have less available bandwidth for each eMBB sensor. Thus, the transmission power needs to increase to keep the transmission rate and reduce transmission latency.
+Figure 8 gives the mean number of activated URLLC sensors under different number of available heterogenous sensors. Consistent to the insight mentioned in Subsection 5.3, the mean activated number approaches to zero when the number of available URLLC sensors is small and eMBB is large, and approaches the maximum number (available number) when the opposite situation happens. It is because that, in updating sub-models, the optimal training iteration times for URLLC-based child network and mixed eMBB-URLLC-based integrated learning network becomes zeros when the number of available URLLC sensors is smaller than eMBB sensors to a degree which is determined by the importance factor of kiB and kiU in the updating convergency rate. Moreover, when kiU is larger than kiB, it means the URLLC data is more important for the sub-model, which would require more URLLC sensors to activate, and it makes the dotted lines more wider on the head than the solid lines.
+
+VII. CONCLUSION
+The paper closes the gap of studying the updating process for the AI model in DT-WA. It proposes a distributed cooperation and data collection scheme to solve the energy challenge in the updating process. In the scheme, ESs can share their updated sub-model parameters with neighbors to reduce the latter updating workloads and energy consumptions. Each ES needs to adaptively determine its cooperative identity, activate heterogeneous sensors and allocate wireless and computing resources to guarantee its local and neighbors updating performances. To minimize the overall updating energy, we formulate an optimization problem under updating convergency and latency constraints. Then, a distributed cooperation and resource allocation algorithm is proposed. First, the original problem is transformed into a constraint-MG. Then, the state and action spaces are reduced and several constraint-released methods are proposed. Finally, a distributed large-scale MA-DRL is designed by introducing the MF theory to optimize the ESs actions. Simulation shows the proposed cooperation and data collection scheme can effectively reduce the updating energy for AI model in DT-WA compared with baselines.
+ACKNOWLEDGEMENT
+This work was supported by National Key Research and Development Program of China (2020YFB1807900).
+References
+[1] L. U. Khan, W. Saad, et al., ªDigital-twin-enabled 6g: Vision, architectural trends, and future directions,º IEEE Communications Magazine, vol. 60, no. 1, pp. 74±80, 2022.
+[2] G. White, A. Zink, et al., ªA digital twin smart city for citizen feedback,º Cities, vol. 110, p. 103064, 2021.
+[3] T. Deng, K. Zhang, et al., ªA systematic review of a digital twin city: A new pattern of urban governance toward smart cities,º Journal of Management Science and Engineering, vol. 6, no. 2, pp. 125±134, 2021.
+[4] M. Ghaith, A. Yosri, et al., ªSynchronization-enhanced deep learning early ﬂood risk predictions: The core of datadriven city digital twins for climate resilience planning,º Water, vol. 14, no. 22, p. 3619, 2022.
+[5] L. Buonocore, J. Yates, et al., ªA proposal for a forest digital twin framework and its perspectives,º Forests, vol. 13, no. 4, p. 498, 2022.
+
+© China Communications Magazine Co., Ltd. · August 2023
+
+195
+
+[6] R. Balica, et al., ªMachine and deep learning technologies, wireless sensor networks, and virtual simulation algorithms in digital twin cities,º Geopolitics, History, and International Relations, vol. 14, no. 1, pp. 59±74, 2022.
+[7] Y. Xiao, L. Xiao, et al., ªReinforcement learning based energy-efﬁcient collaborative inference for mobile edge computing,º IEEE Transactions on Communications, vol. 71, no. 2, pp. 864±876, 2022.
+[8] W. Y. B. Lim, Z. Xiong, et al., ªHierarchical incentive mechanism design for federated machine learning in mobile networks,º IEEE Internet of Things Journal, vol. 7, no. 10, pp. 9575±9588, 2020.
+[9] Y. Lu, X. Huang, et al., ªCommunication-efﬁcient federated learning for digital twin edge networks in industrial iot,º IEEE Transactions on Industrial Informatics, vol. 17, no. 8, pp. 5709±5718, 2020.
+[10] L. Jiang, H. Zheng, et al., ªCooperative federated learning and model update veriﬁcation in blockchain-empowered digital twin edge networks,º IEEE Internet of Things Journal, vol. 9, no. 13, pp. 11 154±11 167, 2021.
+[11] W. Sun, P. Wang, et al., ªDynamic digital twin and distributed incentives for resource allocation in aerial-assisted internet of vehicles,º IEEE Internet of Things Journal, vol. 9, no. 8, pp. 5839±5852, 2021.
+[12] T. Liu, L. Tang, et al., ªDigital-twin-assisted task ofﬂoading based on edge collaboration in the digital twin edge network,º IEEE Internet of Things Journal, vol. 9, no. 2, pp. 1427±1444, 2021.
+[13] L. Guangyi, D. Juan, et al., ªNative intelligence for 6g mobile network: Technical challenges, architecture and key features,º The Journal of China Universities of Posts and Telecommunications, vol. 29, no. 1, p. 27, 2022.
+[14] M. Jacobellis and M. Ilbeigi, ªDigital twin cities: Data availability and systematic data collection,º in Construction Research Congress 2022, pp. 437±444.
+[15] F. Tao, B. Xiao, et al., ªDigital twin modeling,º Journal of Manufacturing Systems, vol. 64, pp. 372±389, 2022.
+[16] M. Austin, P. Delgoshaei, et al., ªArchitecting smart city digital twins: Combined semantic model and machine learning approach,º Journal of Management in Engineering, vol. 36, no. 4, p. 04020026, 2020.
+[17] M. Darabi, V. Jamali, et al., ªHybrid puncturing and superposition scheme for joint scheduling of urllc and embb trafﬁc,º IEEE Communications Letters, vol. 26, no. 5, pp. 1081±1085, 2022.
+[18] Y. Polyanskiy, H. V. Poor, et al., ªChannel coding rate in the ﬁnite blocklength regime,º IEEE Transactions on Information Theory, vol. 56, no. 5, pp. 2307±2359, 2010.
+[19] A. Brighente, J. Mohammadi, et al., ªInterference prediction for low-complexity link adaptation in beyond 5g ultrareliable low-latency communications,º IEEE Transactions on Wireless Communications, vol. 21, no. 10, pp. 8403± 8415, 2022.
+[20] P. Popovski, K. F. Trillingsgaard, et al., ª5g wireless network slicing for embb, urllc, and mmtc: A communicationtheoretic view,º IEEE Access, vol. 6, pp. 55 765±55 779, 2018.
+[21] Y. Chen, F. Zhao, et al., ªDynamic task ofﬂoading for mobile edge computing with hybrid energy supply,º Tsinghua Science and Technology, vol. 28, no. 3, pp. 421±432, 2022.
+
+[22] J. Wu, R. Li, et al., ªToward native artiﬁcial intelligence in 6g networks: System design, architectures, and paradigms,º arXiv Preprint arXiv:2103.02823, 2021.
+[23] J. Schulman, F. Wolski, et al., ªProximal policy optimization algorithms,º arXiv Preprint arXiv:1707.06347, 2017.
+[24] Y. Yang, R. Luo, et al., ªMean ﬁeld multi-agent reinforcement learning,º in International Conference on Machine Learning, pp. 5571±5580. PMLR, 2018.
+[25] G. TS, ªEvolved universal terrestrial radio access (e-utra). further advancements for e-utra physical layer aspects (release 9),º 3GPP TR 36.814, Tech. Rep., 2010.
+[26] Y. M. Park, S. S. Hassan, et al., ªJoint trajectory and resource optimization of mec-assisted uavs in sub-thz networks: A resources-based multi-agent proximal policy optimization drl with attention mechanism,º arXiv Preprint arXiv:2209.07228, 2022.
+[27] W. Zhan, C. Luo, et al., ªDeep-reinforcement-learningbased ofﬂoading scheduling for vehicular edge computing,º IEEE Internet of Things Journal, vol. 7, no. 6, pp. 5449± 5465, 2020.
+Biographies
+Mancong Kang received the B.E. degree in electronics information science and technology from the Xi’an University of Posts and Telecommunications, China, in 2017. She is currently working toward the Ph.D. degree with the School of Information and Communication Engineering at Beijing University of Posts and Telecommunications (BUPT) in Beijing, China. Her current research interests include future wireless networks, digital twin, tactile internet, machine learning, and mobile edge computing.
+Xi Li received her B.E. degree and Ph.D. degree from Beijing University of Posts and Telecommunications (BUPT) in the major of communication and information system in 2005 and 2010 respectively. In 2017 and 2018, she was a Visiting Scholar with the University of British Columbia, Vancouver, BC, Canada. She is currently a Professor with the School of Information and Communication Engineering of BUPT. She has published more than 100 papers in International journals and conferences. Her current research interests include resource management and intelligent networking in next generation networks, the Internet of Things, and cloud computing. She has also served as a TPC Member of IEEE WCNC 2012/2014/ 2015/2016/2019/2020/2021, PIMRC 2012/2017/2018/2019/2020, GLOBECOM 2015/2017/2018, ICC 2015/2016/2017/2018/2019, Infocom 2018, and CloudCom 2013/2014/2015, the Chair of Special Track on cognitive testbed in CHINACOM 2011, the Workshop Chair of IEEE GreenCom 2019, and a Peer Reviewer of many academic journals.
+
+196
+
+© China Communications Magazine Co., Ltd. · August 2023
+
+Hong Ji received the B.S. degree in communications engineering and the M.S. and Ph.D. degrees in information and communications engineering from the Beijing University of Posts and Telecommunications (BUPT), Beijing, China, in 1989, 1992, and 2002, respectively. In 2006, she was a Visiting Scholar with the University of British Columbia, Vancouver, BC, Canada. She is currently a Professor with BUPT. She has authored more than 300 journal/conference papers. Several of her papers had been selected for Best Paper. Her research interests include wireless networks and mobile systems, including cloud computing, machine learning, intelligent networks, green communications, radio access, ICT applications, system architectures, management algorithms, and performance evaluations. She has guest-edited International Journal of Communication Systems, (Wiley) Special Issue on Mobile Internet: Content, Security and Terminal. She has served as the Co-Chair for Chinacom’11, and a member of the Technical Program Committee of WCNC, Globecom, ISCIT, CITS, WCSP, ICC, ICCC, PIMRC, IEEE VTC, and Mobi-World. She served on the editorial boards of the IEEE Transactions on Green Communications and Networking, Wiley International Journal of Communication Systems.
+
+Heli Zhang received the B.S. degree in communication engineering from Central South University in 2009, and the Ph.D. Degree in communication and information System from Beijing University of Posts and Telecommunications (BUPT) in 2014. From 2014 to 2018, she was the Lecturer in the School of Information and Communication Engineering at BUPT. From 2018, she has been the associate professor in the School of Information and Communication Engineering at BUPT. She has been the reviewer for Journals of IEEE Wireless Communications, IEEE Communication Magazine, IEEE Transactions on Vehicular Technology, IEEE Communication Letters and IEEE Transactions on Networking. She participated in many National projects funded by National Science and Technology Major Project, National 863 High-tech and National Natural Science Foundation of China, and cooperated with many Corporations in research. Her research interests include heterogeneous networks, long-term evolution/ﬁfth generation and Internet of Things.
+
+© China Communications Magazine Co., Ltd. · August 2023
+
+197
+
