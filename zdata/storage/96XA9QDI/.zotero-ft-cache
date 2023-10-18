@@ -1,0 +1,959 @@
+Hindawi Computational Intelligence and Neuroscience Volume 2023, Article ID 9848031, 1 page https://doi.org/10.1155/2023/9848031
+
+Retraction Retracted: Sports Training Strategy and Interactive Control Method Based on Digital Twins and Wireless Sensor Networks
+Computational Intelligence and Neuroscience
+Received 18 July 2023; Accepted 18 July 2023; Published 19 July 2023 Copyright © 2023 Computational Intelligence and Neuroscience. Tis is an open access article distributed under the Creative Commons Attribution License, which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly cited.
+
+Tis article has been retracted by Hindawi following an investigation undertaken by the publisher [1]. Tis investigation has uncovered evidence of one or more of the following indicators of systematic manipulation of the publication process:
+(1) Discrepancies in scope
+(2) Discrepancies in the description of the research reported
+(3) Discrepancies between the availability of data and the research described
+(4) Inappropriate citations
+(5) Incoherent, meaningless and/or irrelevant content included in the article
+(6) Peer-review manipulation
+Te presence of these indicators undermines our confdence in the integrity of the article’s content and we cannot, therefore, vouch for its reliability. Please note that this notice is intended solely to alert readers that the content of this article is unreliable. We have not investigated whether authors were aware of or involved in the systematic manipulation of the publication process.
+In addition, our investigation has also shown that one or more of the following human-subject reporting requirements has not been met in this article: ethical approval by an Institutional Review Board (IRB) committee or equivalent, patient/participant consent to participate, and/or agreement to publish patient/participant details (where relevant).
+Wiley and Hindawi regrets that the usual quality checks did not identify these issues before publication and have since put additional measures in place to safeguard research integrity.
+
+We wish to credit our own Research Integrity and Research Publishing teams and anonymous and named external researchers and research integrity experts for contributing to this investigation.
+Te corresponding author, as the representative of all authors, has been given the opportunity to register their agreement or disagreement to this retraction. We have kept a record of any response received.
+References
+[1] Z. He and X. He, “Sports Training Strategy and Interactive Control Method Based on Digital Twins and Wireless Sensor Networks,” Computational Intelligence and Neuroscience, vol. 2022, Article ID 2131125, 11 pages, 2022.
+
+Hindawi Computational Intelligence and Neuroscience Volume 2022, Article ID 2131125, 11 pages https://doi.org/10.1155/2022/2131125
+
+RSBpeasoseeradtrscohTnrAaDritniigcilnietgalSTtrwaitnegsyananddWInirteelreascstSiveensCoornNtreotlwMorekths od D Zheyu He 1 and Xi He2 E 1Department of Physical Education, Sangmyung University, Graduate School, Seoul 03016, Republic of Korea
+2College of Physical Education, Qilu Normal University, Jinan 250013, Shandong, China
+Correspondence should be addressed to Zheyu He; 1819500005@e.gzhu.edu.cn
+T Received 13 April 2022; Revised 16 May 2022; Accepted 31 May 2022; Published 16 June 2022
+Academic Editor: Rahim Khan
+Copyright © 2022 Zheyu He and Xi He. +is is an open access article distributed under the Creative Commons Attribution License, which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is
+C properly cited.
+By combining virtual reality, the digital twin system has been deeply applied in many places. Especially with the upsurge of national sports and more attention to sports, people have also begun a more in-depth study on the strategy of sports training. +is paper aims to explore the application of the Brazilian jujitsu training strategy and interactive control method in the new era. Based on the sports skills of Brazilian jujitsu, combined with digital twin technology and wireless sensor network technology, this paper develops a sports
+A training system based on Brazilian jujitsu. It can collect the action information of the trainer and twin it into the simulation system so
+as to carry out better and more eﬀective confrontation training. +e experimental results show that the average delay time is 5.2 ms and the maximum delay time is 6.5 ms, which is less than the limit delay time of 20 ms. Compared with the control group, it achieved quite good results. It shows the eﬀectiveness of the system designed in this paper for trick jujitsu training.
+
+R 1. Introduction T With the rise of the digital twin concept, based on digital
+twin technology, this paper serves physical training. +is paper aims to optimize the new mode of sports training strategy management and control, Digital twin training
+E platform, which has gradually become the current devel-
+opment hotspot. Brazilian jujitsu “ground surrender” technology has increasingly highlighted its technical ad-
+Rvantages and practical value in comprehensive ﬁghting,
+
++e conceptual framework of the digital twin and ﬁvedimensional digital twin model have been proposed. However, based on it, this paper proposes a more comprehensive and detailed reconﬁgurable digital twin manufacturing system architecture for the operation and maintenance requirements and reconﬁguration requirements of the digital twin manufacturing system. +is paper aims to guide the construction of a digital twin manufacturing system with high ﬁdelity, high practicability, high ﬂexibility, intelligence, and reconﬁgurability. It enables it to give full play to the com-
+
+jujitsu competitions, and other events. It is a technique of prehensive advantages of big data based manufacturing,
+
+combining technology and theory, winning with skill and virtual manufacturing, and ﬂexible manufacturing in the
+
+overcoming hardness with softness. It has many advantages market competitive environment with rapid changes in
+
+in subduing opponents in the competition. In addition to products, technology, and demand.
+
+standing confrontation, Brazilian jujitsu focuses more on
+
+ground ﬁghting. Repeated actual combat confrontation is 2. Related Work
+the basic training method of Brazilian jujitsu, which is a real
+
+ﬁghting method. From the cultural perspective, Brazilian Many scholars have their own views on the research of twins
+
+jujitsu, as a martial art that originated in the East and evolved and wireless sensor networks. Lee proposed a uniﬁed three-
+
+under western culture, has a unique cultural connotation. tier blockchain architecture as a guideline for researchers
+
++erefore, it is necessary to study this.
+
+and the industry. He clearly identiﬁed the potential of
+
+2
+
+Computational Intelligence and Neuroscience
+
+blockchain and adapted, developed, and integrated the
+
+Digital twin was ﬁrst proposed by American professors in
+
+technology with their manufacturing development to move 2002 and was applied to product life cycle management at that
+
+towards industry 4.0 [1]. In order to realize the digital twin time. After that, the concept of digital twins was noticed by the
+
+vision of health examination data, Li et al. constructed a US Department of defense. NASA applied digital twins to the
+
+general diagnosis and prognosis probability model by using the concept of a dynamic Bayesian network. He explained the proposed method through an example of fatigue crack propagation of aircraft wings [2]. Hammoudeh et al. considered wireless sensor networks (WSN) as a low-cost technology. It can provide intelligent LED solutions to effectively and continuously monitor large, busy, and complex
+D landscapes. He proposed a method to calculate the number
+of sensor nodes to be deployed in order to achieve the speciﬁed coverage level according to the selected indicators in a given band area. It also maintains a radio connection within the network [3]. Zhao et al. combined the two sensors
+E to receiver binding algorithms as an inner layer optimization
+to evaluate the ﬁtness value of the solution. His experimental results showed that it is better than the existing methods. In addition, his method has good scalability, which can be used
+T to deploy large-scale sensor networks [4]. Lamonaca F had
+proposed a program to overcome the inconvenience of data transmission. +e new fully distributed and consensus based program iteratively ﬁlters the messages communicating with the NSN, which will increase the time delay within the al-
+C lowable range. +erefore, the synchronization accuracy can
+be maintained regardless of the spatial distribution of ASN and NSN. He conducted numerical and experimental tests to verify the proposed procedure [5]. Edler et al. believed that project managers have the opportunity and professional
+A responsibility to explore diﬀerent curriculum models. He
+eventually developed better ways to train future sports coaches. In addition, educators have a responsibility to measure and report results to help provide a body of knowledge about best practices in clinical education [6].
+R However, the development and popularization of Brazilian
+jujitsu in China are not yet mature. Chinese experts and scholars have less research on the “ground surrender” technology of Brazilian jujitsu, and the basic theoretical
+T research lacks breadth and depth.
+3. Digital Twins and Wireless Sensor Networks
+3.1. Digital Twins. Brazilian jujitsu is also called Gracie
+E jujitsu. It is a kind of martial arts that is good at sleeping
+skills, specializing in surrender, comprehensive ﬁghting competition, and systematic defense [7, 8]. Jujitsu originated
+Rfrom the ﬁghting on the ancient battleﬁeld in Japan. After it
+
+production and maintenance of spacecraft and ﬂight training. Based on the physical entity of spacecraft, this paper constructs its virtual model. And it drives the operation of the virtual model through historical data and real-time collected data. Finally, it achieves the real mapping of the whole life cycle of the spacecraft in the virtual scene so as to realize the simulation prediction in the virtual environment.
+In this paper, the digital twin system is used to simulate and reconstruct Brazilian jujitsu, which has multiple training advantages. As shown in Figure 1, the data twin reconﬁgurable system framework has a four-tier architecture, including the physical layer, model layer, service layer, and data layer.
+3.2. Human Joint Twinning Algorithm. In order to meet the requirements of system ﬂexibility, scalability, and telepresence [9], this paper uses Unity3D to design the virtual space part of the digital twin system. Unity3D is one of the most popular commercial game engines at present. It is famous for its realistic environment, good scalability, cross platform, and active software ecology. Its internal script is written in c# language [10]. +is paper takes Brazilian jujitsu trainers as the research object and irb14000 dual arm cooperative robot as the simulation. +e schematic diagram of the degree of freedom of the trainer’s joint is shown in Figure 2.
++e joint angle corresponding to Figure 2 is shown in Table 1, and the motion range of each joint is shown in Table 2.
+Virtual scene includes user interaction interface, virtual robot model, console and other virtual objects [11–13]. +e standard model format in Unity3D is FBX, and the 3D model format of irb14000 oﬃcially provided by abb is STL format. +erefore, it is necessary to preprocess the model before importing the 3D model [14, 15]. +e original model has too many triangular patches. +is problem makes it diﬃcult to load the model in Unity3D, which cannot achieve ﬂuency and is not conducive to rendering. +erefore, this paper uses pixyz software to cut triangular patches of the original model. +is paper speciﬁes that each joint of the robot joint rotates around the Z axis of its parent object. In this paper, 3Dmax software is used to adjust the relationship between the joints and the rotation axis of each joint. It
+
+was introduced into Brazil, it was developed into a new makes the parent of each joint of the joint its previous joint.
+
+technical school by the Gracie family. Brazilian jujitsu is +e reason for this is that the child object needs to rotate
+
+good at small, broad, and strong. Jujitsu practitioners often with the parent object. Finally, the processed robot 3D
+
+drag their opponents to the ground in combat. It uses lever model is exported to FBX format, and the adjusted joint
+
+force to form joint skills or twisting skills to subdue the hierarchical relationship is shown in Figure 3. +e joints are
+
+opponent. +e practice methods of Brazilian jujitsu can be connected by ﬂanges, and the simulation control is arranged
+
+divided into technical practice, independent practice, and in the important order of 1 to 7 to complete the simulation
+
+confrontation practice. +ey often use technical exercises to control.
+
+improve their skill level and use independent exercises to
+
+In vector calculus, the Jacobian matrix is a matrix whose
+
+improve their awareness of actual combat. It uses con- ﬁrst-order partial derivatives are arranged in a certain way,
+
+frontation practice to enhance spiritual will.
+
+and its determinant is called the Jacobian determinant. +e
+
+Computational Intelligence and Neuroscience
+
+3
+
+service layer
+
+6
+
+Virtual Simulation Platform
+
+D data layer
+
+model layer
+
+virtual twin model
+
+physical layer
+
+E Physical entity object
+T Figure 1: Data twin reconﬁgurable system framework.
+
+1
+C 2
+
+1
+
+A 3
+
+3
+
+Table 1: Corresponding joint angles.
+
+Joint
+
+L
+
+1
+
+0
+
+2
+
+−130
+
+3
+
+30
+
+4
+
+0
+
+5
+
+40
+
+6
+
+0
+
+7
+
+135
+
+R
+0 −130
+30 0 40 0 135
+
+2
+R 4 5 5
+T6
+
+Table 2: Range of joint motion.
+
+Joint
+
+Action type
+
+Action level
+
+1
+
+Arm-rotational movement
+
+−168.50 to +168.5°
+
+2
+
+Arm-bending exercise
+
+−143.5° to +143.50
+
+3
+
+Flange rotation movement
+
+−168.5° to +168.50
+
+4
+
+Flange rotation movement
+
+123.5° to +80°
+
+5
+
+Leg_rotation movement
+
+−290° to +290°
+
+6
+
+Leg_bending exercise
+
+−88° to +138°
+
+7
+
+Foot-rotational movement
+
+−229° to +229°
+
+E7
+
+r � [x, y, z, α, β, c]T.
+
+(1)
+
+R7
+
+x, y, and z are the ends of the joints. α, β, and c identify
+
+the end posture of the joint, then the forward kinematics
+
+relationship of the joint can be obtained, as shown in the
+
+formula:
+
+Figure 2: Schematic diagram of degrees of freedom of twin joint.
+
+r � r(q).
+
+(2)
+
+importance of the Jacobian matrix is that it embodies the optimal linear approximation of a diﬀerentiable equation and given points. +e Jacobian matrix in robot space represents the relationship between joint velocity and end velocity. +e expression of the end pose vector is as follows:
+
+Among them,
+
+q � 􏼂θ1, θ2, θ3, θ4, θ5, θ6, θ7􏼃.
+
+(3)
+
+Formula (3) represents the rotation vector of the joint, which can be obtained by time derivation:
+
+4
+
+Computational Intelligence and Neuroscience
+
+3
+
+4
+
+collide
+
+transformation of the vector, as shown in formula (10) for the translation matrix MT:
+
+1
+
+2
+
+5
+
+6
+
+7
+
+joint
+
+Figure 3: Schematic diagram of the hierarchical relationship of joints.
+
+D vkc �� r_ � J(q)q_.
+
+(4)
+
+Among them, vkc is the spatial velocity including the translation velocity and rotation velocity components in the
+E coordinate system k. C is the number of joints, and matrix J
+(q) is the mapping relationship between joint velocity and end velocity.
+According to formula (4), the relationship expression
+T between joint speed and end speed of redundant joint can be
+obtained, as shown in the following formula:
+
+q_ � J(q)+v.
+
+(5)
+
+J(q)+ is the generalized inverse matrix of robot
+C Jacobian matrix J(q), that is, the pseudoinverse used in this
+paper. For the vector in three-dimensional space, it can be
+extended from the vector rotation of a two-dimensional plane, for the matrix MRX, MRY, MRZ of θ the angle of
+A rotation of the three-dimensional vector ρ around the X axis,
+Y axis, and Z axis in space, as shown in the following formulas:
+
+10 0
+
+R MRX �⎡⎢⎢⎢⎢⎢⎢⎢⎣ 0 cosθ −sinθ ⎤⎥⎥⎥⎥⎥⎥⎥⎦.
+
+(6)
+
+0 sinθ cosθ
+
+cosθ 0 sinθ
+
+T MRY �⎡⎢⎢⎢⎢⎢⎣ 0 1 0 ⎤⎥⎥⎥⎥⎥⎦.
+
+(7)
+
+−sinθ 0 cosθ
+
+cosθ −sinθ 0
+
+EMRZ �⎡⎢⎢⎢⎢⎢⎣ sinθ cosθ 0 ⎤⎥⎥⎥⎥⎥⎦.
+
+(8)
+
+0 01
+
+R+e order of matrix multiplication results in diﬀerent
+
+1
+
+MRT
+
+� ⎡⎢⎢⎢⎢⎢⎢⎢⎢⎢⎢⎢⎢⎢⎢⎣
+
+0 0
+
+0 1 0
+
+0 0 1
+
+xt yt zt
+
+⎤⎥⎥⎥⎥⎥⎥⎥⎥⎥⎥⎥⎥⎥⎥⎦.
+
+(10)
+
+000 1
+
+For the simpler scaling matrix of k-times space:
+
+k00
+
+MS � ⎡⎢⎢⎢⎢⎢⎢⎢⎣ 0 k 0 ⎤⎥⎥⎥⎥⎥⎥⎥⎦.
+
+(11)
+
+00k
+
+According to the above formula and following the
+principles of scaling, rotation, and translation, the transformation matrix MCW from OCXCYCZC to OWXWYWZW can be obtained, and the transformation matrix MCW is shown in the formula:
+
+MCW � MT · MRY · MRX · MRZ · MS.
+
+(12)
+
+When the operator operates on the screen, use the hand
+controller to control the displacement of the robot joint end. Assuming that the displacement of the joint end OCXCYCZC in is pC and the displacement in OWXWYWZW is pW, pW can be obtained from the formula:
+
+pW � MCW · pC.
+
+(13)
+
+In this paper, the movement of the joint end is based on
+OVXVYVZV, so it is necessary to use OVXVYVZV to describe the displacement of the joint end under OWXWYWZW. Assuming that the displacement of the joint end in
+OVXVYVZV is pV, pV can be obtained from the formula:
+
+pV � MWV · pW.
+
+(14)
+
+Among them, MWV is the conversion matrix from OWXWYWZW to OVXVYVZV. Since the camera coordinate system and robot coordinate system are essentially local coordinate systems, MWV is the inverse matrix of MCW. As mentioned earlier, the diﬀerence between the real robot coordinate system and the coordinate system in Unity3D is that the real robot coordinate system is the right-hand coordinate system. +erefore, it is necessary to convert the displacement in the left-hand coordinate system to the right-hand coordinate system. For the displacement in the virtual robot coordinate system, assuming that the joint end displacement in the real robot is expressed as pr, then pr is obtained from the formula:
+
+results, so it is necessary to specify the order of rotation, and the rotation order speciﬁed in Unity3D is ZXY. +erefore,
+
+pr � Mlr · pv.
+
+(15)
+
+the vector rotation in space is shown in the formula:
+
+p′ � MRY · MRx · MRz · p.
+
+(9)
+
+Among them, Mlr is the conversion matrix from the lefthand coordinate system to the right-hand coordinate sys-
+tem. +e corresponding relation between the left-hand
+
+Among them, vector p″ is after the rotation.
+
+coordinate system and the coordinate axis of the right-hand
+
+In order to unify the coordinate expression, this paper coordinate system is obtained. Mlr is a ﬁxed matrix in uses homogeneous coordinates to express the translation Unity3D, as shown in the formula:
+
+Computational Intelligence and Neuroscience
+
+5
+
+Spatial displacement in
+camera
+
+MCW
+
+displacement in virtual space
+
+D M1r
+
+MWV
+
+TE real space
+displacement
+
+C Figure 4: Data processing ﬂow during operation.
+
+A −1 0 0 0
+
+⎡⎢⎢⎢⎢⎢⎢⎢⎢⎢⎢⎢⎢⎢⎢⎣
+
+0 0
+
+0 1
+
+−1 0
+
+0 0
+
+⎤⎥⎥⎥⎥⎥⎥⎥⎥⎥⎥⎥⎥⎥⎥⎦.
+
+(16)
+
+R 0 0 0 1
+
++e above is a conversion process of the joint end vector from OCXCYCZC to OrXrYrZr. +e overall schematic di-
+T agram from the displacement of the joint end to the feedback
+received by the operator is shown in Figure 4.
+
+3.3. Wireless Sensor Networks (WSNs). +e communication
+E software and hardware are responsible for communication
+and data transmission with other sensor points. With the help of WSNs, human beings can realize a more convenient
+Rability to understand and know the objective world [16, 17].
+
+another major change in society. +e typical architecture of WSNs is shown in Figure 5.
++e topology of WSNs is very dynamic [23]. However, there are also great diﬀerences between WSNs and traditional wireless ad hoc networks, which are mainly reﬂected in the following aspects: (1) limited node resources. Sensor nodes are generally powered by batteries. Due to the miniaturization of sensor nodes, the capacity of batteries is limited. In many sensor applications, nodes are deployed in areas with a poor environment, so it becomes very diﬃcult or almost impossible to replace batteries manually. +erefore, the energy of nodes is very valuable because of their limitations. Because of the limited energy, how to improve the energy eﬃciency of nodes has become one of the important indicators of WSNs key technology design. In addition, due to the use of an embedded microprocessor, the processor capacity and memory size are limited, resulting in
+
+WSNs network nodes have low-cost, self-distribution power the limited computing and storage capacity of nodes, which
+
+supply and do not need the support of communication also brings some challenges to the design of many key
+
+infrastructure. +erefore, they can also be self-organized technologies of WSNs. (2) +e network scale is large. Due to
+
+into a network in some complex target environment areas to the limited function of a single sensor node, in order to
+
+form eﬀective monitoring of the target area. At present, better perceive the information of the monitoring area, it
+
+WSNs have broad application prospects in medical care, needs to deploy a large number of sensor nodes to make up
+
+environmental monitoring, traﬃc management, space ex- for the limited function of a single node. In this way, it can
+
+ploration, industrial and agricultural production, military, not only improve the coverage of the network but also
+
+and other ﬁelds [18–22]. With the further expansion of the improve the accuracy of monitoring. However, the larger
+
+depth and breadth of WSNs network application, it will have network scale brings some diﬃculties to the maintenance of
+
+a great impact on people’s production and life and promote the network. (3) +e reliability of nodes is low. Because
+
+6
+
+Computational Intelligence and Neuroscience
+
+Sensor node
+
+A
+
+A
+
+B C D
+E
+
+Sensor ﬁeld
+
+B
+C D
+
+TED Sink node
+
+internet
+
+Sink node
+
+C task management node A Figure 5: Typical architecture of wireless sensor network.
+
+sensor nodes are often deployed in hostile or harsh environments, it leads to nodes working unattended. It makes it
+R very diﬃcult to maintain the node, which leads to the node
+being easy to damage or fail. +erefore, how to improve the self-reconﬁguration ability of the network is a problem worthy of study. (4) It is data-centric. +e main function of
+T WSNs is to transmit the collected data to the sink node and
+then process it accordingly. When the user needs to query whether an event occurs in a certain area, the user does not care which node transmits the data but only whether the collected data indicates whether the event occurs or not.
+E Because WSNs is a task-oriented network; users do not care
+about a node but only about the data related to the task. (5) High data redundancy. In many sensor network applica-
+Rtions, nodes are randomly deployed in the monitoring area
+
+military aﬀairs, the WSNs system pays more attention to the security and accuracy of data. In the ﬁeld of public security, the WSNs system should minimize the false positive rate and false negative rate. In the ﬁeld of target tracking, WSNs system pays more attention to the real-time monitoring of emergencies. In the ﬁeld of health monitoring, more attention is paid to energy saving and protecting the privacy of monitored objects [24, 25]. It is precise because the characteristics of the WSNs are diﬀerent from other wireless networks, which makes the design of some key technologies of WSNs face many challenges. +e most important challenge is how to improve the energy eﬃciency of nodes when designing network protocols and data management algorithms [26, 27].
+
+for data collection. +is leads to the high similarity of the
+
+data collected by the nodes adjacent to the geographical 4. Digital Twin Training Platform
+location, that is, the data redundancy caused by spatial
+
+correlation. On the other hand, in a certain period of time, In order to verify the rationality of the digital twin method
+
+the value of the data collected by a single node changes little, described in this paper, this paper develops a digital twin
+
+which will also cause data redundancy, that is, data re- platform for Brazilian jujitsu training. Based on the analysis
+
+dundancy caused by time correlation. +erefore, how to of data integration requirements and the research on
+
+remove redundant data without aﬀecting the main functions physical information fusion technology and data interaction
+
+of the network is an important challenge. (6) Application technology, this paper designs a digital twin training plat-
+
+relevance: it is an obvious feature of WSNs diﬀerent from form and describes the development process of the platform
+
+other wireless networks. In the ﬁeld of national defense and in detail.
+
+Computational Intelligence and Neuroscience
+
+7
+
+4.1. Design of Digital Twin Training Platform. A digital twin
+
+training platform is a complex training management and control platform composed of multiple systems. In order to
+
+OPC UA server
+
+facilitate real-time data acquisition, physical information
+
+fusion, data storage and transmission, visual monitoring, and online simulation of digital twin training, the platform is divided into 3 subsystems: OPCUA server, Demo3D visual simulation software, and general management system. In addition, as the basis for realizing digital twinning, the platform also needs to be extensible and extensible. By providing a data interface to cooperate with other appli-
+D cation service systems, it can realize the functions of digital
+twinning, such as deduction, simulation, decision-making, and so on. +e design idea of the digital twin training platform is shown in Figure 6.
+E (1) Opcua server, the OPCUAserver of digital twin training, is the data transmission link between various systems. It is necessary to use the information modeling ability of OPCUAto realize physical information fusion and construct the T OPCUA transmission service. OPCUA server is directly deployed in physical training, and its function is mainly divided into two parts. First, through the direct access or protocol conversion of C manufacturing IOT equipment, it can realize the collection and data integration of full cycle, full element, and multidimensional data. It has the function of direct control over the production factors on the training site. +e second is to import the OPCUA information model, bind the A manufacturing IOT equipment to collect data, and complete the instantiation of the information model and the construction of address space so as to realize physical information fusion and information R interaction and sharing with the other two subsystems based on the information model.
+(2) Demo3D visual simulation software Demo3D is a logistics simulation management and control system
+T developed by the British Emulate3D company. It has
+the ability to import a geometric model, constructing a three-dimensional training structure and visual dynamic monitoring, and it can integrate the physical characteristics of entities into the geometric
+E model to achieve a highly realistic training simula-
+tion eﬀect. +erefore, it can build a virtual space of digital twin training based on Demo3D software and
+Rrealize real mapping and online simulation through
+
+Overall management
+system
+
+Digital Twin Training Platform
+
+Demo3D soware
+
+Figure 6: Detailed functions of digital twin training platform.
+Because the Demo3D software has the function of web page publishing, it can achieve a seamless connection with the overall management system through the URL link of the web page. So the whole digital twin training platform can be regarded as a system of B/S architecture. OPCUA server, general management system background, and Demo3D software can be regarded as the background program of the whole platform. +e Demo3D visualization page and the overall management system interface can be used as the foreground interface of the platform.
++e overall management system controls and coordinates the whole platform and other subsystems. +is system mainly includes three functions: platform management, IOT equipment management, and OPCUAserver management. +ey are, respectively, used for the basic setting of the platform, conﬁguration of manufacturing IOT equipment, and OPCUAserver in training.
++e Demo3D software is used to construct the virtual training scene of the digital twin training platform. By utilizing the functions and advantages of Demo3D software in modeling and simulation, this paper integrates Demo3D software into the digital twin training platform to realize two functions of visual monitoring and training model management. Visual monitoring is to display all production activities on the training site in the form of three-dimensional visualization through the collected real-time data. At the same time, it pushes some production status information in real-time to realize the eﬀect of virtual real mapping. Training model management is the process of constructing, conﬁguring, and storing the virtual models corresponding to all production factors in virtual training. It plays the role of a physical object database in a digital twin training platform.
+OPCUA server is the bottom data base of the whole platform. It is used to perceive the production status of the training site and realize physical information fusion and
+
+OPCUA client embedded in the software.
+
+information transmission. OPCUA server mainly includes
+
+(3) Overall management system: the overall manage- ﬁve functions: IOT equipment connection, physical infor-
+
+ment system can realize the overall planning and mation fusion service, address space service, information
+
+coordination of the other two subsystems. It saves transmission service, and data interface service. IOT
+
+the historical information of the whole platform equipment connection is the process of connecting the
+
+through the data storage function and conﬁguration manufacturing IOT hardware equipment deployed in
+
+management function and increases the scalability physical training to the digital twin platform. It mainly
+
+and ﬂexibility of the platform so that managers can includes the connection of equipment and the management
+
+dynamically adjust the platform conﬁguration of IP address, interface, and transmission protocol, which
+
+according to the actual situation of the training site. cooperate with the IOT equipment management function in
+
+8
+
+Computational Intelligence and Neuroscience
+
+the overall management system. It ﬁnally realizes the ef- deployment environments. +e training gate, entrance and
+
+fective collection of multisource and multiprotocol data. +e exit, warehouse gate, and other areas need a huge antenna
+
+physical information fusion service is the realization of the radiation range. +erefore, in this paper, we use the high
+
+physical information fusion method described above. power far ﬁeld Valley XC-AF26 line polarization antenna.
+
++rough the management of real-time data acquisition and control methods of production factors, as well as the steps of deredundancy, unit level fusion, spatial scale fusion, and training level fusion, it ﬁnally achieves the purpose of regulating heterogeneous factors and describing the whole training production state. Address space service is the representation of physical information fusion results in
+D OPCUA server. Based on the information model imported
+from the overall management system, it instantiates the information model according to the physical information fusion process and constructs the address space model. Information transmission service is based on the con-
+E struction of the address space model. It realizes data
+transmission based on TCP/IP protocol and provides subscription/connection function and method call function for OPCUA client. +e data interface service provides the in-
+T formation exchange channel between the digital twin
+training platform and other application systems based on OPCUA.
+In order to meet the operational needs of training managers and maintain the convenience of platform de-
+C velopment and deployment, this paper selects B/S archi-
+tecture to develop this platform. For the OPCUA server, because it needs to connect with many hardware devices, and many devices do not directly support the OPCUA protocol, this paper needs to be written in a uniﬁed language
+A to maintain a close relationship between the two. In addi-
+tion, although OPCUA service software such as kepserver has appeared, due to the need to realize the physical information fusion process, the open source library of OPCUA must be used for server development. Table 3 lists the
+R OPCUAopen source libraries that are widely used at present.
+By comprehensively comparing the development data of various open source libraries in Table 3 and some existing hardware device development package languages, this paper
+T selects open62541 based on C + + language as the devel-
+opment library of OPCUA server. Microsoft Visual Studio 2017 is the main development environment.
+E 4.2. Deployment of Digital Twin Environment. RFID
+equipment consists of a reader, antenna, and passive tag. +e reader/writer converts the current signal into an RF signal
+Rand radiates outward by connecting the antenna. When
+
+For the smaller areas, such as workstations and buﬀer areas, we use the XC-AF12-A remote circular antenna. For the smaller shelf space and the need to control the coverage area accurately, the KL12080 ultrahigh frequency ceramic antenna with smaller volume and smaller coverage is used. +e physical drawing of RFID equipment is shown in Figure 7.
++e virtual model includes three parts: geometric model, physical model, and logical model. It needs to import the three into Demo3D software, package them uniformly, and build a virtual model library. (1) +e geometric model Demo3D software does not support direct modeling. It needs to use SolidWorks, ProE, and other three-dimensional modeling software to make real modeling of various production elements and training structures in training and save them into Demo3D software in the middle format. (2) +e physical model is based on the geometric model of the imported production factors. By deﬁning the function of the model attribute of the Demo3D software, the basic attributes of each production factor model and the dynamic variables of the control model change and mobile are deﬁned. It realizes the physical model construction corresponding to the geometric model. (3) +e logic model is based on the script writing function of Demo3D software, which uses the JScript language to write the logic script of the model. It realizes the connection with physical training and application services through OPCUAand database, realizes the evolution and simulation function of the logical model, and constructs the virtual model library.
+4.3. System. For the digital twin environment, the real-time performance of data transmission and interaction is an important index to measure the performance of data interaction. +ere are still disputes about the maximum data transmission time delay acceptable for digital twin training. It is generally believed that the time delay from data collection to transmission to the data application module should be less than 20m [26, 28]. In order to verify the eﬀectiveness of the information modeling method in this paper, it needs to model the information for the speciﬁc data acquisition node of physical training and build the corresponding OPCUA server and client. Because the data interaction between the OPCUA server and client has two transmission mechanisms: direct transmission and subscription, this paper uses diﬀerent ways
+
+contacting the tag, the RF signal will be fed back to the tag to test the delay time.
+
+itself. +e antenna converts RF information into a current
+
++e test uses Xeon E5 processor, 32g memory, and the
+
+signal, and the reader and writer analyze and forward the service station of Windows Server 2016 system as the server
+
+signal.
+
+of the data acquisition system. +is paper uses a desktop
+
+Considering practicability and economy, xc-rf807 ﬁxed computer with i7 processor, 12g memory, and Windows 10
+
+UHF RFID reader and xctf8421-c03 ceramic antimetal tag system as the test client and uses a Gigabit switch to connect
+
+are selected for training. At the same time, it is in areas where to the same LAN. During the test, this paper ﬁrst constructs
+
+RFID sampling frequency is not high, such as warehouse the OPCUA test server according to the OPCUA infor-
+
+shelves. In this paper, xc-tx002 48 channel hub is used to mation modeling method. +e test client is developed based
+
+reduce the number of readers and writers so as to reduce the on the OpcUaHelper Library Based on the C# language.
+
+cost. Diﬀerent RFID antennas are required for diﬀerent Besides the normal functions of receiving, subscribing,
+
+Computational Intelligence and Neuroscience
+
+9
+
+Table 3: Common OPC UA open source libraries.
+
+name
+
+Programming language
+
+Development platform
+
+Type
+
+Development information
+
+Eclipse milo
+
+Java
+
+Windows, Linux
+
+Client + server
+
+Much
+
+Node-opc-ua
+
+JavaScript
+
+Windows, Linux
+
+Client + server
+
+Many
+
+open62541 OpcUaHelper Opc Ua.NET FreeOpcUa
+
+C99 C# C# Python, C++
+
+Windows, Linux Windows Windows
+Windows, Linux
+
+Client + server Client
+Client + server Client + server
+
+Much Few Few Many
+
+TED Reader
+
+road hub
+
+RAC electronic label
+
+UHF ceramic antenna
+
+Figure 7: Physical drawing of RFID equipment.
+
+T sending, and so on, it also adds a simple time recording
+ability to the client. In addition, this paper establishes an
+E OPCUA server without merging and adaptive compression
+of node data as the control group. It tests the eﬀect of this scheme on improving the real-time performance of data
+Racquisition.
+
+from the client sending the request to receiving the data returned by the server and completing the analysis. +e main factors aﬀecting the data return time in the direct transmission mechanism are the data processing time and the data transmission time in Ethernet. Since the direct transmission mechanism is generally used to obtain the attribute
+
+In the virtual operation environment, the smooth run- data of production factors, this paper selects the attribute
+
+ning of the scene can not only reduce the dizziness of the data node of material for the return time test. In the actual
+
+operators but also make the operation look smoother so as to test, the test client sends a request to the server every
+
+avoid the Caton problem caused by the tearing of the picture 2 seconds and records the return time of 30 times in
+
+and eﬀectively enhance the sense of presence. +e FPS data 1 minute. +e results are shown in Figure 9.
+
+in the experimental results are shown in Figure 8. It can be
+
++e test results show that compression and merging can
+
+seen from the ﬁgure that although FPS will still ﬂuctuate, the eﬀectively reduce the return time of requests and reduce the
+
+FPS using this method is the traditional method, which can time delay. Within one minute of the test, the average return
+
+achieve a more smooth training eﬀect.
+
+time after treatment is 8.5 ms, and the maximum return time
+
+Under the direct transmission mechanism, the delay is 14.3 ms, both of which are less than the limit delay time of
+
+time of real-time data acquisition can be deﬁned as the time 20 ms.
+
+10
+
+Computational Intelligence and Neuroscience
+
+70
+
+As shown in Figure 10, the test results are similar to those
+
+under the direct transmission mechanism. In the test process
+
+60
+
+of 6 seconds, the average delay time is 5.2 ms, and the
+
+50
+
+maximum delay time is 6.5 ms, both of which are less than
+
+FPS
+
+40
+30
+20
+10
+D 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 TIME Traditional method E is paper method Figure 8: Comparison diagram of twin system FPS.
+
+T 58
+
+55
+
+52 49
+
+46
+
+43
+C 40
+
+37
+
+34 31 28
+
+25
+
+22 19
+
+16
+
+A 13
+10
+
+7
+
+4 1
+
+0
+
+10
+
+20
+
+30
+
+40
+
+50
+
+60
+
+back time t (s)
+
+test time T (s)
+
+R Aer processing
+Before processing
+
+Figure 9: Experimental results of direct transmission mechanism.
+
+T 45
+40
+E 35
+30 25
+R20
+
+delay t (ms)
+
+the limit delay time of 20 ms. And compared with the control group, it achieved quite good results.
+5. Conclusion
++e cultural value of Brazilian jujitsu is reﬂected in three aspects. (1) +e “melting pot” culture is embodied in Brazilian jujitsu. Brazilian jujitsu does not stick to one style and is good at learning from other technologies. While integrating the ﬁghting technology of various countries, it also adds the cultural connotation of various countries to its own jujitsu system. It is not only a sport but also a representative of cultural integration. (2) +e etiquette culture of Brazilian jujitsu. Although Brazilian jujitsu has not developed for a long time, it has always inherited the rigorous etiquette culture of Japanese traditional judo. It is very similar to Japanese judo in many places. (3) Brazilian jujitsu highlights the ﬁghting culture. +rough the confrontation of Brazilian jujitsu, people feel the Brazilian people’s love for ﬁghting. In this paper, the training system is studied, and the experimental results are also satisfactory. However, the article also has deﬁciencies. For example, in luansheng system, this paper selects too few joint points for human body simulation and can not simulate speciﬁc details. +erefore, in future research, it will also focus on more detailed twin simulations.
+Data Availability
++e data that support the ﬁndings of this study are available from the corresponding author upon reasonable request.
+Conflicts of Interest
++e authors declared no potential conﬂicts of interest with respect to the research, authorship, and/or publication of this article.
+References
+[1] J. Lee, “Integration of digital twin and deep learning in cyberphysical systems: towards,” Smart Manufacturing, vol. 38, no. 8, pp. 901–910, 2020.
+[2] C. Li, S. Mahadevan, and L. You, “Dynamic bayesian network for aircraft wing health monitoring digital twin,” AIAA
+
+Journal, vol. 55, no. 3, pp. 1–12, 2017.
+
+15
+
+[3] M. Hammoudeh, F. Al-Fayez, H. Lloyd et al., “A wireless
+
+10 5 0
+1 1.25 1.5 2 2.5 3 3.5 4 4.5 5 5.5 6 test time T (s)
+
+sensor network border monitoring system: deployment issues and routing protocols,” IEEE Sensors Journal, vol. 17, no. 8, pp. 2572–2582, 2017. [4] C. Zhao, C. Wu, X. Wang et al., “Maximizing lifetime of a wireless sensor network via joint optimizing sink placement and sensor-to-sink routing,” Applied Mathematical Model-
+
+Aer processing Before processing
+
+ling, vol. 49, pp. 319–337, 2017. [5] F. Lamonaca, D. L. Carni, M. Riccio, D. Grimaldi, and
+G. Andria, “Preserving synchronization accuracy from the
+
+Figure 10: Experimental results of platform delay.
+
+plug-in of NonSynchronized nodes in a wireless sensor
+
+Computational Intelligence and Neuroscience
+
+11
+
+network,” IEEE Transactions on Instrumentation and Mea-
+
+Information Technology Management, vol. 13, no. 2,
+
+surement, vol. 66, no. 5, pp. 1058–1066, 2017.
+
+pp. 139–153, 2021.
+
+[6] J. R. Edler, L. E. Eberman, and S. Walker, “Clinical education [21] O. I. Khalaf, C. A. T. Romero, S. Hassan, and M. T. Iqbal,
+
+in athletic training,” Athletic Training Education Journal,
+
+“Mitigating hotspot issues in heterogeneous wireless sensor
+
+vol. 12, no. 1, pp. 46–50, 2017. [7] K. Sniﬀen, “Embedding interprofessional activities with
+physical therapy and athletic training students in shared professional course,” International Journal of Health Sciences Education, vol. 6, no. 1, p. 4, 2019. [8] S. Bruce, E. Crawford, G. Wilkerson, R. B. Dale, M. Harris, and D. Rausch, “Prediction modeling for Board of Certiﬁcation exam success for a professional master’s athletic
+D training program,” Journal of Sports Medicine and Allied
+Health Sciences: Oﬃcial Journal of the Ohio Athletic Trainers’ Association, vol. 5, no. 2, p. 7, 2019. [9] H. O. S. O. K. A. W. A. Yuri, “Exercise performance and safety in the heat,” Japanese Journal of Autogenic Derapy, vol. 3,
+E no. 1, pp. 33–38, 2017.
+[10] Roberts Jr, “John. Mentorship and evidence based practice with athletic trainer preceptors: an overview,” Online Journal of Interprofessional Health Promotion, vol. 1, no. 1, 9 pages,
+T 2019.
+[11] R. Sridharan and S. Domnic, “Placement for intercommunicating virtual machines in autoscaling cloud infrastructure,” Journal of Organizational and End User Computing, vol. 33, no. 2, pp. 17–35, 2021.
+[12] V. Sathiyamoorthi, P. Keerthika, P. Suresh, Z. Zhang,
+C A. P. Rao, and K. Logeswaran, “Adaptive fault tolerant re-
+source allocation scheme for cloud computing environments,” Journal of Organizational and End User Computing, vol. 33, no. 5, pp. 135–152, 2021. [13] N. Baskaran and R. Eswari, “Eﬃcient VM selection strategies
+A in cloud datacenter using fuzzy soft set,” Journal of Organi-
+zational and End User Computing, vol. 33, no. 5, pp. 153–179, 2021. [14] J. Mansell, D. M. Moﬃt, A. C. Russ, and J. N. +orpe, “Sexual harassment training and reporting in athletic training stu-
+R dents,” Athletic Training Education Journal, vol. 12, no. 1,
+pp. 3–9, 2017. [15] K. Sniﬀen, E. Briggs, L. Hinyard, and A. Breitbach, “Inter-
+professional role clarity, case-based learning, and perceptions of group eﬀectiveness among athletic training and physical
+T therapy students in a shared professional course,” De Internet
+Journal of Allied Health Sciences and Practice, vol. 17, no. 4, 6 pages, 2019. [16] M. R. Lininger and B. L. Riemann, “Statistical primer for athletic trainers: understanding the role of statistical power in
+E comparative athletic training research,” Journal of Athletic
+Training, vol. 53, no. 7, pp. 716–719, 2018. [17] J. Schilling, “Instructional strategy: didactic media presenta-
+Rtion to optimize student learning,” Athletic Training Educa-
+
+networks,” Journal of Sensors, vol. 2022, Article ID 7909472, 14 pages, 2022. [22] M. Adil, H. Song, J. Ali et al., “EnhancedAODV: a robust three phase priority-based traﬃc load balancing scheme for internet of things,” IEEE Internet of Dings Journal, 1 page, 2022. [23] A. E. Smith-Ryan, K. R. Hirsch, H. E. Saylor, L. M. Gould, and M. N. M. Blue, “Nutritional considerations and strategies to facilitate injury recovery and rehabilitation,” Journal of Athletic Training, vol. 55, no. 9, pp. 918–930, 2020. [24] M. C. Kay, J. K. Register-Mihalik, A. D. Gray, A. Djoko, T. P. Dompier, and Z. Y. Kerr, “+e epidemiology of severe injuries sustained by national collegiate athletic association student-athletes, 2009-2010 through 2014-2015,” Journal of Athletic Training, vol. 52, no. 2, pp. 117–128, 2017. [25] J. Register-Mihalik, C. Baugh, E. Kroshus, Z. Kerr, and T. C. Valovich McLeod, “A multifactorial approach to sportrelated concussion prevention and education: application of the socioecological framework,” Journal of Athletic Training, vol. 52, no. 3, pp. 195–205, 2017. [26] A. Arnold, C. A. +igpen, P. F. Beattie, M. J. Kissenberth, and E. Shanley, “Overuse physeal injuries in youth athletes,” Sport Health: A Multidisciplinary Approach, vol. 9, no. 2, pp. 139– 147, 2017. [27] A. P. Driska, “Quality sport coaching in action: the application of the national standards for sport coaches in youth sport,” Strategies, vol. 33, no. 6, pp. 14–20, 2020. [28] C. J. Stevens, A. R. Mauger, P. Hassme`n, and L. Taylor, “Endurance performance is inﬂuenced by perceptions of pain and temperature: theory, applications and safety considerations,” Sports Medicine, vol. 48, no. 3, pp. 525–537, 2017.
+
+tion Journal, vol. 12, no. 1, pp. 51–58, 2017.
+
+[18] O. I. Khalaf and G. M. Abdulsahib, “Optimized dynamic
+
+storage of data (ODSD) in IoT based on blockchain for
+
+wireless sensor networks,” Peer-to-Peer Networking and Ap-
+
+plications, vol. 14, no. 5, pp. 2858–2873, 2021.
+
+[19] O. I. Khalaf, G. M. Abdulsahib, and B. M. Sabbar, “Opti-
+
+mization of wireless sensor network coverage using the bee
+
+algorithm,” Journal of Information Science and Engineering,
+
+vol. 36, no. 2, pp. 377–386, 2020.
+
+[20] G. M. Abdulsahib and O. I. Khalaf, “Accurate and eﬀective
+
+data collection with minimum energy path selection in
+
+wireless sensor networks using mobile sinks,” Journal of
+

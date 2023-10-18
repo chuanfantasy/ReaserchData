@@ -1,0 +1,338 @@
+Luís Brito Palma • Rui Neves-Silva • Luís Gomes
+Editors
+CONTROLO 2022
+Proceedings of the 15th APCA International Conference on Automatic Control and Soft Computing, July 6–8, 2022, Caparica, Portugal
+123
+
+Editors Luís Brito Palma Electrical and Computer Engineering Department, NOVA School of Science and Technology NOVA University Lisbon Caparica, Portugal
+Luís Gomes Electrical and Computer Engineering Department, NOVA School of Science and Technology NOVA University Lisbon Caparica, Portugal
+
+Rui Neves-Silva Electrical and Computer Engineering Department, NOVA School of Science and Technology NOVA University Lisbon Caparica, Portugal
+
+ISSN 1876-1100
+
+ISSN 1876-1119 (electronic)
+
+Lecture Notes in Electrical Engineering
+
+ISBN 978-3-031-10046-8
+
+ISBN 978-3-031-10047-5 (eBook)
+
+https://doi.org/10.1007/978-3-031-10047-5
+
+© The Editor(s) (if applicable) and The Author(s), under exclusive license to Springer Nature Switzerland AG 2022 This work is subject to copyright. All rights are solely and exclusively licensed by the Publisher, whether the whole or part of the material is concerned, speciﬁcally the rights of translation, reprinting, reuse of illustrations, recitation, broadcasting, reproduction on microﬁlms or in any other physical way, and transmission or information storage and retrieval, electronic adaptation, computer software, or by similar or dissimilar methodology now known or hereafter developed. The use of general descriptive names, registered names, trademarks, service marks, etc. in this publication does not imply, even in the absence of a speciﬁc statement, that such names are exempt from the relevant protective laws and regulations and therefore free for general use. The publisher, the authors, and the editors are safe to assume that the advice and information in this book are believed to be true and accurate at the date of publication. Neither the publisher nor the authors or the editors give a warranty, expressed or implied, with respect to the material contained herein or for any errors or omissions that may have been made. The publisher remains neutral with regard to jurisdictional claims in published maps and institutional afﬁliations.
+
+This Springer imprint is published by the registered company Springer Nature Switzerland AG The registered company address is: Gewerbestrasse 11, 6330 Cham, Switzerland
+
+Preface
+This volume contains the proceedings of the 15th APCA International Conference on Automatic Control and Soft Computing (CONTROLO’2022), to be held in Caparica, Lisbon-Region, Portugal, from July 6 to 8, 2022. The aim of CONTROLO’2022 is to provide an opportunity for presenting new research results and to discuss the latest developments in the ﬁelds of control, automation, robotics, and soft computing. In order to mitigate constraints associated with the still present pandemic situation, CONTROLO’2022 is designed for the ﬁrst time in the series to be a hybrid conference accommodating in-person and remote participation.
+This edition of the conference has been organized for the ﬁrst time in Caparica, Portugal, by members of the Electrical and Computer Engineering Department of the NOVA School of Science and Technology of NOVA University Lisbon, and Centre of Technology and Systems of UNINOVA.
+The three days of the conference accommodate a rich technical program including three keynote speakers, two panel discussions, and the presentation of technical papers.
+We are fortunate to beneﬁt from having three outstanding invited keynote speakers from academia: – Prof. Davide Scaramuzza, from University of Zurich, Switzerland, offering a
+talk on “Learning to Fly Agilely”; – Prof. Carlos Balaguer, from University Carlos III of Madrid (UC3M), Spain,
+delivering a talk entitled “Intelligent Humanoids: From Labs to Real World”; – Prof. Rita Cunha, from Instituto Superior Técnico, University of Lisbon,
+Portugal, presenting a talk entitled “Advances in Motion Control of Aerial Vehicles”. We received 102 submissions, and 69 were selected for presentation. At the end, 65 were included in the program and in this book of proceedings, structured in 14 oral technical sessions.
+v
+
+vi
+
+Preface
+
+We would like to thank all the authors for their contributions. We also wish to acknowledge the contributions of all members of the Technical Program Committee and Reviewers, coordinated by Prof. Bruno Guerreiro, Portugal, and Prof. Tarek Hamel, France as Technical Program Chairs, who, providing 317 reviews of high quality, greatly contributed to the improvement of the quality of the ﬁnal works. The program also greatly beneﬁted from the initiative of Special Session Organizers that promoted the launch of call for papers in focused topics.
+The success of any conference depends on the quality of the program and participation of people. We expect that this book will provide CONTROLO’2022 participants and readers with new and inspiring ideas and challenges.
+Last but not the least, we would like to acknowledge the contribution of all members of the several committees that contribute to putting together such an exciting program, including the contributions from Steering Committee members and APCA Directive Commission, as well as all technical co-sponsors, namely IFAC—International Federation of Automatic Control, CEA—Comité Español de Automática, SBA—Sociedade Brasileira de Automática, SPR—Sociedade Portuguesa de Robótica, SPEE—Sociedade Portuguesa para a Educação em Engenharia, and ISA—International Society of Automation, Portugal section.
+We are also grateful to all members of the Local Organizing Committee who generously has spent their time to help in the organization of the event.
+Finally, we should like to acknowledge the excellent cooperation with Leontina Di Cecco, of Springer-Verlag, and her colleagues in the preparation of this work.
+
+May 2022
+
+Luís Brito Palma Rui Neves-Silva
+Luís Gomes
+
+Organization
+
+Steering Committee
+António Pedro Aguiar António Ruano Bernardete Martins Ribeiro Hyungbo Shim Matilde Santos Vilma Oliveira
+
+University of Porto, Portugal University of Algarve, Portugal University of Coimbra, Portugal Seoul National University, Korea University Complutense of Madrid, Spain Universidade de Sao Paulo, Brazil
+
+General Chairs
+Luís Brito Palma Rui Neves-Silva Luís Gomes
+
+NOVA School of Science and Technology, Portugal
+NOVA School of Science and Technology, Portugal
+NOVA School of Science and Technology, Portugal
+
+Technical Program Chairs
+
+Bruno Guerreiro Tarek Hamel
+
+NOVA School of Science and Technology, Portugal
+Université Côte d’Azur, France
+
+Technical Program Committee
+
+Aamir Ahmad Abdelghani El Ougli
+Alberto Cardoso
+
+University of Stuttgart, Germany Faculty of Science Dhar El Mahraz, Sidi
+Mohamed Ben Abdellah University, Fez, Morocco DEI/CISUC—University of Coimbra, Portugal
+
+vii
+
+viii
+Alessandro Saccon
+Alex Alcocer Alexandra Moutinho
+Amélia Caldeira
+Anastasios Tefas André Conceição André Teixeira Andreea Alexandru Anikó Costa António Pascoal António Ruano António Sala Antonio Visioli António P. Moreira
+António Pedro Aguiar
+Antonios Tsourdos Camelia Avram Carla Viveiros Carlos Balsa Carlos Cardeira
+Constantino Lagoa Cristian Mahulea Duarte Valério Elisa Capello Estela Bicho Fabrício Nogueira Fátima Silva Leite Fátima Pina
+Felipe Pait Fernanda Coutinho
+Fernando Lizarralde Filipe Moutinho
+Filomena Soares Gabor Sziebig Grace Deaecto Hamed Khodadadi
+
+Organization
+Eindhoven University of Technology, Netherlands
+Oslo Metropolitan University, Norway IDMEC/LAETA, Instituto Superior Técnico,
+Universidade de Lisboa, Portugal School of Engineering Polytechnic of Porto,
+Portugal Aristotle University of Thessaloniki, Greece Federal University of Bahia, Brazil Uppsala University, Sweden University of Maryland, USA Universidade NOVA de Lisboa, Portugal Universidade de Lisboa, Portugal CSI, FCT, Universidade do Algarve, Portugal Universitat Politècnica de València, Spain University of Brescia, Italy Faculty of Engineering, University of Porto,
+Portugal Faculty of Engineering, University of Porto,
+Portugal Cranﬁeld University, UK Technical University of Cluj Napoca, Romania ISEL, Portugal Instituto Politécnico de Bragança, Portugal IDMEC/LAETA, Instituto Superior Técnico,
+Universidade de Lisboa, Portugal The Pennsylvania State University, USA University of Zaragoza, Spain Universidade de Lisboa, Portugal Politecnico di Torino, CNR-IEIIT, Italy University of Minho, Portugal Universidade Federal do Ceará – UFC, Brazil University of Coimbra, Portugal Institute of Systems and Robotics, University of
+Coimbra, Portugal University of São Paulo, Brazil Institute of Systems and Robotics, University of
+Coimbra, Portugal Universidade Federal do Rio de Janeiro, Brazil NOVA School of Science and Technology,
+Portugal Universidade do Minho, Portugal UiT—The Arctic University of Norway, Norway UiT—The Arctic University of Norway, Brazil Islamic Azad University, Iran
+
+Organization
+Hong Yue Hyo-Sang Shin
+Hyungbo Shim Ivan Petrovic Izaskun Garrido Jan Komenda
+Jianhua Zhang João Paulo Coelho João Hespanha João Martins
+João Rosas
+João M. Lemos John Ringwood John Rossiter Jonas Sjöberg José Araújo José Lima José Boaventura José Gonçalves José Igreja José Sánchez Josenalde Oliveira
+Jus Kocijan Karl Johansson Katalin Hangos
+Katarina Zakova Knut Hueper Lorenzo Marconi Lucíola Campestrini Luis Rodrigues Luis M. Camarinha-Matos
+Manuel Arias-Montiel Manuel Bráz-César Manuel Silva Marcos Moreira Margarida Camarinha Maria Ruano Maria Tomas Rodriguez
+
+ix
+University of Strathclyde, UK Cranﬁeld University/Defence Academy of the
+UK, UK Seoul National University, Republic of Korea University of Zagreb, Croatia University of the Basque Country, Spain Institute of Mathematics, Czech Academy of
+Sciences, Brno Branch, Czechia Oslo Metropolitan University, Norway Instituto Politécnico de Bragança, Portugal University of California, Santa Barbara, USA NOVA School of Science and Technology,
+Portugal NOVA School of Science and Technology,
+Portugal INESC-ID/IST, Portugal NUI Maynooth, Ireland Shefﬁeld, UK Chalmers University of Technology, Sweden Ericsson Research, Sweden Polytechnic Institute of Braganca, Portugal UTAD, Portugal ESTiG-IPB, Portugal ISEL, Portugal UNED, Spain Federal University of Rio Grande do Norte,
+Brazil Jozef Stefan Institute, Slovenia KTH Royal Institute of Technology, Sweden HAS Computer and Automation Research
+Institute, Hungary FEI STU, Slovakia University of Wuerzburg, Germany DEI-University of Bologna, Italy UFRGS, Brazil Concordia University, Canada NOVA School of Science and Technology,
+Portugal Universidad Tecnológica de la Mixteca, Mexico Polytechnic Institute of Bragança, Portugal ISEP-IPP and INESC TEC CRIIS, Portugal Universidade Federal do Rio de Janeiro, Brazil University of Coimbra, Portugal University of Algarve, Portugal The City, University of London, UK
+
+x
+Maria Pia Fanti Mário Mendes Matilde Santos Michael Sebek Michel Kinnaert Miguel Ayala Botto Mihoko Niitsuma Mikulas Huba Nuno Amaro Oscar Barambones Patrícia Pena Paula Rocha
+Paulo Costa Paulo Gil Paulo Moura Oliveira Paulo Oliveira
+Paulo Rosa Paweł Martynowicz
+Pedro Batista
+Pedro Lourenço
+Pedro Pereira
+Ramon Vilanova Reza Gabchelo Ricardo Queiros Rita Cunha
+Roberto Galeazzi Rodolfo Oliveira
+Ron Patton Rui Azevedo Antunes
+Rui Barros
+Samuele Grillo
+Sandra Ricardo Sérgio Brás Silvio Simani
+
+Organization
+Polytechnic of Bari, Italy ISEL, Portugal Universidad Complutense de Madrid, Spain Czech Technical University in Prague, Czechia Université Libre de Bruxelles, Belgium Universidade de Lisboa, Portugal Chuo University, Japan STU Bratislava, Slovakia R&D Nester, Portugal University of the Basque Country, Spain Universidade Federal de Minas Gerais, Brazil Faculty of Engineering—University of Oporto,
+Portugal University of Porto, Portugal Universidade NOVA de Lisboa, Portugal UTAD University, Portugal IDMEC/LAETA, Instituto Superior Técnico,
+Universidade de Lisboa, Portugal Deimos Engenharia SA, Portugal AGH University of Science and Technology,
+Poland ISR/LARSyS, Instituto Superior Técnico,
+Universidade de Lisboa, Portugal GNC division/Space Segment and Robotics
+BU/GMV, Portugal NOVA School of Science and Technology,
+Portugal Universitat Autònoma Barcelona, Spain Tampere University, Finland Agostinho Neto University, Angola ISR/LARSyS, Instituto Superior Técnico,
+Universidade de Lisboa, Portugal Technical University of Denmark, Denmark NOVA School of Science and Technology,
+Portugal University of Hull, School of Engineering, UK DEE-ESTS, Instituto Politécnico de Setúbal,
+Portugal FEUP—Faculdade Engenharia Universidade do
+Porto, Portugal Department of Electrical Engineering, Politecnico
+di Milano, Italy UTAD, Portugal HESpace for the European Space Agency, France Dept. of Engineering, University of Ferrara, Italy
+
+Organization
+Sohom Chakrabarty Stanimir Valtchev
+Sylvain Bertrand Teresa Azevedo Perdicoúlis Toshio Fukuda Valter Leite Vicenc Puig Vilma Oliveira Wojciech Giernacki Zhan Li Zhiqi Tang
+Zita Vale
+
+xi
+IIT Roorkee, India NOVA School of Science and Technology,
+Portugal ONERA, France ISR, Coimbra & UTAD, Portugal Meijo University, Japan CEFET-MG/Campus Divinópolis, Brazil Universitat Politècnica de Catalunya, Spain University of São Paulo, Brazil Poznan University of Technology, Poland Harbin Institute of Technology, China ISR/LARSyS, Instituto Superior Técnico,
+Universidade de Lisboa, Portugal GECAD, ISEP/IPP, Portugal
+
+Reviewers List
+Reviews of submitted papers were performed by Technical Program Committee members and the following colleagues.
+António E. C. Da Cunha, Brazil Adriano Lopes, Brazil Aladin Crnkic, Bosnia and Herzegovina Alan Mendes Marotta, Brazil André Mateus, Brazil Ashish Shakya, India Aurélio Salton, Brazil Carla de Souza, Brazil Carlos Andrey Maia, Brazil Carlos Caetano de Almeida, Brazil Carolina Largartinho-Oliveira, Portugal Charles Lorenzini, Brazil Diego Colón, Brazil Dominik Baumann, Sweden Eduardo S. Tognetti, Brazil Eduardo Varriale da Silva, Brazil Emerson Boeira, Brazil Felipe G. Cabral, Brazil Fernando Barbosa, Sweden Gan Yu, Macao Grace Deaecto, Brazil Gustavo Gonçalves da Silva, Brazil Gustavo Viana, Brazil Heitor Vinicius Mercaldi, Brazil Helói Genari, Brazil
+
+xii
+
+Organization
+
+Ítalo Cunha, Brazil James Forbes, Canada Jeferson Silva, Brazil Jeferson Vieira Flores, Brazil Joel Reis, Macao Kelvin Kefren, Brazil Lucas A. L. Oliveira, Brazil Lucas Silva, Brazil Lucas Silva de Oliveira, Brazil Lucas Vinícius R. Alves, Brazil Lucíola Campestrini, Brazil Luís Silva, Brazil Marcelo Teixeira, Brazil Marcos V. S. Alves, Brazil Max Queiroz, Brazil Michel Rodrigo das C. Alves, Brazil Mitchell Cohen, Canada Naranjo Rodrigo, Spain Oswaldo Costa, Brazil Ralf Zimmermann, Denmark Renan Fonteles, Brazil Ricardo Tapia-Herrera, Mexico Ruoqi Zhang, Sweden Soﬁa Lopes, Portugal Steven Li, Canada Tiago Roux Oliveira, Brazil Vanderlei Parro, Brazil Vicente Ferreira de Lucena Jr, Brazil Wentao Wu, China Widhi Atman, Finland
+
+Local Organization
+
+Financial Chair Anikó Costa
+
+NOVA School of Science and Technology, Portugal
+
+Publication Chair Pedro Pereira
+
+NOVA School of Science and Technology, Portugal
+
+Organization
+Publicity Chair Filipe Moutinho
+
+xiii
+NOVA School of Science and Technology, Portugal
+
+Local Arrangements Chair João Rosas
+
+NOVA School of Science and Technology, Portugal
+
+Local Organizing Committee Luís Brito Palma Rui Neves-Silva Luís Gomes Bruno Guerreiro Anikó Costa Pedro Pereira João Rosas Filipe Moutinho
+
+NOVA School of Science and Technology, Portugal
+NOVA School of Science and Technology, Portugal
+NOVA School of Science and Technology, Portugal
+NOVA School of Science and Technology, Portugal
+NOVA School of Science and Technology, Portugal
+NOVA School of Science and Technology, Portugal
+NOVA School of Science and Technology, Portugal
+NOVA School of Science and Technology, Portugal
+
+Technical Co-sponsors
+– IFAC—International Federation of Automatic Control – CEA—Comité Español de Automática – SBA—Sociedade Brasileira de Automática – SPR—Sociedade Portuguesa de Robótica – SPEE—Sociedade Portuguesa para a Educação em Engenharia – ISA—International Society of Automation, Portugal section
+
+Contents
+
+xvii
+
+Dynamic Matrix Control of a 3DOF Helicopter with Stabilising Inner Loop . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 227 Andreyna Sárila Ramos Ferreira, Angelo Caregnato-Neto, Roberto Kawakami Harrop Galvão, and Rubens Junqueira Magalhães Afonso
+
+Soft Computing, Fuzzy Control and Digital Twins
+Promoting Olive Groves’s Soil Quality by a Digital Twin’s Predictive Based Control: The Sensor’s Network . . . . . . . . . . . . . . . . . . . . . . . . . . 241 Letícia Silva, Romina Giugge, Francisco J. Rodríguez-Sedano, Paula C. Baptista, and João Paulo Coelho
+Less Conservative State Feedback Design with Switched Controllers for TS Fuzzy Systems . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 251 Flávio A. Faria, Leandro J. Elias, Rafael F. Q. Magossi, Diego S. Carneiro, and Vilma A. Oliveira
+Communication Library to Implement Digital Twins Based on Matlab and IEC61131 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 262 Isabel Tajadura, J. Enrique Sierra-García, and Matilde Santos
+An Intelligent Fuzzy-GPC Control for Agricultural Sprayers: Comparison Between GPC and PID Fuzzy Controllers . . . . . . . . . . . . . 272 Deniver Reinke Schutz, Heitor V. Mercaldi, Elmer A. G. Penaloza, Vilma A. Oliveira, and Paulo E. Cruvinel
+Speciﬁcation and Development of Dynamic Systems and Controllers Based on Game Engines . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 285 Guilherme Gil, Joao Rosas, and Luis Brito Palma
+
+Control Applications in Medical Sciences
+Observer/LQR Adaptive Control of the Neuromuscular Blockade . . . . . 299 David Lima, Daniel Salgueiro, and José Soares Augusto
+A New Control Scheme for Neuromuscular Blockade with Optimal Initialization Time . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 310 Débora Nogueira, Teresa Mendonça, and Paula Rocha
+Control of a S-I-R Epidemiological Model . . . . . . . . . . . . . . . . . . . . . . . 320 Bertinho A. Costa and João M. Lemos
+Reduced Order Modelling of Neuromuscular Blockade . . . . . . . . . . . . . 330 Daniel Salgueiro, David Lima, and José Soares Augusto
+Human-Machine Interaction for Monitoring COVID-19 Internet Data in Russia and the World . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 341 Sergei Levashkin, Oksana Zakharova, and Konstantin Ivanov
+
+Promoting Olive Groves’s Soil Quality by a Digital Twin’s Predictive Based Control: the
+sensor’s network
+Let´ıcia Silva1,2, Romina Giugge1, Francisco J. Rodr´ıguez-Sedano2, Paula C. Baptista3,4, and Jo˜ao Paulo Coelho1,3
+1 Research Center for Digitization and Intelligent Robotics (CeDRI). Polytechnic Institute of Braganc¸a, Campus de Santa Apolo´nia, 5300-253 Braganc¸a, Portugal. 2 Robotics Group, Engineering School, University of Leo´n, Campus de Vegazana,
+24071 Leo´n, Spain. 3 Polytechnic Institute of Braganc¸a, Campus de Santa Apolo´nia, 5300-253 Braganc¸a,
+Portugal. 4 Mountain Research Center (CIMO), Polytechnic Institute of Braganc¸a, Campus de
+Santa Apolo´nia, 5300-253 Braganc¸a, Portugal. jpcoelho@ipb.pt
+Abstract. In Portugal, the olive groves soil has been subject to severe degradation due to harsh farming techniques combined with uncontrollable conditions such as climate changes and steep terrain orography. In this framework, this tendency must be reverted by adopting different farm management policies. The MAN4HEALTH project address this subject in two-folds: one, at an agronomic level, where the soil will be protected by growing a layer of indigenous plants and other, that resort to the soil’s digitization in order to improve the deployment of fertilizers. This paper addresses the latter and aims to provide an overall description of the architecture of a predictive control system based on the soil’s digital twin. In this control paradigm, an artificial intelligence layer will follow the entire cultivation process through the development of a soil’s digital twin. This model will be able to describe the spatial and temporal dynamics of fertilization policies and be included within a model predictive control strategy in order to both decrease the concentration of chemicals released into the soil and promote the economic income of the farmer. In particular, this paper tackles one of the phases of this project where soil digitization must be carried out in order to feed the data to the digital twin. In particular, the description of the sensor network and the data management architecture.
+Keywords: Smart Farming, Agriculture digitization, Digital Twins, Sensor Networks, Model predictive control.
+1 Introduction
+The olive tree (Olea europaea L.) is a species of great socioeconomic importance in countries with Mediterranean exposition. In recent decades, olive grove soils
+
+2
+
+Let´ıcia Silva et al.
+
+have been subject to severe and rapid degradation processes due to intensive cultivation, excessive use of chemicals fertilizers and pesticides and climate changes [1]. Portugal, as one of such countries, is the fourth largest European olive oil producer and the eighth largest in the world. In Tr´as-os-Montes, the second largest olive oil producing region in Portugal, the problem of soil degradation is even worse since olive trees are cultivated in very steep area and on soils with low fertility and poor vegetation cover [2, 3].
+The MAN4HEALTH project addresses this problem by promoting and implementing innovative soil management practices together with smart technologies. This project, funded by the Portuguese NORTE 2020 program, have started on March 2021 and is expected to end in February of 2023. Because of the multidisciplinary nature of this project, the consortium has contributions from the Mountain Research Center (CIMO) and Research Center in Digitalization and Intelligent Robotics (CeDRI) research centers. In particular, the MAN4HEALTH seeks to optimize soil health in an holistic framework by developing tools that apply innovative agricultural techniques and management strategies. Improving and preserving the health of the soil is a very challenging since the there are a broad and complex set of conditions that affect it which justify the need for different approaches in distinct knowledge areas. In this context, the MAN4HEALTH project is structured around two main lines of action: at the soil management level and by adding a control layer based on machine learning techniques.
+The first line of action aims to evaluate the use of well-adapted native plant species as cover crops in olive groves. Specifically, an attempt is made to find a mixture of plants that will be used as vegetation cover to improve soil quality. In the current context, the quality of the soil is taken in a broad sense by including biological, chemical and physical parameters. This vegetation cover will have the essential functions of protecting the soil, promoting olive production, reducing pests and diseases and improve the sustainability for olive growers [4]. Finally, the second line of action describes the objective of the present work. In particular, it will develop a virtualization layer for agricultural production in which, a digital twin of the soil will be implemented [5–7]. This model will be used to make long-term and short-term predictions of the impacts caused by specific land management policies regarding soil’s status. In addition, a predictive control system model, based on this digital twin, will be developed and tested aiming a reduction in chemicals delivered in the soil during the production cycle. Details regarding this strategy will be presented in Section 2 where the overall control architecture is described and discussed. The remain of this paper includes Section 3, where the information ecosystem is presented in parallel with a description of the pilot case where the experimental setup will take place, and Section 4, devoted to present the future work directions and concluding remarks.
+
+2 Problem statement
+As highlighted during the previous section, this work concerns the development and integration of a model predictive control strategy in order to regulate the
+
+Promoting Olive Groves’s Soil Quality by a Digital Twin’s MPC
+
+3
+
+amount and when the fertilizers should be added to the soil. In order to accomplish this task, it is necessary to describe how the soil fertility behaves regarding changes in weather and environmental conditions, artificial nutrients addition and the soil’s spacial heterogeneity. Moreover, the different crop nutritive requirements, along its vegetative state cycle, changes and must be included in the model. In this frame of reference, the spacial and temporal behaviour of the soil regarding its mechanical and chemical properties will be represented by its digital twin. The overall concept underlying this control method is represented in the diagram of Figure 1.
+
+Fig. 1. Overall architecture for the soil’s model predictive controller.
+Central to the performance of any model based predictive controller is the model accuracy and representativeness. In the approach represented in the previous figure, machine learning based digital soil mapping strategies will be employed to build the digital twin [8]. The soil’s digital twin will represent the quantitative relationships between spatial and time dependent data complemented with field measurements made by sensors and human experts. It will be a map composed of a set 2-dimensional cells organized into a grid where each cell has a specific geographic location and contains local information on the soil’s chemical and mechanical characteristics. In this framework, the soil of the olive tree will be considered as a physical element whose dynamic behavior and its structural heterogeneity will be modeled. Then, a predictive control approach from MIMO models will be used to calculate best soil management practices, within a given time horizon, to mitigate soil erosion and fertilizers or pesticides, while maintaining suitable conditions for the olive production.
+The implementation of the proposed system will be carried out in three distinct phases: The first, consists of creating sensor nodes network that will be installed in the olive grove. Off-the-shelf and custom-made sensor nodes will be
+
+4
+
+Let´ıcia Silva et al.
+
+scattered throughout the production area aiming the automatic data collection of several physical-chemical parameters of the soil. These nodes will play an important role in supporting the state information to be used by the digital twin. The second phase will consist on the development of the soil’s data model and ontology. This step will reveal the entities that affect soil the characteristics, their structures, and how they interact. Context entities, and all information associated with the current system, will be managed by FIWARE. FIWARE is a open-source platform put forward by the European Union and maintained by the FIWARE foundation. This platform aims to foster the developing of smart solutions, digital twins and data spaces for internet-of-things (IoT) applications and digitization of processes [9]. For the particular case of agriculture processes, a FIWARE based product named “Agricolus” is available that gathers hardware and software in a decision-making solution offering a plug-and-play interface for precision agriculture [9]. All context information, collected and managed by FIWARE, will be available for the digital twins model. In the third phase, the digital twin will be approached as a virtual model of the soil dynamics. All smart nodes developed during the first phase will be responsible to collect real-time state information which will be integrated. along with other external contextual data, into the digital twin. The set of models, defined within the scope of the digital twin, will be approached through a black-box paradigm in which various artificial intelligence methodologies will be evaluated. The predictions obtained from simulations using this digital twin will be used, within a model predictive control paradigm with human-in-the-loop, to help define best soil practices aiming optimum fertilization deployment.
+This paper aims to describe the first phase of this project. In particular, the design and, development of the IoT based sensor’s network and all the information technology infrastructure. The following section will be devoted to present the materials and methods associated to the deployment of such digital layer.
+
+3 Materials and methods
+The set of solutions idealized within the MAN4HEALTH project aims to improve soil’s quality in olive production groves. One of such solutions envisages the virtualization of the agricultural fertilization process by creating a human-inthe-loop predictive control system. In order to materialize this control strategy, the spacial and time dependence of the soil’s nutritional support, as a function of both local and global environmental and chemical conditions must be modelled. Those diffusion models will be used to make long and short-term predictions of the impacts of the control actions which, in this case, resumes to the amount and location of fertilizers to be deployed. In this framework, a digital twin of the soil will be developed as a way to perform such predictions. The steps for creating a digital twin involve understanding the behavior of the physical system to be mimicked, integrating sensors into the relevant physical assets, and monitoring information from all other legacy data sources. In the end, all this information will be incorporated into the system’s virtual model resorting to first princi-
+
+Promoting Olive Groves’s Soil Quality by a Digital Twin’s MPC
+
+5
+
+ple equations and/or machine learning based black box approaches [7]. Since information plays a fundamental role in the model’ state update process, and in order automate the data gathering process as much as possible, a sensor’s network should be integrated in the production field aiming the measurement of several soil’s properties such as moisture at different heights, temperature, pH and macronutrient contents.
+The MAN4HEALTH trials and a proof-of-concept of this digital twin predictive control concept is being implemented in an olive grove that is located a few kilometers from the city of Mirandela, in the Northeastern region of Portugal. The olive grove has a total area of 3.9 ha and has been conceptually divided in a set of 49 m2 square sectors each one with four olive trees. Those sectors will be subjected to distinct soil operations carried out in the context of the agronomic solutions of the MAN4HEALTH project. Figure 2, present an aerial image of that location which includes the lining of the sectors. The olive trees are represented in this figure as small black circles and, at the center of each group pf four trees, an IoT measurement node is deployed. Moreover, each sectors will be subjected to distinct soil operations carried out in the context of the agronomic component of the MAN4HEALTH project.
+
+Fig. 2. Division of the olive grove into parcels according to the type of operation to be carried out on the soil. S- Seeded, NS- Not Seeded, M- Mobilized, NM- Not Mobilized, D- Gridded, ND- Not gridded. Black dots indicate the trees in each sector. The location of the IoT nodes and data concentrator is also depicted.
+
+6
+
+Let´ıcia Silva et al.
+
+To automatically and continuously characterize a set of soil properties, with better spatial resolution and without the need of human intervention scheduled campaigns, a network of sensor nodes distributed along the olive grove is being developed and installed. The soil’s conditions can have significant spatial variability implying that multi-point data collection is fundamental for estimation of the actual nutritional status of the soil. In the current setup, data acquisition will be performed via geographic sampling using IoT based measurement nodes. Each IoT measurement node, depicted in Figure 2 by small pentagons, is able to acquire local soil information such as moisture, electroconductivity, pH, temperature and image for soil texture assessment. The data acquired by each measurement node is relayed to a LoRaTM concentrator located in the Southeast corner of the terrain as illustrated in Figure 3.
+
+Fig. 3. Location of the LoRaTM gateway and its power supply support system.
+We are actually using a Dragino R DSLO8 gateway, with 4G communication capabilities5, mounted on a 6 m steel pole. In the same pole, a weather station is also installed allowing the measurement of air temperature and humidity, solar irradiation, and both wind speed and direction. The power supply system must be able to continuously guarantee, within a full day cycle, a total of 24 W. The sizing of the solar panel was carried out under worst case conditions which occur, in that particular region, during the month of December. Historically, the total daily energy density in December is about 2300 Wh/m2. By assuming the installation of common polycrystalline solar panels with a typical efficiency in the order of 17%, then the energy produced, for each square meter of installed panel, is 391 Wh/m2. It is clear that this efficiency value considers that the solar radiation vector is perpendicular to the plane defined by the panel, which in
+5 The 3G/4G signal strength in that particular location was measured to be around -50dBm.
+
+Promoting Olive Groves’s Soil Quality by a Digital Twin’s MPC
+
+7
+
+practice, in fixed panel systems, is not the case. For this reason, it is expected that the energy density generated will be effectively less than that. In particular, a deviation of 10% from the value determined above is considered in this study. Thus, it is estimated that during the worst month of the year, each square meter of polycrystalline solar panel is capable of generating 352 Wh of energy during a day. Since the energy consumption of the installed loads (gateway, weather station, custom electronics) add up to a total of 580 Wh per day, it means that a total solar panel area equal to 1.65 m2 is required. Under those conditions, it is estimated that a solar panel with a peak power power equal to 280 Wp satisfies both the technical and economic constraints. This solar panel was is installed in the field oriented in the North/South direction and with an inclination of about 30◦.
+Since a 24/24 working cycle is required, the energy required for the system to operate during the night must be delivered by a battery. Due to the conservative way in which the solar panel was designed, it is not anticipated that a deep cycle or deep cycle battery will be required. A deep cycle battery is a battery designed to be regularly discharged using most of its capacity. Typically, there is an inverse relationship between the battery’s depth of discharge and the number of charge and discharge cycles it can perform which reduces its lifespan. In this context, a lead/gel battery is considered a good tradeoff between, on one hand, an economically viable solution and, on the other, the required technical operating conditions.
+The required battery charge estimation is often empirically established. In the current application, it is assumed that the battery must have sufficient capacity to supply the system with energy for a full day. It was previously calculated that the daily energy required to keep the equipment operational is 580 Wh. By considering a nominal voltage of 12V then the battery should exhibit a charge retention capability equal to 48Ah. It is worth to notice that the battery capacity value is provided by the manufacturer considering a reference temperature equal to 25C. This is because, in practice, the capacity of a battery is temperature dependent. Taking into account the temperature profile in Mirandela it is observed that, during the month of December, the air temperature is estimated to be within the range that extends between -3C and 10C. The charge capacity of normal lead/gel batteries decrease with the temperature exhibiting a 15% drop for the worst case scenario within the temperature range considered. For this reason, the 48 Ah charge initially estimated must be increased leads to 55 Ah. Based on this value, any lead/gel battery for deep cycles with capacities between 55 Ah and 60 Ah was considered to validate the economic and technical constraints. For this reason, a Ultracell brand gel battery, with reference UCG55-12, was selected and installed in the power supply system. The battery management system, including the protection devices, is presented in Figure 4. attached to the control panel it is also possible to find an IP surveilance camera and a Raspberry Pi. The latter will be fundamentally used for tasks of glueware and bridging data between distinct transmission protocols.
+
+8
+
+Let´ıcia Silva et al.
+
+Fig. 4. Electric wiring of the off-grid power supply system.
+Each measurement node deployed in the field is self-sufficient and powered by a Li-Ion battery which is recharged by a 10W, 18.2 V polycrystalline solar panel. This power system is responsible to supply the energy to a 8-bit microcontroller, a LoRaTM transceiver operating at 868 MHz and the array of sensors previously enumerated. Data acquired by the microcontroller from the attached sensors is relayed to the LoRaTM gateway. At the present, a regular time interval of one hour is used as the sampling interval but an event based sampling is being considered as the natural evolution for the current data acquisition system. Each measurement node send a JSON formatted string that includes the device ID, it’s geographical location and the attached sensor’s values. At the present, due to energy efficiency and microcontroller memory constraints, no LoRa transport protocol (such as LoRaWAN) is being in operation. Data encryption and medium access control methods are being considered and integrated in a future firmware version.
+The information infrastructure actually in use is organized following the diagram presented in Figure 5. The measurement notes send data to the LoRa gateway. This gateway send the data, via 4G/LTE cellular network, to a MQTT broker. In particular, and in order to promote a complete open-source solution, the Mosquitto MQTT broker is included in the FIWARE stack running in a Docker container installed on a remote machine. The context information will be managed by the Orion broker and all the attributes associated to the existing entities are made available through REST based API’s. At the present, the data model consider each IoT node as an entity with several attributes such as its location and data acquired by the attached sensors. It is worth to notice that a NGSI-LD data information model paradigm is used and data persistence is already managed by the FIWARE ecosystem.
+
+Promoting Olive Groves’s Soil Quality by a Digital Twin’s MPC
+
+9
+
+Fig. 5. Electric wiring of the off-grid power supply system.
+The deployment, in the field, of this data acquisition and information technologies will pave the way to the next phase of the project that concerns the development of the soil’s digital twin. Being able to digitize the soil’s behaviour will have a significant impact in the predictions accuracy and in the effective performance of the controller. The remain phases of the MAN4HEALTH soil digitization project are ongoing tasks that will be undisclosed in future paper. The next section will present this work concluding remarks and will highlight future research directions.
+4 Conclusions and further work
+Olives farming is of great socio-economic interest and represent a fundamental activity in many areas of the Mediterranean. In particular, in the northern region of Portugal, olive oil production has a large expression in the agriculture landscape. However, due to increase in mechanical erosion and excessive use of fertilizers, the soil is giving signs of significant deterioration.
+The MAN4HEALTH project intends to provide a multidisciplinary solution to this problem by tackling it within two distinct fronts: one that aims to develop alternative cultivation techniques and the other that involves digitizing the olive production process. Regarding the latter, this project aims to add a layer of artificial intelligence to the entire cultivation process aiming a better control of the fertilization process. In order to achieve this, a model predictive control strategy, based on the soil’s digital twin, will be employed. The digital twin model will be used to produce long and short-term predictions about the evolution of the nutritional content of the soil based on the actual measured state, the vegetative stage of the crop, and the grower experience. The implementation of this solution is divided into three distinct phases: local sensor network deployment, digital twin model formulation and controller implementation. The description of the first phase was the main objective of this paper. Several challenges must be tackled when deploying a sensor network that covers a significant area, in remote locations, and operating in very harsh conditions. During this first phase, the sensor nodes have been designed, the power supply problems have been tack-
+
+10
+
+Let´ıcia Silva et al.
+
+led and the overall information infrastructure have been defined. In particular, the data model ontology was designed and implemented within the FIWARE ecosystem.
+The next step of the current project will be the development of the soil’s digital twin. For that, soil mapping and modelling strategies will be investigated. Machine learning based models will be used to estimate the macronutrients contents and 2D diffusion equations will be employed to predict the impact of the fertilizers in the soil in the long run.
+
+Acknowledgment
+The authors are grateful to the project MAN4HEALTH - New management strategies in olive groves to improve soil health and crop yields NORTE-010145-FEDER-000060, for supporting this work.
+
+References
+1. Mike Pienkowski and Guy Beaufoy. The environmental impact of olive oil production in the european union: practical options for improving the environmental impact. In European Forum on Nature Conservation and Pastoralism, 2002.
+2. C. Alca´ntara, A. Pujadas, and M. Saavedra. Management of cruciferous cover crops by mowing for soil and water conservation in southern spain. Agricultural Water Management, 98(6):1071–1080, 2011.
+3. Blanca Sastre, Celia Barbero-Sierra, Ramo´n Bienes, Maria Jose Marques, and Andr´es Garc´ıa-D´ıaz. Soil loss in an olive grove in central spain under cover crops and tillage treatments, and farmer perceptions. Journal of Soils and Sediments, 17(3):873–888, 2017.
+4. Cees Veerman (Chair), Teresa Pinto Correia (Vice-chair), Catia Bastioli, Borbala Biro, Johan Bouma, Emil Cienciala, Bridget Emmett, Emile Antoine Frison, Alfred Grand, Lachezar Hristov Filchew, Zita Kriauinien, Marta Pogrzeba, Jean-Franois Soussana, Carmen Vela Olmo , and Reiner Wittkowski. Caring for soil is caring for life. Ensure 75% of soils are healthy by 2030 for food, people,nature and climate. Report of the Mission Board for Soil health and food., volume First edition. European Union, 2020.
+5. Stefan Boschert and Roland Rosen. Digital twin: the simulation aspect. In Mechatronic futures, pages 59–74. Springer, 2016.
+6. Michael Grieves and John Vickers. Digital twin: Mitigating unpredictable, undesirable emergent behavior in complex systems. In Transdisciplinary perspectives on complex systems, pages 85–113. Springer, 2017.
+7. Cor Verdouw, Bedir Tekinerdogan, Adrie Beulens, and Sjaak Wolfert. Digital twins in smart farming. volume 189, page 103046. Elsevier, 2021.
+8. Alexandre M.J.-C. Wadoux, Budiman Minasny, and Alex B. McBratney. Machine learning for digital soil mapping: Applications, challenges and suggested solutions. Earth-Science Reviews, 210:103359, 2020.
+9. Maria Angeles Rodriguez, Llanos Cuenca, and Angel Ortiz. Fiware open source standard platform in smart farming-a review. In Working Conference on Virtual Enterprises, pages 581–589. Springer, 2018.
+

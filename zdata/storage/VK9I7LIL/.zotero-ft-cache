@@ -1,0 +1,1145 @@
+Hindawi Journal of Sensors Volume 2022, Article ID 3929958, 12 pages https://doi.org/10.1155/2022/3929958
+
+Research Article
+Research on Wireless Sensor Network Access Control and Load Balancing in the Industrial Digital Twin Scenario
+
+Wei Zhou
+Information Engineering Department, Suzhou University, Suzhou 234000, China
+Correspondence should be addressed to Wei Zhou; weizhou@ahszu.edu.cn
+Received 10 December 2021; Revised 2 January 2022; Accepted 10 January 2022; Published 24 January 2022
+Academic Editor: Min Xia
+Copyright © 2022 Wei Zhou. This is an open access article distributed under the Creative Commons Attribution License, which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly cited.
+Wireless sensor networks which are based on distributed information processing technology are taking an increasingly key role in industrial digital twin scenarios. There are many important issues in the access of networks. One of the most important issues is how to improve network access control and the eﬀectiveness of load balancing. Based on the industrial digital twin technology, this article ﬁrst introduces several typical network access and network loads and performs tree-structured processing on the outliers generated during the chain formation process to reduce the length of the data transmission path, optimize the main chain head and subchain chain head selection strategy and chaining rules, and perform nonchain operations on common nodes and chain heads near sink to reduce data inverse transfer. The experimental results show that this paper uses the digital twin calculation formula to accurately and objectively determine the remaining cluster head and the distance head and the base station, so that when the node distance is limited, the network energy consumption can be balanced as much as possible, and the network load is promoted.
+
+1. Introduction
+Wireless sensor networks integrate sensor technology, computing, and communication technology and become an active research branch in the ﬁeld of computer science. In the wireless sensor network architecture, the digital twin technology at the network layer is crucial to the life cycle of the wireless sensor network [1]. The network load algorithm has become the digital twin technology that is currently the focus of research. The digital twin protocol is the core technology of the wireless sensor network layer. While discovering a path with a smaller delay, it avoids network congestion and balances network energy consumption. For diﬀerent application environments, the digital twin protocol can be divided into network access protocol, network load protocol, and geographic digital twin protocol. When designing a digital twin protocol, an important challenge will be faced, that is, how to complete the sensing, communication, and control functions under the condition that the node’s energy resources, computing capabilities, storage space, and communication capabilities are highly restricted. For this reason, the main goals of the wireless
+
+sensor network digital twin protocol design are establishing an energy eﬃciency path, forming a reliable data forwarding mechanism, and maximizing the network life cycle [2–5].
+With the rapid rise of the Internet and the Internet of Things, as well as the rapid development of microelectromechanical systems (MEMS), distributed information processing, radio communications, multifunction sensors, embedded software, and hardware technologies have matured day by day, and wireless sensor networks have become a representative of emerging ﬁelds. When it was born, these software and hardware technologies have provided great help to promote the rapid development of WSN technology [6–8]. WSN uses a variety of highly integrated and low-cost micro wireless sensor nodes to collaborate to achieve real-time monitoring and perception in diﬀerent application environments and collect relevant data or other object data of interest [6], and then, the embedded system performs preliminary processing on the monitoring data [7], and then, the network sends these data digital twins to the control center according to the deﬁned transmission protocol. It divides a network with a large range and nodes into multiple smaller clusters according to speciﬁed rules, making
+
+2
+
+Journal of Sensors
+
+the network hierarchy clearer and more scalable. Since most of the non-cluster-head nodes can close the communication module for a long time, for the traditional uniform network load protocol, due to the multihop transmission between clusters, the cluster head node near the base station takes on more forwarding tasks, which consumes more energy and causes the problem of uneven network energy consumption [9–11].
+Based on the study of multiple clustering and chained digital twin algorithms, this paper proposes a tree-shaped chained multihop digital twin algorithm (TUCM). The algorithm introduces angle control between candidate cluster heads to optimize the selection method of cluster heads, builds a tree-shaped chain structure to optimize the strategy, uses a hybrid hierarchical network topology structure, and improves the path selection probability model of the ant colony algorithm. And the pheromone update model realizes the mixed multihop data transmission to eliminate the shortcomings of the digital twin and other network load algorithms in the large-area measurement area environment of the cluster node to the sink node in the long-distance single-hop transmission. Aiming at the problem of random selection when selecting candidate cluster heads, this paper sets a threshold calculation formula for each node according to the remaining energy. By considering the remaining energy of the node in the selection of the threshold, the threshold generated by the node with less energy is smaller, so that it has a smaller probability to become a candidate cluster head node. The bottom layer constructs the network nodes into multiple subchains and selects the main chain head and the subchain heads to construct the top-level chain head chain. In order to improve the success rate of data transmission between clusters, this paper adopts Bayesian link estimation for each cluster head node after each round of cluster formation.
+2. Related Work
+Due to the huge application value of wireless sensor network technology, which has a profound impact on the development of the country and society, domestic and foreign scientiﬁc researchers have conducted in-depth research on it from diﬀerent directions. Because of the special application environment of WSN, which is often unattended, the design of the digital twin protocol plays a vital role in whether the network can be used normally and how long it can be used. Because traditional networks do not have these new features, many diﬀerent WSN digital twin algorithms have emerged. The following brieﬂy describes the current research status of WSN at home and abroad [12].
+Regarding network topology control, the existing research results mainly have two ideas. One uses the positioning mechanism to accurately and eﬀectively divide the network. However, the positioning mechanism is more expensive and generates greater internal friction; the other is to use level type topology (clustering algorithm) takes some nodes and then constructs a backbone network responsible for data processing and forwarding. The rest of the noncluster head nodes are mainly used to sense and
+
+collect nearby information. And in the cluster head election stage, the communication module is temporarily closed, and the sleep mode is entered to save energy. At present, some domestic and foreign scholars have conducted research on this aspect as follows: Zheng and Sivabalan [13] proposed a classic clustering protocol LEAcH. The protocol periodically performs two phases: cluster establishment and data communication. In the cluster establishment stage, the nodes in the network are randomly selected as cluster heads, and the nodes that are not selected as cluster heads choose to join the clusters that are closer to them. Leng et al. [14] believe that in the data communication stage, the member nodes in the cluster will transmit the collected information to the cluster head, and the data will be fused in the cluster head node. Compared with traditional network access protocols, this algorithm extends the network life cycle by about 15%. However, this algorithm selects cluster head nodes randomly, which can easily cause uneven distribution of cluster head nodes.
+The HEED protocol proposed in Li et al. [15] uses a diﬀerent competition mechanism from the LEAcH protocol to select cluster head nodes. The HEPrint protocol fully considers the role of node residual energy in selecting cluster heads, so that the selected cluster heads can construct a more reasonable network topology. Lim et al. [16] believe that this protocol requires all nodes to communicate directly with the base station, which requires relatively high hardware requirements for sensor nodes. Both of the above two protocols use single-hop communication within the cluster to directly transmit the data collected by the member nodes to the cluster head node. This single-hop communication method within a cluster is simple and easy to expand. However, Barykin et al. [17] did not consider the cluster head. For member nodes far away from the cluster head, energy consumption may be too fast due to long-distance transmission. With the in-depth study of the digital twin protocol, another multihop communication method within the cluster has emerged. According to the eﬀectiveness and timeliness of the regional coverage of WSN in the monitoring environment, scholars proposed a nonuniform clustered wireless sensor network digital twin algorithm based on energy eﬃciency improvement [18–21]. This algorithm ﬁrst optimizes the cluster head election based on the node distribution density and then controls the competition radius of the clusters to achieve nonuniform clustering. Then, each cluster head calculates the distance coeﬃcient and the dispersion coeﬃcient to determine the internal communication mode of each cluster. It adopts single-hop and multihop transmission mechanism. The results show that improves the energy eﬃciency of network nodes, avoids the “hot spot” problem of WSN, delays the dead time of network nodes, and improves the eﬀective coverage time of the monitoring area and the overall network life cycle [22–25].
+3. Network Construction of Industrial Digital Twin Scene
+3.1. Industrial Digital Network Cycle. In the structure of the industrial digital network, the SU is responsible for
+
+Journal of Sensors
+
+3
+
+collecting the required data information in the area to be tested and then using corresponding means to send the data information to the corresponding relay station; the DPU is mainly composed of low-power embedded microcontrollers, capable of coordinate various operations of the management node, such as processing and saving the data collected by the sensor unit; TU is mainly composed of low-power communication, etc., managing the communication process between nodes, and at the same time exchanging related data information; currently, PU mainly adopts that alkaline batteries or lithium batteries are responsible for providing energy for the work of nodes, and the energy unit is related to the lifetime of the entire network.
+
+qﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ
+
+〠Iði, jÞ−〠δði, jÞ + δ max i2 + j2 = 0:
+
+ð1Þ
+
+Many small nodes are scattered in the environment to be tested, and nodes with speciﬁc functions form a wireless network. Finally, the monitoring center also real-time control and management of network nodes can be achieved through the received information.
+Since the functional characteristics of the sink node determine its stronger data processing, fusion and information transmission capabilities than ordinary nodes, it can not only realize the connection between WSN and the Internet and other external networks but also send the collected data information to the external network.
+
+lim
+
+Àδ
+
+max
+
+−
+
+δ
+
+Á min
+
+−
+
+lim
+
+Àδði,
+
+jÞ
+
++
+
+δ
+
+Á max
+
+=
+
+0:
+
+ð2Þ
+
+x⟶∞
+
+x⟶∞
+
+With the collection and transmission of data, network nodes gradually exhaust their own energy. Natural and human factors may also cause node failure or death, communication link quality, and wireless medium’s own factors will aﬀect the normal operation of the entire network. These are several types of cause networks. At this time, if the network is paralyzed and the tasks delivered by the user cannot be completed normally, it means that the network does not have good robustness, and the design of the digital twin protocol must consider good robustness or robustness. In a speciﬁc environment, robustness is diﬃcult to evaluate by a single value, and it is usually discussed in detail based on node and link models.
+3.2. Distribution of Sensor Node System. A wireless sensor network system usually includes a sensor node, a base station node, and an application node. A large number of sensor nodes are arbitrarily scattered in the designated sensor ﬁeld. Each node can collect the information of the sensing object in Figure 1. After the query is sent for a period of time, the sink starts to receive the returned information from multiple paths. At this time, it selects the optimal path from it and sends a “path strengthening” message to the corresponding neighboring node. The “path enhancement” message is also a query command, which is diﬀerent from the previous one in that it contains a larger information collection rate.
+
+The “path strengthening” message is transmitted hop by hop along the optimal path to the sensor node being queried. This path becomes the “main path,” and the other paths become the backup paths accordingly. After the sensor node receives the “path enhancement” message, it will collect the information according to the required rate in Table 1.
+The closer the node is to the base station, the smaller the node’s competition radius. Correspondingly, the cluster structure closer to the base station is smaller, which will reduce the energy consumption of data communication in the cluster, and can reserve more energy for the relay and forwarding services between clusters.
+In the network access protocol, each wireless sensor node in the network is homogeneous, that is, has the same state, and is randomly distributed at any location in the network. The disadvantage is that the cost of establishing and maintaining a digital twin is high, and the number of data transmission hops is large, which is not suitable for largescale network applications.
+There is no hierarchy of nodes in the network access protocol. The node sends data directly to the sink node, or it can be forwarded to the sink node. The ﬂooding digital twin protocol is that after each node receives the information, it forwards data packets to neighboring nodes in the form of broadcast.
+forðt, t − 1 ∈ Cðr, tÞÞ, Atðα, βÞ = F½Aðt, t − 1Þ, Mði, tÞ: ð3Þ
+Flooding the digital twin agreement is prone to implosion. The normal node ﬁrst sends data to each neighboring node to receive the data and sends it to other nodes except itself. And so on, until the collected data information is transmitted to the sink node, or until the node information data expires. The biggest problem with this protocol is that it generates a large number of duplicate data packets and occupies a large amount of network resources, which makes the digital twin and link resources too wasteful, resulting in low eﬃciency.
+3.3. Cluster before Digital Information Update. The GEAR digital twin mechanism establishes an optimized event area, avoiding ﬂooding propagation, thereby reducing the cost of establishing the digital twin. The future situation prediction stage is based on the law of the development of the network load process to realize the trend prediction of the future operation state of the system. The future forecast results will be submitted to the operation dispatcher for decisionmaking and use, and the closed-loop control of the network load will be realized.
+∬Atðα, βÞdadb−∬½Aðt, t − 1Þ, Mði, tÞdtdðt − 1Þ = 0: ð4Þ
+In the GEAR digital twin, the wireless links between nodes are symmetrical. The query message propagation in the GEAR route includes two stages. This link is the core of the entire situational awareness process. It also runs through the entire situational awareness process.
+
+4
+
+Journal of Sensors
+
+Management platforms enable sensor nodes The five-layer protocol of the internet
+
+1 Data link layer
+
+Network 1
+
+Network 2
+
+Platform
+
+Network 5
+
+Factors 1
+
+Factors 2
+
+Protocol
+
+Factors 5
+
+The physical layer
+
+Design Control Process Receiver
+
+Information collection
+
+Network 3
+
+Devices 1
+
+Devices 2 Support
+
+Devices 5
+
+Devices 3
+
+Devices 4
+
+Network 4
+
+Factors 3
+
+Factors 4
+
+Information collection
+
+Stack 1
+
+Stack 6
+
+Resources 1
+
+Stack 2
+Delay 1
+
+Application layer
+
+Stack 3
+
+Stack 4
+
+Stack 5
+
+Resources 2 Wireless
+
+Resources 5
+
+Sensor 1
+
+Resources 3
+
+Resources 4
+
+Adjust Access Outliers Digital
+
+Information collection
+
+Delay 2
+
+Manner
+
+Delay 5
+
+Sensor 2
+
+Mobility
+
+Sensor 5
+
+Information collection
+
+Transport layer
+
+Delay 3
+
+Delay 4
+
+Sensor 3
+
+Sensor 4
+
+Network layer
+
+Figure 1: Sensor node system distribution topology.
+
+Table 1: Data forwarding in the sensor network.
+
+Data number
+1 2 3 4 5 6 7
+
+Sensor network Sensor network Sensor network
+
+1
+
+2
+
+3
+
+16.77
+
+44.29
+
+7.26
+
+16.89
+
+44.44
+
+7.33
+
+17.42
+
+45.07
+
+7.64
+
+18.11
+
+45.92
+
+8.04
+
+18.79
+
+46.73
+
+8.43
+
+19.31
+
+47.37
+
+8.74
+
+19.62
+
+47.74
+
+8.92
+
+8
+
+βt
+
+=
+
+>< >:
+
+α1 α1
+
+− −
+
+ðλ2 − λ1Þ ðλ2 + λ1Þ
+1, t > 0:
+
+,
+
+t
+
+≤
+
+0,
+
+ð5Þ
+
+The chain head node will generate a token that can control the transmission of data along the direction of the chain head leader node. In each subsequent round, the node closest to the end of the chain will join the current chain and become the new end of the chain. When all sensor nodes have joined the chain, the ﬁnal network node chain structure is formed.
+In the chain structure, when a node dies, the chain structure needs to be reconstructed to prevent the chain from breaking. In each round, the leader node at the head of the chain stays with the node, and the remaining nodes only collect and receive data and merge them, and forward the
+
+fused data along the chain to the next-hop neighbor nodes in Figure 2.
+The directed diﬀusion protocol is a query-based digital twin protocol and a data-centric digital twin protocol. The agreement is divided into three stages: interest diﬀusion, gradient establishment, and path strengthening. The sink node determines the best path according to the magnitude of the “gradient” value. This protocol is very energy-eﬃcient, but it is to establish the best path and consumes energy during the digital twin.
+3.4. Network Load Balancing Overlap. Because wireless sensor networks are diﬀerent from traditional wireless networks, other wireless sensor network digital twin algorithms cannot be simply applied to wireless sensor networks. A suitable digital twin algorithm must be designed according to the characteristics of the wireless sensor network itself for network access algorithms and network load algorithms.
+
+αY1−1 ðα2
+α1
+
++ α1ÞÀE1n
+
++
+
+λ1
+
+Á
+
+αY1 −1
+α1
+
+ÀðEα1n2
+
++ α1ÞÁ + λ1
+
+= 1:
+
+ð6Þ
+
+When there is a corresponding request, the data information is sent to the destination. During data transmission or reception, each node in Figure 3 ﬁrst detects the energy status, and if it is in a low energy status, it stops some unimportant operations, such as stopping as a relay node. But the message sent by the publisher is asynchronous, there is no need to wait for the subscriber to subscribe, and it does not care whether the subscriber subscribes or not.
+
+Journal of Sensors
+
+5
+
+Digital information characteristics (%) Cluster before update value (%)
+
+100
+
+70
+
+80
+
+60
+
+60
+
+50
+
+40
+
+40
+
+30
+
+20
+
+20
+
+10
+
+0
+
+0
+
+0
+
+0
+
+5
+
+5
+
+Sampling
+
+10 point
+
+15
+
+20
+
+25 1 2
+
+Sampling
+
+10 point
+
+15
+
+20
+
+25 1 2
+
+Coordinate 1 Coordinate 2
+
+Figure 2: Cluster histogram before digital information update.
+
+100
+
+90
+
+80
+
+70
+
+60
+
+50
+
+40
+
+30
+
+20
+
+10
+
+0
+
+10
+
+20
+
+30
+
+40
+
+50
+
+60
+
+70
+
+80
+
+Node points
+
+Module 1 Module 2 Module 3
+
+Figure 3: Analysis of overlapping ﬁtness of network load balancing.
+
+90
+
+100
+
+Network load balancing overlap adaptability (%)
+
+6
+
+Journal of Sensors
+
+The real-time situation understanding stage is mainly to obtain network load data and information for integration and analysis and then conduct situation assessment and comprehensively evaluate the stability of network load through the establishment of various stability indicators and systems.
+The advantage of the SPIN protocol is that the use of a metadata negotiation mechanism eliminates the entire network and solves the problems of implosion and overlap.
+First of all, the protocol is established on a relatively abstract level to analyze and design sensor networks, without a more practical wireless network model. Secondly, the volatility of network nodes and links is not taken into consideration, and fault-tolerant technology is not supported. Finally, the resource adaptive technology proposed is relatively simple, not complete enough, and not suitable for actual wireless sensor network applications.
+
+À G x,
+
+t
+
+,
+
+n
+
+∣
+
+x2
+
+−
+
+t
+
+2
+
+=
+
+Á 0
+
+−
+
+
+
+α2 + α1 E1n‐λ1
+
+E1n α2
+
++ −
+
+λ1 α1
+
+
+
+=
+
+0:
+
+ð7Þ
+
+For the digital twin protocol, the cluster heads are randomly selected in a probabilistic manner. Currently, various types of network load data information that can be collected mainly include network topology, real-time operation data, equipment component information, and network load.
+The entire network topology is constantly changing, and the lifespan is short; the entire network chain digital twin of the protocol causes 99% of the nodes to need to fuse data, the ﬁrst node of the chain has a large load and high energy consumption, and the data transmission delay of the end node is high. A WSN collaborative network load design method based on hierarchical area division (CCRDHRD) is proposed. Based on SCA-HRD, this method adds consideration to discrete clusters and designs collaborative digital twins.
+
+4. Wireless Sensor Network Access Control and Load Balancing Model Construction in the Industrial Digital Twin Scenario
+4.1. Industrial Digital Hierarchical Topology. For wireless sensor networks, network topology control has a particularly important meaning. Using real-life temperature data for simulation, the results show that compared with existing data collection methods at diﬀerent decoding rates, the solution proposed in this chapter can always obtain better data quality without the need to deploy a dedicated sensor network.
+
+forðr, t − 1 ∈ Cðr − 1, tÞÞ,〠Qk ∗ giyik2 =
+
+∑giyik2 ∑Cx ∗ giyik2
+
+:
+
+ð8Þ
+
+Situational awareness is the core link to realize realtime monitoring of large network loads. It extracts, analyzes, evaluates, and predicts network load and stable behavior based on the wide-area operating status information of the network load, in order to realize online secu-
+
+rity early warning and intelligence to lay the foundation for active regulation.
+Among them, the prerequisite for the whole network load situation awareness is to realize the extraction of situation elements ﬁrst, and its purpose is to monitor the state of the power system and obtain data information. With the expansion and development of the power system in Table 2, the collection scope and technical means of situation elements are constantly expanding.
+In addition to traditional power control and hierarchical topology control, people have also proposed heuristic node wake-up and sleep mechanisms. This mechanism enables the node to set the communication module to sleep when no event occurs and automatically wakes up and wakes up neighboring nodes in time when an event occurs. This mechanism cannot be used independently as a topology control mechanism and needs to be used in conjunction with other topology control algorithms.
+
+4.2. Wireless Sensor Network Protocol Stack. Due to the limitations of sensor node energy, computing, and storage capabilities, as well as the constant changes in sensor network topology and network resources, traditional network protocols cannot be used in wireless nodes. In wireless sensor networks, the digital twin protocol not only cares about the energy consumption of a single node but also cares about the balanced network. At the same time, the wireless sensor network is data-centric and establishes a forwarding path from the data source to the sink node based on the data of interest.
+
+* α2 + α1 E1n‐λ1
+
+E1n + λ1 ∣ 1 α2 − α1 0
+
++*
+
+0
+
+λ
+
+=
+
+1
+
+1
+
+−1 ∣ α1 λ1
+
++ 1
+: α1
+ð9Þ
+
+By placing a large number of sensor nodes, enough paths are provided to satisfy the survival of the network and adapt to the environment. The system must also consider some important parameter settings, such as network size, node density, and the trade-oﬀ between energy consumption, reliability, and response time. Subscribers can subscribe to multiple channels, and publishers can send messages to subscribers through channels.
+The energy waste at the MAC layer is mainly manifested in idle listening, receiving unnecessary data, and collision retransmissions. Assuming that the transmitting radius of the node is R, the farthest distance from the base station to the monitoring area is D. The base station in Figure 4 ﬁrst determines its own gradient level as O and calculates the number of gradient levels N = ½D/R to be divided.
+The node that has not received the gradient message determines that its gradient is n after receiving the message, and the node that has determined its gradient discards it when it receives this message. After the gradient is established, the node sends interactive information to neighboring nodes and saves the received interactive information.
+After the interaction is completed, the node calculates and updates its own comprehensive weight based on the
+
+Journal of Sensors
+
+7
+
+Table 2: Backbone network node communication module.
+
+Node ID (S1, S2, S3) (S2, S2, S3) (S3, S2, S3) (S1, S1, S3) (S1, S3, S3) (S1, S2, S1) (S1, S2, S2)
+
+Distance from the node D12 D21 D33 D14 D42 D24 D13
+
+Neighbor node status Route_ﬂag 1
+Power control 1 Power control 2
+Route_ﬂag 2 Route_ﬂag 3 Power control 3 Power control 4
+
+interaction by the neighboring node. In the clustering stage, the node ﬁrst uses the updated weight to compare with the weight of the neighbor set: if the comparison between node a and any node b in the neighbor set meets any of the following rules, then the weight ratio of node a is considered.
+
+∂
+
+∂W
+
+i
+
+l j
+
+J ðw,
+
+bÞ‐∬
+
+∂
+
+∂W
+
+i
+
+l j
+
+At ðα,
+
+βÞdadb
+
+=
+
+0:
+
+ð10Þ
+
+In order to reduce energy consumption, the MAC protocol usually adopts an alternate wireless channel listening mechanism of “listening/sleeping.” The sensor node only listens to the wireless channel when it needs to send and receive data, and try to enter the sleep state when there is no data to send and receive. Since the wireless sensor network is an application-related network, when the application requirements are diﬀerent, the network protocol often needs to be customized according to the application type or the characteristics of the application target environment. No single protocol can fully adapt to a variety of diﬀerent applications.
+4.3. Network Algorithm Clustering Results. In the clustering process of the network algorithm, ﬁrst calculate the optimal number of clusters for each divided area according to a certain strategy, and then use the digital twin algorithm to perform the ﬁrst round of random clustering for each divided area intermittently, and only need to cluster later internal adjustment, and consider the nodes in Table 3, to avoid the nodes of the whole network periodically and frequently clustering and consuming too much energy and low-energy nodes serving as cluster head nodes multiple times.
+In multihop data transmission between clusters, a threshold TD-MAx is introduced. If the distance between the cluster head node and the base station is less than TDMAx, the cluster head node directly transmits the data to the base station. On the contrary, use the method described below as much as possible to transmit the collected data.
+When the intercluster multihop transmission starts, each cluster head broadcasts a NoDE-s containing the cluster head ID, the current remaining energy, and its distance to the base station with the same power; it will maintain a set of candidate digital twin nodes according to the received message. The node decides whether to join the cluster head competition according to its own remaining energy.
+
+∇Jðw, bÞ ∇ J ðbÞ
+
+−∇
+
+1 b
+
+m
+〠
+i=1
+
+J
+
+À w,
+
+b
+
+;
+
+xi,
+
+yiÁ
+
++
+
+λW
+
+i
+
+l j
+
+=
+
+0:
+
+ð11Þ
+
+The number of clusters is then reﬁned into each divided area, and each divided area is intermittently used to perform speciﬁc clustering with the improved combination of digital twin and PEGASIS algorithm. Once the clustering is done, each divided region is formed. The member nodes in the cluster perform data collection, and cluster head nodes perform data fusion. Finally, each cluster head node forwards the fused data through the collaborative data transmission digital twin between the clusters and ﬁnally transmits it to the sink node. This process continues until the end of the wireless sensor network life cycle, and the duration is as long as possible.
+
+5. Application and Analysis of Wireless Sensor Network Access Control and Load Balancing Model in the Industrial Digital Twin Scenario
+
+5.1. Industrial Digital Data Element Preprocessing. In the wireless sensor network, the energy consumption of the wireless communication module of the sensor node in the idle state is equivalent to that in the transceiver state, so only by turning oﬀ the node’s communication module can the energy consumption of the wireless communication module be greatly reduced, considering a certain mechanism choice.
+A subscriber, such as a client, expresses an event or a type of event that it is interested in receiving in the form of event subscription. Some nodes are used as backbone network nodes, and their communication modules are turned on, and the communication modules of nonbackbone nodes are turned oﬀ. The backbone nodes build a network to be responsible for the digital twin forwarding of data.
+
+∂
+
+J
+
+À w,
+
+b
+
+;
+
+xi,
+
+yi
+
+Á
+
+∂f Àxi, yiÁ
+
+Jðxi, yiÞ = ∂f ðx, yÞ :
+
+ð12Þ
+
+After the wireless sensor network monitoring area is divided into hierarchical regions, the ﬁrst-level region closest to the sink node is ﬁrst used to calculate the probability and the principle of minimizing total energy consumption and then based on the total energy between regions.
+Among them, the cluster head selection probability of each area in Table 4 is diﬀerent, and it becomes smaller as the distance from the sink node increases, so as to ensure the nonuniform clustering of the entire network. Through this algorithm, participants can compress the sensory data collected in the target area into CS measurement values. In order to improve data quality, a data reconstruction algorithm based on multiple rounds is further proposed.
+A good clustering algorithm can provide a foundation for data fusion, time synchronization, target positioning, and network management and is beneﬁcial to extending the time of the entire network. Based on a reasonable and eﬀective network clustering structure, it is possible to
+
+8
+
+Journal of Sensors
+
+Wire sensor network protocol stack gradient
+
+100
+
+80
+
+60
+
+40
+
+20
+
+13.00
+
+18.90
+
+48.40 42.50 36.60 30.70 24.80 18.90 13.00 7.100 1.200
+
+0 20
+
+40
+
+60
+
+80
+
+100
+
+Node series
+
+Figure 4: Gradient distribution of wireless sensor network protocol stack.
+
+Parameters Distribution area Base station coordinates Number of nodes Data packet size Node initialization energy Signal threshold State cluster
+
+Table 3: Data transmission delay of chain end node.
+
+Transmission node 1 509.26 509.88 510.49 511.11 511.73 512.35 512.96
+
+Transmission node 2 32.10 31.49 32.94 36.27 40.85 45.76 50.07
+
+Transmission node 3 14.14 11.30 8.60 6.69 6.19 7.39 10.14
+
+Circle steps 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+16
+
+Table 4: Algorithm of optimal cluster number for hierarchical area.
+
+Algorithm meaning
+
+Upper-layer applications in Xi
+
+An eﬃcient network control system
+
+The cluster head selection probability X
+
+Logical network structure as Xi − X
+
+A reasonable and eﬀective network The distance from the sink node ∑ni=1κXi
+
+In networks depends on the clustered μXðκ − tÞ
+
+A
+
+foundation
+
+for
+
+data
+
+fusion
+
+in
+
+À Xi
+
++
+
+X Á2
+
+Good clustering algorithm It becomes smaller as the distance ∑ni=1ÀXi + XÁ2
+It is possible to establish ℤ½0, 1
+
+The application of many protocols
+
+So as to ensure the nonuniform Aðt, t − 1Þ
+
+It
+
+provides
+
+channel
+
+control
+
+in
+
+cov
+
+À Xi
+
+−
+
+X
+
+∣
+
+Á X
+
+A
+
+It is beneﬁcial to foundation for data
+
+extending the lihfÀetime
+
+fusion in lim
+x⟶∞
+
+Xi −
+
+X Á2 i
+
+Step codes % Program P1_1 % Generation of a Unit Sample Sequence
+Clf; % Generate a vector from -10 to 20
+N = -10:20; % Generate the unit sample sequence
+U = [zeros (1,3) ones(1,28)]; % Plot the unit sample sequence
+Stem (n,u); Xlabel ('Time index n'); ylabel ('Amplitude');
+Title ('Unit Step Sequence'); Axis ([-10 20 0 1.2]); Clf; % Clear old graph
+Stem (n,x); % Plot the generated sequence Axis ([0 40 -4 4]);
+Grid;
+
+Journal of Sensors
+
+9
+
+establish an eﬃcient network control system, realize eﬀective resource scheduling and application including bandwidth allocation and frequency reuse, provide channel access control, eﬃcient digital twin computing, and establish virtual circuits and other functions.
+The application of many protocols in sensor networks depends on the clustered logical network structure, and many upper-layer applications can run on this structure. By introducing a new spatiotemporal data abstract model in the target perception area, the participant’s movement process is represented as a random measurement of the perception task.
+
+∂J
+
+À w,
+
+b
+
+;
+
+xi
+
+,
+
+yi
+
+Á
+
+∂Jðw, bÞ
+
+=
+
+∂f ðw, bÞ ∂f ðwÞ∂f ðbÞ
+
+:
+
+ð13Þ
+
+The protocol uses digital twins in the multihop phase between clusters to adaptively determine the weight coeﬃcients occupied by multiple metric factors. The selection of each metric factor is of great signiﬁcance for the node when selecting the next hop standard for evaluating the network survival time, and the distance can reduce the number of hops and reduce the transmission delay.
+The quality status can estimate the reliability of the wireless link transmission channel, and they reserve more energy for intercluster data forwarding. In this paper, when the cluster head node selects the next hop node in the multihop phase between clusters, it is based on a cost function improved from the protocol, which includes the cluster head. The number of internal members is used as a measurement factor, and the weight coeﬃcients occupied by each measurement factor in the cost function are objectively and adaptively calculated using digital twins.
+
+5.2. Realization of Wireless Sensor Network Access Control Simulation. Assuming that nodes in the wireless sensor network access control, each node calculates the probability of becoming a candidate cluster head according to the formula. In each round of selection of cluster heads, the percentage of candidate cluster heads to all nodes is p. For all nodes N, the number of candidate cluster heads will be approximately N × p, and HEAD_MsG will be broadcast.
+
+* lim Aðt, t − 1Þ − Mði, tÞ = ℤ½0, 1,
+
+x⟶∞
+
+ð14Þ
+
+lim AðtÞ − MðtÞ = ℤ½0, 0:
+
+x⟶∞
+
+After that, if K nodes are generated from these candidate cluster head nodes as cluster head nodes in this round, it is necessary to broadcast MsG messages with the largest energy and MsG messages for successful elections. Finally, the remaining N-K ordinary nodes in the network select the cluster head node with a stronger signal according to the received signal strength.
+The cluster head node in Figure 5 calculates and sends K time slot information to the member nodes in the cluster. Based on the above analysis, in each round of cluster formation, the total number of messages in the network is N × p.
+
+Experimental results show that compared with existing collection methods, the proposed scheme can obtain better data quality under diﬀerent decoding rates.
+This article will use OMNeT++ (Objective Modular Network Testbed in C++) as a simulation platform tool. This software is a component-based, object-oriented modular simulation software. OMNeT++ provides a graphical network editor and network data stream viewing tool and can run on multiple operating system platforms. It uses events as the basic communication mechanism to provide the loosely coupled interaction mode required by large-scale systems.
+On the OMNeT++ platform, the network protocol is written in “+” language, and the user-deﬁned language “NE0” is used to construct the network model. Compared with simulation platforms such as Ns-2 and OPN, OMNe ++ not only can easily deﬁne the network topology and has obvious advantages in the perfection of the model library and the support for debugging and tracing of the protocol code.
+
+" Qk ∗ giyik2 −Cx
+
+#"
+
+Cx
+
+sin θ
+
+×
+
+Qk ∗ giyik2
+
+cos θ
+
+# −cos θ
+= 1: −sin θ
+ð15Þ
+
+The main documents are introduced as follows: (1) need ﬁle: use ned language to describe the network topol-
+ogy, network simulation parameters, and network connections between nodes; (2) cc ﬁle: use “+ language to write each module algorithm; (3) msg ﬁle: message ﬁle, mainly
+used to simulate various events, messages, frames, etc. in the transmission process; (4) I.b ﬁle: the kernel library
+and user connection library used in the simulation process; (5) ini ﬁle: users set various parameters in the simulation module; and (6) -vec and -sna ﬁles: output vector ﬁles and output scalar ﬁles, mainly it is used to store data
+and record the simulation results.
+
+n
+
+n
+
+n
+
+〠 κXiZðiÞ − 〠 κXi + μX = 〠 μXðκ − tÞXi:
+
+ð16Þ
+
+i=1
+
+i=1
+
+i=1
+
+According to two diﬀerent values of c, the sensory data collected by each participant in the target area during a period of time will be compressed into a measured value. The original data is reconstructed by an iterative algorithm using the measurement matrix and measured values. In order to improve the quality of data reconstruction, a data recovery algorithm based on multiple rounds is further proposed by using the time correlation between the data.
+5.3. Case Application and Analysis. In this paper, the algorithm is mainly simulated and tested. In the case of limited experimental conditions, MATLAB is mainly used as an experimental simulation tool to simulate the setting of WSN simulation scenarios and simulation parameters, and the experimental simulation is performed based on the simulation performance metrics.
+
+10
+
+Journal of Sensors
+
+Wireless sensor network access control rate (%)
+
+Simulation & demo
+
+100
+
+90
+
+U1 U5
+
+U7
+
+80
+
+70
+
+U6
+
+U3
+
+60
+
+50 U4 40 30 20 10
+
+U2 U8 U9
+U10
+
+0 0 10 20 30 40 50 60 70 80 90 100
+Data distance
+
+Figure 5: Distribution of wireless sensor network access control nodes.
+
+Through several simulations in MATLAB, better simulation analysis results of the network survival time and total energy consumption of the three algorithms are obtained. For the simulation results of the network survival time in Figure 6, we, respectively, counted the number of rounds of the three algorithms at the beginning of dead nodes, 10% node deaths, 50% node deaths, 70% node deaths, and the entire network node death.
+This article is the eﬀect diagram of the nonuniform clustering of the protocol formed by 100 nodes in a square network with a side length. Among them, the ﬁrst to sixth steps are the cluster formation stage, and the seventh to eighth steps are the intercluster multihop data transmission stage.
+In the ﬁrst step of the protocol, network initialization for the base station sends a start message to all nodes. All nodes calculate the approximate distance from the base station based on the received signal strength. The dead node no longer establishes any contact with the base station. When the participants move to some monitoring points to collect data, the movement of the monitoring points is similar to the random walk between nodes in WSNs to collect data.
+
+cov
+
+À Xi
+
+−
+
+X
+
+∣
+
+Á X
+
+=
+
+n
+〠
+
+À Xi
+
+−
+
+X Á2
+
++
+
+n
+〠
+
+À Xi
+
++
+
+X Á2
+
++
+
+n
+〠
+
+ðXiÞ2:
+
+i=1
+
+i=1
+
+i=1
+
+ð17Þ
+
+In the text, the green dot represents the broadcast message, and the straight line with the arrow represents the wireless communication connection established by the node and the base station; the right picture shows the start of the surviving node in the network receiving the base station transmission, where the white dots represent nodes that died
+
+due to exhaustion of energy, and no communication connection with the base station is established.
+It can be seen that the algorithm prolongs the network lifetime more eﬀectively. For the simulation results of the network, the number of rounds in which the three algorithms consume 10% of the total energy, 50% of the total energy, 70% of the total energy, and total energy consumption of the three algorithms is, respectively, counted. In a sense, its trajectory can completely cover the target area. In this topic, a distributed coding algorithm based on compressed sensing is proposed.
+All nodes in the network in Figure 7 enter the dormant state. Each node that becomes a candidate cluster head will broadcast the message according to its own competition radius. After receiving the message, the other candidate in the election before will be awakened from the dormant state.
+The message with stronger signal is selected, and the message is sent to it to apply to join the cluster. The cluster head node will calculate the TDMA time slot according to the number of members in the cluster and send it to the establishment of the cluster which is completed. First, we simulate the movement trajectory of the participant and obtain the respective measurement vector of the participant through the trajectory position. Multiple participant trajectories can obtain a binary measurement matrix.
+
+cov cov
+
+À ÀXi Xi
+
+− +
+
+X X
+
+∣ ∣
+
+Á XÁ X
+
+=
+
+hÀ
+
+lim
+x⟶∞
+
+Xi
+
+−
+
+X Á2 i
+
+×
+
+∑ni=1∑ni=1ÀXi − X Á22 ∑ni=1ÀXi + X Á2
+
+:
+
+ð18Þ
+
+After the cluster in each level area is formed in the cluster domain, it will allocate time slots according to the TDMA
+
+Journal of Sensors
+
+11
+
+Wireless sensor network load ratio (%)
+
+100
+
+90
+
+80
+
+70
+
+60
+
+50
+
+40
+
+30
+
+20
+
+10
+
+0
+
+100
+
+110
+
+120
+
+130
+
+140
+
+150
+
+160
+
+Node number
+
+Algorithm 1 Algorithm 2 Algorithm 3
+Figure 6: Comparison distribution of total energy consumption of wireless sensor network load.
+
+Wireless sensor network lifetime error (%) Index sensor
+
+0.5 0.0
+
+–0.5
+
+–1.0
+
+–1.5
+
+–2.0
+
+–2.5
+
+–3.0
+
+100
+
+80
+
+–3.5 2
+
+60
+
+4
+
+40
+
+Stack
+
+6 gradient
+
+8
+
+20 10
+
+Figure 7: Three-dimensional distribution of the survival time of wireless sensor network.
+
+scheduling method. At the beginning, the member nodes in the cluster are in a dormant state. When the participants move to some monitoring points to collect data, the movement of the monitoring points is similar to the random walk between nodes in WSNs to collect data.
+When the node is activated, the member nodes in the nonchain structure collect data and send it to the cluster head in a single hop, while the cluster node in the chain structure needs to transmit the data along the chain after collecting the data pairs. If the node meets the conditions, it will become a candidate cluster head, and then, the candidate cluster head selects the ﬁnal cluster head node through regional competition.
+
+6. Conclusion
+In the homogeneous node environment, based on the network load algorithm, this paper optimizes the digital twin topology structure, divides the network nodes into two layers, constructs the network nodes into multiple subchains at the bottom layer, and selects the main chain head and the branch chain heads to construct the top-level chain head chain. Secondly, the isolated points generated in the chain formation process are processed in a tree structure to reduce the length of the data transmission path, optimize the selection strategy of the main chain head and the branch chain head and the chaining rules, and compare the common nodes and chain heads near the sink. The number of clusters generated is small, and the packet delivery delay is low; but the overlap between the generated clusters is large, the cluster head nodes are often overloaded, and the load among the cluster heads is extremely uneven. At the same time, the gateway node serves as another cluster head to share part of the nodes, which not only maintains the advantages of the original algorithm with less packet delivery delay but also reduces the burden on the cluster head node that is overloaded. Finally, the digital twin algorithm is studied in detail, and an energy adaptive nonuniform clustering algorithm based on digital twin is designed. In addition, the idea of nonuniform clustering is introduced in the single-hop mode, and the clustering radius is determined by integrating node connectivity and the distance between the node and the base station, so that the cluster head far away from the base station manages fewer nodes. The experimental results show that the protocol proposed in this paper is stable in the network, network energy eﬃciency, and data transmission eﬃciency. It is superior to other comparison protocols in terms of it and can improve the success rate of data transmission.
+
+12
+
+Journal of Sensors
+
+Data Availability
+The data used to support the ﬁndings of this study are available from the corresponding author upon request.
+Conflicts of Interest
+The author declares that there are no known competing ﬁnancial interests or personal relationships that could have appeared to inﬂuence the work reported in this paper.
+Acknowledgments
+This work was supported by the Key disciplines of computer science and technology (2019xjzdxk1), the Teaching Research Project (2018jyxm0960), and the College of modern industry (szxy2021cyxy04).
+References
+[1] C. Gehrmann and M. Gunnarsson, “A digital twin based industrial automation and control system security architecture,” IEEE Transactions on Industrial Informatics, vol. 16, no. 1, pp. 669–680, 2019.
+[2] M. Redeker, J. N. Weskamp, B. Rössl et al., “Towards a digital twin platform for Industrie 4.0,” Industrial Cyber-Physical Systems, pp. 39–46, 2021.
+[3] Q. Qi, F. Tao, T. Hu et al., “Enabling technologies and tools for digital twin,” Journal of Manufacturing Systems, vol. 58, pp. 3– 21, 2021.
+[4] H. X. Nguyen, R. Trestian, D. To, and M. Tatipamula, “Digital twin for 5G and beyond,” IEEE Communications Magazine, vol. 59, no. 2, pp. 10–15, 2021.
+[5] E. B. Priyanka, S. Thangavel, X. Z. Gao, and N. S. Sivakumar, “Digital twin for oil pipeline risk estimation using prognostic and machine learning techniques,” Journal of industrial information Integration, p. 100272, 2021.
+[6] Y. Lu, X. Huang, K. Zhang, S. Maharjan, and Y. Zhang, “Communication-eﬃcient federated learning for digital twin edge networks in industrial IoT,” IEEE Transactions on Industrial Informatics, vol. 17, no. 8, pp. 5709–5718, 2020.
+[7] D. Lee and S. H. Lee, “Digital twin for supply chain coordination in modular construction,” Applied Sciences, vol. 11, no. 13, p. 5909, 2021.
+[8] P. Conejos Fuertes, F. Martínez Alzamora, M. Hervás Carot, and J. C. Alonso Campos, “Building and exploiting a digital twin for the management of drinking water distribution networks,” Urban Water Journal, vol. 17, no. 8, pp. 704–713, 2020.
+[9] L. Zhao, G. Han, Z. Li, and L. Shu, “Intelligent digital twinbased software-deﬁned vehicular networks,” IEEE Network, vol. 34, no. 5, pp. 178–184, 2020.
+[10] R. Anderl, S. Haag, K. Schützer, and E. Zancul, “Digital twin technology–an approach for Industrie 4.0 vertical and horizontal lifecycle integration,” it-Information Technology, vol. 60, no. 3, pp. 125–132, 2018.
+[11] R. Minerva, G. M. Lee, and N. Crespi, “Digital twin in the IoT context: a survey on technical features, scenarios, and architectural models,” Proceedings of the IEEE, vol. 108, no. 10, pp. 1785–1824, 2020.
+
+[12] R. B. Roy, D. Mishra, S. K. Pal et al., “Digital twin: current scenario and a case study on a manufacturing process,” The International Journal of Advanced Manufacturing Technology, vol. 107, no. 9, pp. 3691–3714, 2020.
+[13] P. Zheng and A. S. Sivabalan, “A generic tri-model-based approach for product-level digital twin development in a smart manufacturing environment,” Robotics and ComputerIntegrated Manufacturing, vol. 64, p. 101958, 2020.
+[14] J. Leng, Q. Liu, S. Ye et al., “Digital twin-driven rapid reconﬁguration of the automated manufacturing system via an open architecture model,” Robotics and Computer-Integrated Manufacturing, vol. 63, p. 101895, 2020.
+[15] M. Li, Z. Li, X. Huang, and T. Qu, “Blockchain-based digital twin sharing platform for reconﬁgurable socialized manufacturing resource integration,” International Journal of Production Economics, vol. 240, p. 108223, 2021.
+[16] K. Y. H. Lim, P. Zheng, and C. H. Chen, “A state-of-the-art survey of digital twin: techniques, engineering product lifecycle management and business innovation perspectives,” Journal of Intelligent Manufacturing, vol. 31, no. 6, pp. 1313– 1337, 2020.
+[17] S. Y. Barykin, I. V. Kapustina, S. M. Sergeev et al., “Developing the physical distribution digital twin model within the trade network,” Academy of Strategic Management Journal, vol. 20, pp. 16–18, 2021.
+[18] T. Zhang, X. Liu, Z. Luo, F. Dong, and Y. Jiang, “Time series behavior modeling with digital twin for Internet of Vehicles,” EURASIP Journal on Wireless Communications and Networking, vol. 2019, no. 1, 11 pages, 2019.
+[19] Y. He, J. Guo, and X. Zheng, “From surveillance to digital twin: challenges and recent advances of signal processing for industrial Internet of Things,” IEEE Signal Processing Magazine, vol. 35, no. 5, pp. 120–129, 2018.
+[20] A. Z. Abideen, V. P. K. Sundram, J. Pyeman, A. K. Othman, and S. Sorooshian, “Digital twin integrated reinforced learning in supply chain and logistics,” Logistics, vol. 5, no. 4, p. 84, 2021.
+[21] H. Zhang, Q. Yan, and W. Zhenghua, “Information modeling for cyber-physical production system based on digital twin and AutomationML,” The International Journal of Advanced Manufacturing Technology, vol. 107, no. 3-4, pp. 1927–1945, 2020.
+[22] S. Mi, Y. Feng, H. Zheng, Y. Wang, Y. Gao, and J. Tan, “Prediction maintenance integrated decision-making approach supported by digital twin-driven cooperative awareness and interconnection framework,” Journal of Manufacturing Systems, vol. 58, pp. 329–345, 2021.
+[23] T. R. Wanasinghe, L. Wroblewski, B. K. Petersen et al., “Digital twin for the oil and gas industry: overview, research trends, opportunities, and challenges,” IEEE Access, vol. 8, pp. 104175–104197, 2020.
+[24] Q. Lu, A. K. Parlikad, P. Woodall et al., “Developing a digital twin at building and city levels: case study of West Cambridge campus,” Journal of Management in Engineering, vol. 36, no. 3, 2020.
+[25] N. Kousi, C. Gkournelos, S. Aivaliotis, C. Giannoulis, G. Michalos, and S. Makris, “Digital twin for adaptation of robots’ behavior in ﬂexible robotic assembly lines,” Procedia manufacturing, vol. 28, pp. 121–126, 2019.
+
