@@ -1,0 +1,345 @@
+“面向6G的边缘人工智能”专题
+
+面向6G的意图驱动边缘智能网络
+
+宋延博，张静雯，弥欣汝，欧阳颖，杨春刚* （西安电子科技大学，陕西 西安 710071）
+
+【摘 要】 【关键词】
+
+6G应具备灵活及可编程的可扩展功能的网络架构，以更适应用户对多样化信息服务需求。意图驱动网络能够自动化 挖掘网络管理员的需求并提供可靠服务，为高效利用网络资源并释放意图驱动网络潜力，下沉智能到靠近用户终端的 网络边缘。首先介绍了意图驱动网络基本理论和网络架构演进方向；然后提出了面向6G的意图驱动边缘智能网络架 构，并详细介绍了该架构的关键系统组件；最后，以基站参数配置为例，介绍了意图驱动边缘智能架构的应用，部署 智能算法实现用户时延和吞吐量性能的提高。 6G；意图驱动网络；运维管理；边缘智能
+
+doi:10.3969/j.issn.1006-1010.20220808-0002 中图分类号：TN929 文献标志码：A 文章编号：1006-1010(2022)09-0002-06
+
+OSID：
+
+扫描二维码 与作者交流
+
+引用格式：宋延博,张静雯,弥欣汝,等. 面向6G的意图驱动边缘智能网络[J]. 移动通信, 2022,46(9): 02-07.
+
+SONG Yanbo, ZHANG Jingwen, MI Xinru, et al. Intent-Driven Edge Intelligence Network for 6G[J]. Mobile Communications, 2022,46(9): 02-07.
+
+Intent-Driven Edge Intelligence Network for 6G
+
+SONG Yanbo, ZHANG Jingwen, MI Xinru, OUYANG Ying, YANG Chungang
+(Xidian University, Xi’an 710071, China)
+
+[Abstract] [Keywords]
+
+6G should have a flexible and programmable network architecture with scalable functions to better adapt to users’ requirements for diverse information services. Intent-driven networks can automatically mine the requirements of network administrators, provide reliable services, and sink intelligence to the network edge close to user terminals to efficiently utilize network resources and unleash their potential. Firstly, the basic theory and architecture evolution direction of intent-driven networks are introduced. Then, an intent-driven edge intelligent network architecture for 6G is proposed, and the key components of the architecture are described in detail. Finally, taking the base station parameter configuration as an example, the application of intent-driven edge intelligence architecture is implemented. Experimental results show that user delay and throughput are improved. 6G; intent-driven network; operation and maintenance management; edge intelligence
+
+0 引言
+6G将兼容5G中增强型移动宽带、海量机器类通信 和高可靠低时延等典型通信场景。单一的网络特性难以 支持6G网络中不断涌现的新服务，无法支撑网络按时交 付，且无法贴近实际的商业需求，从而影响用户的服务 质量和体验质量。此外，异构移动通信网络难以实现有 效的互联互通和全局资源优化调度，造成宝贵的设备和 无线资源浪费[1-2]。网络复杂度也因继承大容量和大连接 等优势而日益凸显，为6G网络的运营、维护和管理带来 前所未有的挑战[3]。
+移动通信网络中人工智能以辅助-代理-取代的方向演
+收稿日期：2022-08-08 *通信作者
+
+进，在应对各类虚拟服务需求的同时，已经考虑将用户的意 图纳入网络运营中。2015年开放网络基金组织的北向接口 工作组发布了《基于意图的网络》白皮书[4-5]。Gartner、思 科、华为先后提出IDN（Intent Driven Network，意图驱 动网络）的定义[6-8]，明确IDN中意图转译、意图验证、 自动实施、全息感知等基本组成要素。IDN以其北向交互 强、网络自优化等突出优势，在固网[9]、云网络[10-11]、物 联网[12]和5G网络[13-14]均得到了充分重视和应用。北向接 口模式[15]、服务管理方法[16]与网络配置方式[17]得到进一 步革新。当前IDN的应用以部署在网络控制器及其北向接 口为主，并以集中式的形式存在。
+6G时代，移动通信网络发展将进一步以现代人工智 能、边缘计算平台和移动物联网等为科技基础，实现智
+
+2
+
+2022年9月第9期
+
+第46卷 总第505期
+
+宋延博 , 张静雯 , 弥欣汝 , 等 : 面向 6G 的意图驱动边缘智能网络
+
+能设备与信息网络设备的更加深度融合，构建新型服务 化网络[18]。行业寄希望于通过引入人工智能，带领6G网 络走出当前遇到的重重困境[19-21]。以云计算为典型代表技 术的集中式人工智能系统存在数据实时性低和传输带宽 容量不足等实际问题，从而可能无法及时处理由边缘设 备所产生出来的海量数据。可以通过将边缘智能部署在 边缘设备上使其更贴近用户，实现在数据源端进行数据 处理和智能化部署，从而缩短服务的响应时间。
+为了真正实现融合、灵活、弹性发展的愿景，需要 继续研究一种基于边缘智能的意图驱动6G网络，从系统 架构层次上进一步考虑边缘智能系统的多级网络部署， 实现意图、边缘计算、人工智能系统的完美结合，将智 能服务推送到边缘设备。
+1 意图驱动网络基本理论
+意图是系统状态的声明性描述，其中声明性指无需关 注网络操作细节，仅表达对网络的需求。意图从需求的角 度抽象网络的对象和能力，并将其转化为高级策略[22]。
+IDN是一种可编程可定制的自动化网络。网络可根据 用户意图自动转换、验证、部署、配置、优化，达到目 标网络状态，并能自动解决异常事件，保证网络的可靠 性[23]，包括意图使能层、业务应用层、基础设施层。
+如图1所示，从执行动作来讲，IDN网络主要包括意 图的转译、验证和部署。从意图形态转换来讲，形成了 “自然语言-意图原语-可执行策略-可靠性配置”的意图 流。意图、策略与配置是一组联结概念，意图是自由表 达的具有最高级抽象网络需求的描述；策略是以具体方 式描述的意图；配置是根据策略为当前网络环境更新有 关物理或虚拟网络设备的信息 。 [24] 从层级关系来讲，IDN 主要包括业务应用层、意图使能层、基础设施层以及北 向接口和南向接口。业务应用层支持可视化运维平面， 提供开放的网络能力，并完成应用意图的挖掘。通过意 图使能层提供的编程接口对底层设备进行编程，将网 元能力抽象封装，把网络的控制权开放给用户及其他业 务伙伴。意图使能层将应用请求经意图北向接口转译成 的意图原语，并进行解析和一致性校验，处理成可被当 前网络资源执行的网络意图；通过意图与资源的映射算 法，获得网络中具体资源的对应操作；采用基于意图管 理和编排的系统实现全局应用意图的统一规划、资源的 统一调度，采用闭环编排的方式实现网元的生命周期管
+
+理、智能引擎提供策略库模型和网元状态信息分析的支 持。基础设施层部署海量遥测设备，分布式网络数据分 析中心进行实时/非实时运算。
+
+转译 验证 部署 意图流
+
+自然语言 意图原语
+策略 配置 意图达成
+
+业务应用层 网络能力开放 网络虚拟化
+
+应用需求
+
+意图北向接口
+
+意图表征
+
+意图解算器
+
+意图使能层
+
+意图-策略映射
+
+智能引擎
+
+自动编排
+
+实时闭环验证
+
+南向接口
+
+基础设施层
+
+网络遥测
+
+网络数据分析
+
+图1 意图驱动网络架构
+
+目前，学术界在意图在移动网络领域还在进一步探 索。在5G云服务的实时保障、服务质量的有效提升以及 回程网络方面论证了意图部署的初步想法[25]，但对于接 入网、回程网和核心网的一体化意图驱动设计方案尚不 清晰。
+
+2 架构演进思路
+传统网络架构中存在着控制平面和用户平面紧耦合等 问题，对运营商布网在成本和时间上都是一个考验。软件 定义网络的引入，使网络控制面功能逐渐与网络用户面完 全解耦，部署网络也随之变得方便与灵活，从而提高用户 服务质量与应用体验，比如可以大幅度降低时延。
+基于控制面和用户面解耦的背景下，连接控制面与 用户面的南向接口已经形成了一定的标准化接口。例如 软件定义网中的OpenFLow协议，隐藏了具体网络设备 的转发细节，利用这些功能接口的组合可以部署常见业 务，即通过修改流表规则控制网络设备的转发。南向接 口抽象了网络转发行为，简化了管理网元的流程，但是 仍需掌握协议的相关知识并熟悉命令行操作。此外，用 户面向差异化方向演进。
+随着网络功能的不断创新，网络业务需要进一步 与网络接口，面向新需求的北向接口的标准化正在进行 中。基于意图的北向接口有望成为北向接口的标准化， 意图北向接口采用声明式的方式，网络用户或应用通过 自然语言等只需描述网络需求的意图，而无需关注如何 实现（技术细节），使不了解网络相关知识背景的用户 也能更容易地操作网络。如图2所示，网络架构正朝着应
+
+2022年9月第9期
+
+3
+
+“面向6G的边缘人工智能”专题
+
+第46卷 总第505期
+
+用、控制、用户平面解耦的方向发展，南北向接口的标 准化工作也需要进一步研究。
+
+业务 应用层 控制 面 用户 面
+
+业务 应用层 未标 准化的 北向接 口
+控制 面 标准 南向接 口
+用户 面
+
+业务 应用层
+
+意图 北向接 口
+
+意图 使能层
+
+标准 南向接 口
+
+RRU 模块化 RAN
+
+AAU
+
+基站
+
+平台
+
+图2 网络架构解耦演进
+
+3 意图驱动边缘智能网络架构
+为了高效利用网络资源并释放意图驱动网络潜力， 下沉人工智能到靠近用户终端的网络边缘。意图驱动边 缘智能网络架构由两个管理中心、三个数据分析中心、 四个平面组成，如图3所示。CU（Centralized Unit，集 中单元）、DU（Distributed Unit，分布单元）和AAU （Active Antenna Unit，有源天线单元）组成接入网侧 eNB/gNB基站。CU为集中式单元，向上通过核心网接口 与核心网相连接，而在接入网内部则能够控制和协调多 小区，涉及的主要协议包括：无线资源控制功能、数据 服务协议、分组数据汇聚协议等。DU为分布式单元，实 现射频处理功能和RLC（Radio Link Controlstructure， 无线链路控制层）、MAC（Media Access Control，媒 体接入控制层）以及PHY（Physical Layer，物理层）等 基带处理功能。有源天线单元负责射频处理功能，DU和 AAU之间通过通用公共无线电接口相连。
+
+6GC
+
+网络数据分析中心
+
+eNB/gNB CU
+CU-C
+
+流量分析
+
+切片支持
+
+E-UTRA RRC
+
+接口管理
+
+NR RRC
+
+CUU
+DU
+
+分组数据汇聚协议
+CU-S
+F1-S
+DU-S
+
+集中数据中心
+
+CU-IE
+
+F1-C
+
+F1-IE
+
+DU-IE
+
+新无线链路控制协议 新媒体接入控制协议
+
+分布数据中心
+
+应用
+
+意图使能中心
+大
+
+数
+
+转译
+
+据
+
+验证
+
+分
+
+析
+
+部署
+
+收敛同步 中心
+控制平面
+
+AAU
+
+新物理层协议
+
+CPRI/eCPRI
+
+Low PHY
+
+RF
+
+用户平面
+
+图3 意图驱动边缘智能网络架构
+
+两个管理平面为意图使能中心和收敛同步中心。意 图使能中心是该架构的核心，将来自应用的请求进行解 析，完成应用意图的表征、转译、验证与自动化部署。 收敛同步中心实现CU和DU之间的时间与频率同步，同 时，以映射的方式解决在分布式最终一致性控制模型中 管理运营复杂性的问题。
+三个数据分析中心是指位于核心网的NWDA （Network Data Analysis，网络数据分析）与位于接入网 的RANDA（Radio Access Network Data Analysis，无线 接入网络数据分析），RANDA包括CU处数据中心CUDA （Central Unit Data Analysis，中心单元数据分析）以及 DU处数据中心DUDA（Distributed Unit Data Analysis， 分布式单元数据分析），三个数据分析中心共同构成层 级式、分布式部署的数据驱动的网络架构，更好地使能 无线大数据业务。同时，经由大数据分析中心训练的模 型也将为意图校验环节提供必要支持[3]。
+相比于位于核心网的NWDA，CUDA和DUDA更贴 近用户侧。CU具有准实时性，算力较高，主要应用于多 连接、干扰管理、移动性管理等优化。具体包含数据分 析、准实时的决策模型的训练、模型在线预测以及基于预 测结果的策略生成和配置，为DUDA提供数据特征、模型 的订阅分发功能。CUDA可以有主从两种模式，从模式的 CUDA可以请求主模式的CUDA进行部分计算任务，如模 型训练。DU具有实时性，算力较低，承担实时数据收集处 理、预测、参数调优和一些计算量较小的模型训练任务。 DUDA通过数据的清洗、集成、变换和规约，为CUDA提 供可能需要的预处理后的用于训练/决策模型的数据特征。 CUDA协助DUDA进行一些计算量较大的模型训练任务。 训练好的模型可下发至DUDA处安装执行，基于实时采集 的全息数据进行实时在线预测，并根据预测结果生成相应 的策略，对DU中处理过程（如调度、链路自适应等）进行 实时闭环控制。处于接入网侧的网络数据分析中心获取网 络全局信息并实时传输给意图使能中心。
+四个平面是指控制面、用户面、意图使能平面以及 收敛同步平面。
+4 意图驱动的无线网络用例
+基站配置时，每一个基站的配置参数可达数千个， 其中和无线性能指标紧密相关的网络参数非常多，而大 量无线参数都以小区或者局部区域为单位进行设置，具
+
+4
+
+2022年9月第9期
+
+第46卷 总第505期
+
+宋延博 , 张静雯 , 弥欣汝 , 等 : 面向 6G 的意图驱动边缘智能网络
+
+有强相关性。规模大、参数配置复杂、有主观经验导致 优化的局部功能障碍或者指标降低甚至对全网产生不利 影响，故考虑将无线网络中的基站配置作为意图驱动网 络边缘智能的用例进行研究。
+4.1 无线网络用例 根据上述意图驱动移动网络通信架构，对用户意图
+进行分析并完成基站部署，意图驱动6G网络的流程是： （1）管理员操作应用，应用生成意图原语。 （2）意图原语通过控制器中的IE（Intent Engine，
+意图引擎）进行建模、优化，并且输出具体的网络配 置。在通用机制模块的指导下，网络资源管理模块将网 络配置转换为可让设备执行的具体网络命令，智能引擎 收集来自NWDA的实时用户移动数据、业务流数据以及 网元状态数据并进行处理分析，通过比较器与意图进行 对比，调整网络命令，生成最终的执行命令，保障了命 令的正确性和有效性。
+（3）执行命令通过南向接口传入无线接入网络，通 过虚拟化技术将相应实体设备进行虚拟化，并通过数据 平面可编程进行相应的协议配置，进而下发数据规则， 指导网络实体设备进行配置，完成从意图到网络部署的 过程，网络建立完成，进入运行阶段。
+基于意图驱动的移动网络利用虚拟化技术在边缘计算
+
+虚拟池中确定基站的配置参数，经过验证后通过高速数据 链路连接实际基站进行配置，事件流程图如图4所示。
+（1）运营商用户表明部署基站意图。 （2）APP根据运营商所表意图，将其转换为机器能 理解的意图原语：LTE、100 ms、吞吐量、网络容量等。 （3）北向接口理解意图原语并转化为网络设计语 言，确定参数配置维度（网络关键绩效指标等），送入 控制层。 （4）网络需求抵达控制层，控制层根据需求进行资 源计算和估计，通过虚拟网元控制器控制高性能计算设 备完成对实际网元的虚拟化和需求网元的虚拟构建。智 能引擎利用数据挖掘、数理统计及人工智能等技术，已 经训练学习了用户行为、无线资源配置参数、时间/事件 场景、网络关键绩效指标相互之间的关系，建立了准确 的典型小区参数配置模板。意图引擎根据这些模板指导 控制器对虚拟的LTE BSC（Base Station Controller，基 站控制器）、BBU（Base Band Unit，基带处理单元）、 RRU（Radio Remote Unit，射频拉远单元）等进行初步 参数配置，并构建无线网络协议。此外，现有网络可以 为控制层提供大量本地数据，智能引擎基于这些数据可 以对初步配置的参数进行优化调整确定参数，更符合当 前网络场景。确定的参数在虚拟化的网元中进行配置。 （ 5 ） LT E 基 站 硬 件 安 装 上 电 后 通 过 南 向 接 口 与 控 制
+
+应用
+
+意图 北向接口
+
+意图引擎
+
+控制器
+
+高性能 计算设备
+
+物理RRU
+
+vBSC
+
+vBBU
+
+vRRU
+
+意图原语
+
+网络意图
+
+需求下发
+
+资源计算 与估计
+参数确定
+
+云端虚拟化
+构建vBSC 构建vBBU 构建vRRU
+
+分配计算 存储资源
+分配频谱资源
+分配频谱资源
+
+分析验证
+
+配置并激活
+
+频谱虚拟化
+
+图4 基站参数配置事件流程图
+
+2022年9月第9期
+
+5
+
+“面向6G的边缘人工智能”专题
+
+第46卷 总第505期
+
+层相连，下载启动专属的配置数据进行无线服务。 （6）基站配置结束，进入运行阶段。 为快速地进行自动化管理，系统架构必须先兼具网
+元状态采集、网元管理功能和状态监控功能。通过网元 状态采集实现系统资源的自动采集，并通过运行状态监 控能力对所有资源设备运行工作状态的监测，最终能够 分析实时结果管理网元，重新优化与调度目前已分配资 源。通过不断闭环，对网元进行完整生命周期管理来产 生可靠性策略。 4.2 仿真平台及性能评估
+采用Open Air Interface 5G软件和FlexRAN控制器 搭建面向6G的测试平台，利用OAI软件模拟了基站的所 有功能。通过前端输入服务意图，识别并挖掘服务所需 的性能需求，并将其发送到控制器北向接口。通过收集 虚拟化资源切片的吞吐量和时延并计算满意度，DQN （Deep Q-learning，深度Q学习）收敛迅速调整并获得最 佳的资源分配方法。
+从运行DQN算法后得到的图5（a）可以看出，在100 步后，损失函数变得平滑，误差很小，证明了系统模型 的准确性。如图5（b），训练后的下行链路的吞吐量和 延迟满意度更高，说明了DQN算法有效地提高了网络资 源虚拟化切片时的资源分配中的时延和吞吐量。
+5 结束语
+6G时代，灵活可编程可扩展的网络架构是保证“服 务定制、智慧柔性”理念的关键。为实现意图驱动网络和
+
+边缘智能的深度融合，创新性地把意图驱动从软件定义网 扩展到移动通信网，并重点介绍了意图驱动边缘智能网络 架构，在靠近用户侧的分布式数据分析中心部署意图引擎 及人工智能算法，通过转译、验证、部署完成移动网络的 实时保障。以基站参数配置为例研究意图驱动网络配置流 程，促使人工运维向智能运维发展，聚焦边缘智能，旨在 为业界提供意图驱动边缘智能的研究思路。
+参考文献：
+[1] 刘光毅 , 邓娟 , 郑青碧 , 等 . 6G 智慧内生：技术挑战、 架构和关键特征 [J]. 移动通信 , 2021,45(4): 68-78.
+[2] 薛妍 , 杨立 , 谢峰 . 6G 时代新用户面设计和关键技术 [J]. 移动通信 , 2022,46(6): 2-7.
+[3] 周晶 , 王德政 , 洪科 . 5G 网络智能运维 AI 应用研究 [J]. 邮电设计技术 , 2021(11): 83-87.
+[4] Sdxcentral. Intent: Don’t Tell Me What to Do[R/OL]. [202208-08]. https://www.sdxcentral.com/articles/contributed/.
+[5] Open Networking Foundation. Intent NBI: Definition and Principles[R/OL]. [2022-08-08]. https://www. opennetworking.org/software-defined-standards/archives/.
+[6] Gartner. Innovation Insight: Intent-Based Networking Systems[R/OL]. [2022-08-08]. https://www.gartner.com/ doc/3599617/innovation-insight-intentbased-networkingsystems.
+[7] 郄雅坤 , 李源 , 丁郁 , 等 . 意图感知网络助力物联网发 展 [J]. 物联网技术 , 2022,12(6): 132-136.
+[8] 申倞宇 . 意图驱动天地一体化网络可靠通信研究 [D]. 西 安 : 西安电子科技大学 , 2021.
+吞吐量 时延
+
+损失函数 QoS
+
+训练步长
+（a）DQN训练步长与花销的关系
+
+图5 网络边缘智能资源优化算法
+
+6
+
+2022年9月第9期
+
+训练步长
+（b）QoS性能优化
+
+第46卷 总第505期
+
+宋延博 , 张静雯 , 弥欣汝 , 等 : 面向 6G 的意图驱动边缘智能网络
+
+[9] Davoli G , Cerroni W , Tomovic S , et al. Intent-based service management for heterogeneous software-defined infrastructure domains[J]. International Journal of Network Management, 2018,29(1): 1-22.
+[10] Kang J M, Lee J, Nagendra V, et al. LMS: Label Management Service for intent-driven Cloud Management[C]//2017 IFIP/IEEE Symposium on Integrated Network and Service Management (IM). IEEE, 2017: 177-185.
+[11] Chao W, Horiuchi S. Intent-based cloud service management[C]//2018 21st Conference on Innovation in Clouds, Internet and Networks and Workshops (ICIN). 2018: 1-5.
+[12] Cerroni W , Buratti C , Cerboni S , et al. Intent-based management and orchestration of heterogeneous openflow/ IoT SDN domains in Proc[C]//IEEE Conf. Netw. Softwarization (NetSoft). IEEE, 2017: 1-9.
+[13] Odini M P, Krichel A. Intent Based Modelling Key to 5G & ZSM[C]//Proc. IEEE Softwarization. IEEE, 2018: 1-6.
+[14] 王海宁 , 贾鹏 , 曹宇诗 . 基于 IBN 的 5G 网络管理系统 的调度算法研究 [J]. 电子技术应用 , 2019(10): 5-10.
+[15] Jacobs A S, Pfitscher R J, Ribeiro R H, et al. Deploying Natural Language Intents with Lumi[C]//the ACM SIGCOMM 2019 Conference Posters and Demos. ACM, 2019: 82-84.
+[16] Tian B, Zhang X, Zhai E, et al. Safely and automatically updating in-network ACL configurations with intent language[C]//the ACM Special Interest Group. ACM, 2019: 214-226.
+[17] Sousa N, Islam N, Perez D, et al. Policy-Driven Network Traffic Rerouting Through Intent-Based Control Loops[C]// XXIV Workshop de Gerência e Operação de Redes e Serviços. 2019: 1-15.
+[18] 刘韵洁 , 张娇 , 黄韬 , 等 . 面向服务定制的未来网络架 构 [J]. 重庆邮电大学学报：自然科学版 , 2018,30(1): 8.
+[19] 张平 , 牛凯 , 田辉 , 等 . 6G 移动通信技术展望 [J]. 通信 学报 , 2019,40(1): 145-152.
+[20] Clemm A. Distinguishing Intent, Policy, and Service Models[J/OL]. (2019-05-03)[2022-08-08]. https://www. ietf.org/archive/id/draft-clemm-nmrg-dist-intent-00.txt.
+[21] De Sousa N F S, Islam M T, Mustafa R U, et al. Machine Learning-Assisted Closed-Control Loops for Beyond 5G Multi-Domain Zero-Touch Networks[J]. Journal of
+
+Network and Systems Management, 2022,30(3): 1-29. [22] Beshley M, Pryslupskyi A, Panchenko O, et al. SDN/
+cloud solutions for intent-based networking[C]//2019 3rd International Conference on Advanced Information and Communications Technologies (AICT). IEEE, 2019: 22-25. [23] Aklamanu F, Randriamasy S, Renault R, et al. IntentBased Real-Time 5G Cloud Service Provisioning[C]//IEEE GLOBECOM 2018 Workshops: Cloudified Architectures for 5G and beyond Systems. IEEE, 2018: 1-6. [24] Addad R A, Dutra D, Bagaa M, et al. Benchmarking the ONOS Intent interfaces to ease 5G service management[C]//2018 IEEE Global Communications Conference (GLOBECOM). IEEE, 2018: 1-6. [25] Pang L, Yang C, Chen D, et al. A survey on intent-driven networks[J]. IEEE Access, 2020,8: 22862-22873. ★
+作者简介
+宋延博（orcid.org/0000-0003-4559-6963）：西安电 子科技大学在读博士研究生，研究方向为意图驱动 网络与网络安全。
+张静雯：西安电子科技大学在读硕士研究生，研究 方向为意图驱动网络、移动通信网络。
+弥欣汝：西安电子科技大学在读博士研究生，研究 方向为意图驱动网络、天地一体化网络。
+
+2022年9月第9期
+
+7
+

@@ -1,0 +1,771 @@
+1152
+
+IEEE TRANSACTIONS ON NETWORK AND SERVICE MANAGEMENT, VOL. 18, NO. 2, JUNE 2021
+
+Anomaly Detection for Insider Threats Using Unsupervised Ensembles
+Duc C. Le , Graduate Student Member, IEEE, and Nur Zincir-Heywood , Member, IEEE
+
+Abstract—Insider threat represents a major cybersecurity challenge to companies, organizations, and government agencies. Insider threat detection involves many challenges, including unbalanced data, limited ground truth, and possible user behavior changes. This research presents an unsupervised learning based anomaly detection approach for insider threat detection. We employ four unsupervised learning methods with different working principles, and explore various representations of data with temporal information. Furthermore, different computational intelligence schemes are explored to combine these models to create anomaly detection ensembles for improving the detection performance. Evaluation results show that the approach allows learning from unlabelled data under challenging conditions for insider threat detection. Insider threats are detected with high detection and low false positive rates. For example, 60% of malicious insiders are detected under 0.1% investigation budget, and all malicious insiders are detected at less than 5% investigation budget. Furthermore, we explore the ability of the proposed approach to generalize for detecting new anomalous behaviors in different datasets, i.e., robustness. Finally, results demonstrate that a voting-based ensemble of anomaly detection can be used to improve detection performance as well as the robustness. Comparisons with the state-of-the-art conﬁrm the effectiveness of the proposed approach.
+Index Terms—Insider threat detection, anomaly detection, ensemble learning, unsupervised learning, temporal data, dependable and robust learning.
+I. INTRODUCTION
+O NE OF the most prevalent and destructing security threats to computer networks, data, and intellectual property of companies and organizations is insider threat. In insider threat, malicious actions are carried out by authorized personnel/employees of organizations, which may be familiar with its structure, valued properties, and security layers. Therefore, detecting and mitigating insider threats represent a major challenge [1]. According to recent reports, insider threats account for a fourth of all cyberattacks experienced by U.S. organizations [2]. Up to 53% of organizations and 42% of U.S. federal agencies faced insider threat attacks every year [3].
+Manuscript received October 30, 2020; revised March 15, 2021; accepted April 1, 2021. Date of publication April 8, 2021; date of current version June 10, 2021. This research has been enabled in part by support provided by Natural Science and Engineering Research Council of Canada (NSERC) and Compute Canada (www.computecanada.ca). Duc C. Le gratefully acknowledges the support by the Killam Trusts and the province of Nova Scotia. The associate editor coordinating the review of this article and approving it for publication was S. Scott-Hayward. (Corresponding author: Duc C. Le.)
+The authors are with the Faculty of Computer Science, Dalhousie University, Halifax, NS B3H 4R2, Canada (e-mail: lcd@dal.ca; zincir@cs.dal.ca).
+Digital Object Identiﬁer 10.1109/TNSM.2021.3071928
+
+Furthermore, insider threat attacks have become more frequent recently [4].
+According to the CERT Insider Threat Center, insider threat is deﬁned as threats that originated from malicious or unintentional insiders, whose authorized access to networks, systems, and data of an organization is exploited to negatively affect the conﬁdentiality, integrity, availability, or physical state of the organization’s information, information systems, or workforce [5]. Typical threats caused by malicious insiders are trade secrets/intellectual property theft, disclosure of classiﬁed information, theft of personal information, and IT system sabotage [5]. A major challenge in detecting insider threats come from the fact that malicious insiders are authorized to access the organization’s systems and networks. In addition, data describing insider threat activities is typically rare and poorly documented [6]. Furthermore, storing, processing, and analyzing multiple sources of organizational data – from network trafﬁc, authentication logs, to Web and e-mail history – for identifying malicious insiders and other potential threats present another challenge in implementing detection solutions.
+This work presents our proposed anomaly detection approach, where the focus is on employing unsupervised machine learning (ML) methods and different representations of data with temporal information for identifying signs of anomalous behaviors that may indicate insider threats. This is the initial and important detection step in cybersecurity workﬂow, where early signs of user behavior changes (anomaly) is ﬂagged for further investigation, potentially to detect both known and unknown (zero day) attacks/vulnerabilities [7]. In doing so, the contributions of this paper are summarized as follows: (i) Different representations of data, namely concatenation, percentile, mean and median difference, are introduced for ML-based anomaly detection algorithms, where temporal information is encoded to highlight user behavior changes; (ii) Capabilities and characteristics of popular unsupervised ML methods for anomaly detection – Autoencoder, Isolation Forest, Lightweight On-line detection of anomalies, and Local Outlier Factor – are examined under different working conditions, namely training data poisoning, number of users in training data and the duration of training data; (iii) Anomaly detection ensembles are created to explore performance enhancing capabilities and characteristics of different combining schemes; (iv) Comprehensive anomaly detection results are presented, per instance and per user; and (v) Evaluating on publicly available datasets, the proposed approach demonstrates the ability to generalize and detect malicious insiders under very low investigation budgets.
+
+1932-4537 c 2021 IEEE. Personal use is permitted, but republication/redistribution requires IEEE permission. See https://www.ieee.org/publications/rights/index.html for more information.
+
+Authorized licensed use limited to: Nanjing Univ of Post & Telecommunications. Downloaded on September 07,2022 at 07:23:51 UTC from IEEE Xplore. Restrictions apply.
+
+LE AND ZINCIR-HEYWOOD: ANOMALY DETECTION FOR INSIDER THREATS USING UNSUPERVISED ENSEMBLES
+
+1153
+
+The rest of the paper is organized as follows. Section II summarizes the related literature. Section III introduces the proposed anomaly detection approach. Section IV details the experiments and presents the evaluation results, while Section V further discusses the results and makes comparisons. Finally, conclusion and future research directions are presented in Section VI.
+II. RELATED WORK
+Research in insider threat detection and mitigation has attracted more and more attention from organizations and cybersecurity ﬁrms recently. Guides to detect and common practices to combat insider threats in organizations were released by the CERT Insider Threat Center and U.S. National Cybersecurity and Communications Integration Center [5], [8]. In [5], Collins et al. described case studies of misbehavior and 20 practices for organizations to prevent insider threats. Recent surveys by Homoliak et al. [1] and Liu et al. [9] address the deﬁnition, taxonomy and categorization of insider threats, and provide an overview of the countermeasures.
+Following the successes in ML applications for intrusion detection and anomaly detection tasks [7], [10], ML techniques have been applied in insider threat detection, based on their ability to learn from large amount of data to detect anomalous/malicious behaviors of insiders. Most of the proposed approaches are based on anomaly detection. Some notable directions in anomaly detection for insider threat are graphbased approach [11], [12], Hidden Markov Model [13], [14], oneclass-SVM [15], and deep learning-based autoencoders and recurrent networks [16]–[18]. In [19], an approach employing anomaly detectors on combined information from multiple domains of user activities is proposed by Eldardiry et al. The approach aims to detect blend-in anomalies and unusual change anomalies. In [11] and [12], different varieties of graph-based anomaly detection are employed for insider threat detection, where user and system data are represented in graph formats based on their interactions and connections. In several works, different anomaly detection models are built for each employee/user in an organization in order to detect changes in the user behaviors [13], [16], [20]. Rashid et al. used Hidden Markov Models to model users’ weekly activity sequences and detect possible insider threats based on noticeable changes (low probabilities) in weekly user activity sequences [13]. In [21], a framework for modeling the insider threat problem based on behavioral and psychological observations is proposed that allows analyst to reason on user data and construct hypothesis trees to describe potential insider threats. Furthermore, to improve detection performance in intrusion detection applications, mixture of models and ensemble approaches have been used to improve detection results [22], [23].
+Other ML concepts have been introduced to deal with different aspects of the insider threat detection problem, such as non-stationary environment and imbalanced data. Stream online learning are employed in [12] and [16] for learning under non-stationary conditions of user behaviors, and to provide continuous learning and predicting on data arrival. With
+
+the recent trend in deep learning applications, many deep learning based approaches to insider threat detection have been proposed as well [16]–[18], [24]. Evolutionary computation [25], [26] and supervised learning techniques [27]–[29] are some other examples.
+Another closely related problem to insider threat detection is lateral movement detection, in which many malicious actions are also performed using insider accounts. Lateral movement is used as a technique in advanced persistent threat by threat actors to gain access to their intended targets, moving through compromised accounts and systems of the victim organization. Recently proposed machine learning approaches for lateral movement detection are graph analysis [11], [30], recurrent neural networks [24], and other supervised learning techniques [31].
+Some works in the literature report the importance of temporal information in dealing with insider threat, which is highly related to the human factors [13], [16], [17], [20], [22]. Notable attempts to leverage temporal information include a moving average approach [16], [20], graph embedding [11], or employing ML models with temporal learning capabilities [13], [16]. This work instead explore the representation of temporal information in data for anomaly detection training. With dynamics and user behavior changes in mind, we keep the focus on detecting the changes in each user’s most recent activities instead of the whole/averaging over the time range of data. Furthermore, this work constructs a single anomaly detection model for a given training dataset under reasonable training time (Section III-C). This shows advantages over other approaches that build one/many models per user [13], [16], [20] and employ not as scalable learning algorithms [15]–[17]. In our previous work [32], a preliminary version of the proposed anomaly detection was presented. In this work, we aim to present a comprehensive anomaly detection system for insider threat with expanded scopes and directions: (i) different anomaly detection methods are employed to provide insights under other unsupervised learning paradigms, such as online learning; (ii) different ensembles for combining anomaly detection models are investigated; (iii) different temporal data representation methods and new datasets for system evaluations are explored; and (iv) extended learning conditions and further analysis/comparison of system performance are presented.
+III. ANOMALY DETECTION SYSTEM FOR INSIDER THREAT
+Fig. 1 shows an overview of the proposed insider threat detection system. From raw collected log data of user activities, the data is pre-processed to extract numerical features by day or week, with different temporal representations. The pre-processing and feature extraction processes are detailed in Section III-A. The extracted data are then used to train anomaly detection models using unsupervised learning. The employed ML methods are described in Section III-C. Post training, anomaly scores are assigned by the detection model. Based on a selected investigation budget, a decision threshold can be calculated so that data samples with high anomaly scores (i.e., exceeding a threshold)
+
+Authorized licensed use limited to: Nanjing Univ of Post & Telecommunications. Downloaded on September 07,2022 at 07:23:51 UTC from IEEE Xplore. Restrictions apply.
+
+1154
+
+IEEE TRANSACTIONS ON NETWORK AND SERVICE MANAGEMENT, VOL. 18, NO. 2, JUNE 2021
+
+Fig. 1. Components of the proposed anomaly detection system.
+
+inspect anomaly alerts in the unsupervised anomaly detection setting, where false alerts are unavoidable [7].
+Numerical features are then extracted for each day or week of a user’s activities. Two main types of features from the data are extracted: (i) Frequency features, i.e., numbers of different user actions over a day/week, e.g., number of external e-mails received, number of ﬁle access after work hours, and (ii) Statistical features, i.e., the mean and the standard deviation of changing statistics, e.g., e-mail size, ﬁle size. When possible, user information, such as user’s role and user-user relationship, is employed in the extraction process to provide context for ML algorithms. Further details of the process to extract numerical features with different information depicting PC, action’s time, or e-mail/HTTP categories from log ﬁles can be found in [35].
+
+Fig. 2. Demonstration of anomaly detection and threshold.
+are ﬂagged for further investigation of possible malicious actions.
+Using anomaly detection based on unsupervised learning, the assumption is that malicious behaviors are often rare and deviated from normal user behaviors, which constitute the vast majority of the collected data [7], [33]. Thus, although no label information is used, a trained anomaly detection model may capture the normal data and reveal anomalous behaviors as outliers. Outliers identiﬁed by the anomaly detection model are deﬁned by a threshold of anomaly scores, as demonstrated in Fig. 2. In this work, different thresholds are examined through changing the investigation budget (IB), which is the amount (%) of data that the security analyst can examine for conﬁrmation of malicious behaviors [7], [34]. This represents the available human resources for analyzing the highest ranked data instances, post-training of the detection system, and performing the necessary actions in response.
+A. Data Pre-Processing With Temporal Information
+Assuming common monitoring data in organizations, such as Web access, e-mail and ﬁle access logs, the data preprocessing step is performed based on aggregated user activity data, e.g., daily or weekly. These time periods for data aggregation are selected to summarize a complete view of users’ activities over a day or a week into a data instance [35]. Daily or weekly data may be selected in deployment depending on each organization’s human resources for inspecting anomaly alerts and requirements for timely detection. More ﬁne-grained data, e.g., session of user activities, could be extracted as well [35]. However, that may not be beneﬁcial in terms of utilizing human resources, as extracting ﬁne-grained data increases the data count, and thus raises the workload to
+
+B. Temporal Information in Data Representation
+Exploiting the fact that insiders are essentially regular employees before they start performing malicious actions [5], we propose data representation approaches using temporal information. The goal is to highlight the trends/changes in the user behavior over time. This may potentially reveal the transitions in behaviors of malicious insiders. The approach performs concatenating or comparing a data point to a time window of the most recent data of the same user.
+Using a window of time, the approach compares a user’s activities to only his/her most recent and relevant behaviors. As concept shift and drift are likely in user behaviors [36], this may be more effective than normalizing all data instances of each user from the beginning. Furthermore, by processing each data instance via time window, our approach is ready to apply anytime a new data instance appears, which is critical in online stream learning. Additionally, we note that in contrast to extracting time series data from a time window, where all data points in the window contributes similarly to the output, in our work, the focus is in using the time window to deﬁne a baseline comparison for each new data instance (see Section V-D).
+1) Concatenation: Inspired by the use of shift register and taps for representing time in data for intrusion detection [37], we introduce data examples to anomaly detection algorithms as concatenation of γ consecutive data instances of the same user (abbreviated as Cγ). The idea is to encourage the learning algorithms to construct comparisons/arithmetic operations between each user data instance and its previous records. In this data representation form, a data instance xt at time t is adjoined with γ − 1 most recent instances to form a data point for anomaly detection:
+xtconcatenation = concat(xt , xt−1, xt−2, . . . , xt−γ+1) (1)
+Essentially, this creates a data instance with c times the number of features originally extracted.
+2) Comparing to a Time Window – Percentile and Mean/Median Difference Representations: In order to explicitly include temporal information and reﬂect changes in user activities, we propose to represent data for anomaly detection via a function comparing each data instance xt with a time window w leading to t. The procedure is summarized in Algorithm 1.
+
+Authorized licensed use limited to: Nanjing Univ of Post & Telecommunications. Downloaded on September 07,2022 at 07:23:51 UTC from IEEE Xplore. Restrictions apply.
+
+LE AND ZINCIR-HEYWOOD: ANOMALY DETECTION FOR INSIDER THREATS USING UNSUPERVISED ENSEMBLES
+
+1155
+
+Algorithm 1: Calculating Percentile and Mean/Median
+
+Difference Representation of Data
+
+Input : Output:
+
+xxttouotfpuutser
+
+u,
+
+window
+
+size
+
+w
+
+construct a n × |F | matrix X of xt−1, xt−2, . . . , xt−n of
+
+the same user u, based on w ;
+
+// F: features
+
+xtoutput = [ ];
+
+for feature f in F do
+
+if Percentile then
+
+f = ﬁndPercentile(xt [f ], X [:, f ]);
+
+else if Mean difference then
+
+f = xt [f ] − E (X [:, f ]);
+
+else if Median difference then
+
+f = xt [f ] − median(X [:, f ]); xtoutput.append(f );
+
+Fig. 3. An example of an autoencoder.
+Each arriving data instance is compared with previous data instances of the same user in the most recent time window w to create percentile or mean/median difference representation. In this work, we set the window size w to 7 days, 30 days, or 60 days (Section IV-A). This setting allows contrasting each day (week) of user’s activity against the same user’s activities in the full week (month) leading to it, where both weekdays and weekends are taken into account to provide sufﬁcient information for comparison.
+C. Unsupervised Machine Learning for Anomaly Detection
+This work employs four popular ML methods for anomaly detection with different underlying concepts: Autoencoder (AE), Isolation Forest (IF), Lightweight On-Line Anomaly Detection (LODA), and Local Outlier Factor (LOF).
+1) Autoencoder (AE): AE is a form of multi-layer neural network that compresses and reconstructs the data. Fig. 3 depicts an example of an AE with three hidden layers. The input and output layers both have d neurons (d: the number of dimensions). Each data dimension j in the input x is reconstructed into a corresponding dimension of r at the output layer by AE. By enforcing a “bottleneck” architecture through hidden layers (middle hidden layer size:h, h d ), AE compresses (encodes) the input data into h dimensions and reconstructs it at the output layer. AE is trained through minimizing the aggregated reconstruction error as
+
+the cost function:
+
+N
+
+d
+
+E=
+
+xij − rij 2,
+
+(2)
+
+i j =1
+
+Post training, the lossy compression produced by AE essen-
+
+tially captures the lower-dimensionality representation of the
+
+majority of training data at the middle hidden layer. Assuming
+
+that normal user data constitute the majority of the training
+
+data, it is expected that AE shows a higher reconstruction error
+
+for anomalies [38], which may represent malicious insider
+
+behaviors. Thus, for each data instance x, the AE anomaly
+
+score is deﬁned as the Euclidean distance between x and
+
+r: ei =
+
+dj =1(xij − rij )2. To construct AE models in
+
+this work, the hidden layers and the output layer take the
+
+form of rectiﬁed linear [39] and sigmoid activation functions,
+
+respectively.
+
+2) Isolation Forest (IF): Based on the principle that
+
+anomaly examples are rare and signiﬁcantly different in
+
+attribute-values from normal data points, IF [40] is designed
+
+as an ensemble of “isolation trees”, whereas the anomalies –
+
+being easier to isolate – are assumed to be closer to the roots
+
+of the trees than normal instances. This is different from other
+
+anomaly detection methods, which build models of (mostly)
+
+normal data, and identify anomalies as any instances that do
+
+not conform to the model.
+
+Each tree in IF works on a subset of training data and fea-
+
+ture set. Binary splits are generated in each node of a tree
+
+by a randomly selected feature and split value. The process is
+
+recursively repeated until each instance is isolated in a leave.
+
+Having trained all isolation trees, the anomaly score of a data
+
+instance – h(x ) = E (hi (x )) – is calculated as the average path length from root nodes to the corresponding leaves of
+
+the instance in the trees (hi (x )). Based on different principles from other outlier detection
+
+methods (such as AE), IF has been shown to possess some
+
+desired capabilities: To be able to deal with high dimensional
+
+data with irrelevant attributes, and to be trained with or without
+
+anomalies included the training set [40]. These characteristics
+
+are evaluated in Section IV-C.
+
+3) LODA – Lightweight on-Line Detector of Anomalies:
+
+LODA [41] is an ensemble method combining weak histogram
+
+based anomaly detectors into a strong detector. Similar to IF,
+
+each histogram anomaly detector in LODA works on a subset
+
+of input features in order to promote diversity. This is achieved through the use of sparse random projectio√ns {wi ∈ Rd }ki=1, where k one-dimensional vectors, each has d non-zero com-
+
+ponents, are created to approximate the probability density
+
+of input data. Individual histograms are then calculated for
+
+each of k vectors. Each histogram shows an approximation of
+
+the original data distribution, which may reveal some aspects
+
+of outliers that come from different distribution than normal
+
+data. Furthermore, in online LODA training, each histogram
+
+is updated by a training sample by projecting the sample onto
+
+a vector and then the corresponding histogram bin is updated.
+
+To produce anomaly score for a data sample, LODA uses
+
+the average of the logarithm of probabilities estimated on
+
+Authorized licensed use limited to: Nanjing Univ of Post & Telecommunications. Downloaded on September 07,2022 at 07:23:51 UTC from IEEE Xplore. Restrictions apply.
+
+1156
+
+IEEE TRANSACTIONS ON NETWORK AND SERVICE MANAGEMENT, VOL. 18, NO. 2, JUNE 2021
+
+individual projection vectors:
+
+f (x ) = − 1 k
+
+k
+
+log pˆi (x T wi ),
+
+(3)
+
+i =1
+
+LODA was shown to achieve comparable detection
+
+performance to more complicated algorithms, while signiﬁ-
+
+cantly reduce time and storage complexity [41]. Furthermore,
+
+it is also able to operate and update itself in real-time online
+
+environment and on data with missing variables. In cyber-
+
+security, LODA’s ability in identifying features of an outlier
+
+sample that deviates from the majority provides an useful tool
+
+to explain the causes of anomalous events detected.
+
+4) Local Outlier Factor (LOF): LOF [42] is a popular
+
+anomaly detection algorithm, which proposes the concept of
+
+local density to identify anomalous data points. The local den-
+
+sity measures how isolated a data sample is with respect to
+
+the surrounding neighborhood. By comparing the local den-
+
+sity of a data sample to that of its neighbors, LOF can identify
+
+data points that have a substantially lower density than their
+
+neighbors, which are considered to be outliers.
+
+Considering k nearest neighbors to each data point, a kdistance(x) is deﬁned as the distance of point x to its k th
+
+neighbor, and Nk (x ) is the set of x’s nearest neighbors. A reachability distance between two data points x and y is deﬁned
+
+as reach-distk (x , y) = max{k - distance(y), dist(x , y)}. The local reachability density of a data point x is then deﬁned as
+
+the inverse of the average reachability distance based on Nk (x )
+
+neighbors of x: rlrdk (x ) = 1/
+
+y∈Nk (x ) rreach-distk (x ,y) |Nk (x )|
+
+.
+
+Finally, LOF assigns anomaly score (i.e., outlier factor) of
+
+a data point x as average local reachability density of x’s
+
+neighbors divided by rlrdk (x ):
+
+LOFk (x ) =
+
+y∈Nk (x ) rlrdk (y) |Nk (x )| · rlrdk (x )
+
+,
+
+(4)
+
+A value signiﬁcantly larger than 1 indicate outliers, where the
+
+considered point has much lower local reachability than its
+
+neighbors. Despite clear disadvantage in runtime, LOF has
+
+the capability to identify local outliers that could be skipped
+
+by other methods [42]. The algorithm also has been shown to
+
+perform well in cybersecurity domains [43].
+
+D. Combination of Anomaly Detection Scores
+Ensemble methods have been shown to reduce variance and bias of anomaly detection models in several applications [38]. In this section, we present methods to combine results from four aforementioned algorithms to create anomaly detection ensembles, in order to test their ability in insider threat detection. Employing four anomaly detection methods with different working principles, we expect to see differences in their detection results, especially under different conditions or scenarios. This creates potentials for improvements by combining the individual models. Speciﬁcally, we investigate combining schemes to create aggregated anomaly scores based on the average/maximum of individual anomaly scores, or based on majority votes of individual algorithms:
+• Averaging (AVG): Anomaly scores of individual models are normalized by rank, i.e., percentile transformation.
+
+The combined score of a single data point is then computed as the average (mean) over the different scores of the point. • Maximum (MAX): This approach assigns the combined anomaly score to a data point as the maximum of normalized (by rank) scores reported by individual models on the point. In essence, this combining scheme reports the highest anomaly signal (alarm) generated for a data sample by any of the participating models. • Voting (VOTEν ): In this scheme, majority vote is used to select outlier data points at each investigation budget. The parameter ν ∈ {2, 3, 4} dictates how many votes required in order to ﬂag a data sample as anomalous.
+IV. EXPERIMENTS AND RESULTS
+In this section, we present the datasets and experiments using the proposed approach for insider threat detection. Speciﬁcally, Section IV-A summarizes the datasets and data pre-processing techniques with temporal representations. Experiment settings and results are presented in Sections IV-B and IV-C–IV-E, respectively.
+A. Datasets
+The CERT insider threat datasets are publicly available for development and testing of insider threat mitigation approaches [44], [45]. In this paper, we employ releases 4.2 (CERT R4.2) and 6.2 (CERT R6.2). CERT R4.2 simulates a company with 1000 employees, where 70 are malicious insiders under three threat scenarios. This enables us to perform more ﬂexible experiments in anomaly detection and provide better understanding of the models’ behaviors. On the other hand, R6.2 is the newest CERT dataset. It depicts a much larger company with 4000 employees, containing only ﬁve malicious insiders (ﬁve threat scenarios, with only a single malicious user per scenario). This makes the detection task in CERT R6.2 much more challenging and realistic.
+The CERT datasets consist of user activity logs (log on/off, e-mail, Web, ﬁle and thumb drive connect), company structure and user information. Following the process detailed in Section III-A, daily and weekly numerical features (i.e., original data representations) are extracted from the log ﬁles. Then, different temporal representations of the data are created as presented in Section III-B (Table II). Speciﬁcally, for concatenation representation, γ = 2 or γ = 3 most recent data instances of each user are joined. In percentile and mean/median difference representations, the window size value w is set to 7 days and 30 days for day data, and 30 days and 60 days for week data (4 weeks and 8 weeks). In the experiments, original data representation (Org) is also included as a baseline. Finally, we note that each malicious insider in the CERT data belongs to one of ﬁve popular insider threat scenarios: Data exﬁltration (scenario 1), intellectual property theft (scenarios 2, 4, 5) and IT sabotage (scenario 3). Details of the threat scenarios can be found in [44].
+Additionally, LANL dataset [46] and TWOS dataset [47] are also used for evaluation in this work. LANL consists of
+
+Authorized licensed use limited to: Nanjing Univ of Post & Telecommunications. Downloaded on September 07,2022 at 07:23:51 UTC from IEEE Xplore. Restrictions apply.
+
+LE AND ZINCIR-HEYWOOD: ANOMALY DETECTION FOR INSIDER THREATS USING UNSUPERVISED ENSEMBLES
+
+1157
+
+TABLE I SUMMARY OF THE DATASETS. SC: INSIDER THREAT SCENARIO.
+MALICIOUS USER COUNTS ARE IN PARENTHESES
+TABLE II TEMPORAL REPRESENTATION ABBREVIATIONS FOR EACH DATASET
+log ﬁles collected over 58 consecutive days. The logs contain anonymized real users’ process, network ﬂow, DNS, and authentication information. Furthermore, redteam (attacking) authentications is provided for the dataset, but without any additional information. In this paper, we employ only authentication and process logs of the LANL dataset. These events are collected from Windows-based desktops, servers, and active directory servers. Due to limitations of the dataset, 30 days of the logs are extracted to user-day numerical data. Temporal representations with window size of 7 days are then applied to LANL data. Similarly, TWOS dataset provides anonymized authentication, mouse, keystroke, e-mail, and network captures from a student competition with the aim of emulating insider threats, by both masqueraders and traitors. The competition comprises of 24 participants in six teams over ﬁve days, which includes 12 instances of masquerading and one instance of traitor. With provided timestamps, we can only extract features from authentication, mouse, and keystroke activities. Due to the dataset’s limited duration and size, data instances of 30 minutes of activities are extracted with temporal representations based on time window of one day.
+Table I shows the statistics of the employed data in each type and the number of normal and malicious users. Table II describes the abbreviations used for temporal representations for each dataset in this paper.
+B. Experiment Settings In training the anomaly detection algorithms, we randomly
+select a number of users nu whose data in the ﬁrst nw weeks is included in the training process. Essentially nu and nw control the amount of data for training the models to represent computation and real-world limitations: Only a limited amount of data collected before the time of training can be used. In the following experiments, unless speciﬁed otherwise, we use training data of randomly selected nu = 200 users (2000 for LANL data) in the ﬁrst 50% of dataset duration (nw = 37 for CERT and 2 for LANL). In the case of TWOS dataset, nu = 24 and nw = 1, due to the dataset’s limitations. Since
+
+the training process is label free (unsupervised), test results are reported on the entire dataset. The experiments are repeated 10 times in each setting, and the averaged results are reported.
+The experiments are performed on compute nodes with Intel Xeon E5-2683v4 CPU and 125GB of RAM. We implemented the data pre-processing and analysis steps using Python 3. AEs are implemented using Tensorﬂow [48]. In this paper, each AE has three hidden layers, where the size of the ﬁrst and the third hidden layers are set to input_dimension/4, and the middle hidden layer’s size is set to input_dimension/8. AEs are trained using Adam optimization [49] for 100 epoch each. Implementations from Scikit-learn [50] and PyOD [51] is used for IF, LODA, and LOF. For IF, the number of trees is set to 200, and 256 is used for m√ax sample size. LODA is built with 400 histograms and 1/ d sparsity, while LOF’s number of neighbors is set to 20. These parameter values are chosen empirically.
+1) Performance Metrics: In this work, the insider threat detection performance is measured using ROC and AUC metrics. ROC (Receiving Characteristic Curve) depicts the relationship between Detection rate (DR) and False Positive Rate (FPR) under different decision thresholds (i.e., different investigation budgets), and AUC (Area Under the Curve) summarizes ROC in a single numerical metric for comparison between models.
+
+TruePositive
+
+DR = TruePositive + FalseNegative
+
+(5)
+
+We also present DRs at critical IBs (see Section III) for
+
+better understanding of the performance at very low IBs.
+
+Furthermore, user-based results are presented in this section
+
+in terms of alarms that are raised per user through aggre-
+
+gation of raw (instance-based) anomalous alerts [35], [52].
+
+Speciﬁcally, a normal insider (user) is misclassiﬁed if at least
+
+one of his/her data instances is classiﬁed as “malicious”. On
+
+the other hand, a malicious insider is identiﬁed if at least
+
+one of his/her malicious data instances is labelled as “mali-
+
+cious” by the detection system. Consequently, we have two
+
+sets of performance metrics: Instance-based (DR, FPR, AUC)
+
+and User-based (UDR, UFPR, UAUC).
+
+To compare between multiple algorithms or data represen-
+
+tations on multiple datasets, we perform Friedman test, which
+
+is a non-parametric statistical test. The null hypothesis of
+
+Friedman test is that there is no signiﬁcant differences between
+
+the variables. It is rejected when test statistic exceeds the crit-
+
+ical value of the signiﬁcance level (p = 0.05). Using average
+
+rank of a method on all datasets (Rj ), the Friedman statistic
+
+is
+
+calculated
+
+as:
+
+χ2F
+
+=
+
+k
+
+12N (k +1)
+
+[
+
+k 1
+
+Rj2
+
+−
+
+k
+
+(k
+
++1)2 4
+
+],
+
+where
+
+N
+
+is the number of data points, and k is the number of meth-
+
+ods. The statistic is distributed according to χ2F with k − 1
+
+degrees of freedom [53]. If the null hypothesis is rejected,
+
+a post-hoc test (Bonferroni-Dunn) is carried out to compare
+
+the algorithms by pairs, i.e., the corresponding average ranks
+
+differ by at least the critical difference. The critical differ-
+
+ence (CD) of the post-hoc test can be calculated based on
+
+k and N [53].
+
+Authorized licensed use limited to: Nanjing Univ of Post & Telecommunications. Downloaded on September 07,2022 at 07:23:51 UTC from IEEE Xplore. Restrictions apply.
+
+1158
+
+IEEE TRANSACTIONS ON NETWORK AND SERVICE MANAGEMENT, VOL. 18, NO. 2, JUNE 2021
+TABLE III INSTANCE-BASED ANOMALY DETECTION RESULTS WITH DIFFERENT INVESTIGATION BUDGETS
+ON CERT DATASETS. THE UNIT OF DR IS PERCENT (%)
+
+TABLE IV INSTANCE-BASED ANOMALY DETECTION RESULTS WITH DIFFERENT
+INVESTIGATION BUDGETS ON LANL AND TWOS DATASETS. THE UNIT OF DR IS PERCENT (%)
+
+Fig. 5. ROCs of LOF on R6.2 day data with different representations.
+
+Fig. 4. ROCs of AE on R4.2 week data with different representations.
+C. Detection Results Instance-based anomaly detection results with different IBs
+are presented in Tables III and IV. Figures 4 and 5 show instance-based and user-based ROCs on R4.2 week data and R6.2 day data with different temporal data representations. Overall, the results achieved using autoencoder and percentile representation are very promising, given that the results are obtained under unsupervised setting with very limited training data (a small set of only 200 unidentiﬁed users in 37
+
+weeks, for CERT data). On CERT R4.2, the approach was able to detect 77% of the malicious users by investigating only 1% of the most anomalous instances (1% IB). Also, at only 5% IB, nearly 100% of 70 malicious insiders are detected. Figures 4 and 5 also show the differences in reporting results based on data instances and users, where the AUC achieved on user-based results could be higher and the differences between temporal data representations are more pronounced.
+We note that normal data dominates the distribution in all employed datasets (Table I). Thus, the FPR (normal data wrongly ﬂagged) obtained under each IB is very similar to the IB, e.g., at 1% IB, FPRs ranges from 0.96% to 0.99% on CERT R4.2 week data. Furthermore, as IB represents different human resource levels for investigating anomaly detection output, i.e., different amounts of data ﬂagged, a suitable IB can be selected based on deployment conditions. For example, on CERT R4.2 day data (Table I), 1%/5%/10% IBs are equivalent to 3300/16500/33000 alerts, or approximately 7/33/66 alerts per day over the dataset’s duration.
+1) Results by Learning Algorithms: Figure 6 shows a comparison of the algorithms by ROC. Performing Friedman
+
+Authorized licensed use limited to: Nanjing Univ of Post & Telecommunications. Downloaded on September 07,2022 at 07:23:51 UTC from IEEE Xplore. Restrictions apply.
+
+LE AND ZINCIR-HEYWOOD: ANOMALY DETECTION FOR INSIDER THREATS USING UNSUPERVISED ENSEMBLES
+
+1159
+
+Fig. 9. Critical Difference (CD) diagrams of results by data representations. Fig. 6. User-based ROC by learning algorithms on original R6.2 day data.
+
+Fig. 7. Critical Difference (CD) diagrams of algorithms’ results by instance and by user. Average rank of each algorithm is shown on the scale. Two linked entries (connected by a horizontal black bar) are not signiﬁcantly different, i.e., rank difference is less than CD.
+
+Fig. 8. Average training time and prediction time per data instance of the algorithms on different data. Out of chart values are noted in red.
+
+test on both user-based and instance-based anomaly detec-
+
+tion performance of the algorithms, the null hypotheses are
+
+easily 40.28,
+
+rejected p =9×
+
+1(χ0−2F9),=wh3i8c.h78m, pean=s
+
+2× there
+
+10−8 and χ2F are signiﬁcant
+
+= dif-
+
+ferences between the algorithms. Figure 7 presents the critical
+
+difference diagram obtained using post-hoc test, where average
+
+ranking of each algorithm and whether they are signiﬁcantly
+
+different are shown. Additionally, training and prediction times
+
+per data instance of each algorithm are presented in Figure 8.
+
+Overall, it is shown that AE achieves the best performance
+
+in detecting anomalies representing insider threats, especially
+
+at very low FPRs. For example, at only 0.1% IB, AE is able
+
+to detect 60% of the malicious insiders from R6.2 week data
+
+with P30 representation, while IF requires 8% IB to reach a similar UDR in the same setting.
+
+LOF shows interesting results, where it performs well when
+
+data counts are lower (R4.2 and R6.2 week) and only on
+
+percentile representations. We believe that its ability to out-
+
+perform in some cases is due to the “local” characteristics
+
+of its detected outliers, which may be missed by other algo-
+
+rithms (Section III-C4). However, LOF suffers from very long
+
+training and prediction time. On the remaining two algo-
+
+rithms, LODA achieves very similar results to IF (Table III
+
+and Figure 7), and at very low time complexity. This makes
+
+it suitable to time critical on-line detection tasks.
+
+Experiments in Section IV-D provide further insights into
+
+the detection performance of the algorithms. We note that
+
+the datasets characteristics (predominantly normal behaviors
+
+– Table I), and experiment settings (Section IV-B) could be
+
+partly the reason to AE’s outstanding performance in this sec-
+
+tion. On the other hand, Section IV-B shows that LODA and
+
+IF can be more robust to changes in deployment conditions.
+
+2) Results by Data Representations: On data representa-
+
+tions, Table III and Figure 4 show that percentile (Pw ) is
+
+the best representation of data for anomaly detection. This
+
+is conﬁrmed by Friedman 21.46, p = 0.0003 and χ2F
+
+test (hypotheses rejected, χ2F = = 12.48, p = 0.01), and post-hoc
+
+tests, as shown in CD diagrams in Figure 9. Percentile repre-
+
+sentation allows the algorithms to achieve signiﬁcantly better
+
+results than on the original data. Concatenation shows slight
+
+improvements in some cases, while mean/median differences
+
+are unable to surpass the original data. In some cases, such
+
+as R4.2 day data, mean/median difference even deteriorates
+
+the AUC.
+
+The observations suggest that percentile representation,
+
+although encoding the data change by omitting the absolute
+
+values, successfully captures the change in user behaviors
+
+while avoiding noises in the data. At the same time, main-
+
+taining the absolute values of changes as in mean and median
+
+difference representation seems to create noise and decreases
+
+the detection performance (Figure 4). Finally, on concatenated
+
+representation, the results show that it is hard to facilitate
+
+meaningful automatic comparisons between data related to
+
+different points in time.
+
+D. Results on Different Conditions for Training Anomaly Detection Algorithms
+In the following, we assume P30 data representation and analyze ML algorithms on CERT R4.2 data types under different sizes of training data and conditions.
+1) Anomaly Detection Performance Under Training Data Poisoning Conditions: In this experiment, instead of using data from 200 randomly selected users, we deliberately introduce malicious users’ data during training. The number of malicious users included varies from 0 (pure normal training data) to all 70 malicious users of CERT R4.2 (35% of training users are malicious). In an extreme case, we use only data of the 70 malicious insiders for training the algorithms. This is to analyze how the anomaly methods respond to data poisoning, where malicious data is presented at high density in training data, which may corrupt the ML models into mislabelling malicious as normal [54], [55].
+Figure 10 shows the user-based AUC by the algorithms on R4.2 data under different number of malicious users in training. Overall, it is clear that ensemble-based algorithms, IF and
+
+Authorized licensed use limited to: Nanjing Univ of Post & Telecommunications. Downloaded on September 07,2022 at 07:23:51 UTC from IEEE Xplore. Restrictions apply.
+
+1160
+
+IEEE TRANSACTIONS ON NETWORK AND SERVICE MANAGEMENT, VOL. 18, NO. 2, JUNE 2021
+
+Fig. 10. UAUC by number of malicious users in R4.2 training data.
+
+Fig. 12. UAUC by number of weeks in R4.2 training data.
+
+Fig. 11. UAUC by number of users in R4.2 training data.
+LODA, are very robust to the data poisoning attack. Using IF, AUC even increases slightly with the presence of malicious data in training. This can be explained through its properties, where small amount of contamination in training data allows trained IF trees to better model the anomalies that may appear in the data [40].
+On the other hand, performance of AE and LOF deteriorates as the amount of malicious users in training increases. It seems that with high malicious data presence in training set, AE may incorporate some malicious actions as normal in its trained model through the encoding-decoding process. Thus, it is unable to detect those types of behaviors in testing. Similarly, in the case of LOF, high amount of poisoning data injected into training may increase the local density of malicious data points, which may trick LOF to assign lower anomaly scores to those points.
+Nevertheless, AE was able to maintain a better performance than other algorithms, up to 30 malicious users in training data (15%). We note that in practice, the amount of malicious users in training data for insider threat detection approaches is typically very small [6], hence the use of AE is still preferred. Moreover, LODA shows great balance between detection performance and robustness, making it a prime candidate in severe poisoning condition.
+2) Effects of the Number of Users in Training Data: Without having to collect groundtruth for training data, the unsupervised learning approach permits the use of as many users in training data as possible, at the cost of a higher computational cost. In this experiment, we vary the number of (randomly selected) users to include in training data from 50 to 1000 (maximum amount) users in CERT R4.2. User-based AUCs are presented in Figure 11. Results show that except LOF, in most cases, the performance is largely unchanged. However, results varies more (i.e., unstable), when less data (less number of users) are used in training. LODA and AE’s UAUC increase slightly to 200 users in training data, but AE’s performance decreases slowly as the number of users increase in training.
+
+Behaviors of AE and LOF can be explained through results in Section IV-D1, where a larger number of training users creates a higher chance of malicious users to be included in training data, hence lowering their effectiveness. This shows that maintaining a relatively small number of users (200) in training data not only reduces the computational cost but also potentially gives more robust results.
+3) Effects of Training Data Duration: Similar to the number of users in training data, the number of weeks can be adjusted, too. This experiment varies the parameter from 7 (10% of data time range) to 74 (100%). This setting also simulates online learning conditions, where the algorithms are retrained/enhanced with the arrival of new data. Figure 12 shows user-based AUCs on CERT R4.2 data types. As in the previous experiments, IF’s performance is maintained through different number of weeks used in training data. On the other hand, detection performance of AE and LODA rises until about 50% of the data duration is used in training (37 weeks), then remains largely unchanged. LOF shows similar improvements in the ﬁrst half of data duration, but quickly deteriorates after that. In fact, more malicious insider activities appear in the second half of CERT data than in the ﬁrst half [44]. Hence, it can be concluded that for AE and LOF, more training data may help to improve results, but only to a point where the improvements are negated by the introduction of malicious samples in training data (Section IV-D1). This experiment shows the advantage of online learning methods, such as LODA, where results can be progressively improved over time with more training data.
+
+E. Ensembles of Anomaly Detection Models
+
+As shown in previous sections, four anomaly detection algo-
+
+rithms show various effectiveness on the datasets, especially
+
+under different training conditions. This section presents the
+
+results by the ensemble schemes described in Section III-D.
+
+Combining the anomaly scores to create ensembles, the best
+
+results (measured by AUC) by individual unsupervised ML algorithms are maintained in almost all cases, by VOTEν
+
+and AVG. In some cases, ensembles increase the detection performance. For example, VOTE3 achieves AUCs of 0.909
+
+and 0.907 on CERT R4.2 day and week data, respectively,
+
+which improves over the individual components (Table III).
+
+Performing Friedman test, hypotheses rejected on both AUC
+
+and UAUC comparisons between the learning algorithms and
+
+ensemble 120, p =
+
+2s×ch1em0−e2s2()χ. F2Fig=ure11438,spho=ws4c×riti1c0al−d28iffaenredncχe2Fdi=a-
+
+grams for the post-hoc tests on instance-based and user-based
+
+Authorized licensed use limited to: Nanjing Univ of Post & Telecommunications. Downloaded on September 07,2022 at 07:23:51 UTC from IEEE Xplore. Restrictions apply.
+
+LE AND ZINCIR-HEYWOOD: ANOMALY DETECTION FOR INSIDER THREATS USING UNSUPERVISED ENSEMBLES
+
+1161
+
+malicious behaviors. Results on each insider threat scenario and comparisons with other works in the literature are also presented.
+
+Fig. 13. Critical Difference diagrams of results by learning algorithms and ensembles.
+Fig. 14. UAUC of learning algorithms and ensembles under different training conditions on CERT R4.2 day data.
+results. On the other hand, as shown in the ﬁgure, there are no signiﬁcant differences detected between AVG, VOTE2,3, and AE, and these methods all signiﬁcantly outperform the remaining algorithms (VOTE4, MAX, IF, LODA, LOF).
+Furthermore, we explore the effects of ensemble schemes under different training conditions as in Section IV-D. Figure 14(b) shows results (in UAUC) of ML algorithms and ensembles on CERT R4.2 day data under different training conditions. It is apparent that voting schemes, especially VOTE2, achieve the best or near best detection performance in almost all cases. Moreover, with more training data [Figure 14(b)], VOTE2 is able to outperform all other algorithms. On the other hand, while AVG shows similar results to voting-based ensembles, Figure 14(b) shows that combination by averaging is not favoured under adverse learning conditions.
+On time requirement consideration, it is noteworthy that while the computation cost (and hence time) of combining scores by the individual algorithms is insigniﬁcant, in order to create an ensemble, all components need to be trained. Hence, the ensembles are restricted by the slowest algorithm (e.g., LOF) in both training and predicting. In the particular cases of the datasets employed in this work, the time required to train and evaluate detection models is reasonable (Fig. 8), hence permitting their use in the current form. In other realworld applications, lightweight components can be selected to create ensembles to avoid time and computation cost burdens.
+V. DISCUSSIONS AND COMPARISONS In this part, CERT R6.2 is employed for testing purposes, as it represents more malicious insider threat cases and better mimics real-world conditions (only 5 malicious insiders). We study anomaly detection results given by the proposed system under speciﬁc scenarios and show how security analysts may use these to further investigate and identify
+
+A. Case Study of Anomaly Alerts
+Using a unique id for each data instance used in anomaly detection process, the corresponding course of original user actions can be quickly examined, once an anomaly alert is raised. A true anomaly alert example on CERT R6.2 is associated with actions of user PLJ1771 – an IT administrator – on August 12, 2010. Using AE and P30 representation, the data instance was assigned an anomaly alert with 99.99% conﬁdence (i.e., the data instance has anomaly score higher than 99.99% of CERT R6.2 data). By studying the action sequence of the user on the day, his/her malicious behavior can quickly be conﬁrmed: The user visits several sites providing computer monitoring software, downloads a keylogger and puts it on a USB. Later in the day, they log onto PC-3999, which belongs to their supervisor – HIS1706, and start keylogging on the PC. This corresponds to the behaviors of a “disgruntled system administrator” in the CERT dataset [44].
+Another true anomaly alert is raised with 99.93% conﬁdence for activities of user CDE1846 on March 22, 2011, in which the user logged in after work hours to PC-5014, which belongs to another user. Then, he/she opens and e-mails multiple documents to his/her personal e-mail.
+On the other hand, several false alarms generated by the anomaly detection system are worth investigating as well. For example, false alarms are raised for user YNW2855 on September 24, 2010 and user RRH3057 on November 03, 2010 with conﬁdence of 99.90% and 99.99%. Investigating the original user activities on both days reveals multiple actions (ﬁle accesses, website visits) very late after work hours (around 10 PM). While these examples may not depict malicious intentions (as per dataset’s groundtruth), their anomalous nature needs to be inspected to ensure the safety of the system and data.
+These case studies show how a system administrator may leverage the anomaly detection system’s output to identify the true nature of alerts as well as perform appropriate response, with reference to the reorganized course of actions (by user, time) in log ﬁles. Furthermore, in manually investigating the original user’s activities corresponding to each alert, the analyst may have access to more restricted information that was not incorporated in the ML system’s training, such as e-mail content, to make informed decisions.
+B. Detection Performance on Insider Threat Scenarios
+As mentioned in Section IV-A, there are ﬁve malicious insiders in CERT R6.2, each depicts a unique threat scenario. This part examines the detection results on the scenarios.
+Table V presents the malicious insiders and detection results using AE and week data with P60 representation of CERT R6.2. Detection delays (at 10% IB), which is the time between the ﬁrst malicious action and when the malicious user is detected, are also presented in the table. As the table shows, scenarios 1, 3, and 4 can be detected very easily using the
+
+Authorized licensed use limited to: Nanjing Univ of Post & Telecommunications. Downloaded on September 07,2022 at 07:23:51 UTC from IEEE Xplore. Restrictions apply.
+
+1162
+
+IEEE TRANSACTIONS ON NETWORK AND SERVICE MANAGEMENT, VOL. 18, NO. 2, JUNE 2021
+
+TABLE V DETECTION PERFORMANCE ON SPECIFIC INSIDER THREAT
+SCENARIOS. DD: DETECTION DELAY
+Fig. 15. UAUC of models trained on CERT R4.2 and R6.2 data when tested on R6.2.
+proposed system with only 0% to 0.04% FPR (or 0.04 to 0.15% normal users ﬂagged wrongly). All malicious instances of those users are detected with less than half a percent (0.32%) FPR. Scenarios 1 and 3 can also be detected very quickly.
+On the other hand, threat scenarios 2 and 5 are much harder to detect, resulting in FPRs of 3.07% and 8.36%, respectively. At a UFPR of 26.46%, a system analyst will need to inspect more than 1000 users to identify the malicious user MBG3183. The descriptions of these scenarios show much less intrusive malicious behaviors than the other three scenarios [44]. For example, in scenario 5, “a member of a group decimated by layoffs uploads documents to Dropbox, planning to use them for personal gain”. This explains the lower detection performance on these two scenarios, as they are easy to be mistaken as normal activities.
+C. Robustness of the Trained Models For this analysis, we use an anomaly detection model trained
+on one CERT dataset (R4.2) to detect new anomalies on another one (R6.2). As CERT R6.2 is a newer version with changed generative models and a larger size [44], this experiment can be seen as applying anomaly detection model of a company for a different one. User-based AUCs on CERT R6.2 week data by AE models trained using the original and P30 data representations are shown in Figure 15. The ﬁgure shows that anomaly detection model trained using CERT R4.2 data with P30 representation can achieve very good AUC when tested on CERT R6.2 (UAUC = 0.908). The result is vastly improved over a model trained using R4.2 via the original data representation (UAUC = 0.511). This demonstrates the robustness of the proposed system when percentile data representation is used. The result suggests that modeling user data points in percentile representation brings in the temporal information of the user’s previous data instances and therefore allows the model to generalize better.
+
+D. Comparison Against Time Series Data Extraction
+In this section, we perform comparisons of the temporal data representation techniques for time series data extraction. Time series features are extracted from CERT R4.2 day data with a rolling window size of 30. tsfel package [56] is employed with comprehensive extraction settings. Due to computation overhead of the time series feature extraction process, a sample set of 200 randomly selected users in CERT R4.2 is used. Each feature in the original data is treated as a time series to extract 132 time series features, using tsfel. Given LODA’s low time complexity and good performance, as shown in Section IV, we apply it for anomaly detection on the time series extracted features.
+Results obtained show an AUC of 0.78 using time series extracted features. In comparison, using original data and percentile representation generate AUCs of 0.81 and 0.87, respectively, under the same conditions. This shows the advantage of our approach to traditional time series extraction approaches for temporal data in this application. We believe that by focusing on using the temporal window to deﬁne a baseline comparison for each new data instance, changes in user behaviors are easier to detect than from time series data via time windows, where all data points in the window contributes similarly to the output.
+E. Comparative Study
+The proposed system shows clear advantages in both detection performance and the ability to generalize when compared to other works in the literature employing unsupervised anomaly detection methods for insider threat detection on the CERT datasets [11], [13]–[18], [57].
+On CERT R4.2, our proposed approach obtained AUC of 0.907 and 0.909 on week and day data (Section IV-E), outperforming previous works [13]–[15] that used HMM and OneClass-SVM, which achieved AUC of 0.83 and 0.89, respectively. On CERT R6.2 data, our approach achieved AUC of 0.977 and 0.981 on day and week data. In comparison, recent best AUCs achieved on R6.2 day data were 0.814 (Matterer and Lejeune [17]), and 0.956 (Liu et al. [57], on only 3 malicious insiders). This demonstrates the advantage of our approach in embedding temporal information in data representation, as opposed to using a learner with temporal learning capabilities such as Long Short-Term Memory [17] and Markov models [13]. On R6.2 week data, recently, [18] achieved AUC of 0.999. However, they only tested on 500 users and 1 easy-to-detect malicious user (ACM2278, see Section V-B). Under the same malicious user consideration, our approach posts an AUC of 0.9996. Similarly, log2vec [11] achieved AUC of 0.93 with only 6 malicious users and 12 normal users in CERT R6.2 included in evaluation, while our result (higher AUC) is obtained on the full dataset. Furthermore, to the best of our knowledge, no other work has been able to show the ability of the anomaly detection solutions to generalize (robustness) on other datasets as illustrated in Section V-C.
+Finally, on LANL, our approach achieves comparable results to unsupervised approaches in the literature [11], [30].
+
+Authorized licensed use limited to: Nanjing Univ of Post & Telecommunications. Downloaded on September 07,2022 at 07:23:51 UTC from IEEE Xplore. Restrictions apply.
+
+LE AND ZINCIR-HEYWOOD: ANOMALY DETECTION FOR INSIDER THREATS USING UNSUPERVISED ENSEMBLES
+
+1163
+
+Note that other recent works on the datasets achieved higher AUCs, but they used supervised learning, as in [31], or presented results by log lines [24], which signiﬁcantly increase the amount of alerts.
+VI. CONCLUSION AND FUTURE WORK
+In this research, an unsupervised ML based anomaly detection approach for insider threat detection is presented. To this end, four different anomaly detection algorithms with different working principles are employed. The methods are studied using different representations of data with temporal information, including concatenation, percentile and mean or median difference. In doing so, the aim is to describe the changes in user activities that could highlight the detection of anomalous behaviors. Experiments under different constrained conditions are performed on publicly available datasets and comprehensive results are reported. Results show that Autoencoder using percentile representation of data is the best combination for anomaly detection. Temporal data representation in percentile format achieves signiﬁcant improvements over original extracted data, which enables effective insider threat detection under very low investigation budgets and generalizes well on new data. Moreover, experiments demonstrate the robustness of LODA, which may suggest its use under extreme conditions and for low time complexity on-line learning and prediction. Furthermore, when training resources permit, voting-based ensemble of anomaly detection can be used to improve detection performance and robustness. Comparing with the existing literature, our approach shows clear advantage in detection performance and ability to generalize to work under different environments.
+Future work will investigate other ML approaches, such as semi-supervised and adversarial techniques, and data availability for anomaly detection. Finally, informed attackers’ actions and adversarial attacks can also be introduced to further examine the performance under more adverse conditions.
+ACKNOWLEDGMENT
+The research is conducted as part of the Dalhousie NIMS Lab at: https://projects.cs.dal.ca/projectx/.
+REFERENCES
+[1] I. Homoliak, F. Toffalini, J. Guarnizo, Y. Elovici, and M. Ochoa, “Insight into insiders and IT: A survey of insider threat taxonomies, analysis, modeling, and countermeasures,” ACM Comput. Surveys, vol. 52, no. 2, p. 30, Apr. 2019.
+[2] CSO, CERT Division of SEI-CMU, U.S. Secret Service, and KnowBe4, “The 2018 U.S. state of cybercrime survey,” Int. Data Group, Boston, MA, USA, Rep., 2018. Accessed: Apr. 1, 2021. [Online]. Available: https://www.idg.com/tools-for-marketers/2018-u-s-state-of-cybercrime
+[3] Crowd Research Partners, “2018 insider threat report,” CA Technologies, New York, NY, USA, Rep., 2018, Accessed: Apr. 1, 2021. [Online]. Available: https://crowdresearchpartners.com/insider-threat-report
+[4] R. Campagna. Enterprise Insider Threats on the Rise. Accessed: Apr. 1, 2021. [Online]. Available: https:// www.cyberdefensemagazine.com/enterprise-insider-threats-on-the-rise/
+[5] M. L. Collins et al., “Common sense guide to mitigating insider threats, ﬁfth edition,” CERT Insider Threat Center, Softw. Eng. Inst., Carnegie Mellon Univ., Pittsburgh, PA, USA, Rep. CMU/SEI-2015-TR-010, 2016.
+
+[6] A. Azaria, A. Richardson, S. Kraus, and V. S. Subrahmanian, “Behavioral analysis of insider threat: A survey and bootstrapped prediction in imbalanced data,” IEEE Trans. Comput. Social Syst., vol. 1, no. 2, pp. 135–155, Jun. 2014.
+[7] M. H. Bhuyan, D. K. Bhattacharyya, and J. K. Kalita, “Network anomaly detection: Methods, systems and tools,” IEEE Commun. Surveys Tuts., vol. 16, no. 1, pp. 303–336, 1st Quart., 2014.
+[8] National Cybersecurity and Communications Integration Center. (2014). Combating the Insider Threat. [Online]. Available: https://www.uscert.gov/security-publications/Combating-Insider-Threat
+[9] L. Liu, O. De Vel, Q.-L. Han, J. Zhang, and Y. Xiang, “Detecting and preventing cyber insider threats: A survey,” IEEE Commun. Surveys Tuts., vol. 20, no. 2, pp. 1397–1417, 2nd Quart., 2018.
+[10] A. L. Buczak and E. Guven, “A survey of data mining and machine learning methods for cyber security intrusion detection,” IEEE Commun. Surveys Tuts., vol. 18, no. 2, pp. 1153–1176, 2nd Quart., 2016.
+[11] F. Liu, Y. Wen, D. Zhang, X. Jiang, X. Xing, and D. Meng, “Log2vec: A heterogeneous graph embedding based approach for detecting cyber threats within enterprise,” in Proc. ACM SIGSAC Conf. Comput. Commun. Security, vol. 18, 2019, pp. 1777–1794.
+[12] P. Parveen, J. Evans, B. Thuraisingham, K. W. Hamlen, and L. Khan, “Insider threat detection using stream mining and graph mining,” in Proc. IEEE 3rd Int. Conf. Privacy Security Risk Trust, 2011, pp. 1102–1110.
+[13] T. Rashid, I. Agraﬁotis, and J. R. C. Nurse, “A new take on detecting insider threats: Exploring the use of hidden Markov models,” in Proc. Int. Workshop Manag. Insider Security Threats, 2016, pp. 47–56.
+[14] D. C. Le and A. N. Zincir-Heywood, “Evaluating insider threat detection workﬂow using supervised and unsupervised learning,” in Proc. IEEE Security Privacy Workshops (SPW), 2018, pp. 270–275.
+[15] M. Aldairi, L. Karimi, and J. Joshi, “A trust aware unsupervised learning approach for insider threat detection,” in Proc. IEEE Int. Conf. Inf. Reuse Integr. Data Sci., 2019, pp. 89–98.
+[16] A. Tuor, S. Kaplan, B. Hutchinson, N. Nichols, and S. Robinson, “Deep learning for unsupervised insider threat detection in structured cybersecurity data streams,” in Proc. AAAI Workshop Artif. Intell. Cyber Security, 2017, pp. 224–231.
+[17] J. Matterer and D. Lejeune, “Peer group metadata-informed LSTM ensembles for insider threat detection,” in Proc. Int. Florida Artif. Intell. Res. Soc. Conf., 2018, pp. 62–67.
+[18] L. Liu, C. Chen, J. Zhang, O. De Vel, and Y. Xiang, Unsupervised Insider Detection Through Neural Feature Learning and Model Optimisation (Lecture Notes in Computer Science), vol. 11928. Cham, Switzerland: Springer, 2019.
+[19] H. Eldardiry, E. Bart, J. Liu, J. Hanley, B. Price, and O. Brdiczka, “Multi-domain information fusion for insider threat detection,” in Proc. IEEE Security Privacy Workshops, 2013, pp. 45–51.
+[20] P. Parveen and B. M. Thuraisingham, “Unsupervised incremental sequence learning for insider threat detection,” in Proc. IEEE Int. Conf. Intell. Security Informat., 2012, pp. 141–143.
+[21] P. A. Legg, O. Buckley, M. Goldsmith, and S. Creese, “Automated insider threat detection system using user and role-based proﬁle assessment,” IEEE Syst. J., vol. 11, no. 2, pp. 503–512, Jun. 2017.
+[22] T. E. Senator et al., “Detecting insider threats in a real corporate database of computer usage activity,” in Proc. ACM SIGKDD Int. Conf. Knowl. Disc. Data Min., 2013, pp. 1393–1401.
+[23] B. Böse, B. Avasarala, S. Tirthapura, Y. Y. Chung, and D. Steiner, “Detecting insider threats using radish: A system for real-time anomaly detection in heterogeneous data streams,” IEEE Syst. J., vol. 11, no. 2, pp. 471–482, Jun. 2017.
+[24] A. Brown, A. Tuor, B. Hutchinson, and N. Nichols, “Recurrent neural network attention mechanisms for interpretable system log anomaly detection,” in Proc. 1st Workshop Mach. Learn. Comput. Syst., 2018, pp. 1–8.
+[25] D. C. Le, S. Khanchi, N. Zincir-Heywood, and M. I. Heywood, “Benchmarking evolutionary computation approaches to insider threat detection,” in Proc. ACM Genet. Evol. Comput. Conf., 2018, pp. 1286–1293.
+[26] D. C. Le, A. N. Zincir-Heywood, and M. I. Heywood, “Dynamic insider threat detection based on adaptable genetic programming,” in Proc. IEEE Symp. Series Comput. Intell., 2019, pp. 2579–2586.
+[27] G. Gavai, K. Sricharan, D. Gunning, J. Hanley, M. Singhal, and R. Rolleston, “Supervised and unsupervised methods to detect insider threat from enterprise social and online activity data,” J. Wireless Mobile Netw. Ubiquitous Comput. Dependable Appl., vol. 6, no. 4, pp. 47–63, Dec. 2015.
+
+Authorized licensed use limited to: Nanjing Univ of Post & Telecommunications. Downloaded on September 07,2022 at 07:23:51 UTC from IEEE Xplore. Restrictions apply.
+
+1164
+
+IEEE TRANSACTIONS ON NETWORK AND SERVICE MANAGEMENT, VOL. 18, NO. 2, JUNE 2021
+
+[28] D. C. Le and N. Zincir-Heywood, “Machine learning based insider threat modelling and detection,” in Proc. IFIP/IEEE Symp. Integr. Netw. Service Manag., 2019, pp. 1–6.
+[29] W. Meng, K.-K. R. Choo, S. Furnell, A. V. Vasilakos, and C. W. Probst, “Towards bayesian-based trust management for insider attacks in healthcare software-deﬁned networks,” IEEE Trans. Netw. Service Manag., vol. 15, no. 2, pp. 761–773, Jun. 2018.
+[30] S. Zhao, R. Wei, L. Cai, A. Yu, and D. Meng, “CTLMD: Continuoustemporal lateral movement detection using graph embedding,” in Proc. Int. Conf. Inf. Commun. Security, 2019, pp. 181–196.
+[31] H. Bian, T. Bai, M. A. Salahuddin, N. Limam, A. A. Daya, and R. Boutaba, “Uncovering lateral movement using authentication logs,” IEEE Trans. Netw. Service Manag., vol. 18, no. 1, pp. 1049–1063, Mar. 2021.
+[32] D. C. Le and N. Zincir-Heywood, “Exploring adversarial properties of insider threat detection,” in Proc. IEEE Conf. Commun. Netw. Security (CNS), 2020, pp. 1–9.
+[33] D. C. Le and N. Zincir-Heywood, “Big data in network anomaly detection,” in Encyclopedia of Big Data Technologies, S. Sakr and A. Zomaya, Eds. Cham, Switzerland: Springer, 2018, pp. 1–9.
+[34] D. C. Le and N. Zincir-Heywood, “Exploring anomalous behaviour detection and classiﬁcation for insider threat identiﬁcation,” Int. J. Netw. Manag., to be published.
+[35] D. C. Le, N. Zincir-Heywood, and M. I. Heywood, “Analyzing data granularity levels for insider threat detection using machine learning,” IEEE Trans. Netw. Service Manag., vol. 17, no. 1, pp. 30–44, Mar. 2020.
+[36] M. I. Heywood, “Evolutionary model building under streaming data for classiﬁcation tasks: Opportunities and challenges,” Genet. Program. Evolvable Mach., vol. 16, no. 3, pp. 283–326, 2015.
+[37] H. G. Kayacik, N. Zincir-Heywood, and M. I. Heywood, “On the capability of an SOM based intrusion detection system,” in Proc. Int. Joint Conf. Neural Netw., Jul. 2003, pp. 1808–1813.
+[38] C. C. Aggarwal, Outlier Analysis, 2nd ed. Cham, Switzerland: Springer, 2016.
+[39] X. Glorot, A. Bordes, and Y. Bengio, “Deep sparse rectiﬁer neural networks,” in Proc. Int. Conf. Artif. Intell. Stat., 2011, pp. 315–323.
+[40] F. T. Liu, K. M. Ting, and Z.-H. Zhou, “Isolation-based anomaly detection,” ACM Trans. Knowl. Disc. Data, vol. 6, no. 1, p. 3, Mar. 2012.
+[41] T. Pevný, “Loda: Lightweight on-line detector of anomalies,” Mach. Learn., vol. 102, no. 2, pp. 275–304, 2016.
+[42] M. M. Breunig, H.-P. Kriegel, R. T. Ng, and J. Sander, “LOF: Identifying density-based local outliers,” ACM SIGMOD Rec., vol. 29, no. 2, pp. 93–104, May 2000.
+[43] G. O. Campos et al., “On the evaluation of unsupervised outlier detection: Measures, datasets, and an empirical study,” Data Min. Knowl. Disc., vol. 30, no. 4, pp. 891–927, 2016.
+[44] CERT and ExactData, LLC. Insider Threat Test Dataset. Accessed: Apr. 1, 2021. [Online]. Available: https://resources.sei.cmu.edu/library/ asset-view.cfm?assetid=508099
+[45] J. Glasser and B. Lindauer, “Bridging the gap: A pragmatic approach to generating insider threat data,” in Proc. IEEE Security Privacy Workshops, 2013, pp. 98–104.
+[46] A. D. Kent, “Cybersecurity data sources for dynamic network research,” in Dynamic Networks in Cybersecurity. London, U.K.: Imperial College Press, Jun. 2015. [Online]. Available: https://csr.lanl.gov/data/cyber1/
+[47] A. Harilal et al., “The wolf of SUTD (TWOS): A dataset of malicious insider threat behavior based on a gamiﬁed competition,” J. Wireless Mobile Netw., vol. 9, no. 1, pp. 54–85, 2018. [Online]. Available: https:/ /github.com/ivan-homoliak-sutd/twos
+
+[48] M. Abadi et al. (2015). TensorFlow: Large-Scale Machine Learning on Heterogeneous Systems. [Online]. Available: https://www.tensorﬂow.org/
+[49] D. P. Kingma and J. L. Ba, “Adam: A method for stochastic optimization,” in Proc. Int. Conf. Learn. Represent., 2015, pp. 1–15.
+[50] F. Pedregosa et al., “Scikit-learn: Machine learning in Python,” J. Mach. Learn. Res., vol. 12, pp. 2825–2830, Nov. 2011.
+[51] Y. Zhao, Z. Nasrullah, and Z. Li, “PyoD: A Python toolbox for scalable outlier detection,” J. Mach. Learn. Res., vol. 20, no. 96, pp. 1–7, 2019.
+[52] H. Debar and A. Wespi, “Aggregation and correlation of intrusiondetection alerts,” in Proc. Int. Workshop Recent Adv. Intrusion Detect., 2001, pp. 85–103.
+[53] J. Demšar, “Statistical comparisons of classiﬁers over multiple data sets,” J. Mach. Learn. Res., vol. 7, pp. 1–30, Dec. 2006.
+[54] D. C. Le and N. Zincir-Heywood, “A frontier: Dependable, reliable and secure machine learning for network/system management,” J. Netw. Syst. Manag., vol. 28, pp. 827–849, Jan. 2020.
+[55] M. Barreno, B. Nelson, R. Sears, A. D. Joseph, and J. D. Tygar, “Can machine learning be secure?” in Proc. ACM Symp. Inf. Comput. Commun. Security, 2006, pp. 16–25.
+[56] M. Barandas et al., “TSFEL: Time series feature extraction library,” SoftwareX, vol. 11, Jan.–Jun. 2020, Art. no. 100456.
+[57] L. Liu, C. Chen, J. Zhang, O. De Vel, and Y. Xiang, “Insider threat identiﬁcation using the simultaneous neural learning of multi-source logs,” IEEE Access, vol. 7, pp. 183162–183176, 2019.
+Duc C. Le (Graduate Student Member, IEEE) received the B.Eng. degree in electronics and telecommunications engineering from the Posts and Telecommunications Institute of Technology, Ha Noi, Vietnam, in 2015, and the master’s degree in computer science from Dalhousie University, Halifax, NS, Canada, in 2017, where he is currently pursuing the Ph.D. degree. His research focuses on machine learning and its applications in computer and network security and analysis.
+Nur Zincir-Heywood (Member, IEEE) is a Full Professor of Computer Science with Dalhousie University, Canada. She has published over 200 fully reviewed papers. Her research interests include machine learning and data mining for networks, services and cybersecurity. She has been a recipient of several best paper awards and is a recipient of the 2017 DNS Women Leaders in the Digital Economy Award. She is an Associate Editor of the IEEE TRANSACTION ON NETWORK AND SERVICE MANAGEMENT and the International Journal of Network Management. She has recently served as the Program Co-Chair and the General Co-Chair for the IEEE/IFIP International Conference on Network and Service Management. She is a member of the ACM.
+
+Authorized licensed use limited to: Nanjing Univ of Post & Telecommunications. Downloaded on September 07,2022 at 07:23:51 UTC from IEEE Xplore. Restrictions apply.
+

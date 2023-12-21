@@ -1,0 +1,83 @@
+中国科学 : 信息科学 2023 年 第 53 卷 第 9 期: 1838–1842
+SCIENTIA SINICA Informationis
+观点与争鸣
+
+6G 通信 – 感知 – 计算融合网络的思考
+尹浩1, 黄宇红2*, 韩林丛2, 金婧2
+1. 军事科学院, 北京 100076 2. 中国移动通信有限公司研究院, 北京 100053 * 通信作者. E-mail: huangyuhong@chinamobile.com
+收稿日期: 2023–05–11; 修回日期: 2023–06–02; 接受日期: 2023–06–16; 网络出版日期: 2023–09–05
+摘要 移动信息网络是支撑数字经济提速提质的关键基础. 为满足超能交通、智慧安防、元宇宙等新 场景新业务的多元化需求, 未来 6G 移动信息网络需提供极致的通信能力、精确的感知能力, 以及强 大的计算能力, 助力构建 “数字孪生、智慧泛在” 新世界. 本文从应用需求、网络特征和关键技术及挑 战 3 方面, 对 6G 通信 – 感知 – 计算融合网络进行研究, 为后续 6G 通感算融合网络的发展提供方向 性指引. 关键词 通感算融合网络, 6G, 网络特征, 网络协作感知, 多频段协同
+
+1 引言
+随着第五代移动通信技术 (5G) 的大规模商用, 在全球范围内, 业界已开启对第六代移动通信技 术 (6G) 的系统性研究. 从移动互联, 到万物互联, 再到万物智联, 6G 将推动构建普惠智能的人类社会, 满足超能交通、通感互联、全息交互、元宇宙、精准医疗、智慧工业等 6G 新场景需求. 6G 移动信息 网络需要具备智慧内生、多维感知、数字孪生等新功能 [1]. 通信 – 感知 – 计算融合网络应运而生, 成 为新一代移动信息网络的发展态势.
+本文首先分析了 6G 通感算融合网络的需求与动力, 其次给出了通感算融合网络三大核心特征, 即多要素共享、多频段协同, 以及多节点协作. 然后对实现 6G 通感算融合网络所需的关键技术及挑 战进行了梳理. 最后对未来 6G 通感算融合网络进行了展望.
+2 6G 通感算融合网络需求
+新场景新业务, 如元宇宙、全息通信、超能交通、智慧安防等, 对未来 6G 移动信息网络提出新 需求, 要求其在具备通信能力的同时, 提供全域高精度感知能力和高效实时的计算能力. 比如超能交
+引用格式: 尹浩, 黄宇红, 韩林丛, 等. 6G 通信 – 感知 – 计算融合网络的思考. 中国科学: 信息科学, 2023, 53: 1838–1842, doi: 10. 1360/SSI- 2023- 0135 Yin H, Huang Y H, Han L C, et al. Thoughts on 6G integrated communication, sensing and computing networks (in Chinese). Sci Sin Inform, 2023, 53: 1838–1842, doi: 10.1360/SSI-2023-0135
+
+〇c 2023 《中国科学》杂志社
+
+www.scichina.com infocn.scichina.com
+
+中国科学 : 信息科学 第 53 卷 第 9 期
+通场景, 地面的无人车、空中的无人机不仅需要强大的通信服务, 还需要有完善的监控管理系统以确 保这些交通工具的合规合法运营, 这就需要建立一张全域全天候感知系统. 单独建立雷达等感知系统, 会面临成本高、部署难的问题. 借助移动信息网络优势, 让规模部署的基站同时具备感知 (雷达) 功能, 可以实现无处不在、无时不在的监测、跟踪等功能. 同时, 无人车、无人机所需的大量的数据处理和智 能服务, 也要求网络提供强大的、无处不在的、甚至实时的算力服务 (可以由离用户最近的基站提供). 因此从业务发展的角度看, 未来通、感、算服务融合的需求带来了通、感、算网络融合的要求 [2].
+感知和算力也促进了通信网络自身的发展. 感知功能可以促进通信能力的提升, 比如感知获取的 周围环境信息, 可以在信道估计、波束对准、消除导频污染等方面提升通信性能, 并提升通信网络的定 位能力. 计算能力的提升, 带来网络 AI 内生的能力, 从而借助 AI 技术的跃迁、数字孪生技术的发展 大幅提升通信性能、服务质量保证等 [3]. 另外, 通感网络数据量的急剧膨胀, 也要求网络具有高计算 效率、强隐私保护、快实时性等计算特征, 即具有坚实的算力底座 [4]. 可以预见, 6G 将融合通信与无 线感知、先进计算、人工智能等技术, 实现通信与感知、计算功能的深度耦合, 形成通感算融合网络, 成为服务生活、赋能生产、绿色发展的基本要素.
+3 6G 通感算融合网络特征
+为满足全时空、全场景通信能力、感知能力和计算能力一体服务, 6G 通感算融合网络将具备多要 素共享、多频段协同和多节点协作三大典型特征.
+(1) 多要素共享. 首先是无线射频资源共享, 包括频谱资源共享、天线资源共享, 从而使得基于一 套无线设备就能支持通信和感知能力, 无需部署多套设备.
+第二是数字处理资源共享. 通信、感知和计算能够共享包括通用 CPU、加速器、甚至 GPU, 以及 未来存算一体芯片等异构计算资源, 从而能够通过在一个计算资源池中加载不同软件, 来实现通信服 务、感知服务以及对客户的计算服务.
+第三是信号处理过程共享. 通信和感知可以共享空口协议、共享信号处理. 除了共享, 两者还将互 相支持, 共同提升性能.
+(2) 多频段协同. 为实现全场景的通信和感知服务, 6G 将是一个低、中、高多频段协同的全频谱 系统 [5]. 低频段是深度覆盖, 满足 Mbps 级基本通信需要, 同时未来可以利用广域无源物联技术来实 现对有标签设备的感知; 中频段 (Sub-10 GHz 频段) 主要用于连续覆盖、中高速通信 (Gbps), 以及粗 颗粒度 (米级)、广域范围的信息探测; 高频 (毫米波、太赫兹、可见光等频段) 按需开启, 结合算力情 况, 进一步提升通信速率和感知分辨率 (亚米级). 将多频段有机协同起来, 可满足不同的通信、感知 和计算能力需求, 支撑个性化业务需求.
+(3) 多节点协作. 多节点即网络协作的通感算可以在提升边缘用户速率的同时, 提升边缘目标的 感知精度. 由于采用单节点感知要求硬件能够删除自干扰对回波信号检测的影响, 硬件要求类似全双 工, 存在设计难度大、成本高问题, 因此需要充分利用移动信息网络大规模部署的优势, 引入节点间协 作, 利用不同节点进行感知信号的接收和发送, 避免单节点感知中的自干扰问题, 大大降低对硬件要 求. 多节点协作的通感算网络可以在多射频单元之间共享基带池 (即共享计算资源), 在降低基站间干 扰、提高通信性能的同时, 还能够利用多节点感知信息的联合处理, 提升感知精度, 扩大感知范围, 增 强感知的连续性, 满足高速移动场景下对感知目标的捕获和跟踪需求.
+1839
+
+尹浩等: 6G 通信 – 感知 – 计算融合网络的思考
+4 6G 通感算融合网络关键技术与挑战
+通信、感知与计算的深度融合需要打破 3 个系统之间的边界, 满足行业数字化全面向纵深发展的 需求. 目前, 学术界、产业界已开始了通感算融合网络的研究, 但通感算融合网络相关技术在走向成熟 与商用过程中还面临着诸多挑战, 需要产学研共同研究与突破.
+(1) 通感算融合理论研究. 通信、感知、计算的理论分析早期被独立研究, 面向通感算融合的 6G 网络缺乏三者相互平衡的信息理论支撑. 现有的研究将通信的信息论与感知的检测估计理论进行结 合, 通过将估计指标等效为通信信息速率, 或将通信指标等效为估计误差等方式, 建立通感一体化性 能指标 [6, 7]. 但通感一体化性能指标与计算指标如何融合, 亦即信息论、估计理论如何与计算理论结 合, 是通感算融合理论下一步的研究重点. 如何以合适的指标表征三者融合的效果, 如何平衡通信容 量、感知精度、计算效率之间的关系是通感算融合的关键挑战.
+信道建模理论也是通感算融合理论研究的重要组成部分. 通信信道的测量与建模理论已经发展了 数十年, 但感知信道仍缺乏广泛的测量数据与建模理论. 尤其是在中低频非视距环境中, 如何建模合 理的回波信道, 如何感知出不规则形态目标等都需要深入研究与探索.
+(2) 通感算融合空口设计. 在算力的支撑下, 空口设计直接关乎通信能力和感知能力的实现. 在一 体化波形、参考信号、波束赋形与波束管理, 以及感知精度算法等方面, 需要结合多元化应用场景、业 务优先级与业务量需求灵活设计.
+一体化波形设计的宗旨是用同一种波形同时实现通信和感知两种功能 [8]. 一种思路是以雷达波 形为中心的波形设计, 通信速率较低. 另一种是以通信波形为中心的波形设计, 感知性能较弱. 通感融 合网络需要一体化联合波形设计, 通过首先建立通感一体化性能指标的方式, 统一通信和感知对波形 参数的要求, 设计全新的波形, 同时保证通信和感知能力.
+在参考信号设计方面, 现有通信网络中的参考信号主要是为了估计信道, 实现数据通信. 但对感 知而言, 参考信号的设计要求是为了识别目标, 提升感知精度. 如何设计参考信号序列, 如何高效分配 通信和感知资源, 也是需要进一步研究的关键问题.
+在波束赋形和波束管理方面, 通信系统要求波束准确指向用户, 以保障稳定的高质量通信. 而感 知通常需要时变扫描波束, 以实现对更大范围内目标的估计和检测. 通感融合网络需要兼顾两者需求, 保证通信效率的同时提升回波信号的能量, 消除杂波, 提升感知精度.
+感知精度与系统带宽、阵子规模、传播环境等因素直接相关, 带宽越大、阵子数越多、传播环境越 简单, 感知精度越高. 相比于高频段感知, 中低频 (通信的黄金频段) 感知将面临带宽小、阵子数受限、 传播环境复杂等系列挑战, 如何高效、低成本提升感知精度尤其是中低频感知精度是通感算融合网络 应用面临的一项关键挑战.
+(3) 通感算融合组网设计. 移动信息网络中, 任一关键技术走向大规模应用, 必须解决组网时面临 的小区间干扰、移动性管理等问题. 通感算融合组网设计最大的挑战是协作节点间同步、上下行干扰、 移动性管理和多源数据融合问题.
+协作感知场景下, 节点间的同步误差将直接体现在对目标的感知精度上, 1 ns 的同步误差将带 来 0.3 m 的定位误差. 除了引入高精度时钟源, 降低节点间同步误差外, 一种有效的方案是在节点间 互发信号, 巧妙避免该同步误差.
+另一重要因素是小区间干扰问题. 组网环境下, 相邻小区的下行发送信号对低功率的回波信号将 造成强干扰, 在自干扰删除要求之外, 需要进行全局的干扰管理, 比如调整发送波束方向等, 提升感知 精度 [9].
+1840
+
+中国科学 : 信息科学 第 53 卷 第 9 期
+在目标高速移动时, 信道环境快速变化, 节点相对于目标的几何分布也在快速变化, 最优的感知 节点需要随之实时切换. 因此, 需要设计自适应的、鲁棒的感知节点切换/重选等算法, 以保证感知服 务时的完好性和可靠性.
+此外, 多源 (多节点、多频段) 感知数据的融合以及实时处理要求依赖超高算力的支持, 未来既需 要通用算力承载应用及业务, 也需要专用算力提升处理效率, 这对算力灵活调度也提出了更高要求 [10].
+(4) 通感算融合架构设计. 网络架构是通感算融合网络的骨骼和中枢, 分为 4 层: 资源与算力层、 路由与控制层、服务化功能层和开放使能层 [11]. 资源与算力层负责弹性、按需地分配物理资源, 提高 资源利用率, 实现灵活交互协作. 路由与控制层能够以静态、半静态或动态的方式, 连接物理节点, 形 成有机网络. 服务化功能层是用户业务逻辑处理的核心实体, 能够内生通信、感知、计算、AI 、安全 等多维能力. 开放使能层通过能力组件、服务插件、定制业务、API、软件开发工具 (SDK) 等方式, 将 下层的多维信息和能力进行提取、封装、组合, 为自有业务和第三方应用提供服务, 提升服务质量, 为 用户带来更好的业务体验.
+对于上述 4 层架构, 仅仅将感知功能、计算功能 “堆砌” 到网络上, 依靠不同功能间简单的调用、 互通关系来实现通感算融合是不够的, 如何面向信息服务全过程, 进行跨层跨域设计、网络统一编排 管理, 实现能力与架构的深度耦合, 是通感算融合架构设计的关键挑战.
+5 总结与展望
+迈入 6G 时代, 新场景新业务将对通信、感知、计算能力提出极致需求, 通感算融合网络将成为未 来 6G 移动信息网络潜在关键技术. 6G 通感算网络将体现出多要素共享、多频段协同、多节点协作 3 个关键特征, 利用通信、感知和计算功能的互助互惠, 提升整体网络性能. 面向未来, 需要加强通感 算跨域技术的融合创新, 持续攻关融合基础理论、空口关键技术、组网关键技术和网络架构设计等方 面, 加快标准化、产业推进及应用培育等工作, 助力 6G 通感算融合网络走向成熟与商用.
+参考文献
+1 Liu G, Huang Y, Li N, et al. Vision, requirements and network architecture of 6G mobile network beyond 2030. China Commun, 2020, 17: 92–104
+2 Huang Y, Jin J, Lou M, et al. 6G mobile network requirements and technical feasibility study. China Commun, 2022, 19: 123–136
+3 Duan X Y, Yang L, Xia S Q, et al. Technology development mode of communication/sensing/computing/intelligence integration. Telecommun Sci, 2022, 38: 37–48 [段向阳, 杨立, 夏树强, 等. 通感算智一体化技术发展模式. 电信科学, 2022, 38: 37–48]
+4 China Mobile. Computing Force Network Whitepaper. 2021 [中国移动. 算力网络白皮书. 2021] 5 Hu T Y, Li L X, Chen Z. New opportunities for multi-band collaborative communication — integrated communications
+and sensing at Terahertz band. ZTE Technol J, 2022, 28: 14–18 [胡田钰, 李玲香, 陈智. 多频段协同通信的新机遇 —— 太赫兹通信感知一体化. 中兴通讯技术, 2022, 28: 14–18] 6 Chiriyath A R, Paul B, Jacyna G M, et al. Inner bounds on performance of radar and communications co-existence. IEEE Trans Signal Process, 2015, 64: 464–474 7 Kumari P, Vorobyov S A, Heath R W. Adaptive virtual waveform design for millimeter-wave joint communicationradar. IEEE Trans Signal Process, 2019, 68: 715–730 8 Liu F, Cui Y, Masouros C, et al. Integrated sensing and communications: toward dual-functional wireless networks for 6G and beyond. IEEE J Sel Areas Commun, 2022, 40: 1728–1767 9 Wang X Y, Zhang X Z, Ma L, et al. Research and optimization on the sensing algorithm for 6G integrated sensing and communication network. J Commun, 2023, 44: 219–230 [王晓云, 张小舟, 马良, 等. 6G 通信感知一体化网络的
+1841
+
+尹浩等: 6G 通信 – 感知 – 计算融合网络的思考
+
+感知算法研究与优化. 通信学报, 2023, 44: 219–230]
+10 Yan S, Peng M G, Wang W B. Integration of communication, sensing and computing: the vision and key technologies of 6G. J Beijing Univ Posts Telecommun, 2021, 44: 1–11 [闫实, 彭木根, 王文博. 通信 – 感知 – 计算融合: 6G 愿景 与关键技术. 北京邮电大学学报, 2021, 44: 1–11]
+11 China Mobile. China Mobile 6G Network Architecture Technology Whitepaper. 2022 [中国移动. 中国移动 6G 网络 架构技术白皮书. 2022]
+
+Thoughts on 6G integrated communication, computing networks
+Hao YIN1, Yuhong HUANG2*, Lincong HAN2 & Jing JIN2
+
+sensing
+
+and
+
+1. Military Academy of Sciences, Beijing 100076, China; 2. China Mobile Research Institute, Beijing 100053, China * Corresponding author. E-mail: huangyuhong@chinamobile.com
+
+Abstract Mobile information networks serve as a crucial foundation for advancing the speed and quality of the digital economy. To meet the diverse performance demands arising from emerging scenarios and business, such as super-powered transportation, intelligent security, and the metaverse, future 6G mobile information networks need to provide ultimate communication ability, accurate sensing ability and strong computing ability. These capabilities will culminate in the establishment of a novel realm characterized by “digital twin and ubiquitous intelligence.” This study comprehensively examines 6G integrated communication-sensing-computing networks, focusing on three key facets: application requirements, network features as well as key technologies and their challenges. This research endeavors to furnish valuable directional guidance for the subsequent development of 6G integrated communication, sensing, and computing networks.
+Keywords integrated communication-sensing-computing networks, 6G, network features, network cooperative sensing, multi-band collaboration
+
+1842
+

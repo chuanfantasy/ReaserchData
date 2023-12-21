@@ -1,0 +1,305 @@
+Skip to Main Content
+
+    IEEE.org
+    IEEE Xplore
+    IEEE SA
+    IEEE Spectrum
+    More Sites 
+
+        Cart 
+        Create Account
+        Personal Sign In 
+
+IEEE Xplore logo - Link to home
+
+    Browse
+    My Settings
+    Help
+
+Access provided by:
+Nanjing Univ of Post & Telecommunications
+Sign Out
+IEEE logo - Link to IEEE main site homepage
+ADVANCED SEARCH
+Journals & Magazines > IEEE Communications Standards... > Volume: 7 Issue: 1
+Hybrid Self-Organizing Networks: Evolution, Standardization Trends, and a 6G Architecture Vision
+Publisher: IEEE
+Cite This
+PDF
+Abdelaali Chaoub ; Aarne Mämmelä ; Pedro Martinez-Julia ; Ranganai Chaparadza ; Muslim Elkotob ; Lyndon Ong ; Dilip Krishnaswamy ; Antti Anttonen ; Ashutosh Dutta
+All Authors
+4
+Cites in
+Papers
+386
+Full
+Text Views
+
+    Alerts
+
+Abstract
+Document Sections
+
+    Introduction
+    Background and State-of-the-Art
+    Opportunities, Use Cases, and Standardization Landscape
+    Challenges, Trends, and Research/Standard Directions
+    Conclusion
+
+Authors
+Figures
+References
+Citations
+Keywords
+Metrics
+Footnotes
+Abstract:
+Self-organizing networks (SONs) need to be endowed with self-coordination capabilities to manage the complex relations between their internal components and to avoid their destructive interactions. Existing communication technologies commonly implement responsive self-coordination mechanisms that can be very slow in dynamic situations. The sixth generation (6G) networks, being in their early stages of research and standardization activities, open new opportunities to opt for a design-driven approach when developing self-coordination capabilities. This can be achieved through the use of hybrid SON designs. A hybrid architecture combines the centralized and distributed management and control. In this article, we review the history of SONs, including the inherent self-coordination feature. We then delve into the concept of hybrid SONs (H-SONs), and we summarize the challenges, opportunities, and future trends for H-SON development. We provide a comprehensive collection of standardization activities and recommendations, discussing the key contributions and potential work to continue the evolution and push for a wide adoption of the H-SON paradigm. More importantly, as a key 6G architectural feature we propose that H-SONs should be loosely coupled networks. Loose coupling refers to the weak interaction of different layers and weak interaction between users in the same layer, that is, the various feedback loops must be almost isolated from each other to improve the stability and to avoid chaotic situations. We finally conclude the article with the key hints about the future landscape and the key drivers of 6G H-SONs.
+Published in: IEEE Communications Standards Magazine ( Volume: 7 , Issue: 1 , March 2023 )
+Page(s): 14 - 22
+Date of Publication: 21 March 2023
+ISSN Information:
+INSPEC Accession Number: 22815014
+DOI: 10.1109/MCOMSTD.0002.2200049
+Publisher: IEEE
+Introduction
+
+The forthcoming 6G networks aim to solve the problems with global connectivity and sustainability, leading to mutually conflicting objectives and to the increased use of self-organizing networks (SONs), which are still immature. In fact, future 6G networks intend to democratize uniform access to digitalization among the global population to reduce existing social and economic inequalities. However, this leads to an increased wireless connectivity footprint and a pressing demand for additional energy resources, thus reducing sustainability. At the same time, 6G will offer orders of magnitude performance improvements over 5G in cities. Actions to achieve certain network key performance indicators (KPIs) may, however, disturb each other due to the overlapping network parameters. Handling efficiently these conflicting performance metrics, such as the dilemma of coverage vs. energy efficiency and load distribution vs. interference, is beyond the capabilities of current 5G networks. It is imperative that 6G networks be designed as self-organizing from their early design and specification stages to monitor and resolve potential destructive interactions.
+
+Self-organization [1] , [2] is a general term that covers any kind of autonomous restructuring of a system and is the highest and most general in the hierarchy of all technical systems [3] . SONs will therefore continue to empower future 6G communication systems that must offer certain fundamental properties, such as functionality, stability, scalability, performance, dependability, security, cost-effectiveness, and resilience [4] . The SON architecture is decomposed into a set of smaller functional units referred to as SON functions (SONFs). Examples include Coverage and Capacity Optimization (CCO) and Energy Saving Management (ESM) functions [5] . SONFs may interact either constructively or destructively. Thereby, advanced self-coordination capabilities are needed to ensure a conflict-free operation. In recent 5G-related studies, most self-coordination principles are usually not considered at the design phase of new communication systems adopting either a predictive or a reactive approach [5] . From a standardization perspective, the focus has been on the 3rd Generation Partnership Project (3GPP), the International Telecommunications Union-Telecommunication Standardization Sector (ITU-T), and the European Telecommunications Standards Institute (ETSI) activities [6] , thus over-looking many initiatives driven by other standardization development organizations (SDOs).
+
+To the best of our knowledge, the paper proposed by Bayazeed et al. , [5] is the first attempt to provide a detailed survey about the self-coordination functionality in cellular networks. It introduces a high-level comprehensive framework to categorize self-coordination logics into protective, reactive, and proactive. According to [5] , protective methods that anticipate conflicts during the design stage are only valid for static situations, whereas system dynamics call for proactive methods that can predict the potential conflicts at the execution time using artificial intelligence (AI) and machine learning (ML).
+
+Along these lines, evolved loosely coupled hybrid SONs (H-SONs) are a key concept that is used throughout this article. The H-SON design [2] , [5] has been introduced by 3GPP in release 8 as a mix of both centralized and distributed SON architectures, whereas loose coupling [7] refers to the weak interaction of different layers and weak interaction between users in the same layer. Decoupling of feedback loops has been known in control theory since the 1960s, but it is a rather new idea in the higher layers of communication systems, as can be seen in the design of Open Radio Access Network (O-RAN) using cross-layer optimization. In conventional networks, the feedback loops have worked strictly within each layer and even there instability may be caused by large delays or horizontal coupling. We argue that future SONs should adaptively choose the right trade-off of centralized and distributed management and control while maintaining a loose coupling between the underlying horizontal and vertical system components. This promising architectural model will achieve a stable and almost conflict-free SON operation by design as opposed to reactive and proactive methods that can be too slow in dynamic situations. We then elaborate relations to the recent O-RAN concept, a promising application framework for the H-SON design. Such future loosely coupled H-SONs need to be supported by the highly widespread virtualization, containerization, and multi-tenant architectures. However, it must be further empowered by the incorporation of quantum technology, contextual awareness, and the latest advancements in AI. Finally, the technical definitions in future H-SONs will also address energy efficiency and general SDOs by enforcing optimality and policy-based evolution, in which humans play a key role.
+
+Accordingly, the contributions of this article are two-fold. First, we outline the architectural innovations required as well as the associated drivers suited for 6G networks to achieve an improved design-driven self-coordination. Second, we provide a comprehensive summary of standardization initiatives related to SONs and their underlying self-coordination aspects to highlight the interest in a harmonized framework. Broader standardization-related insights are presented in [8] .
+
+The remainder of this article is organized as follows. In the next section, we present the background and state-of-the art of SONs. Then we discuss the opportunities, use cases, and standardization landscape of SONs. The challenges, trends, and directions of research and standardization activities regarding SONs are identified following that. Lastly, we conclude the article.
+Background and State-of-the-Art
+
+The historical development of SONs is presented in Fig. 1 . To obtain intelligent behavior, a feedback loop is needed. It is based on the sense-decide-act loop, which in modern AI forms the basis of an intelligent and rational agent, for example an SONF. The idea led to multi-agent systems, which form a hierarchy of interacting agents, a good basis for self-organization. In a hierarchy, the basic idea is to use low speed in the higher layers, such as in the network layer, and high speed in the lower layers, such as in the physical layer. The speed should correspond to the rate of change of the relevant network parameters in each layer. In a hierarchical system, a form of joint optimization is cross-layer optimization.
+Figure 1. - Development of self-organizing networks from packet switching systems to hybrid SONs.
+Figure 1.
+
+Development of self-organizing networks from packet switching systems to hybrid SONs.
+
+Show All
+
+In communications, the first SON was the Internet that was originally called the Arpanet and is based on packet switching, a form of loose coupling. At the same time, the generalized Open Systems Interconnection (OSI) model was developed. Ad hoc networks are multi-hop SONs without any fixed infrastructure. The history of ad hoc networks started from packet radio networks. The terms vertical and horizontal loose coupling were explicitly defined by Simon in the beginning of 1970s, but the idea of loose coupling of feedback loops has stayed mostly within control theory.
+
+The interest in SONs rose in the 1980s and were originally defined to be distributed. The 3GPP Rel. 8 (2008) divided SONs into three groups: centralized SONs (C-SONs), distributed SONs (D-SONs), and H-SONs, which are a combination of C-SON and D-SON. 3GPP Rel. 11 (2011) proposed the term self-coordination to avoid and resolve conflicts in SONs [5] . The research on coordination of conflicts in hierarchical systems started in the 1960s with Mesarovic's pioneering work.
+
+Independently of SONs, distributed computing was developed in computer science toward autonomic computing that is based on self-management. The term was later adopted also in communication networks. ETSI defined the Generic Autonomic Networking Architecture (GANA) reference model as an ETSI Technical Specification (TS) [9] , which corresponds to the H-SON concept defined earlier by 3GPP.
+
+C-SONs are based on forced cooperation of network nodes using hierarchy. In D-SONs the nodes cooperate at least with their closest neighbors by exchanging information. H-SONs combine centralized and distributed control which means that in addition to having hierarchy, the nodes exchange information with neighboring nodes. In C-SONs, optimality can be attained using the global view, but the control overhead and delays are large, and stability and energy efficiency must be compromised. D-SONs do not have any global view and thus they are only locally optimal, but the control overhead and delays are small, and stability and energy efficiency are improved. H-SONs have some advantages compared to C-SONs but also improved global optimality compared to D-SONs. The main disadvantage of H-SONs comes from the flexibility that reduces the global energy efficiency compared to D-SONs, but balances the use of energy consumption between the nodes.
+Figure 2. - Improved hierarchy using loosely coupled system design.
+Figure 2.
+
+Improved hierarchy using loosely coupled system design.
+
+Show All
+
+A schematic view of loosely coupled H-SON architecture is provided in Fig. 2 , showing essentially a hierarchical loosely controlled set of almost autonomous agents. There is only a loose vertical and horizontal coupling or interaction between agents to improve stability so that the feedback loops are loosely coupled or almost isolated from each other [7] . Using different degrees of coupling, the hybrid form can implement all other degrees of centralization as special cases. SONs should have at least a loose centralized control to improve optimality, fairness, and stability so that the global behavior is predictable. Accordingly, the higher in the hierarchy we are, the more intelligence and complexity we have.
+
+Coupling may result in stability problems that can be avoided by keeping the degree of coupling, denoted here by C, small enough. It can be quantitatively measured. In horizontal coupling it can be defined as the ratio of leaked interfering power and total received power after possible filtering, which corresponds to the inverse of signal-to-interference ratio in communication systems. In vertical coupling, the degree of coupling can be defined as the ratio of speed of the higher layer and the speed of the next lower layer. The speed can be measured using the bandwidth of the corresponding changes.
+
+An uncoupled system corresponds to C = 0 and fully coupled corresponds to C = 1 . A loosely coupled system corresponds to 0 < C < < 1 and a tightly coupled system corresponds to 0 < < C < 1 . In general, the requested numerical value for C depends on performance requirements. A starting point could be C = 0.001 for loose coupling but it could be, for example, C = 0.01 with more interference and reduced stability. Small C can be obtained by time-scale separation between layers and interference avoidance in the same layer, usually physical layer. These initial definitions form the basis for a complete framework that we leave for future studies.
+
+The degree of centralization of the 3GPP cellular networks has been evolving significantly with the change of different generations from 2G to 5G. The optimal balancing between fully centralized and decentralized network architecture is important because it has high influence to the overall system performance. The degree of centralization concerns three separate network domains, namely radio access network (RAN), packet core network (PCN), and cloud computing network (CCN). In 2G networks, all radio frequency (RF) and baseband (BB) parts were implemented in the base stations (BSs) apart from antennas. In 3G, more distributed RAN started to appear as the RF and BB parts were separated by moving RF parts closer to the antenna to reduce the RF losses. With 4G, the PCN architecture took a step toward a more distributed direction, as BSs were enabled to communicate directly without PCN via the X2 interface. At the same time, many latency-critical network control functions were distributed to BSs. In 5G, user data and network control planes were separated. Moreover, the flexibility to distribute PCN functionalities was increased by allowing more control functions to be in separate distributed control units closer to users. On the other hand, the RAN continues to move to a more centralized mode by adopting centralized and virtualized resource pools to manage resources more efficiently. The previously centralized CCN was extended into a more distributed mobile edge computing platform. The key enablers toward these directions are the logically centralized software-defined networking (SDN) and virtual network function (VNF) concepts. Finally, in the upcoming 6G network, the aim is a deeper integration of non-terrestrial aerial and satellite networks in terms of network management [10] . Therein, the location optimization of network controllers will become even more important due to larger distances and delays between network nodes, potentially increasing both control delay and overheads if not properly designed. In summary, there is no clear direction for the degree of centralization, but the evolution is driven by the challenge on finding optimal hybrid solutions for all three network domains. A typical 5G node is estimated to have 2000 configuration parameters [5] .
+Figure 3. - Open RAN use case control loops hierarchy.
+Figure 3.
+
+Open RAN use case control loops hierarchy.
+
+Show All
+
+Quality of Service (QoS) metrics and targets are seriously compromised by SONF conflicts, and are not well covered by current management and self-* approaches in 5G. For instance, both 5G and 6G network services need precise assessment of delay, jitter, packet loss rate, and communication capacity. Furthermore, additional Quality of Experience (QoE) metrics are particularly required for 6G, such as level of user satisfaction and response time from users. The integration of non-network data such as location-based (i.e., analysis of location and behavior of users) and social-based (i.e., analysis of social data) analytics into the SON stack, and continuously monitoring the key quality indicators (KQIs) [11] of the provisioned service will improve user satisfaction. However, the accurate estimation of the KQls of different services is still hampered by the increasingly stringent delay requirements of feedback loops. The H-SON model using loose coupling is a significant step toward addressing these challenges through decoupling network optimization-related SONFs from their QoS/QoE counterpart.
+Opportunities, Use Cases, and Standardization Landscape
+
+In this section, we discuss some opportunities that may bring new possibilities, such as emerging use cases along with the standardization issues and initiatives derived from them.
+Opportunities
+
+Some SONFs mostly focus on short term optimization as they mainly operate in the lower layers. With the aid of pervasive intelligence, SONFs will be able to process both historical information gathered from previous experiences and surrounding contextual data to build solid long-term optimization and prediction, and, thus, will operate the network in a proactive and autonomous fashion.
+
+On the other hand, a key opportunity is to work on the combined hierarchy and degrees of centralization to improve self-coordination. Hierarchy is used in SONs to manage the inherent complexity whereas different degrees of centralization maintain SONs scalability. H-SONs ( Fig. 2 ) are envisioned to avoid the weaknesses of pure centralized and distributed paradigms. Such hierarchical networks can be created statically in a structured manner or dynamically in an unstructured manner when needed. Structured network partitions can provide better support for AI/ML within and across network partitions.
+
+The intrinsic priorities of hierarchical systems are a very powerful mechanism to resolve conflicts in SONs. Sensing information propagates upwards and control information downwards in the hierarchy so that higher layers will detect the conflict and act by preempting the lower layers where decisions are usually made because they are faster. This hierarchy will prevent a conflict from lasting for a long time, causing system performance degradation. However, hierarchical systems may need a delay to detect, analyze, and trigger the best countermeasure commensurate with the number of layers.
+Table 1. Current and future standardization activities.
+Table 1.- Current and future standardization activities.
+
+Use Cases
+
+The O-RAN architecture has been deliberately designed with flexibility to deploy SON functions at the core, metro or edge depending on the control loop latency requirements, using the non real-time (Non-RT) RAN Interface Controller (RIC), near real-time (Near-RT) RIC, and potential use of edge platforms hosting VNFs as hosts for AI/ML applications as well ( Fig. 3 ).
+
+Development of third-party SON software realized as rApps and xApps will be made easier by the definition of reference designs for the supporting platforms' hardware (e.g., commercial off-the-shelf (COTS) equipment) and software, and through the definition of interface standards for the sensing input and action output of SONFs in different layers (e.g., O1 and E2 interfaces).
+
+O-RAN design envisions the use of the H-SON concept where there is interaction between SONFs at different positions in the network. The definition of the A1 interface, in particular, allows a higher-level SON in the Non-RT RIC to access information from the Near-RT RIC and to exert policy controls over the Near-RT RIC. Support of integrated SONFs has been adopted as one of the use cases of interest within O-RAN. The key high-level O-RAN functions are depicted in Fig. 3 allowing for a multitude of more specialized use cases ranging from RAN sharing to unmanned aerial vehicles (UAVs) radio resource allocation using a loosely coupled design.
+Standardization Landscape
+
+SONs are a key target of SDOs [6] , [12] . They are included in the key framework of the ITU-T (Rec. ITU-T Y.3324) as a target for Long Term Evolution (LTE) and beyond, thus, SON becomes a source of standardization efforts for 4G successors. As shown in [13] , some features of SONs have been envisioned for the overall standardization of networks that self-adapt to changes in their environment, being aligned with ETSI Network Function Virtualization (NFV) Management & Orchestration (MANO), and assumed by the Internet Engineering Task Force (IETF) as part of the Network Management Research Group (NMRG) and the Autonomic Networking Integrated Model and Approach (ANIMA) working group (WG). Standardizing self-organization and intelligent reasoning procedures are essential, so all components (hardware and software) must be assessed in terms of their SON capabilities (i.e., auto-*, self-*), as well as their overall adequacy and quality, for the tenant of the network to have a high degree of certainty on the network to operate as expected.
+O-RAN design envisions the use of the H-SON concept where there is interaction between SONFs at different positions in the network. The definition of the A1 interface, in particular, allows a higher-level SON in the Non-RT RIC to access information from the Near-RT RIC and to exert policy controls over the Near-RT RIC.
+
+ETSI efforts toward SON is taking part as Zero Touch Network and Service Management (ZSM), Experiential Network Intelligence (ENI) [6] , and GANA [9] . They provide underlying mechanisms to build SONs but there are still many topics to work on, as defined by ETSI in TS 128 313. They focus on optimization and configuration management but there are open issues on interaction among ETSI, ITU-T, and IETF views needed to define a stable framework for SONs [8] , such as the interface compatibility and adaptation, the function definition for consistency, and the consolidation of architecture components for allowing multi-vendor deployments.
+
+Table 1 summarizes current and future SDO activities, and provides a list of the used abbreviations. It shows that 3GPP, ETSI, Institute of Electrical and Electronics Engineers (IEEE), and IETF have been working for standardizing SON elements for a long time, achieving important success. These are being extended by latest efforts, such as IEEE's International Network Generations Roadmap (INGR) [8] , ETSI's ZSM, and ITU's Study Group 13 (SG13) which focus on leveraging network autonomicity by standardizing functions and interfaces that enable intelligent operation of network elements. These are also complemented by IETF's AI Framework for Network Management (AINE-MA), which presents an information model for integrating AI with network management, and by 3GPP release 18, bringing further enhancements to data collection within 5G SONs. Other initiatives, such as Broadband Forum (BBF) and TeleManagement Forum (TMF), are aligned with GANA. Specifically, BBF joins effort with 3GPP to align their system architectures with GANA at the same time. By its way, the Next Generation Mobile Networks (NGMN) alliance view on SON is aligned with the evolution of 5G toward 6G. It does not align particularly with GANA or ANIMA, although both have key roles in 6G, so NGMN approach will be compatible. Obviously, most of those ongoing standardization initiatives are either compatible or converge toward the reference GANA model, the latter adheres to the H-SON paradigm guidelines.
+Challenges, Trends, and Research/Standard Directions
+
+In this section, we enumerate the fundamental challenges to be addressed for providing conflict-free 6G SONs, and propose novel approaches along with promising research directions.
+Challenges
+
+Future SONs need to overcome five key challenges, as summarized by Table 2 : heterogeneity and complexity, loss of control, backward compatibility, fragmented solutions, and expensive optimizations.
+
+Future communication systems are becoming increasingly complex as a result of supporting new and heterogeneous ecosystems with strong inter-dependence and huge information flow. Another challenge is that communication systems may act chaotically in unexpected situations, and tight coupling may propagate instability across system components. This increases the risk of losing control and situation-awareness. Advancing self-organization capabilities will also need to preserve the backward compatibility between existing and future standards. Despite the uptake of new communication systems, some fundamental services will continue to rely on legacy technologies as the case of voice services. It is also noteworthy that self-organization is a process that spans various components (e.g., RAN, PCN, CCN) in the end-to-end mobile architecture. This leads to network fragments that can individually self-organize but a holistic SON approach is missing for the whole network. Finally, the full potential of SONs will only be achieved if they can continuously manage computationally expensive optimizations because future systems must provide quasi-instantaneous responsiveness.
+Future Research Directions
+
+Below, we share some enabling technologies expected to lay the foundation for the evolved H-SONs.
+Virtualized, Containerized, Microservice, and Multi-Tenant Architectures
+
+6G will witness the full power of virtualization, containerization, micro-service, and multi-tenancy approaches. The use of COTS equipment from any vendor will potentially improve self-coordination capabilities through achieving additional flexibility to place a set of multi-vendor and multi-service SONFs on the top of the same virtualized environment with low cost. This can also boost network scalability, alleviate multi-vendor compatibility issues, and avoid mis-configuration risks [14] . On the downside, different SONFs can access the same database and consequently compromise each other's security.
+Quantum Technology
+
+Self-coordination usually needs to handle complex optimization problems, which can be resolved with quantum computing (QC). QC techniques exploit the superposition of quantum states to concurrently explore different possibilities and quickly arrive at an optimal solution. In this perspective, QC will reduce computation cost (e.g., complex calculations) and the overall latency of the network (e.g., overheads of various layers) especially in virtualized and cloudified networks. This can enhance both proactive and reactive coordination algorithms in extremely dynamic environments. However, quantum devices need to run under cryogenic temperatures or very high pressures and these conditions are still in early development stages.
+Table 2. Future research directions for evolving H-SONs.
+Table 2.- Future research directions for evolving H-SONs.
+
+Federated and Transfer Learning
+
+While conventional 5G throughputs are still unable to handle the iterative transfer of large datasets over wireless links, federated learning (FL) [15] in 6G can simplify network automation by processing learning models (e.g., on COTS hardware installed at the edge) to reduce the time and energy costs of the proactive self-coordination. Further, transfer learning (TL) will allow capitalizing on the experience gained in avoiding or resolving previous 5G SON conflicts to address new but similar ones in 6G [2] .
+Joint Learning and Communication
+
+Unlike conventional AI techniques in 5G that act fragmentally and selfishly, the ubiquitous intelligence of 6G will be integrated with various capabilities, such as computing and communication into an unified design. In particular, self-coordination will leverage the power of the joint learning and communication (JLC) paradigm wherein the performance of the AI algorithms is optimized taking into account the peculiarities of the wireless channel [15] . For instance, inference tasks are usually split over many devices and servers. Although the intended prediction can be accurate, separately treating communication and inference may lead to violating the latency and reliability requirements of the underlying service. JLC frameworks will help mitigating such conflicts.
+
+6G research still needs to deal with the slow convergence speed of evolutionary methods and neural networks (e.g., via offline training), and minimize the amount of data locally needed to achieve the global benefit (e.g., via FL).
+Contextual Awareness
+
+Collecting, combining, and reacting to different pieces of available contextual information, such as user location, distributed device sensors, user social activity, and related KQIs [11] , is of paramount interest in the SON framework. The challenge for the context-aware SON is that the information sources have different time scales and they are not necessarily compatible measures having different signal-line overheads and security requirements.
+Digital Twins (DTs)
+
+Can identify potential SON conflicts before the production phase provided that true fidelity is achieved between the DTs and their physical counterpart.
+Sustainability and Energy Efficiency
+6G research still needs to deal with the slow convergence speed of evolutionary methods and neural networks (e.g., via offline training), and minimize the amount of data locally needed to achieve the global benefit (e.g., via FL)
+
+One way to resolve the potential conflicts is to define priorities. Coordination between SONFs attempting to optimize performance and others attempting to optimize energy usage will be an important area of future work given a goal of sustainability [2] . Moreover, reliance on holistic telemetry capabilities, for example, IETF's Network Telemetry Framework (NTF), supported by pervasive intelligence, as opposed to traditional user or device-centric mechanisms in 5G, will substantially decrease the related risks of conflicts.
+Human Factor
+
+SONs aim at reducing human intervention in system optimization related tasks, but a human in the self-coordination process is indispensable to prevent system malfunction since machines are not self-conscious [5] . For a successful operational mode, human intervention should be in the highest layer loops, and ideally should not intervene in the lowest layers characterized by tighter constraints in terms of responsiveness. Moreover, and besides autonomous learning, human experts can also contribute to enriching the coordination rules fed into the network.
+Concluding Discussions
+
+Table 2 illustrates how the aforementioned technological breakthroughs effectively address the SON challenges identified previously. Particularly, the anticipated advances in virtualization and containerization capabilities will reduce the hardware dependability and offer the needed isolation of the SONFs with a bare minimum of adaptive centralized management. This optimal degree of centralization will be used to propagate the knowledge from the top abstraction levels down to the lowest levels to enforce the needed actions at much smaller time frames than 5G [9] . The integration of a multi-tenancy dimension between various ecosystems and network parts (e.g., RAN, PCN, CCN) will boost overall SON scalability to handle billions of 6G connections. Such environments will help future H-SONs to dynamically monitor SONF instances, their mutual degrees of coupling (e.g., C), and their life-cycle to reduce conflicting situations.
+
+To resolve the increasing complexity, H-SONs will exploit meta-programming to facilitate the incorporation of the quantum technology. The latter will help 6G SONs conducting expensive optimizations, and, thus, extending their management mechanisms with advanced AI (e.g., FL, TL and JLC). This will be supported by standardized telemetry techniques (e.g., NTF) to provide rich energy metering capabilities and bring true self-sustainability to the network.
+
+Given the first steps toward 6G, different stake-holders should coordinate a joint SON design and development process to foresee the interworking and co-existence of Multiple Radio Access Technologies (multi-RATs) under a holistic SON standard. In turn, legacy systems can be augmented by SON-capable gateways and interfaces with translation and normalization capabilities to enforce backward compatibility.
+To guarantee the stability of the network, the different control feedback loops must be almost isolated from each other. This can be achieved using the concept of loose coupling.
+
+Lastly, the QoE will be at the center of context-aware 6G SONs. New dedicated SONFs can advise about the possible actions to obtain better QoE (e.g., go to a more preferable location or change the orientation). Accordingly, emerging 6G services will be human-centric, thus, maintaining a significant contribution of the human factor in overall system performance and critical situations as well.
+Conclusion
+
+This article discussed the problem of managing complex networks more efficiently. We showed how the development of SONs has been progressing toward H-SONs. To guarantee the stability of the network, the different control feedback loops must be almost isolated from each other. This can be achieved using the concept of loose coupling. Thus, we discuss the potential and the promises of loosely coupled H-SONs for an improved self-coordination to avoid potential conflicts. We also provided an in-depth landscape analysis of past and current SON-related standardization activities and the inherent self-coordination functionality within various SDOs to explore the harmonization possibilities. Finally, we summarized the challenges and the future technological trends for the development of SONs over the next decade. An important challenge is to adapt the network to the correct degree of centralization between centralized and distributed networks depending on the situation in the network environment.
+ACKNOWLEDGMENT
+
+This work was supported in part by the EU Horizon 2020 project DEDICAT 6G under Grant no. 101016499.
+
+Authors
+Figures
+References
+Citations
+Keywords
+Metrics
+Footnotes
+   Back to Results    |    Next >  
+More Like This
+Enabling Network and Service Programmability in 6G Mobile Communication Systems
+
+2022 IEEE Future Networks World Forum (FNWF)
+
+Published: 2022
+Terahertz Propagation Characteristics for 6G Mobile Communication Systems
+
+2021 15th European Conference on Antennas and Propagation (EuCAP)
+
+Published: 2021
+Show More
+References
+1.
+O. G. Aliu et al., "A Survey of Self Organisation in Future Cellular Networks", IEEE Commun. Surveys & Tutorials , vol. 15, no. 1, pp. 336-61, 2013.
+Show in Context View Article
+Google Scholar
+2.
+H. Fourati et al., "Comprehensive Survey on Self-Organizing Cellular Network Approaches Applied to 5G Networks", Comp. Net. , vol. 199, no. 9, pp. 1-24, Nov. 2021.
+Show in Context CrossRef Google Scholar
+3.
+A. Mämmelä et al., "Multidisciplinary and Historical Perspectives for Developing Intelligent and Resource-Efficient Systems", IEEE Access , vol. 6, pp. 17,464-99, 2018.
+Show in Context Google Scholar
+4.
+S. Dobson et al., "Self-Organization and Resilience for Networked Systems: Design Principles and Open Research Issues", Proc. IEEE , vol. 107, no. 4, pp. 819-34, Apr. 2019.
+Show in Context View Article
+Google Scholar
+5.
+A. Bayazeed, K. Khorzom and M. Aljnidi, "A Survey of Selfcoordination in Self-Organizing Network", Computer Networks , vol. 196, no. 4, pp. 1-32, Sept. 2021.
+Show in Context Google Scholar
+6.
+V. P. Kafle et al., "Network Control and Management Automation: Architecture Standardization Perspective", IEEE Commun. Standards Mag. , vol. 5, no. 3, pp. 106-14, Sept. 2021.
+Show in Context View Article
+Google Scholar
+7.
+A. Mämmelä and J. Riekki, "New Network Architectures Will Be Weakly Coupled", IEEE Future Networks Tech Focus , Apr. 2022.
+Show in Context Google Scholar
+8.
+et al., An IEEE 5G and Beyond Technology Roadmap: Systems Optimization, 2021.
+Show in Context Google Scholar
+9.
+ETSI, TS 103 195-2 V1.1.1, "Autonomic Network Engineering for the Self-Managing Future Internet (AFI); Generic Autonomic Network Architecture; Part 2: An Architectural Reference Model for Autonomic Networking, Cognitive Networking and Self-Management", May 2018.
+Show in Context Google Scholar
+10.
+T. Darwish et al., "A Vision of Self-Evolving Network Management for Future Intelligent Vertical HetNet", IEEE Wireless Commun. , vol. 28, no. 4, pp. 96-105, Aug. 2021.
+Show in Context View Article
+Google Scholar
+11.
+A. Herrera-Garcia et al., "Modeling of Key Quality Indicators for End-to-End Network Management: Preparing for 5G", IEEE Vehic. Tech. Mag. , vol. 14, no. 4, pp. 76-84, 2019.
+Show in Context View Article
+Google Scholar
+12.
+X. Long et al., "Autonomic Networking: Architecture Design and Standardization", IEEE Internet Computing , vol. 21, no. 5, pp. 48-53, Sept./Oct. 2017.
+Show in Context View Article
+Google Scholar
+13.
+P. Martinez-Julia, V. P. Kafle and H. Harai, "Exploiting External Events for Resource Adaptation in Virtual Computer and Network Systems", IEEE Trans. Network and Service Management , vol. 15, no. 2, pp. 555-66, June 2018.
+Show in Context View Article
+Google Scholar
+14.
+L. Bonati et al., "Intelligence and Learning in O-RAN for Data-Driven NextG Cellular Networks", IEEE Commun. Mag. , vol. 59, no. 10, pp. 21-27, Oct. 2021.
+Show in Context View Article
+Google Scholar
+15.
+M. Chen et al., "A Joint Learning and Communications Framework for Federated Learning Over Wireless Networks", IEEE Trans. Wireless Commun. , vol. 20, no. 1, pp. 269-83, 2021.
+Show in Context View Article
+Google Scholar
+IEEE Personal Account
+
+    Change username/password 
+
+Purchase Details
+
+    Payment Options
+    View Purchased Documents 
+
+Profile Information
+
+    Communications Preferences
+    Profession and Education
+    Technical interests 
+
+Need Help?
+
+    US & Canada: +1 800 678 4333
+    Worldwide: +1 732 981 0060
+    Contact & Support 
+
+Follow
+
+About IEEE Xplore | Contact Us | Help | Accessibility | Terms of Use | Nondiscrimination Policy | IEEE Ethics Reporting | Sitemap | IEEE Privacy Policy
+
+A not-for-profit organization, IEEE is the world's largest technical professional organization dedicated to advancing technology for the benefit of humanity.
+
+© Copyright 2023 IEEE - All rights reserved.

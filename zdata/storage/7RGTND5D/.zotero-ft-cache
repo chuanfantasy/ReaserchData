@@ -1,0 +1,536 @@
+ICC 2022 - IEEE International Conference on Communications | 978-1-5386-8347-7/22/$31.00 ©2022 IEEE | DOI: 10.1109/ICC45855.2022.9838791
+
+Scalability of Distributed Intelligence Architecture
+for 6G Network Automation
+Sayantini Majumdar∗†, Riccardo Trivisonno∗, Georg Carle† ∗Munich Research Center, Huawei Technologies
+[sayantini.majumdar, riccardo.trivisonno]@huawei.com †Technical University of Munich, Germany carle@net.in.tum.de
+
+Abstract—Distributed automation is expected to play a signiﬁcant role in the management of 6G networks, as it avoids the drawbacks of a single point of failure and signaling overhead inherent in a centralized paradigm. However, the issue of conﬂicts is intrinsic to a distributed architecture and when left unaddressed, may severely impair system KPIs. Considering the conﬂict problem, it is unclear if distributed automation would be scalable to realize the potential of 6G networks. In this paper, we validate the scalability of distributed intelligence, speciﬁcally based on Q-Learning, Q-Learning for Cooperation (QLC), consisting of intelligent agents that learn to cooperate on a discrete state space. Results show that the performance of QLC is scalable when compared to the optimal, computed by a centralized solution. Scalability may be limited by the convergence time that increases with the number of agents and the size of the discrete state space. The cooperation overhead is also not critical. These ﬁndings indicate that QLC is promising and may be applied to other use cases if the speed of convergence is not a signiﬁcant detriment in distributing intelligence in 6G.
+Index Terms—6G network automation, distributed intelligence, scalability, conﬂict resolution, network slicing, auto-scaling
+I. INTRODUCTION
+The rapid commercialization of 5G networks worldwide has stimulated research into architectural evolution towards 6G. So far in 5G, automating the management of network entities (access nodes, network functions, etc.) remains mostly centralized [1], where a central orchestration entity executes the stages of a closed loop (CL) – Monitor, Analyze, Plan, Execute (MAPE). In 6G, the overall architecture is expected to be ﬂatter than previous generations, where the training data for CLs are pushed further towards the edge devices away from central cloud servers [2]. Therefore, to realize the full vision of 6G, instead of a central entity, efﬁcient distributed automation is foreseen [1], one that is only recently corroborated by standard bodies such as ETSI ZSM [3].
+In a distributed paradigm, management of network entities is automated by the concurrent and autonomous operation of multiple CLs, where each CL aims to reach its individual objective. These network entities are heterogeneous with varying architectural scope – per domain (e.g. access, edge), per slice or even per Network Function (NF) deﬁned by 3GPP [4]. Often these autonomous CLs share underlying resources, implying that the actions of one CL affect those of others. Eventually, distributing the autonomy to CLs introduces the problem of conﬂicts, which, if left unaddressed, trigger sub-
+
+optimal management actions, collectively degrading system Key Performance Indicators (KPIs) [5]. Clearly, greater the CLs, the greater the likelihood of conﬂicts. This consideration raises an important question: if conﬂicts are inevitable, would distributed automation be realistically scalable for 6G? So far, no previous work attempts to envision the impact of distributing the automation in 6G by factoring in the issue of conﬂicts, given the fact that the 6G architecture itself is far from standardized.
+Nevertheless, previous work exists in distributed automation with or without a focus on conﬂicts. In [6], a decentralized Q-Learning (QL) algorithm QSON resolves conﬂicts between Mobility Load Balancing (MLB) and Energy Saving Management (EMS) Self-Organizing Network (SON) functions for varying Quality of Service (QoS) and time scales. However, this work is presented in the context of SON only, therefore limited to the speciﬁc SON use cases and applicable only to the radio access. A decentralized learning approach based on multi-agent cooperation using graph convolution [7] shows that by embedding essential contextual information in neighboring agents, cooperation can be achieved. Conceptually, this work is promising. However, neither does it explicitly address the issue of conﬂicts nor has it been evaluated on a real 5G use case. These works, moreover, do not address the complexity of learning and convergence or the size of the state space. In addition, [8] proposes decentralized, cooperative, multiagent model-free (QL and SARSA) reinforcement learning (RL) schemes to maximize energy efﬁciency in cognitive radio networks. An analysis on the scalability of the framework, i.e. the impact on system performance and convergence speed remains unaddressed. Nevertheless, [8] conducts a complexity analysis on the state space in a multi-agent environment. [9] acknowledges the impact of decentralized AI on future networks and proposes a federated learning-based approach to resource allocation in order to minimize Service Level Agreement (SLA) violations in beyond 5G Network Slices (NSs). However, again the issue of conﬂicts is not considered.
+One may identify a common factor from the above review – the use of RL, a branch of Machine Learning (ML), for solving optimization problems. The usage of QL, a type of RL algorithm, in recent years is attributed to its evaluative and model-free nature – meaning that the environment in which the algorithm operates is not explicitly modeled, rather the quality
+
+Authorized licensed use limited to: Nanjing Univ of Post & Telecommunications. Downloaded on November 03,2023 at 09:04:01 UTC from IEEE Xplore. Restrictions apply.
+2321
+
+of an action (Q-value) under a set of conditions is evaluated based on iterative feedback. QL derives the optimal policy (probability distribution of states to actions) by choosing the action that yields the maximum Q-value for a given state, also known as an off policy method. These attributes make QL a powerful algorithm for goal-based learning, evident from prior works. E.g. [10]–[12] have approached the problem of resource allocation, speciﬁcally auto-scaling virtual resources, by applying QL to optimize a predeﬁned goal e.g. QoS guarantees, resource efﬁciency or meeting SLAs.
+In our earlier work [13], we ﬁrst proposed a distributed intelligence framework based on QL, Q-Learning for Cooperation (QLC) consisting of intelligent agents aiming at optimal management decisions while considering the non-coordination issue. To validate the concept, QLC was applied to a realistic 5G auto-scaling NS use case, where QLC agents scaled CPU resources dynamically to optimize their usage in order to serve incoming NS load. In [14] we analyzed the issue of convergence and its relation to the state space of each agent, where we proposed distinct rates of exploration for each state for every agent. We also proposed Knowledge Indicators (KIs) for every state to understand when QLC agents had explored enough to start exploiting their built knowledge. In this respect, although we acknowledge that prior endeavors have attempted to advance distributed automation, a study that validates the scalability of decentralization, by harmonizing its impact on 1) system performance and conﬂicts, 2) convergence time for a discrete state space when the number of CLs increases and and 3) the corresponding signaling overhead due to cooperation is still lacking in prior art. Building on prior work and the current gaps in literature, we posit that these dimensions are essential to envision what distributing automation in 6G may look like.
+This work is an exploratory paper to characterize the impact of distributing automation via intelligence in 6G. To this end, our contribution is to validate the scalability of QLC in three dimensions:
+1) Impact on system performance and conﬂicts, where the performance of QLC is compared to the optimal, computed by a Mixed Integer Optimization (MIO) formulation;
+2) Impact on the convergence time of agents, and 3) The signaling overhead due to cooperation.
+II. AUTO-SCALING IN A NETWORK SLICE
+In this paper, we validate the scalability of distributed intelligence (QLC) by considering a speciﬁc 5G network automation use case – auto-scaling virtual resources in a network slice.
+Automated system. The automated system [13] consists of a Network Slice (NS) composed of N Network Functions (NFs), implemented as software on Virtual Network Functions (VNFs) sharing a pool of v virtual computing units i.e. virtual CPU resources. The resource pool is hosted on physical infrastructure via a virtualization layer. A population of User Equipments (UEs) issues service requests dynamically in time, generating the incoming NS load.
+
+𝐮𝟏
+𝐀𝟏
+
+𝐮𝟐
+
+𝐮𝟏
+
+𝐀𝟐
+
+𝐧𝐂𝐏𝐔𝟏 𝐰
+𝐍𝐅𝟏
+𝐕𝐍𝐅𝟏
+
+𝐚𝟏
+
+𝐧𝐂𝐏𝐔𝟐 𝐰
+
+Network slice
+
+𝐍𝐅𝟐
+
+𝐕𝐍𝐅𝟐
+
+𝐮𝐍 𝐮𝐍
+
+𝐮𝟐
+
+𝐀𝐍
+
+⋯
+𝐚𝟐
+
+𝐧𝐂𝐏𝐔𝐍 𝐰
+
+𝐍𝐅𝐍
+
+𝐕𝐍𝐅𝐍
+
+Legend
+
+Monitor
+
+Action
+
+𝐚𝐍
+
+Neighbor information
+
+Deployed on
+
+⋯ CPUs
+
+⋯⋯
+CPUs
+
+⋯ CPUs
+
+Shared CPU resources 𝒗
+⋯
+
+Fig. 1: QLC-based auto-scaling system model [13]
+
+At time instant t, an NF monitors its local variables: 1)
+
+the NS load i.e. the number of UEs served by the NS w(t)
+
+and 2) the number of CPUs nCP Ui (t) allocated to the ith VNF. The actual load contributed by the jth UE to the NS
+
+is denoted as µUEj (t). The CPU utilization ui(t) for the ith
+
+VNF is then computed as proportional to
+
+w(t) j=1
+
+µUEj (t)
+
+and
+
+inversely related to nCP Ui (t). Exact formulation of ui(t) is
+
+omitted for brevity.
+
+The NS then implements distributed threshold-based admis-
+
+sion control: an incoming service request is rejected if the CPU utilization of any ith VNF exceeds a threshold ACthri . Then, auto-scaling scales up and down the number of CPUs allocated
+
+to each VNF, aiming at keeping the utilization close to a target
+
+uT , deﬁned according to resource efﬁciency considerations.
+
+A. Distributed Intelligence (QLC)-based auto-scaling
+In this section, we revisit the distributed framework, QLearning for Cooperation (QLC) ﬁrst proposed in [13]. It consists of N autonomous Intelligent Agents (IAs), denoted as Ai depicted in Fig. 1. Each IA independently manages its own NF-VNF pair of the NS by performing auto-scaling actions. D IAs managing NF-VNF pairs sharing virtual CPUs are deﬁned as Neighbor Intelligent Agents (NIAs). During high incoming NS load, all NIAs attempt scale up actions from the same virtual resource pool, to maintain their respective VNF CPU utilization close to uT . When the available CPU resources in the pool are unable to provision the combined demand of these distributed scale up actions, only one of the NIAs is privileged while the rest end up with no extra CPUs. We deﬁne this event as a conﬂict. Consequently, conﬂicts may cause uneven resource sharing among NF-VNF pairs, affecting the maximum load the NS may serve.
+Monitored variables. Apart from local variables monitoring, the QLC framework additionally enables an IA to monitor CPU utilization of its D NIAs.
+State space. The state of an IA Ai is calculated based on the variables it monitors – both local and of its neighbors. The precise state formulation can be found in [13]. In this work, it sufﬁces to note the state of an IA, denoted by a discrete variable sj ∈ S; (1 ≤ j ≤ |S|), encodes two aspects – 1) the proximity of ui to uT and 2) how balanced the load is among N NIAs. The goal of Ai is to reach a state where ui − uT
+
+Authorized licensed use limited to: Nanjing Univ of Post & Telecommunications. Downloaded on November 03,2023 at 09:04:01 UTC from IEEE Xplore. Restrictions apply.
+2322
+
+is minimized (i.e. to reach uT ) and the difference between ui and the CPU utilization of its D NIAs is minimized. The latter aspect achieves fair CPU allocation among NF-VNF pairs, balanced load sharing, hence cooperation among NIAs.
+Action space. Ai may select an action ak ∈ Ai; (1 ≤ k ≤ |Ai|). where, sign(ak) identiﬁes up/down-scaling attempt, and |ak| identiﬁes the number of CPUs requested/released.
+Reward model. The reward model r for state-action pair (sj, ak) takes two aspects into account. First, the closer an action brings ui to uT , the higher the action is rewarded. Second, actions incurring in conﬂicts are penalized. The detailed reward formulation is found in [13].
+Q-table. Each IA Ai independently stores its learning progress in a Q-table Qi, an |S|× |Ai| matrix. Each cell of Qi is represented as Qi(sj, ak) = qjk, where Qi : S × Ai → R. Qi(sj, ak) is called the action value function representing the expected long-term rewards for (sj, ak). At every iteration, Ai updates Qi(sj, ak) using the Bellman Eqn. [15] (1).
+
+Qi(sj, ak) ← Qi(sj, ak)+
+
+α
+
+r(sj
+
+,
+
+ak
+
+)
+
++
+
+γ
+
+max
+ak
+
+Qi
+
+(sj
+
+,
+
+ak
+
+)
+
+−
+
+Qi
+
+(sj
+
+,
+
+ak
+
+)
+
+,
+
+(1)
+
+where α is the learning rate and γ is the discount factor. sj and ak are current state and action respectively, while sj is the state which action ak brings Ai to.
+Episode. An episode is deﬁned as a sequence of Bellman Eqn. (1) updates over a duration T time units.
+Learning. In general, the approach of RL is characterized as evaluative i.e. it evaluates how good an action is at a given state using the Bellman Eqn. (1). Therefore, an IA requires an initial learning phase. This phase, where it randomly selects an action and computes its quality using Eqn. (1) is known as exploration. Theoretically, by sampling all actions using a trial-and-error approach after an inﬁnite number of iterations, an IA is able to identify the optimal action at a given state and store this knowledge as updated Q-values in its Q-table. After completing exploration, the IA selects the action with the highest estimated action value maxak Qi(sj, ak) at state sj. This phase is known as exploitation, as it exploits its built knowledge. Exploration and exploitation are generally regulated by action selection strategies such as ε-greedy approach, where ε is the probability of exploration [16]. However, a dilemma exists – when should an IA be considered to have explored long enough in practice to start taking reliable actions? Consequently, how should ε be tuned? We addressed these issues in [14], where we proposed Knowledge Indicators (KIs) – metrics that assess the progress of learning for every IA at each distinct state. Moreover, these KIs drove exploration or exploitation by automatically updating ε on the current learning, further removing manual conﬁguration.
+Here we revisit the concept of KIs. For the IA Ai and state sj, the q values are denoted as qj = [qj1, qj2, ..., qj|Ai|]. We deﬁne an arbitrary discrete time instant t = t0 +h·T , where t0 is the time instant before the algorithm begins and h denotes
+
+the episode number, 1 ≤ h ≤ E out of E total episodes. The variance of qj values is computed as
+
+|Ai |
+
+σj2(t) = (qjk(t) − q¯jk(t))2.
+
+(2)
+
+k=1
+
+The ﬁrst KI proposed in [14] at episode h and state sj is
+
+δhj
+
+=
+
+δj (t)
+
+=
+
+δj (t0
+
++ h · T)
+
+=
+
+∆ ∆t
+
+(σj2
+
+(t)),
+
+(3)
+
+where behind
+
+∆
+δ∆hjt
+
+(·) is
+
+is a discrete derivative over as follows: when the variance
+
+t. The between
+
+intuition q values
+
+at sj over ∆t is high, it implies that the learning at sj
+
+is unstable, indicating the dominance of exploration. As the
+
+variance decreases with h, the learning stabilizes and Ai
+becomes qualiﬁed to exploit at sj. The difference in variance
+is therefore given by Eqn. 3. On the other hand, we remark that δhj alone is insufﬁcient to determine the learning progress of an IA. In [14], we therefore proposed a second KI nj(t0+h·T ) as
+the number of times the state sj has been visited, to track the
+learning in terms of state visits, congruent with the conditions
+
+of convergence in QL [17]. nj ensures that Ai does not explore unnecessarily at states where the optimal action has been found
+
+or does not begin exploiting when it should explore. Therefore,
+
+both KIs are necessary elements in the scalability of QLC,
+
+as they ensure that autonomous NIAs ﬁnd the optimal action
+
+without slowing down convergence. In our work, convergence
+
+means all IAs at all states have converged in their learning.
+
+The concept of KIs allows the deﬁnition of the ε update at
+
+every episode. We consider an incoming load proﬁle to the NS
+
+that traverses S entirely and uniformly, implying that all states
+
+in S are visited equivalently and practically often. Therefore,
+
+the impact of KI2 may be neglected for such a load proﬁle. Building on the ﬁndings in [14], εjh at state sj and episode h is updated based on the knowledge of δhj as
+
+εjh = εj(t) = εj(t∗) − (δj(t) · A) − B,
+
+(4)
+
+where t∗ = t0 + (h − 1) · T represents a time instant at the previous episode h − 1 and A and B are constants.
+
+B. Mixed Integer Optimization (MIO)-based auto-scaling
+
+The upper bound of the auto-scaling performance, to which QLC will be compared, is given by the optimal CPU allocation for a given incoming NS load, computed by a centralized Mixed Integer Optimization (MIO) formulation.
+At every time interval Ts, the optimization problem aims to return the optimal allocation of CPUs (nCP U1 , nCP U2 , ..., nCP UN ) based on two aspects: 1) the load served should be maximized and 2) ui should reach close to uT . Greater importance is given to aspect 1.
+
+N
+
+maximize w − ξ · |ui − uT |
+
+(5a)
+
+i=1
+
+subject to
+
+w ≤ U,
+
+(5b)
+
+ui ≤ ACthri
+
+(5c)
+
+Authorized licensed use limited to: Nanjing Univ of Post & Telecommunications. Downloaded on November 03,2023 at 09:04:01 UTC from IEEE Xplore. Restrictions apply.
+2323
+
+TABLE I: NS deployment scenarios
+
+Scenario No. of resource pools M
+
+1
+
+1
+
+2
+
+1
+
+3
+
+1
+
+4
+
+2
+
+5
+
+3
+
+No. of NF-VNF pairs sharing each pool
+3 6 9 3, 3 3, 3, 3
+
+No. of available CPUs v
+30 60 90 30, 30 30, 30, 30
+
+TABLE II: Simulation conﬁguration parameters
+
+Type Parameter
+
+Symbol Value
+
+Unit
+
+Admission control threshold ACthri 0.9
+
+-
+
+CPU utilization target
+
+uT
+
+0.5
+
+-
+
+System Initial no. of CPU/VNF Episode duration
+
+nCP Ui T
+
+1 104
+
+s
+
+Total no. of episodes
+
+E
+
+200
+
+-
+
+Population of UEs
+
+U
+
+105
+
+-
+
+Load
+
+Service request/UE Service duration (mean, sd)
+
+λU E θ¯, σθ
+
+5×10−7 - s−1 1.5×10−5
+
+60, 5
+
+s
+
+Actual load/UE (mean, sd) µ¯, σµ
+
+1, 0.02
+
+-
+
+where U is the population of UEs and 0 < ξ < 1 is a constant weight. Further details are out of scope of this work.
+III. EXPERIMENTAL EVALUATION
+The main objective of our evaluation is to demonstrate the scalability of the proposed QLC architecture under dynamic (i.e. time varying) slice load conditions and in different deployment scenarios. We assess the performance of QLC in terms of the load served by the slice for a given incoming load, bench-marked to the optimal, computed by a centralized MIO formulation. We further investigate the impact of conﬂicts and the convergence time of the IAs. Finally, the signaling overhead of QLC is also compared to that of MIO.
+A. Simulation setup
+NS deployment, conﬁguration and load generation. The NS is composed of N NFs, deployed on M isolated physical infrastructure (e.g. physical machine, data center etc.). Each isolated infrastructure hosts a pool v of virtual computing (i.e. CPU) resources. Building on [13], [14], we consider two dimensions of QLC extensions – 1) the number of shared infrastructure M and 2) the number of NF-VNF pairs (hence NIAs) sharing a given resource pool. We combine these dimensions to set up the NS in the scenarios given in Table I.
+We initialize simulation parameters given in Table II as follows. The distributed threshold-based admission control of the ith VNF is initialized to ACthri , while the VNF utilization target is uT . Additionally, nCP Ui number of initial CPUs are allocated to the ith VNF. For a fair comparison with the optimal performance, v needs adjustment for every scenario. Given that nCP Ui = 1, v is conﬁgured according to the optimal CPU allocation returned by the centralized MIO formulation for the corresponding scenario, outlined in Table I.
+Next, the NS is loaded by requests generated from a population of UEs U , with varying Poisson arrival rate per UE λUE, service duration θ and a generated load µ modeled as Gaussian variables. The dynamic or time-varying environment
+
+Fig. 2: Extended QLC-based auto-scaling system
+is simulated by λUE(t) (Table II), replicated according to a realistic peak-hour scenario from [18]. Each episode has a duration T = 104s simulating smooth variation of incoming service requests, reﬂecting the periods of peak activity over T across little more than a 4-hour period. Therefore, the incoming NS load Λin(t) is the aggregate of λUE(t) of U UEs. Simulations are run for a total duration of E · T s.
+Algorithm conﬁguration. In QLC, an IA Ai in a given scenario has D = N/M − 1 number of NIAs, depicted in Fig. 2, where N1 + N2 + ... + NM = N . The action set of Ai is Ai = {−2, −1, 0, +1, +2}. The learning rate α and discount factor β in Eqn. (1) are conﬁgured to 0.5 and 0.9 respectively. Upon the deﬁnition of the KIs, for Ai at state sj, the probability of exploration εj0 at h = 0 (before the algorithm begins) is initialized to εini = 0.9. The exploration rate εjh is updated according to Eqn. (4) with A = 0.05 and B = 10−3.
+The centralized MIO, at every time interval Ts, receives monitoring information of each NF, runs the solver and commands optimal auto-scaling actions to every NF, to scale the virtual CPUs of its corresponding VNF. Hence, MIO forms the upper bound of the system performance. The performance lower bound is given by the conﬁguration NO AUT that never scales and serves the maximum number of UEs possible using the initialized nCP Ui .
+B. Evaluation results
+System performance and conﬂicts. The performance of an algorithm at t is evaluated by measuring the no. of UEs served by the NS per s, represented by the load served Λout(t). Fig. 3 shows the incoming load of UE requests Λin(t) and the corresponding served load Λout(t) for all algorithms for all ﬁve scenarios. NO AUT is the lower bound and MIO is the optimal Λout(t) for a given Λin(t). We observe that all scenarios incrementally improve their performance, based on their learning. After convergence, the performance of QLC reaches close to MIO at high Λin(t), at most 5% away from the optimal. Different scenarios converge at different episodes. More the NIAs in a scenario, higher is the convergence time. E.g. Scenario 1 with N = 3 NIAs sharing M = 1 resource pool converges at episode 29 while Scenario 3 with N = 9 NIAs converges at episode 102. Moreover, QLC is robust and reliable, since scenarios that have already converged, continue to retain their learning. Hence, QLC is scalable in terms of performance, but the scalability might be limited by the time taken by all IAs in a scenario to converge.
+
+Authorized licensed use limited to: Nanjing Univ of Post & Telecommunications. Downloaded on November 03,2023 at 09:04:01 UTC from IEEE Xplore. Restrictions apply.
+2324
+
+1.4
+
+1.2
+
+1.0
+
+0.8
+
+0.6
+
+0.4
+
+MIO
+
+SC2:[6] SC3:[9]
+
+0.2
+
+NO_AUT
+
+SC4:[3,3]
+
+0.0
+
+SC1:[3]
+
+SC5:[3,3,3]
+
+0
+
+2
+
+4
+
+6
+
+8 10 0
+
+2
+
+4
+
+6
+
+8 10 0
+
+2
+
+4
+
+6
+
+8 10 0
+
+2
+
+4
+
+6
+
+8 10
+
+time (s)
+
+1.4 1.2 1.0 0.8 0.6 0.4 0.2 0.0
+0
+
+MIO
+NO_AUT SC1:[3]
+
+SC2:[6] SC3:[9] SC4:[3,3] SC5:[3,3,3]
+
+2 4 6 8 10 0 2 4 6 8 10 0 2 4 6 8 10 0 2 4 6 time (s)
+Fig. 3: Incoming service requests to the NS Λin(t) and corresponding load served Λout(t) in s−1 in all scenarios
+
+8 10
+
+Fig. 4: Evolution of conﬂicts in all scenarios
+We observe the impact of learning on conﬂicts in Fig. 4. During exploration, the IAs learn their environment, often causing a high occurrence of conﬂict events. By the end of the learning, all ﬁve scenarios minimize the number of conﬂicts.
+Convergence. The analysis of Λout(t) earlier provided a few hints on the convergence time. For Scenarios 1, 2 and 3 each with M = 1, an obvious consideration is that the time taken for convergence increases with increase in the number of NIAs, owing to subsequent increment in neighbor information exchange. On one hand, KI-based learning achieves nearoptimal q values. Larger the S, longer is the convergence time in terms of episodes, as there are |S| × N distinct exploration rates. In addition, as M is increased, convergence is slowed down even for equal (i.e. 3) number of NIAs sharing a resource pool, demonstrated by Scenarios 1, 4 and 5. This consideration is not only attributed to the autonomous and distributed nature of IA learning, but also to different neighbor groups attempting to reach a consensus in terms of performance.
+So far we analyzed a macro parameter for convergence i.e. the episode at which each scenario converges. Let us now consider the KI δhj to investigate convergence. For Scenario 2 (M = 1, N = 6 NIAs), we depict δhj for all NIAs at
+
+Fig. 5: Evolution of the ﬁrst KI δhj (Eqn. (3)) in Scenario 2
+an arbitrary state sj in Fig. 5. At episode 1, δ1j indicates the unstable, exploratory phase of NIAs. From episode 2, the NIAs are observed to immediately follow their own learning seen from ﬂuctuating δhj values. At episode 10, δ1j0 for all NIAs is around 0, however it does not indicate convergence as δhj starts ﬂuctuating again between 2 and -2, indicating instability. From episode 68 onward, δhj values are seen to stabilize at or near 0, with few exceptions due to the randomness of the simulations. This observation indicates convergence at episode 68, also validated in Fig. 3. Consequently, the concept of KIs indicates when i.e. at which episode convergence is reached, even when the best achievable system performance is unknown.
+The goal of Ai is to maximize the expected long-term rewards using the Bellman Eqn. (1). Therefore, we further validate the concept of KIs by depicting the average reward r¯i of Ai in Fig. 6. All NIAs initially receive equivalent r¯i up to episode 5, as they begin exploration with the same initial conditions. Disproportionate rewards in the beginning e.g. at episode 22 indicate the autonomous and distributed nature of IA learning. Convergence is seen at episode 68 when conﬂicts
+
+Authorized licensed use limited to: Nanjing Univ of Post & Telecommunications. Downloaded on November 03,2023 at 09:04:01 UTC from IEEE Xplore. Restrictions apply.
+2325
+
+Fig. 6: Evolution of the average reward r¯i in Scenario 2
+are minimized and r¯i saturate. These considerations highlight the importance of KIs, as KI-based learning is conceptualized per state. Hence, to determine convergence, it is crucial to observe KIs for each state rather than only the average reward, which is calculated per episode and is dependent on the KIs.
+Signaling overhead. In QLC, signaling for a given IA Ai includes the input measurements and output actions. Over a time interval Ts, Ai measures ui, collects the utilization of its D NIAs and commands one auto-scaling action. The total signaling for cooperation Sco is equal to N · (2 + D). On the other hand, the centralized MIO measures the rate of UE arrivals at the NS λUE and the mean service duration of UEs θ¯ over a time interval Ts. After solving the optimization problem, it signals N auto-scaling commands to the IAs. Hence, the total signaling is Sopt = N + 1.
+IV. LIMITATIONS
+The primary motivation of this work was to explore the impact of distributing intelligence for 6G. To this end, we simpliﬁed the modeling of the auto-scaling system based on one VNF feature only i.e. the CPU utilization. The concept of QLC could be applied to other VNF features mirroring loading of NFs such as memory, disk usage and so on. Incorporating all these features would increase the size of the state space, in which case tabular QL approaches such as QLC would no longer be feasible [19]. Instead, function approximation methods such as Deep Q-Networks [19] are suitable.
+The speed of convergence is dependent on the accuracy of the reward function design [16]. The more complex the reward, the faster can an IA converge to its goal. However, there is no known theoretically “best” reward function as the RL problem converges to asymptotic guarantees.
+V. CONCLUSIONS
+The trend toward a distributed architecture for 6G requires distributed automation for its management. Due to multiple operating closed loops, the problem of conﬂict in distributed automation is inherent. To explore the impact of distributed intelligence in 6G, this paper validated the scalability of distributed paradigm, speciﬁcally Q-Learning for Cooperation (QLC) consisting of Intelligent Agents (IAs) that learn to cooperate. We evaluated scalability in three aspects. Performancewise, QLC is scalable – it performs close to the optimal, minimizing conﬂicts even with increasing number of IAs. Results show that the convergence time may limit scalability,
+
+as it increases with the number of NIAs. Although the discrete
+nature of the state space slows down convergence, it imparts
+accuracy to the learning. Finally, the overhead involved in
+cooperation is not much worse than the optimal MIO, so it
+will not be a limiting factor to the scalability. Nevertheless,
+QLC may still be applied to other use cases e.g. load balancing
+for session management in 6G, if the convergence time is
+not a signiﬁcant roadblock. Eventually, a Deep Q-Network-
+based formulation in future would be an efﬁcient, intelligent
+alternative for modeling complex networks with more state
+variables and conﬂicting IAs.
+REFERENCES
+[1] X. Qiao, Y. Huang, S. Dustdar, and J. Chen, “6G vision: An AIdriven Decentralized Network and Service Architecture,” IEEE Internet Computing, vol. 24, no. 4, pp. 33–40, 2020.
+[2] M. Li and et al., “Slicing-Based Artiﬁcial Intelligence Service Provisioning on the Network Edge: Balancing AI Service Performance and Resource Consumption of Data Management,” IEEE Vehicular Technology Magazine, vol. 16, no. 4, pp. 16–26, 2021.
+[3] “Zero-touch network and Service Management (ZSM); Means of Automation,” Group Report ETSI GR ZSM 005 V1.1.1, ETSI, 2020.
+[4] “Management and Orchestration; Architecture Framework (Release 16),” Standard 3GPP TR 28.533, 3rd Generation Partnership Project, 2019.
+[5] S. Ha¨ma¨la¨inen, H. Sanneck, and C. Sartori, LTE self-organising networks (SON): network management automation for operational efﬁciency. John Wiley & Sons, 2012.
+[6] M. Qin, Q. Yang, N. Cheng, J. Li, W. Wu, R. R. Rao, and X. Shen, “Learning-Aided Multiple Time-Scale SON Function Coordination in Ultra-Dense Small-Cell Networks,” IEEE Transactions on Wireless Communications, vol. 18, no. 4, pp. 2080–2092, 2019.
+[7] J. Jiang, C. Dun, T. Huang, and Z. Lu, “Graph Convolutional Reinforcement Learning,” arXiv preprint arXiv:1810.09202, 2018.
+[8] A. Kaur and K. Kumar, “Energy-Efﬁcient Resource Allocation in Cognitive Radio Networks Under Cooperative Multi-Agent Model-Free Reinforcement Learning Schemes,” IEEE Transactions on Network and Service Management, vol. 17, no. 3, pp. 1337–1348, 2020.
+[9] H. Chergui, L. Blanco, and C. Verikoukis, “CDF-Aware Federated Learning for Low SLA Violations in Beyond 5G Network Slicing,” in ICC 2021-IEEE International Conference on Communications, pp. 1–6, IEEE, 2021.
+[10] P. Tang, F. Li, W. Zhou, W. Hu, and L. Yang, “Efﬁcient Auto-Scaling Approach in the Telco Cloud Using Self-Learning Algorithm,” in 2015 IEEE Global Communications Conference (GLOBECOM), pp. 1–6, IEEE, 2015.
+[11] R. Li, Z. Zhao, Q. Sun, I. Chih-Lin, C. Yang, X. Chen, M. Zhao, and H. Zhang, “Deep Reinforcement Learning for Resource Management in Network Slicing,” IEEE Access, vol. 6, pp. 74429–74441, 2018.
+[12] D. Lee, J.-H. Yoo, and J. W.-K. Hong, “Deep Q-networks based Autoscaling for Service Function Chaining,” in 2020 16th International Conference on Network and Service Management (CNSM), pp. 1–9, IEEE, 2020.
+[13] S. Majumdar, R. Trivisonno, and G. Carle, “A Distributed Intelligence Architecture for B5G Network Automation,” 2021.
+[14] S. Majumdar, R. Trivisonno, and G. Carle, “Understanding Exploration and Exploitation of Q-Learning Agents in B5G Network Management,” in 2021 IEEE Globecom Workshops (GC Wkshps), pp. 1–6, 2021.
+[15] R. E. Bellman and S. E. Dreyfus, Applied Dynamic Programming, vol. 2050. Princeton university press, 2015.
+[16] R. S. Sutton and A. G. Barto, Reinforcement Learning: An Introduction. MIT press, 2018.
+[17] C. J. Watkins and P. Dayan, “Q-Learning,” Machine learning, vol. 8, no. 3-4, pp. 279–292, 1992.
+[18] H. Wang, F. Xu, Y. Li, P. Zhang, and D. Jin, “Understanding Mobile Trafﬁc Patterns of Large Scale Cellular Towers in Urban Environment,” in Proceedings of the 2015 Internet Measurement Conference, 2015.
+[19] V. Mnih, K. Kavukcuoglu, D. Silver, A. A. Rusu, J. Veness, M. G. Bellemare, A. Graves, M. Riedmiller, A. K. Fidjeland, G. Ostrovski, et al., “Human-level control through deep reinforcement learning,” nature, vol. 518, no. 7540, pp. 529–533, 2015.
+
+Authorized licensed use limited to: Nanjing Univ of Post & Telecommunications. Downloaded on November 03,2023 at 09:04:01 UTC from IEEE Xplore. Restrictions apply.
+2326
+

@@ -1,0 +1,704 @@
+2022 IEEE 8th World Forum on Internet of Things (WF-IoT) | 978-1-6654-9153-2/22/$31.00 ©2022 IEEE | DOI: 10.1109/WF-IOT54382.2022.10152041
+
+An Evolutionary Risk-based Access Control Frameworkfor Enterprise File Systems
+
+Shi-Cho Cha Dept. ofInformationManagement
+NationalTaiwanUniversity of ScienceandTechnology Taipei, RO.C. csc@cs.ntust.edu.tw
+
+Yi-HsuanHsuan
+
+Kuo-HuiYeh
+
+Dept. ofInformationManagement
+
+Dept. ofInformationManagement
+
+NationalTaiwanUniversity of NationalDongHwaUniversity,Hualien,R.O.C.
+
+ScienceandTechnology
+
+Taipei, RO.C.
+
+Taipei, RO.C.
+
+khyen@gms.ndhu.edu.tw
+
+M11009137@maiLntust.edu.tw
+
+Takeshi Ishihara KioxiaCorporation Kanagawa,Japan takeshi3.ishihara@kioxia.com
+
+OhbaYoshihiro KioxiaCorporation Kanagawa,Japan yoshihiro.ohba@kioxia.com
+
+Wei-NinChen DepartmentofInformationManagement
+NationalTaiwanUniversity of ScienceandTechnology Taipei, RO.C.
+DlO109301@maiLntust.edu.tw
+
+Abstract-To enhanceaccesscontrolmechanisms, organiza- thiscase,the effectiveness of traditionalenterpriseperimeter
+
+tionsneedto monitoraccessrequestsissuedfromdevices.There- protectionmechanisms(suchasfirewalls)isdoubtfuL
+
+fore,organizationscanevaluatethe trustworthinessorrisksofthe devicesbasedoncollectedrequeststo adapttheaccessprivileges. However,existingschemesusuallydonot addressorganizational
+
+Toprevent malicious peoplefromutilizingdevices of authorized userstomove laterally in organizationalnetwork,
+
+authorizationprocessesandmaynotbe suitablefor enterpriseIDe the conceptof zerotrust architecturehasbeen broughttothe
+
+systems.Inlightofthis,thisstudyproposesan Evolutionary Risk spotlight.Simplyspeaking,thezerotrust architecturerequests
+
+AdaptiveAccess Control (ERAAC) Framework for enterprise IDe systems.The proposedframework providesanextensible architectureforan organizationtodeploy different accesscontrol filtersfor different perspectives.Anaccesscontrolfiltercan filteroutaccessrequestsbasedonaccesscontrolpolicies.An
+
+organizationsto protect organizationalresourceseven if user devicesinthe organizationsarebreached[1][2]. Organizations shouldnot implicitly trusta requesterandskiptheauthenticationoraccess control processes.Inaddition, organizations
+
+organizationcanaddanewaccesscontrolfilterwithoutreplacing should continuously monitor organizationalrequesters and
+
+itsexistingaccesscontrolmechanism.In addition,the proposed obtain context ofthe requesters toevaluatethetheirrisks.
+
+framework enables organizationsto definenewrisklabelsfor dataentities,suchas subjects andobjects to beaccessed,usedin
+accesscontrolpolicies.Theaccesscontrolmechanismcan adapt
+
+Therefore,organizationscan utilize therisk informationtodetermineuserprivileges.However,itisa challengeto consider
+
+user privilegesbasedontherisklabels.Even iforganizationsdo risksinaccess control policies, especially for enterprise file
+
+nothaveenough data to generaterisklabels,the organizations systems.
+
+cansetaccesscontrolpolicieswithoutrisklabels.Therefore,
+
+First, traditional access control modelsusuallydonotad-
+
+the proposedframework enables organizationstoprogressively
+
+improve their accesscontrolmechanisms.Tothebestof
+
+our
+
+knowledge,the proposedframework isthefirstaccesscontrol
+
+framework that canevolvewith organizationalmaturity in
+
+dressthe process of privilege decisions.For enterprise file systems,files(andfolders)usuallyhavetheirowners.The fileowners determinewhocanaccessthefiles.However,the
+
+risk managementT. hisstudyalso illustrates howthe proposed fileownersmaynothave enoughknowledge to embedrisk
+
+frameworksatisfiedthe relatedtenets mentionedinNISTSP800- considerationinthe authorizationprocess.Second,riskscome
+
+207.Consequently,thisstudycanhopefully contributetohelping an organizationto implementzero trust architecture.
+Index Terms-accesscontrol,ZTA, security risk; risk-adaptive,
+
+from different sources,suchasthe user's devices,thesystem wherethe resources are located, the network environment,
+
+accesscontrol
+
+etc. It isnotaneasytasktointegratetheriskvaluesfrom
+
+different perspectives. Forexample, if theriskofauser
+
+1. INTRODUCTION
+
+deviceishighandthe confidential level of a document to
+
+be accessedismiddle,wemayhavetroublein
+
+determining
+
+Asthetrends of workfromhome, people mayworkout theoverallriskfortheusertoaccessthe
+
+document viathe
+
+ofthescope of anorganization.Asusersmaynothaveap-
+
+device.Third, organizationsusuallyneedtodeploysecurity
+
+propriatesecurity countermeasuresathome, malicious people controlsto collect informationforriskevaluation.Forinstance,
+
+caneasilyhackintouserdevices.Then,maliciouspeople
+
+organizationsmayneedtoinstallagentson user devicesto
+
+can utilize thedevicestoattack resourcesinthe organization collect statusofdevices.However, organizations maynot
+
+asthedeviceownersbringthedevicestothe
+
+organization affordsecuritycontrolsforriskassessment.
+
+and connect tothe internal network ofthe organization.In Fortheverysake of that,thisstudy proposesan Evolution-
+
+Authorized licensed use limited to: Nanjing Univ of Post & Telecommunications. Downloaded on November 22,2023 at 07:36:04 UTC from IEEE Xplore. Restrictions apply.
+
+aryRiskAdaptiveAccess Control (ERAAC) Framework for organizationscanthenusethesecuritylevelsinaccess control
+
+enterprisefilesystems.First,the framework allowsanorga- decision.However, McGraw doesnot mentionhowto generate
+
+nization todeployaset of access control filtersfor different securitylevelsandhowtousethesecuritylevels.Afterthat,
+
+accesscontrol considerations.Ifan organizationdoesnothave severalresearcheshavebeen proposedtoaddresssecurityrisks
+
+enoughdatatoevaluateriskfactorsusedinanaccesscontrol
+
+inaccesscontrol.In2020, Atlam etal.have selected and
+
+filter,the organizationcan disable thefilteruntilitcollects
+
+summarized44papersabout risk-basedaccess control from
+
+necessarydata.Second,the frameworkspecifies different risk 2007to2019[4].ThisstudydoesnotthinkoftheRAdAC
+
+labelingsystemstotagrisks of subjects,objects,andotherdata or risk-basedaccess control asanewaccess control model.
+
+entitiesthatcanbeusedinaccesscontrolpolicies.Inthiscase,
+
+Instead, thisstudyreferstothe risk-basedaccess control as
+
+thisstudydefinesan extensiblemodeltospecifyaccess control ameansofusing security risksasfactorsinaccess control
+
+policiesbasedonthelabels. Furhtermore,organizationscan decision.A risk-based access control scheme usuallyneeds
+
+deploynewrisk labelingsystemsfornewrisk considerations. toaddressthefollowingthreeissues:(1)factorsto
+
+estimate
+
+Withthe proposedframework, organizationscandelegate securityrisks;(2)schemesto
+
+estimate securityrisks;(3)
+
+different accesscontrolfiltersfor different userstoadmin- methodstousesecurityrisksinaccesscontrol.
+
+istrateaccess control policies fromdifferent perspectives. Severalfactorscanbeusedtoassesssecurityrisksofaccess
+
+Forexample,an organizationmaydeployanaccess control requests.In traditionalMACmodel, organizationscanusesen-
+
+filterforfileownerstospecifywhocanaccesstheirfiles
+
+sitivitylevel of objectstobe accessedtoforbid unauthorized
+
+anddeploy anotheraccess control filterfor administratorsto access.Early research usuallyutilizesstatic information of
+
+presentdevicesthathavenot updateditsvirus signaturesfrom userprofiles,IT components,andaction consequences.With
+
+accessingafile.Tothebestofourknowledge,the
+
+proposed advancesin informationtechnology, organizationscanfurther
+
+frameworkisthefirstaccesscontrol frameworkthatcanevolve adoptdynamic information,suchasuser context andhistorical
+
+with organizationalmaturity inrisk management.Therefore, logs,forriskassessment. CurrentguidelinesliketheUSNIST
+
+organizationscan improve theiraccess control mechanisms SP800-207[1]further recommendorganizationsto consider
+
+progressively.Thisstudyalso illustrates howthe proposed externalsourceslikecyber threat intelligence.
+
+frameworksatisfiedthe relatedtenets mentionedinUSNIST
+
+Amongtheabovefactors, organizationsmayregardfactors
+
+SP800-207.Consequently,thisstudycan hopefully contribute like resource sensitivityandactionseverityassecurityrisks
+
+to helpingan organizationto implementzerotrust architecture. directly. Organizationscanfurtherusethefactorsto estimate
+
+Therestofthis paperis organizedasfollows: Section IT the potentialloss of confidentiality,integrity,andavailability
+
+introduces preliminaryinformation onaccess control models foreachaccess request[5].Then, organizationscan estimatea
+
+andzerotrust architecture. Section ITI providesanoverview riskvalueofanaccess requestbasedon weighted averageof
+
+ofthe proposedframework.Next, Section IV describethekey expected lossof related breaches.Weightedaveragewould
+
+componentsofthe proposedframework. Section V illustrates notbesuitableforqualitativefactorslikesensitivitylevel.
+
+howthe proposedframeworksatisfiesthetenetsofzerotrust
+
+Therefore, organizationsmayusethefuzzylogicsystemfor
+
+architecture.Conclusionsarefinallydrawnin Section VIalong risk estimation [6].Moreover, organizationscanuse machine
+
+with recommendationsforfutureresearch.
+
+learning techniques toassessrisks basedon historical data.
+
+II. RISK-BASED ACCESS CONTROL MODELS
+
+Forexample,Mollyetal.developedaSVM
+
+(Support Vector
+
+Machine)-basedclassifierforaccess decision and referred
+
+Accesscontrolis critical inzerotrust architecture. As uncertainty ofriskstoadjustdecision.
+
+describedinUSNISTSP800-207[1],everyaccess
+
+request In risk-based accesscontrol,access decision mechanisms
+
+for organizationalresources shouldbe checked bya policy utilize estimatedriskvaluestodecideto accept ordenyan
+
+enforcementpoint (PEP).ThePEPthen enquiries thepolicy accessrequest. Organizationscantreatriskvaluesasattributes
+
+decision point (PDP)todecide whether a request canbe and establish asetof criteria fortheattributes.Anaccess
+
+allowed basedon organizationalaccess control policies.Cur- request isallowed associated criteria aremet.Fromthis
+
+rently,therearefourmajoraccess control modelsforaccess perspective,wemay implementthe risk-basedaccesscontrol
+
+controlpolicyspecification:the mandatory access control mechanism withABACsimply.To consider securityrisks
+
+(MAC)model,the discretionaryaccess control (DAC)model, intheRBACmodel, organizationscanassignrisksonrole
+
+the role-basedaccess control (RBAC)model,andtheattribute- assignmentrelationships and calculate theoverallriskfora
+
+basedaccess control model(ABAC).Thisstudyfocuseson
+
+usertohaveaspecific permission on resources [7].Inthe
+
+howtousesecurityriskstoachieveadaptiveaccesscontrol,
+
+research ofBijonetal.[8], organizationscan continuously
+
+whichisakeyfeatureofzerotrustarchitecture.
+
+calculate risksof permissions androles associatedwiththe
+
+To consider security risksinaccesscontrol, McGraw pre- permissions. Auser cannot activatearole if theriskafter
+
+sentedthe conceptof Risk-Adaptive Access Control(RAdAC) activatingtheroleis higher thana threshold.
+
+modelin2004[3].IntheRAdACmodel,
+
+organizationsuse Thisstudyadopts traditionalaccesscontrolmodelsin hybrid
+
+asecurityrisk determinationfunctionto calculate security mode.Inthe proposedframework,eachfilehasitsowner.
+
+levels basedon characteristicsof requesters,resources tobe Therefore, afileownercanfollowtheDACtosetaccess
+
+accessed,andother environmentalor contextual factors.The controlpolicieson hislher files.Theaccesscontrolpolicies
+
+Authorized licensed use limited to: Nanjing Univ of Post & Telecommunications. Downloaded on November 22,2023 at 07:36:04 UTC from IEEE Xplore. Restrictions apply.
+
+Access Gateway Data Sources of relatedEntities
+Access ControlFilterChain
+
+File Service
+
+RiskEnquiry Service
+Fig.1.OverviewoftheProposedFramework
+
+RiskLabel targetlO targetType riskType riskValue generator generatedTime
+RoleConstraint
+ListofRoles
+
+Criterion
+type atlributeName operator value loglcoperator
+AccessControlPolicy
+Listofuser criteria Listof resource orfile criteria Listof criteria ontokens Listof criteria on requests Listof contextualcriteria Consequence
+
+File 10
+· owner
+·· .........
+~
+Resource 10
+·· .........
+
+y
+
+RegisteredOevice
+
+Role
+
+I 10
+· .........
+·I
+
+followtheABACmodel.Fileownersand
+
+administrators
+
+Fig.2.MajorDataTypesoftheProposedFramework
+
+cansetrulesforaccesscontroldecisionbasedonrelated
+
+attributes.Moreover,thisstudyallowsadministratorstodefine
+
+rolesandassignrolemembershipbasedonattributesofdata
+
+entities,suchassubjects,objects,environmentalcontext,etc., tosupporttheRBACmodel.Comparedtoexistingrisk-based accesscontrolresearch,thisstudyusesataggingsystem.The riskvaluesarerepresentedastagstoassociateddataobjects. Thetagscanfurtherbemappedtoattributesofdataobjectsfor accesscontrol.ThisstudyillustratesthedetailsinSectionIV.
+III. OVERVIEW OFTHE PROPOSED FRAMEWORK
+
+utilizetheinformationdirectlyratherthanrequestthe data. •Attributes ofdatasourceentities maintainedbytheframework. TheERAACframeworkmaintainsdatasourcesof users,devices,resources,andotherdatasourceentities foraccesscontrol. An accesscontrolfiltercanextract relateddatabasedonaccessrequestsandtokensfrom
+
+Fig.IprovidesanoverviewoftheproposedERAAC
+
+thedatasourcesforaccesscontroldecision.
+
+framework.Beforeauserwishestoaccessafile,theuser
+
+•Risklabels of datasourceentities. The RiskLabeling
+
+firstauthenticates himrself/herselfwithan IdentityProvider
+
+Service includesasetof RiskLabelers. Arisklabeler
+
+toinitiateasession.Afterverifyinguseridentity,theidentity
+
+evaluatessecurityrisksofusers,files,userdevices,and
+
+providerissuesanaccesstokenforthesession.Thetoken
+
+otherentities.Theevaluatedrisksarerepresentedas
+
+includesauniqueidentifierandissignedbytheidentity
+
+risklabels,whichincluderisktypes,riskvalues,and
+
+provider.Then,theusersendshis/herrequesttothe Access
+
+evaluationtime.Arisklabelerthen "attaches" therisk
+
+Gatewaywiththetoken.
+
+labelstodatasourceentities.
+
+Theaccessgatewayplaystheroleofthepolicy enforcement
+
+point(PEP)andthepolicydecisionpoint(PDP)mentionedin
+
+theUSNISTSP800-207.Thekerneloftheaccessgateway
+
+Uponreceivinganaccessrequest,anaccesscontrolfilter
+
+isthe AccessControlFilterChain. TheERAACframework extractsassociatedaccesscontrolpolicies.Then,theaccess
+
+definesthestandardinterfaceof AccessControlFilters and controlfiltercollectsrequireddatabasedonthecriteriain
+
+providesabase implementationbasedontheinterface.Or- thepolicies.Notethattheaccesscontrolfiltermayfindthat
+
+ganizationscanadjustthesettingofaccesscontrolfiltersfor differentpurposes.Therefore,theadministratorofanaccess
+
+risklabelershavenotgeneratedrequiredrisklabels.Also,the accesscontrolfiltermay just obtainout-of-datedrisklabels.
+
+gatewaycanspecifyasetofaccesscontrolfiltersandarrange
+
+In thiscase,anaccesscontrolfiltermayaskthe RiskEnquiry
+
+theirorderstoformachain. Foreachaccesscontrolfilter,privilegeduserscanset access
+controlpolicies ofthefileservice.SimilartothePolicy elementdefinedinXACML,anaccesscontrolpolicyincludes
+
+Service torequesttheassociatedrisklabelertogeneraterelated risklabelsimmediately.Therefore,theriskenquiryservice cannotifytheaccesscontrolfiltertofetchthegenerated result.Withthecollecteddata,anaccesscontrolfiltercan
+
+asetofattributecriteriabasedonthefollowinginformation:
+
+evaluatewhetherornottoacceptarequestbasedonthecriteria
+
+•Attributesinaccessrequests. Anaccessrequestusually inrelatedaccesscontrolpolicies. If anaccesscontrolfilter
+
+includesfilestobeaccessed,requestedactionsonthe
+
+decidestoaccepttherequest,thefilterforwardstherequestto
+
+files,andotherclientsideinformationembeddedinthe
+
+thenextaccesscontrolfilterintheaccesscontrolfilterchain.
+
+request.
+
+If theaccesscontrolfileristhelastfilterinthechain,itsends
+
+•Attributesinaccesstokens. Inadditiontoidentifiers,iden- therequesttothefileservice.Finally,theaccessgatewaylogs
+
+tityprovidersmayattachuserandcontextualinformation therequestprocessintothe AccessLogs storage.Thelogscan
+
+inaccesstokens.Therefore,anaccesscontrolfiltermay
+
+furtherbeusedbyrelatedrisklabelerstoproducerisklabels.
+
+Authorized licensed use limited to: Nanjing Univ of Post & Telecommunications. Downloaded on November 22,2023 at 07:36:04 UTC from IEEE Xplore. Restrictions apply.
+
+Type = targetType DataEntity
+(10 = targetlD)
+Fig.3.ConceptofaRiskLabel
+
+Validation Requirement
+
+Role
+10 Listof usercriteria List ofresource orfilecriteria List ofcriteriaontokens List ofcriteriaon requests List ofcontextual criteria
+Permission Assignment
+
+Permission
+
+IV. KEY COMPONENTS
+
+A.DataModels
+
+Theproposedframeworkprovidesdatasourceentitiesfor
+
+accesscontrol.Thisstudyassumesthateachorganizationhas
+
+maintaineddatabasesofusers,devicesallowedtoaccessthe
+
+system,andresourcestobeaccessed.Inoursystem,weview
+
+theseentitiesasadatasourceforriskanalysis.Therefore,the
+
+proposedframeworkcanaccessdatabases,mapthedatabases
+
+intoaunifiedformat,andenableaccesscontrolfilterstoaccess
+
+thedatathroughstandardinterfaces.AsdepictedinFig.2,
+
+currentERAACframeworkfocusesonthefollowingfour
+
+typesofdatasourceentities:(1)users;(2)registereddevices;
+
+(3)resources;(4)files(andfolders).Eachdatasourceentity
+
+hasauniqueidandotherattributes.Afilecanbeviewedas
+
+asubclassofresource.Afileincludesanownerattributeto
+
+identifywhocanmodifyaccesscontrolpoliciesofthefile.
+
+AsdepictedinFig.3,risksofdatasourceentitiesare
+
+representedasrisklabels.Arisklabelincludesthesourcerisk
+
+labelerthatgeneratesthelabel,thegenerationtime,identity
+
+andtypeofthetargetdatasourceentity,theriskvalue,andthe
+
+typeoftherisk.Therefore,arisklabelercangeneratedifferent
+
+typesofrisklabelsofadatasourceentitysimultaneously.
+
+Anaccesscontrolpolicyiscomposedofasetofcriteria
+
+andtheconsequencetoacceptordenytherequest.Thetype
+
+attributeinacriterionrepresentsthetypeofthecriterion.
+
+Currently,therearefivetypesofcriteria:
+
+(l)user criteria;
+
+(2)resourceandfilecriteria;(3)tokencriteria;(4)request
+
+criteria;(5)contextualcriteria.First,thecriteriaonusers,
+
+resources,andfilesareusedtospecifysuitabledatasource
+
+entities.Forexample,usercriteriadescribewhichusersare
+
+applicabletotherelatedaccesscontrolpolicy.Inaddition,the
+
+proposedframeworkenablesadministratorstosetcriteriaon
+
+attributesofaccessrequestsandtheassociatedtokens.Note
+
+thatbecausepeoplecanusetherequestcriteriatospecify
+
+applicableactions,suchasreading,writing,deleting,andother
+
+operations,onresources,thisstudydoesnotspecifytheaction
+
+criteriainanaccesscontrolpolicy.Finally,thecontextual
+
+criteriaenableadministratorstodefinerequirementsonaccess
+
+time,deviceused,andothercontextualfactors.Acriterion
+
+usestheattributesofattributeName,operator,andvalueto
+
+specifytherangeofattributeName.Thisstudyusesthe 'dot'
+
+operatortodenotethesub-attributeofanattribute.Forexam-
+
+ple,iftheattribute 'name' hasasub-attribute 'lastname',the
+
+Fig.4.ConceptsofMappingtheRoleClassinFig.2
+
+to RBAC
+
+lastnameisrepresentedas'name.1astname'.Moreover,while
+
+anaccesscontrolpolicymayincludemorethanonecriterion,
+
+the Iogicoperatorattributeinacriterionusesthevaluesof
+
+'and', 'or', and 'not' todescribehowtocombinerelated
+
+criteria.
+
+Thisstudyenablesadministratorstospecifyrisklabelsin
+
+criteriatoachieverisk-basedaccesscontrol:Administrators
+
+canusetheprefixof'risk.'inattributeNametorepresent
+
+thatthecriteriaarerelatedtoriskrequirement.Then,ad-
+
+ministratorscanindicatetherisktypebehindthe 'risk.'. For
+
+example,ifthevalue 'risk.sensitivityLevel' isshowninthe
+
+attributeNameattributeinacriterionforresources,thecrite-
+
+rionfocusesontherisklabelswithtargetType=
+
+'resources'
+
+andriskType='sensitivityLevel'. Moreover,administratorscan
+
+appendthepostfixof '.generatedTime'toputrestrictionon
+
+therisklabelgenerationtime.
+
+Finally,tosimplifythecomplexityofaccesscontrolpolicy
+
+administrationandtoenforceseparationofduties,thisstudy
+
+enablesustodefinerolesandplaceconstraintsonroles.Fig.4
+
+illustrateshowtousetheroleclassdepictedinFig.2to
+
+implementRBAC.Theroleclassordatasourceentitiescanbe
+
+viewedasasub-classofthe AccessControlPolicy class.Ad-
+
+ministratorsspecifypermissionassignmentwiththeresource
+
+criteria.Othercriteriaareusedtosetvalidationrequirements
+
+onroles.Thisstudydoesnotdealwithuserassignmentinthe
+
+roleclass.Instead,theproposedframeworkusestheattribute
+
+roleinuserclasstostoretherolesassignedtoauser.Forthe
+
+staticseparationofduties(SSoD)scenario,thisstudyassumes
+
+thattheuserdatamanagementmechanismchecksthatauser
+
+cannothaveconflictedroles.Forthedynamicseparationof
+
+duties(DSoD)scenario,ifauserhaveconflictedroles,the
+
+usercanonlyactiveoneoftheconflictroleswhentheuser
+
+authenticateswiththeidentityprovider.Then,theidentity
+
+provideronlystorestheactivatedroleintheaccesstoken.
+
+B. Access ControlFilters
+Theproposedframeworkenablesorganizationstodeploy asetofaccesscontrolfilterstoformafilterchain.The proposedframeworkdefinesthestandardinterfacesandpro-
+
+Authorized licensed use limited to: Nanjing Univ of Post & Telecommunications. Downloaded on November 22,2023 at 07:36:04 UTC from IEEE Xplore. Restrictions apply.
+
+AAcccceessss CCoonnttrrooll FFiiltlteerr
+
+AAcccceessss CCoonnttrrooll
+
+0 - - PPoolliicciieess
+
+-
+
+MMaannaa ggeemmeennt t
+
+DDaattaa
+
+AAcccceessss
+
+0 - PPoolliiccyy DDeecciissiioonn
+
+OObbjjeeccttss
+
+EEnnggiinnee
+
+f-
+
+I
+RRuulleeEEnngginiene
+
+RRiisskk EEnnqquuiirryy CClileienntt
+
+DDaattaaSSoourucrecses
+
+UUsseerrss
+
+RReessoouurrccees s
+
+RReeggiisstteerreedd DDeevviicceess
+
+rtc
+
+::::.
+
+RRiisskkLLaabbeelsls
+
+F::
+
+:::=:t
+
+AAcccceessss CCoonnttrrooll
+
+L PPoolliicciieess
+
+l-r- RRiisskk EEnnqquuiirryy SSeerrvviiccee
+
+Fig.5.ArchitectureofanAccessControlFilter
+
+videsfundamental implementationofanaccesscontrolfilter. Organizationscanusethefundamentalaccesscontrolfilterto deploydifferentaccesscontrolfilterswithdifferentsettings fordifferentpurposes.Moreover,organizationscanfollowthe definedinterfacesandextendthefundamentalaccesscontrol filterbasedontheirneeds.Fig.5illustratesthearchitecture ofafundamentalaccesscontrolfilter.Thisstudyusesblocks ingrayscaletorepresenttheexternalcomponents.
+First,eachaccesscontrolfilterhasitsaccesscontrolpolicies. An accesscontrolfilterprovidesforadministratorsto manageaccesscontrolpolicies.Notethatthisstudyonly definestheAPIforpolicy managemenct urrently.OrganizationscanimplementtheirownGUIs.Thefundamentalaccess controlfilteradoptstheDataAccessObjects(DAO)pattern. Externaldataaremappedintodataaccessobjects.Therefore, accesscontrolfilterscandealwiththeheterogeneousdatain aunifiedway.
+The PolicyDecisionEngine isthekernelofanaccess controlfilter.Uponreceivinganaccessrequest,thepolicy decisionengineextractsassociatedaccesscontrolbasedon theaccessrequest.Foreachmatchedaccesscontrolpolicy, thepolicydecisionengineextractsdata(orfacts)toevaluate theaccesscontrolpolicy.Recallthattheproposedframework usesrisklabelerstorepresentrisksofdatasourceentities withrisklabels. If thepolicydecisionenginefindsthatit doesnotobtaintheup-to-datedrisklabels,itrequeststhe Risk EnquiryClient totriggertherisklabelgenerationprocess.The riskenquiryclientthencollectthegeneratedrisklabelsand providesthelabelsforfurtherevaluation.Thepolicydecision enginethenforwardstheaccesscontrolpolicyandassociated datatoa RuleEngine toobtainaccesscontroldecisionof thepolicy. If thereismorethanonematchedaccesscontrol policy,thepolicydecisionenginecollectsthedecisionofeach accesscontrolpolicyandcombinesthedecisionsforfinal decision.AlthoughtheXACMLspecificationdefinesseveral
+
+rulecombiningalgorithms,thisstudyadoptsthe"denyover-
+
+ride"algorithm.Thatis,thepolicydecisionenginedeclinesan
+
+accessrequestifanymatchedaccesscontrolpolicydeclines
+
+therequest.Inotherwords,anaccessrequestisallowed
+
+if
+
+everymatchaccesscontrolpoliciesallowtherequest.
+
+V. FRAMEWORK EVALUATION
+
+TheUSNISTpublishestheNISTSP800-207
+
+[1]. The
+
+documentsummarizesthefollowingtenetsofzerotrustar-
+
+chitecture:
+
+1)Identifyallresourcesthatcouldbeaccessed. 2)Secure all communications,eveninorganizationalinter-
+nalnetworks. 3) Re-authenticateusersandevaluatetheirtrustworthiness
+every-timetheusersrequesttoaccessorganizational resources. 4)Includebehavioralandenvironmentalattributestodetermineuserprivilegesdynamically. 5)Continuousmonitoringthesecuritypostureoforganizationalresourcesandmitigatingobservedvulnerabilities. 6)Strengthentheauthenticationandaccesscontrolmechanismstoenforceaccesscontrolpolicies. 7)Collect informationtoimprovesecurityofexistingarchitecture.
+
+Thisstudydescribeshowtheproposedframeworkhelpsan organizationtosatisfythetenetsofzerotrust.Thefirsttenet requiresorganizationstoidentify all resources.Theproposed frameworkcanpreventunauthorizedaccesstoresources.However,organizationsstillneedassetmanagementsystemsor othertoolstodiscovertheirresources.
+Thesecondtenetrequestsorganizationstotransferdataon securechannels.Theproposedframeworkcansupportthe teneteasilybyenforcingsecure communicationbetweenthe componentsoftheproposedframework.
+Theproposedframeworkrequestsuserstoauthenticate themselveswiththeidentityproviderstoobtainaccesstokens andattachthetokensintheirrequests.Eachtokenisonly validinspecifictimeintervals. If atokenbecomesinvalid,a userneedstore-authenticate himself/herselfwiththeidentity providertoobtainanewtoken.Moreover,asusersshouldsend everyrequesttotheaccessgateway,theaccesscontrolfilters intheaccessgatewaycanevaluatetrustworthinessorrisksof therequestsanddecidewhetherornottoaccepttherequests. Therefore,theproposedframeworkfulfillsthethirdtenet.
+Thefourthtenetrequestsorganizationstoadoptdynamic accesscontrolpoliciesthatconsiderthestateofusersand resources.Theproposedframeworkincludescontextualcriteria inaccesscontrolpolicies.Besides,theproposedframework enablesrisklabelerstointeractwithexternalsystemstoupdate thestateofusersandresourceswithrisklabels.Forexample, anorganizationcandeployarisklabelertoreceivewarnings oftheEndpointDetectionandResponse(EDR)systemandtag usersusingdeviceswithunpatchedvulnerabilities.Therefore, theproposedframeworksatisfythefourthtenet.
+Astheproposedframeworkfocusesonaccesscontrol schemes,theproposedframeworkdoesnotincludetoolsto
+
+Authorized licensed use limited to: Nanjing Univ of Post & Telecommunications. Downloaded on November 22,2023 at 07:36:04 UTC from IEEE Xplore. Restrictions apply.
+
+monitorandmeasuretheintegrityandsecuritypostureoforganizationalresources.Asdescribedinthepreviousparagraph, theproposedframeworkcancollaboratewithexternalsystems tocollectsecuritystatesoforganizationalresourcesforaccess control.Therefore,althoughtheproposedframeworkdoesnot achievethefifthtenetdirectly,organizationscanintegratethe proposedframeworkwithothersecuritymonitoringtoolsto realizethefifthtenetofzerotrust.
+Intheproposedframework,everyaccessrequestshould be processedviaanaccessgateway.Theaccessgatewayverifies eachaccessrequesttoensurethattherequesteroftherequest isauthenticatedbyatrustworthyidentityprovider.Theaccess gatewaythensendstherequesttotheaccesscontrolfilter chaintodecidewhetherornottoforwardtherequestto itstarget.Asorganizationscanintegratetheirserviceswith theaccessgatewaytofilteroutunauthorizedrequests,the proposedframeworkcanhelporganizationstoachievethe sixthtenet.
+Finally,theproposedframeworklogsdetailsofaccess requestprocessing. In additiontousingthelogstoevaluate risks,thelogscanfurtherbeusedtoimprovetheeffectiveness ofriskevaluationalgorithms.Moreover,organizationscan deploynewaccesscontrolfiltersastheircapabilitybecome moremature.Therefore,theproposedframeworksatisfiesthe seventhtenet.
+VI. CONCLUSIONAND FUTURE WORK
+Toaddresstheissuesthatanorganizationmaynothave enoughdatatoconsidersecurityrisksinaccesscontrol,this studyhasproposedtheEvolutionaryRiskAdaptiveAccess Control(ERAAC)Frameworkforenterprisefilesystems. Theproposedframeworkmaintainsdatasourceentitiesabout users,resources,files,andotherbasicfactorsforaccess control.Organizationscandefineaccesscontrolpolicieswith thebasicdatasourceentities.Inaddition,theproposedframeworkdefinesaschemetoannotateadatasourceentitywith risklabels.Therefore,organizationscandeployrisklabeling systemstoevaluaterisksofdatasourceentitiesandaddrisk labelsonthedatasourceentities.Inthiscase,theproposed frameworkprovidesameanstouserisklabelsinaccesscontrol policies.Therefore,eveniforganizationsdonothaveenough resourcestodeployrisklabelingsystems,theorganizations canjust implementtheiraccesscontrolmechanismswithbasic datasourceentities. In addition,anorganizationcanonlyuse therisklabelsgeneratedbyavailablerisklabelingsystemsto setaccesscontrolpolicies.
+Moreover,theproposedframeworkenablesanorganization todeploydifferentaccesscontrolfiltersfordifferentperspectives.Theproposedframeworkdefinesthestandardinterfaces andprovidesfundamentalimplementationofanaccesscontrol
+
+filter.Organizationscanusethefundamentalaccesscontrol filtertodeploydifferentaccesscontrolfilterswithdifferent settingsfordifferentpurposes.Moreover,organizationscan followthedefinedinterfacesandextendthefundamental accesscontrolfilterbasedontheirneeds.Forenterprisefile systems,files(andfolders)usuallyhavetheirowners.The fileownersthendeterminewhocanaccessthefiles.However, thefileownersmaynothaveenoughknowledgetoembed risk considerationintheauthorizationprocess.Therefore, withtheproposedframework,organizationscandeploytwo differentaccesscontrolfiltersfordifferentpurposes.Further, anorganizationcanaddanewaccesscontrolfilterwithoutan existingaccesscontrolmechanisms.Therefore,theproposed frameworkenablesorganizationstoimprovetheiraccesscontrolmechanismsprogressively.
+ThisstudyalsoillustrateshowanorganizationusestheproposedframeworktoachievethetenetsmentionedinUSNIST SP800-207.Therefore,thisstudycanhopefullycontributeto helpinganorganizationtoimplementzerotrustarchitecture.
+REFERENCES
+[1]S. W. Rose,O.Borchert,S.Mitchell,and S.Connelly,"Zerotrustarchitecture,"2020,NIST SpecialPublication800-207.[Online].Available: https://www.nist.gov/publications/zero-trust-architecture
+[2]J. R. Biden,"Executiveorderonimprovingthe nation's cybersecurity,"May2021.[Online].Available: https://www.whitehouse.gov/briefing-room/presidentialactions/2021105/12/executive-order-on-improving-thenations-cybersecurity/
+[3] R. W.McGraw,"Securingcontentinthedepartmentof defense's globalinformationgrid,"in SecureKnowledge ManagementWorkshop,2004.
+[4]H. F. Atlam,M.A.Azad,M.O.Alassafi,A.A.Alshdadi, andA.Alenezi, "Risk-based accesscontrolmodel:A systematicliteraturereview," FutureInternet, vol.12,p. 103,2020.
+[5]N.N.Diep,S.Lee, Y.-K. Lee,andH.Lee,"Contextual risk-basedaccesscontrol,"in SecurityandManagement, 2007.
+[6]H. F. AtlamandG.B.Wills,"Anefficientsecurityrisk estimationtechniqueforrisk-basedaccesscontrolmodel foriot," Internet of Things, vol.6,p.100052,2019.
+[7] L. ChenandJ.Crampton,"Risk-awarerole-basedaccess control,"in SecurityandTrustManagement, C.MeadowsandC.Fernandez-Gago,Eds.Berlin,Heidelberg: SpringerBerlinHeidelberg,2012,pp. 140-156.
+[8] K. Z.Bijon, R. Krishnan,and R. Sandhu,"Aframework forrisk-awarerolebasedaccesscontrol,"in 2013IEEE ConferenceonCommunicationsandNetworkSecurity (CNS), 2013,pp. 462-469.
+
+Authorized licensed use limited to: Nanjing Univ of Post & Telecommunications. Downloaded on November 22,2023 at 07:36:04 UTC from IEEE Xplore. Restrictions apply.
+

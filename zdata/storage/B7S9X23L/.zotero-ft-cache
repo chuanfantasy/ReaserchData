@@ -1,0 +1,383 @@
+数据与计算发展前沿，2023，5(5)
+
+第 5 卷 第 5 期 2023 年 10 月 Vol.5 No.5 Oct.2023
+
+ISSN 2096-742X CN 10-1649/TP
+文献 CSTR: 32002.14.jfdc. CN10-1649/ TP.2023.05.005 文献 DOI： 10.11871/jfdc.issn. 2096-742X.2023. 05.005 页码：46-62
+获取全文
+
+专刊：数据要素安全高效流通的关键技术 Special Issue: Key Technologies for Safe and Efficient Circulation of Data Elements
+基于区块链的数据要素可信流通技术综述
+钟子岳，朱长昊，李浚哲，张美慧*
+北京理工大学，计算机学院，北京 100081
+摘 要：【背景】数据已然成为经济发展的基础性战略资源。要充分发挥数据要素作用，需要建立数 据可信流通体系。【目的】区块链作为新型可信数据管理平台，能够实现数据可信流通的基 本需求。因此，本文将探讨基于区块链的数据要素可信流通技术。【方法】从建立数据可信 流通体系的角度出发，本文首先分析了构建数据要素可信流通体系的基本要求，然后分析 了基于区块链实现数据可信流通的技术要点，总结了目前区块链研究领域中可用于实现上 述目标的研究工作，并对未来的研究方向提出展望。【结果】着眼于增强数据可用、可信、可 流通、可追溯 4 个方面，本文对现有区块链系统研究中的存储模型、系统性能扩展方式、数 据验证、跨链技术、溯源技术等方面进行总结分析。【结论】现有研究成果能够基本实现数据 要素可信流通体系，但在数据隐私、数据使用和数据表示方面仍存在诸多未解决的问题。
+关键词：区块链；数据要素流通；数据管理；数据存储；分片；跨链；溯源
+A Survey on Blockchain-Based Trusted Data Elements Circulation
+ZHONG Ziyue, ZHU Changhao, LI Junzhe, ZHANG Meihui*
+School of Computer Science & Technology, Beijing Institute of Technology, Beijing 100081, China
+Abstract: [Background] Data has become a kind of fundamental strategic resource for economic development. To fully leverage the value of data elements, a trusted data circulation system needs to be established. [Objective] As a new type of trusted data management platform, blockchain can realize the basic needs of trusted data circulation. Therefore, we discuss the trusted circulation technology of data elements based on blockchain in this survey. [Methods] From the perspective of establishing a trusted data circulation system, we first analyze the basic requirements of building a trusted circulation system for data elements. Then, we analyze the main techniques for realizing trusted circulation of data based on blockchain. Finally, we summarize current research works in the research field of blockchain that can be utilized to achieve the mentioned goals and present prospects for future research directions. [Results] Focusing on the aspects of enhancing data availability, credibility, negotiability, and traceability, we summarize and analyze the storage model, system performance scaling methods, data verification techniques,
+
+基金项目：国家自然科学基金（62072033） *通信作者：张美慧（E-mail: meihui_zhang@bit.edu.cn）
+46
+
+数据与计算发展前沿，2023，5(5)
+
+钟子岳 等：基于区块链的数据要素可信流通技术综述
+
+cross-chain techniques, and data provenance techniques of the existing blockchain system. [Conclusions] The existing methods can realize the trusted circulation system of data elements to some extent, yet there are still several unresolved problems in data privacy, utilization, and description.
+Keywords: blockchains; circulation of data elements; data management; data storage; sharding; cross-chain; provenance
+
+引言
+数据具有推动经济发展和产业变革的重大 作用。从 2017 年到 2021 年，我国数据年产量从 2.3ZB 增长至 6.6ZB，全球占比 9.9%，位居世界第 二 [1]，然 而 ，接 近 70% 的 数 据 价 值 未 被 激 活 。 2019 年 10 月，党的十九届四中全会将数据纳入 生产要素范畴，其原因在于它对推动生产力发 展显现出的价值[2]，是对数据价值定位不断深化 的体现，强调了数据的重要性。然而，数据显著 推动生产需要相应的技术和产业基础[2]，并且与 传统生产要素不同，数据要素流通涉及个人隐 私及安全[3]，且具有可复制、可共享、无限增长和 供给的特点[2]，对数据管理提出新的需求。国务 院《关于构建数据基础制度更好发挥数据要素作 用的意见》中指出：构建数据基础制度，要建立数 据可信流通体系，增强数据的可用、可信、可流 通、可追溯水平[4]。
+区块链是一种去中心化的新型数据管理平 台[5]，在不可信网络中进行可信的数据存储与事 务处理。传统区块链系统可以在一定程度上满 足数据要素管理中的可用、可信、可流通、可追溯 的要求：
+（1）在数据可用性方面：区块链系统是一种 由多个节点运行的冗余系统，数据被分布式地存 储在众多节点上。在传统的区块链系统中（例 如：比特币[6]、以太坊[7]、超级账本[8]等），系统中的 每个节点都存有完整的数据副本，即使某些节点 出现系统故障或网络故障，也不影响整个区块链 网络的运行，保证了数据的冗余备份和可靠性。
+（2）在数据可信性方面：区块链系统是一种 去中心化的分布式系统，无中心控制机构，避免 依赖于机构或个人的信用背书。通过共识机制， 区块链网络中的每个节点都有权查看和验证区 块链上的数据，数据一旦经过验证并被添加到区
+
+块中，将无法被单一或小部分恶意节点篡改和删 除。这种去中心化、不可篡改、不可删除的特性 保证了系统中数据的高度可信。
+（3）在数据可流通方面：区块链系统可以建 立在多个互不信任的参与方之间，使数据能够在 不同组织和系统之间自由流通，打通了传统系统 之间的信息壁垒。
+（4）在数据可追溯方面：区块链将所有的交 易记录按照时间顺序写入到去中心化账本中，任 何参与方都可以根据账本记录追溯数据的流转 途径。每笔交易都使用数字签名进行认证，从而 确保交易的参与者是真实的，交易的内容是不可 篡改、不可否认的。
+与分布式数据库相比，区块链在安全和可流 通性方面具有优势，但是区块链系统在数据管理 方面仍面临诸多问题，阻碍了区块链系统成为建 立数据可信流通体系的核心。幸运的是，区块链 和分布式数据库系统存在很多相似的技术概念 和解决方案，使双方在安全、效率和隐私方面的 优势得以结合[9]。本文将从区块链系统的角度， 综述用于建立数据要素可信流通体系的关键技 术。本文将从数据的可用、可信、可流通、可追溯 4 个方面综述现有区块链系统在数据管理方面的 研究工作：
+（1）在数据可用性方面：传统区块链系统主 要采用键-值型存储模型。数据要素场景中包含 金融监管、数字存证、政务服务等多种应用场景， 需要更加具有表达能力的存储和查询引擎。此 外，相较于传统分布式数据库，区块链系统存储 的可扩展性较差，难以面向大数据应用场景。因 此，本文将针对现有区块链与数据的融合研究中 用于提升区块链数据可用性的关键技术进行 讨论。
+（2）在数据可信性方面：现有区块链系统在 数据查询验证方面主要采用两种策略。一种是
+
+47
+
+数据与计算发展前沿，2023，5(5)
+
+钟子岳 等：基于区块链的数据要素可信流通技术综述
+
+基于密码学技术的方式，通过全网共识的可验证 数据结构（Authenticated Data Structures, ADS）提 供查询证明，另一种是基于可信硬件保证事务执 行可信。本文主要针对现有系统中 ADS 所支持 的查询种类和验证性能，以及基于可信硬件的事 务执行方式进行讨论。
+（3）在数据可流通方面：在实际应用中，不同 的业务系统往往采用相对独立的区块链系统，因 此便产生了多链环境。然而，链与链之间的共识 协议并不相通，数据账本也不共享，这就产生了 数据孤岛问题。区块链跨链技术可以实现不同 区块链之间的安全、高效的数据传递，进一步促 进了数据的交换和流通。区块链跨链技术仍然 是区块链研究领域中的一个热点话题，因此本文 将对目前研究领域中多种区块链跨链技术的机 制和难点进行讨论。
+（4）在数据可追溯方面：区块链的去中心化 及保留全部历史数据的特点为数据可信追溯提 供支持。然而，传统区块链系统上数据回溯的效 率低，溯源结果及演变过程的真实性难以验证， 溯源数据上链过程缺乏有效管理。本文将对目 前区块链研究工作中用于提升溯源查询和验证 效率及保证溯源信息的准确性两个方面的研究 进行总结与讨论。
+1 区块链技术背景
+区块链的概念起源于中本聪提出的比特 币 [6] ，其本质上是一种把数据块按照时间顺序连 接而成一种链式数据结构。以比特币为例，区块 在网络中所有节点以一致的方式顺序连接并存 储，新的区块只能被添加到链表的末尾。在此过 程中，区块是区块链的基本结构单元，由包含元 数据的区块头和包含事务数据的区块体组成。 具体来说，区块头由区块高度、前一个区块的哈 希值、时间戳、nonce、矿工签名和 Merkle Tree 根 哈希等信息组成，而区块体可以被视为由多个事 务组成的事务记录的集合。在比特币中，区块由 哈希值连接，区块中数据的任何变化都会导致该 区块的哈希值发生变化，进而影响到该区块之后
+
+所有区块的有效性，因此在区块链中篡改数据会 随着区块链的增长而愈加困难，保证了数据存储 的安全性。
+随着人们对区块链的理解不断加深，目前的 区块链创新融合了密码学、P2P 通信、共识机制、 智能合约等多种计算机前沿技术，已经发展成为 利用链式数据结构来验证与存储数据、利用分布 式共识算法来生成和更新数据、利用密码学的方 式保证数据传输和访问的安全、利用由自动化脚 本代码组成的智能合约来编程和操作数据的一 种全新的分布式基础架构与计算范式[10]，具有分 布存储、不可篡改、可追溯、可编程等技术特征， 构建了独特的信任机制，在数据可信流通领域得 到了广泛应用。
+而 在 功 能 架 构 方 面 ，区 块 链 系 统 可 以 自 下 而 上 分 为 以 下 5 层 ，为 区 块 链 的 各 种 功 能 奠定基础：
+（1）数据层。为了有效地组织区块链中的各 种数据，数据层包含数据结构、事务模型、索引数 据、状态数据和持久存储方案等元素。
+（2）网络层。为了满足去中心化网络中各节 点之间的通信，P2P 协议在网络层起着重要的作 用。节点间传输的内容主要由事务数据和区块 数据组成。
+（3）共识层。与中心化管理的数据库不同， 区块链使用分布式共识算法来确保网络中互不 信任的节点可以在同一账本上达成一致。共识 算法的使用提高了区块链应对崩溃容错或拜占 庭容错的能力，使区块链比传统数据库具有更高 的安全性。
+（4）合约层。包含各种脚本、算法和智能合 约，是区块链可编程性的基础。
+（5）应 用 层 。 用 户 可 以 使 用 区 块 链 提 供 的 API 很容易地开发新的去中心化应用程序。
+2 区块链数据可用性
+区块链技术承担着数据要素可信流通过程 中的存储、交易与共享等关键环节，主要支撑数 据存储和查询功能。本文从区块链的存储模型
+
+48
+
+数据与计算发展前沿，2023，5(5)
+
+钟子岳 等：基于区块链的数据要素可信流通技术综述
+
+和可扩展性两个方面来探讨区块链的数据可用 性。存储模型是系统设计中至关重要的层次，与 查询密切相关；可扩展性是系统能否面向大数据 应用场景的重要技术指标。
+2.1 区块链的存储模型
+早期的区块链系统主要应用于加密数字货 币[6-7]及金融服务领域[11]，用于存储数字资产。这 些系统主要使用键-值型存储模型，其优势在于： （1）键-值型存储模型足以满足以账户模型为主 的数字资产存储需求；（2）键-值型存储模型通常 不需要复杂的数据结构来存储数据，能够带来较 高的查询处理性能。
+随着区块链在数据管理领域逐渐得到人们 的关注，广泛应用于金融监管、数字存证、政务服 务和溯源防伪等场景中，单一的键-值型存储模 型已经不能满足多样化的业务需求，存在查询语 义缺失、查询能力不足等问题[12]。研究者们开始 探索在区块链系统中实现数据库的存储模型。 目前的研究主要分为两种方式：一种方式是不改 变区块链原有的存储引擎，通过改变数据的存储 格式，并引入多种索引，在区块链系统之上构建 了支持各种查询功能的抽象数据库层；另一种方 式是将成熟的数据库系统作为区块链的新型存 储引擎，并修改区块链所提供的查询处理接口， 从而使区块链系统具备数据库的查询处理能力。
+SEBDB[12,13] 属于第一种实现方式，将关系型 语义添加到区块链存储中，通过重新定义区块链 交易的数据格式实现了一种表格存储模式，并将 每条交易作为一项数据记录。具体来说，交易包 含两种属性类型：系统级属性和应用级属性。系 统级属性包括交易 ID、签名、时间戳、交易发送 者、交易类型等，由系统自动添加，其中交易类型 用于区分该条记录所属的表格。应用级属性由 用户在表格创建时进行显示定义。为提升链上 数据的查询效率，SEBDB 定义了 3 种基本查询操 作：（1）根据区块号、交易记录编号或时间戳来获 取区块数据；（2）根据交易类型获取全部交易记 录；（3）获取满足特定条件的交易记录。随后提
+
+出 3 种 索 引 来 优 化 上 述 查 询 ：（1）以 (block_id, first_tx_id, ts)为键的区块级 B+树，用于根据给定 区块号、交易 ID 或时间戳来获取区块位置。（2） 表级位图索引，索引中的每一行代表一个表格， 每一列代表一个区块，第 i 行第 j 列表示区块 j 中 是否包含表格 i 中的交易记录。（3）分层索引，其 中第一层使用位图索引来描述属性值在区块之 间的分布，第二层使用 B+树索引块内属性数据。 通过上述 3 种基本查询操作和索引，SEBDB 实现 了 简 单 的 CREATE、INSERT、SELECT、JOIN 等 部分 SQL 查询操作。
+BRD[14] 和 FalconDB[15] 属 于 第 二 种 实 现 方 式。BRD 直接使用 PostgreSQL[16]作为区块链的 存储引擎，实现了第一个具有区块链属性的去中 心化关系型数据库。基于可串行化快照隔离机 制（Serializable Snapshot Isolation, SSI），BRD 实 现了事务的并发执行，并通过排序服务将事务 在不同节点上以相同的可串行化顺序提交，保 证区块链节点间的一致性。FalconDB 使用 IntegriDB[17] 作 为 区 块 链 的 存 储 引 擎 。 其 中 ，IntegriDB 是 一 种 可 验 证 的 外 包 数 据 库 ，利 用 MySQL[18]进行数据存储，并提出基于密码学累加 器的 ADS 存储并生成数据查询验证证明。FalconDB 在数据表中记录完整历史数据，为每个数 据表自动添加 VF（valid from）和 VT（valid to）两 个属性，用于表示数据的可见范围。数据被创建 或修改时，将操作事务所属的区块号写入 VF 字 段，数据被删除时，将删除事务所属的区块号写 入 VT 字段。因此，对于区块高度为 h 的数据版 本，只有 VF≤h 且 VT≥h 的数据记录是可见的。
+2.2 区块链存储的可扩展性
+由于区块链数据以全副本的形式保存在所 有节点中，导致链上数据存储成本高，共识开销 大，影响了区块链的可扩展性。为提高区块链系 统的可扩展性，现有的研究工作主要分为链下方 案和链上方案两种实现方式 。 [19] 前者的核心思 想是将数据管理系统中的大量存储和计算转移 至链下，链上只保留必要的验证数据。后者主要
+
+49
+
+数据与计算发展前沿，2023，5(5)
+
+钟子岳 等：基于区块链的数据要素可信流通技术综述
+
+以区块链分片方案为主，旨在提高传统区块链的 可扩展性，这种方式参考了分布式数据库的思 想，将区块链网络中的节点划分为若干子集，并 将存储和计算划分到不同子集中，实现存储和计 算负载均衡的同时，降低网络压力。 2.2.1 链下扩展方案
+在链下扩展方案的研究工作中，SEBDB 率 先实现了链上链下协同处理，基于为区块链扩展 的 关 系 型 语 义 ，提 出 了 链 上 - 链 下 连 接（On- off Join）操作，对区块链上的表格和链下数据库中 的表格进行连接查询，从而支持方便的应用程序 开发和有效的复杂任务建模能力。
+徐建良等人在多篇工作中提出链上链下混 合存储架构[20-21]，致力于解决数据在区块链系统 中存储开销大（例如：以太坊的 Gas 花费）的问 题。其主要思想是使用更多的链上读操作和链 下计算操作代替链上更新操作，减少 ADS 更新 过程中导致的链上存储开销。其中，GEM2-tree 主要以若干棵 Merkle B-tree（MB-tree）[22]组成，在 链下存储中保存完整、有序的数据和可验证数据 结构 MB-tree，在链上状态数据中以仅追加的方 式无序存储数据，并以最小存储成本保存 MBtree 根哈希用于数据验证，目的是减少链上数据 排序过程中的存储开销。Chameleoninv 索引 利 [21] 用变色龙向量承诺技术（Chameleon Vector Commitment, CVC）使 ADS 的更新不需要修改变化节 点的父节点保存的数据摘要，在 ADS 更新过程 中无须修改树根摘要，从而比 GEM2-tree 进一步 减少了链上数据的更新操作，极大地降低了混合 存储系统的开销。
+LightChain[23]则结合区块链和分布式哈希表 形成链上链下存储方案，从两方面提升了区块链 的可扩展性。一方面，该架构将原始数据存储在 分布式哈希表 DHT 中，使用 DHT 生成的哈希值 在区块链上进行交易；另一方面，区块链中的每 个节点无须存储所有的区块数据，只需存储随机 分配的一部分区块。 2.2.2 链上扩展方案
+区块链分片方案主要包含三部分内容：网络 分片、计算分片和存储分片。其中，网络分片是
+
+基础，存储分片是瓶颈[24]。网络分片是通过将节 点划分为不同的共识子集，从而降低共识过程中 的网络压力。计算分片是将交易的处理划分到 不同的分片，从而降低节点的计算压力。存储分 片是将数据存储（包括区块数据或状态数据的存 储）划 分 到 不 同 的 分 片 ，从 而 降 低 节 点 的 存 储 负担。
+Elastico[25]是首个分片区块链系统，将网络中 的节点划分为不同子集，子集内分别独立运行 PBFT 协议进行共识，没有考虑子集间的跨分片 事务处理。OmniLedger[26]引入了 2PC 协议用于 跨分片事务处理。Monoxide[27]提出一种诸葛连 弩挖矿（Chu-ko-nu Mining）解决了 PoW 共识协 议在网络分片后导致的算力分散问题，以增强系 统安全性。BrokerChain[28]通过将账户拆分为多 个子账户，并划分到不同分片中，解决了资产交 换场景下的跨分片事务处理问题。由于无许可 区 块 链（Permissionless Blockchain）的 节 点 信 任 度较低，研究工作在提升区块链可扩展性的同 时，还要着重保障分片数据的安全性。为防止节 点作恶行为发生，通常要设置分片纪元。每个分 片纪元结束后对节点进行分片重新配置（Reconfiguration），分为二次全随机分配[25]、部分重分配[29] 和自由选择重分配[30]等方式。
+而许可区块链（Permissioned Blockchain）通 常不需要重新配置环节，研究工作主要集中于提 升区块链系统的事务处理能力。目前，大多数区 块链分片的研究工作能够很好地解决网络分片 和计算分片的问题。例如：Amiri 等人[31]提出了 一种用于许可区块链分片的账本模型，该模型是 一种有向无环图 DAG 形式的账本，每个节点都 存储与其相关的账本视图，跨分片事务由多个相 关分片共同存储。在这种架构下，非跨分片事务 和没有读写冲突的跨分片事务之间可以并发执 行 。 [32] 然而，在跨分片事务比例较高时，该系统 不能表现出良好的事务处理性能。
+因此，存储分片仍然是亟待解决的问题，主 要体现在跨分片事务处理的性能问题，尤其是通 用数据查询事务的跨分片处理。Pyramid[33]使用 桥梁分片来处理跨分片事务。具体来说，Pyra-
+
+50
+
+数据与计算发展前沿，2023，5(5)
+
+钟子岳 等：基于区块链的数据要素可信流通技术综述
+
+mid 中 的 节 点 分 为 i- shard 和 b- shard 两 种 。 ishard 存储单个分片数据，可以单独执行片内事 务。b-shard 存储多个分片的数据，作为跨分片事 务的桥梁，可以直接执行跨分片事务执行，并协 调相关 i-shard 进行分片数据更新，从而提升跨分 片事务的处理效率。Meepo[34]将分片下放到区块 链存储层，区块链系统中的每个参与方都保存完 整数据账本，每个参与方包含多个节点用于进行 数据分片。在这种方式下，跨分片事务将被限制 在每个参与方内部，避免了信任问题，从而可以 使 用 故 障 容 错 协 议（Crash Fault Tolerance, CFT）。然而，由于每个参与方都需要进行多节 点 部 署 ，该 系 统 对 参 与 方 的 硬 件 要 求 较 高 。 GriDB[35]是首个支持 SQL 查询的可扩展区块链 数据库，将跨分片事务通过关系代数分解后。借 鉴链下支付的思想，GriDB 将数据操作分别委托 给各个分片中的一个节点进行，再将结果汇总到 主分片，并通过多种新型 ADS 实现跨分片数据 验证。GriDB 还以同样的思想设计了跨分片数 据迁移机制，用于动态调整数据表格所存放的节 点，以实现负载均衡。
+2.3 讨论
+本节介绍了区块链存储模型和可扩展性两 方面对区块链数据可用性的影响。表 1 对这些 系统进行了总结对比。
+
+在存储模型方面，键-值型存储模型适用于 工作负载简单，数据检索性能要求高的场景，而 关系型存储模型适用于复杂工作负载，更贴近数 据要素共享流通场景。
+在可扩展性方面，将庞大的数据存储和计算 迁移到链下进行能够显著提升区块链系统的处 理能力，而传统的链上扩容方案难以从根本上解 决系统性能问题，主要原因在于跨分片事务的处 理能力较差。这两方面的现象都可以归因于区 块链为保证链上数据的安全性所引入的拜占庭 容错共识协议。GriDB 巧妙地将两种方式相结 合，将链下扩展的思想运用到跨分片事务处理 中，解决了跨分片事务处理慢这一难题。
+3 区块链数据可信性
+在区块链系统中，数据的存储与查询均由网 络中的节点执行并响应用户的查询请求。由于 区块链网络中的各节点之间并不互相信任，存储 在其他节点上的数据可能被恶意篡改或丢失，为 此，需要借助可验证查询技术对不可信节点返回 的数据进行验证，保障数据的可信性。
+3.1 基于 ADS 的数据可信保障技术
+可验证数据结构（ADS）[36]是一种区块链数 据的共识和验证方式，通过计算数据的摘要信息
+
+系统名称 SEBDB[12-13] BRD[14] FalconDB[15] Elastico[25] OmniLedger[26] Monoxide[27] BrokerChain[28] SharPer[32] Pyramid[33] Meepo[34] GriDB[35]
+
+表 1 区块链存储技术的对比 Table 1 Comparison of blockchain storage techniques
+
+许可类型 许可链 许可链 许可链 无许可链 无许可链 无许可链 无许可链 许可链 许可链 许可链 许可链
+
+存储模型 关系型 关系型 关系型 键-值型 键-值型 键-值型 键-值型 键-值型 键-值型 键-值型 关系型
+
+扩展方案 链下扩展
+分片 分片 分片 分片 分片 分片 分片 分片
+
+跨分片事务 -
+不支持 支持 支持 支持 支持 支持 支持 支持
+
+TPS 102~103 102~103 102~104
+N/A 104~106
+104 103 104 103~104 104~105 103
+
+51
+
+数据与计算发展前沿，2023，5(5)
+
+钟子岳 等：基于区块链的数据要素可信流通技术综述
+
+并生成相应证明，保证了区块链上数据的可信 性。本节重点介绍基于 ADS 的数据可信查询技 术。目前在区块链领域，主要有基于哈希和基于 密码学累加器等两种实现方案。 3.1.1 基于哈希的 ADS
+基于哈希的 ADS 利用了哈希函数的单向性 和防碰撞性，可以有效证明集合中存在某一元 素，最常见的例子便是 Merkle Tree[37]。在 Merkle Tree 中，每个叶节点对应于一个数据块的哈希， 而其他节点则存储子节点哈希值合并成新的字 符串的哈希值，以此类推直至计算出根节点。在 查询时，除了返回查询的数据外，还会返回该数 据所在叶节点到根节点路径上所有兄弟节点的 哈希值。利用这些信息，用户可以在本地重新构 建 Merkle 路径并计算 Merkle Tree 根哈希，将其 与区块头中存储的根哈希对比，当两者完全符合 时便可以认为数据没有受到篡改。而在 Merkle Tree 的基础上，衍生出了不同的变体，以支持更 多功能，包括 Merkle Patricia Trie（MPT）[7]、Merkle Bucket Tree（MBT）[38]和 Merkle B-tree[22]等。
+MPT 在以太坊中被引入，是 Merkle Tree 和 Patricia Trie 的组合，从根节点到叶节点的路径表 示以太坊账户地址，而叶节点则存储对应账户的 信息。在 MPT 中，节点可以分为分支节点、扩展 节点和叶节点。分支节点包含一个 17 元素数 组，每个元素表示账户中的一个十六进制字符。 扩展节点和叶节点则分别使用公共前缀和唯一 后缀达成压缩路径长度的目的。然而，在以太坊 中，每个 MPT 节点存储在键值型数据库中，并通 过其散列值来索引，导致读写放大的问题，影响 了 MPT 的整体性能。
+MBT 在 Merkle Tree 的 基 础 上 引 入 了 哈 希 表。数据项将首先被映射到不同的哈希表中，然 后哈希表作为 Merkle Tree 的叶节点参与 Merkle Tree 根哈希的构建。这种设计为 MBT 带来了两 方面优势：一方面，它利用树形结构，当数据状态 改变时，只需要更新路径上节点的哈希值，尽可 能降低了重新计算哈希带来的成本；另一方面， 利用哈希表维护底层数据可以使得数据均匀分 布，避免产生局部热点问题。
+
+Merkle B- tree 是 在 B + Tree 的 基 础 上 引 入 Merkle Tree 的特性来支持外包关系数据库的可 信 范 围 查 询 。 具 体 来 说 ，在 构 造 方 面 ，Merkle B-tree 的整体结构与 B+ Tree 相同，但其中的每个 节点都有一个额外字段记录其子节点的哈希； 在 验 证 方 面 ，整 体 流 程 则 与 Merkle Tree 中 相 同。值得注意的是，Merkle B-tree 节点直接存储 在 文 件 系 统 中 ，没 有 任 何 后 端 数 据 库 。 因 此 ， Merkle B-tree 上的查询比 MPT 上的查询具有更 高的性能。然而，Merkle B-tree 的结构对于数据 更新顺序敏感[39]，因此不适合直接应用于区块链。 3.1.2 基于密码学累加器的 ADS
+密码学累加器[40]的实现过程和安全假设均 与 RSA 算法相近，通过累加函数将一组元素以 抗碰撞的方式映射到乘法群中的一个元素或椭 圆曲线上的一个点，使得每一个参加累加值计算 的元素都可以证明自身在或不在一个特定的集 合中。基于密码学累加器的 ADS 大小不随集合 元素数量的增加而增加，节省了网络带宽，多用 于 有 轻 节 点 设 定 区 块 链 项 目 中 ，典 型 例 子 为 vChain[41]、vChain+[42]系列。
+vChain 旨在为含有轻节点的区块链系统增 加可信布尔查询的功能，为此，作者基于密码学 累加器构建了一种新型 ADS，并在区块头中增 加 AttDigest 字段记录每个区块的累加值。具体 来说，vChain 将区块链上每笔交易通过前缀编码 方式转化为一个集合，再根据密码学累加器生成 一个累加值，若无符合条件的交易，便可以通过 交易数据的累加值向用户证明交易与查询条件 不 匹 配 ；反 之 ，则 直 接 返 回 满 足 查 询 要 求 的 交 易。此外，vChain 将数值通过二进制编码转换为 集合，根据集合相交与否判断其是否属于给定范 围，间接实现了区块链上的可信范围查询。
+在 vChain 的基础上，vChain+采用了更先进 的密码学集合累加器，支持语义更加丰富的嵌套 集合运算，使得 vChain+突破了 vChain 只支持整 型范围的限制，无需编码转换即可支持可信多维 查询、浮点型范围查询以及这些类型的组合查 询。此外，vChain+引入了滑动窗口技术，避免过 时数据带来的额外计算开销。
+
+52
+
+数据与计算发展前沿，2023，5(5)
+
+钟子岳 等：基于区块链的数据要素可信流通技术综述
+
+3.1.3 小结 本节介绍了区块链中两类常见的基于 ADS
+的数据可信查询技术，均可以通过区块链上存储 的数据摘要验证数据存储与查询的完整性。两 类方案的差异主要体现在时空性能上，基于哈希 的 ADS 方案在证明大小、数据查询时间、证明生
+
+成时间、证明验证时间上均达到了 O(log n) 的复 杂度，而基于密码学累加器的 ADS 虽然有着常 数级别的证明大小和证明验证时间，但数据查询 时间和证明生成时间达到了 O( n ) 的复杂度。 具体对比见表 2，其中 n 为数据项数量，b 为哈希 桶数量。
+
+ADS 类型 基于哈希
+基于密码 学累加器
+
+表 2 基于 ADS 的数据可信查询技术对比 Table 2 Comparison of ADS-based trusted data query techniques
+
+ADS Merkle Tree[37] MPT[7] MBT[38] Merkle B-tree[22] vChain[41]
+vChain+[42]
+
+支持的查询种类
+布尔查询
+键值查询
+键值查询
+范围查询 布尔查询 范围查询 多维查询 范围查询 组合查询
+
+证明大小 O(log n) — O(log b) O(log n)
+O(1)
+
+证明生成时间 证明验证时间
+
+特点
+
+O(log n)
+
+O(log n)
+
+构造简单，适用范围广
+
+—
+
+—
+
+提高访问效率
+
+O(log b)
+
+O(log b)
+
+避免数据聚集
+
+O(log n)
+
+O(log n)
+
+对更新顺序敏感
+
+O( n )
+
+O(1)
+
+查询依赖数据编码
+
+O(1)
+
+O( n )
+
+O(1)
+
+查询能力强，提升查询效率
+
+3.2 基于可信硬件的数据可信保障技术
+随着硬件技术的不断发展，可信执行环境 （TEE）日趋成熟，为解决区块链数据可信保障问 题提供了另一种技术思路。具体来说，TEE 通过 基于硬件安全的 CPU 实现了内存隔离，攻击者 无法直接读取其中的隐私数据和系统密钥，也无 法通过固化的硬件逻辑和硬件层面篡改检测，以 此确保相关系统运行过程不被恶意篡改。因此， TEE 可在保证计算效率的前提下完成隐私保护 的 计 算 。 常 见 的 实 现 方 案 包 括 Intel Software Guard Extensions（SGX）[43]和 ARM TustZone[44]。
+在区块链数据可信查询方面，AuthQX[45-46]借 助 SGX 设 计 了 一 种 全 新 的 验 证 方 案 。 在 AuthQX 中，轻客户端通过可信通道与完整节点连 接提出查询请求，而装备了 SGX 的完整节点则 需要 SGX 的可信内存中执行查询、验证并生成 完整性证明。这样的设计有效降低了轻客户端 的验证负担，为推广区块链应用起到了积极作 用。在具体执行方面，由于当前可信硬件的内存 空间有限，作者设计了一种在不可信和可信内存 中分层组织数据的机制。即不可信内存中的数
+
+据被组织为 Merkle B-tree，其中频繁访问的内部 节点被缓存在可信内存中作为可信检查点。在 可信内存中维护的跳表缓冲新附加的块数据。 一旦跳表的容量达到阈值，将通过 LRU 算法进 行更新，从而尽可能减小内存数据转换带来的额 外开销。
+在区块链事务可信执行方面，Dang 等人[47]将 TEE 与 PBFT 算法相结合，要求所有节点在发送 新消息之前将其摘要存储在可信日志中并经过 TEE 的签名认证。此举可以防止拜占庭节点向 不同节点发出冲突的消息，使得系统可以容忍不 超过一半的故障节点，进而提升事务可信执行的 能力。此外，作者借助 SGX 中特定的 sgx_read_ rand 和 sgx_get_trusted_time 函数实现了可信委 员会成员分配，为分片场景下事务可信执行提供 新的思路。Fang 等人[48] 设计了一个基于 SGX 的 两阶段事务执行框架，将事务执行的有关逻辑移 入 SGX 的可信内存中，保证了区块链事务的可 信执行，进而可以简化区块链内各节点间的共识 过 程 ，从 而 提 高 系 统 整 体 事 务 执 行 效 率 。 SEFrame[49]同样借助 TEE 来保障区块链事务预执行 的正确性，提高系统的并行性。
+
+53
+
+数据与计算发展前沿，2023，5(5)
+
+钟子岳 等：基于区块链的数据要素可信流通技术综述
+
+综上，以 SGX 为代表的可信硬件以其硬件 层面的安全保障，为区块链的数据完整性提供了 一种更加便捷且高效的保护手段。但与此同时 也应认识到，当下可信硬件还存在可信内存空间 不足等诸多问题制约其在区块链领域大规模应 用，需要设计更有效的机制来解决。
+3.3 讨论
+本节介绍了两种主流的区块链数据可信保 障技术。总体而言，基于 ADS 的相关技术方案 成熟且实现成本低廉，广泛应用于主流区块链系 统中，但其计算开销较大，对系统性能有一定的 影响；而基于可信硬件的方案在近年来逐渐涌 现，能否高效利用其有限的可信内存是决定该方 案能否进一步发展的重要因素。两种方案各有 利弊，需要根据实际应用场景和具体需求选择合 适的技术方案。
+4 区块链数据可流通性
+在区块链技术的发展初期，每个区块链网络 都是一个相对独立的生态系统，区块链数据只能 在该生态系统中流通。然而，随着区块链技术的 不断发展和应用，单一区块链网络无法满足不同 场景和需求的应用要求。为了在不同区块链之 间实现价值的双向流通，跨链技术应运而生。跨 链技术是指将不同的区块链网络连接起来，实现 区块链数据的跨链流通和价值交换，从而扩大区 块链的应用范围和实用价值。
+跨链技术对建立数据可信流通体系具有重 大意义。首先，跨链技术可以降低数据流通的成 本，使得数据可以更加便捷地在不同的区块链网 络之间流通。这可以减少数据转移和转换的时 间和费用，降低数据流通的门槛，有助于建立更 加高效的数据流通体系；其次，跨链技术可以实 现不同区块链网络之间的数据可信共享，有助于 促进不同行业、不同企业之间的数据合作与共 享，提高数据利用率，促进数据的跨界应用和创 新，为数据产业的发展提供有力支撑；最后，跨链 技术可以实现不同区块链网络之间的价值流通，
+
+有利于构建更加开放、多元化的数据市场。这可 以促进数据交易市场的发展，为数据经济的快速 发展提供有力保障。
+4.1 主流的跨链机制
+目前跨链技术的发展还处于早期阶段，为了 连接同构或异构的区块链网络，解决区块链之间 的数据传输、交易访问等技术难题，学术界和工 业界提出了公证人机制、侧链/中继、哈希锁定和 混合机制等解决方案。 4.1.1 公证人机制
+公证人机制是一种广泛应用且相对容易实 现的一种跨链机制。在该机制中，为了使互不信 任的两个区块链能够实现价值的流动，最简单的 方案是为双方引入了一个共同信任的第三方作 为中介，其可以是中心化的机构或者一组节点， 被称为公证人。与银行提供的外币兑换服务类 似，公证人需要负责跨链数据的收集、交易的确 认和验证，以保证跨链交易的可信性和交易执行 的原子性。
+虽然公证人的引入解决了跨链的互通性问 题，但是该机制也带来了公证人不可信的风险。 为了有效减少跨链交易对单一公证人的依赖，降 低公证人作恶对系统的影响，现有的跨链技术通 常采用公证人组的形式处理跨链交易。例如， AgentChain[50] 将 各 个 跨 链 公 证 人 合 并 为 一 个 交 易组，并在现有的区块链上生成一个多重签名地 址作为存款池，未经这些公证人多重签名的代币 将无法转出存款池。这种基于多重签名的公证 人机制既保证了在部分节点故障时不至于影响 整个系统的稳定性，还利用公证人组的竞争更好 地实现了去中心化。Sun 等人[51]还采用基于信誉 值的选举办法，从拥有较高信誉值的候选公证人 中随机选取公证人作为处理跨链交易的中介，并 动态更新信誉值以限制公证人作恶。 4.1.2 侧链/中继
+侧链机制的原理是在主链的基础上开辟一 条新的侧链，将主链上的资产转移到侧链上进行 交易和监管，最终再将结果返回给主链。作为一 个独立的区块链，侧链通常可以拥有自己的独立
+
+54
+
+数据与计算发展前沿，2023，5(5)
+
+钟子岳 等：基于区块链的数据要素可信流通技术综述
+
+协议、共识机制等，可以在不干扰主链的情况下 实现高效的数据管理。侧链机制的优势在于它 能够扩展主链的容量和功能，并支持主链和侧链 的数据流通，用户可以方便地将主链上的资产或 其他数据要素通过跨链交易转移到侧链上进行 各种应用的操作，操作完成后再将其转回主链。
+中继机制的原理是在不同的区块链之间构 建一个中继网络，将交易和数据在中继网络上传 递，从而实现不同区块链之间的互操作性。中继 网络既可以通过智能合约来管理不同区块链之 间的交互，还可以拥有独立的代币和共识机制， 此时中继网络便是一个独立的区块链，也称为中 继链。中继链相当于从参与跨链的各主链中分 离出的上层区块链，在维持各个主链的独立性和 安全性的同时支持数据要素在多链间的流通。
+常见的侧链/中继机制的应用有 BTC Relay[52] 和 Cosmos[53]。BTC Relay 是一种基于以太坊智 能合约的中继机制，旨在将比特币网络的信息引 入以太坊智能合约中，从而在以太坊上构建去中 心 化 应 用 。 它 利 用 了 比 特 币 的 SPV 协 议 和 Merkle Tree，通过以太坊智能合约来验证比特币 交易的状态，实现了跨链价值传输。Cosmos 也 是一种中继机制，其采用了一种称为“区域”的结 构，其中不同区域的区块链之间可以通过中继网 络进行交互，实现跨链价值传输和数据交换。 4.1.3 哈希锁定
+哈希锁定是一种基于哈希函数和时间锁定 的跨链技术，它可以在无需公证人的情况下实现 安全可靠的跨链交易，被广泛应用于比特币[5]等 区块链之间的跨链交易中。
+哈希锁定的原理是利用哈希函数生成一段 特定的哈希值作为交易的条件。交易的发起方 需要提供这个哈希值，并设置一个过期时间。接 收方在收到交易后，需要提供一个满足哈希条件 的原像（即原始数据），才能解锁交易并进行后续 操作。如果接收方无法提供正确的原像，那么交 易将会自动取消，发起方也可以取回自己的资产。
+哈希锁定的优势在于具有高度的安全性和 灵活性。因为哈希值是无法逆推的，所以即使交 易内容被泄露，攻击者也无法窃取资产。同时，
+
+哈希锁定还支持跨链多次转账，可以在不同的区 块 链 之 间 完 成 多 次 交 易 ，使 得 跨 链 操 作 更 加 灵活。 4.1.4 混合机制
+目前已有的主流跨链机制在不同方面拥有 优势和不足。例如公证人机制实现容易且简洁， 但面临中心化的风险；侧链/中继机制可以对区 块链扩容，但交易速度慢；哈希锁定只适用于资 产交换的场景等。为弥补单个跨链机制的不足， 研究者将不同跨链技术相结合，旨在通过混合机 制来保证跨链交互的高效和容错性，为用户提供 更安全且功能齐全的跨链服务协议。例如，Sun 等人[51]基于公证人机制和哈希锁定设计了一个 去中心化的跨链协议，通过引入公证人组来改进 公证人方案，并设置奖惩和惩罚以控制哈希锁定 中交易的解锁时间，确保协议能够抵抗恶意节点 的失败者攻击和虫洞攻击，实验证明，这种混合 机制在容错性和交易的时间成本上优于原有的 单个方案。
+4.2 跨链数据流通的难题
+虽然上述跨链机制都在不同程度上解决了 区块链之间数据隔离和互操作性的问题，但随着 区块链应用场景的不断拓展和深入，在跨区块链 的数据流通场景中，跨链技术仍存在一些难题亟 待解决，例如跨链数据的隐私保护、跨链数据的 高效共享等。
+在数据要素的隐私保护方面，国务院在《关 于构建数据基础制度更好发挥数据要素作用的 意见》一文中明确指出：要创新技术手段，推动个 人信息匿名化处理等技术的发展及应用，重视个 人信息数据在流通和使用时带来的信息安全和 个人隐私等问题[4]。在跨链数据的隐私性方面， 现有的跨链协议很少考虑对跨链交易信息和参 与方身份的隐私保护，这些信息在大部分跨链交 易的方案中是公开的[54]。因此，跨链交易环节暴 露出的隐私安全问题可能会进一步损害双方区 块链的安全性和可用性，对区块链间的数据合作 和共享带来不利影响。
+
+55
+
+数据与计算发展前沿，2023，5(5)
+
+钟子岳 等：基于区块链的数据要素可信流通技术综述
+
+针对跨链数据的隐私保护，目前一种有效 的解决方案是使用密码学的手段，例如零知识 证明等技术。为防范远程侧信道攻击对跨链交 换的影响，Li 等人[55]利用累加器机制和一种名为 CP-SNARK 的零知识证明协议在确认块中证明 交易，而不会透露交易细节，结果证明该协议实 现了跨链交易的公平性、保密性和不可链接性。 Xie 等人[56]提出现有的跨链桥解决方案要么存在 性能问题，要么依赖于会显著降低安全性的委 员会。为此他们提出了一种高效的跨链桥方案 zkBridge，其应用了非交互式的零知识证明技术 zk-SNARK，通过分布式的证明生成协议和简洁 的、固定大小的证明压缩方案，降低了跨链交易 的验证成本并保证了交易执行的正确性。
+在跨链数据的高效共享场景中，数据的传输 和验证需要时间和成本，例如 PoW 侧链[57]的跨链 证明大小依赖于链的长度，因此带宽和存储开销 会随着区块链的增长而变大，而 PoS 侧链[58]尽管 实现了简洁的证明，但投票周期较长，无法满足 快速的跨链转账。基于 PoW 侧链和 PoS 侧链， Yin 等人[59]采用了公证人+侧链的混合机制，将公 证人委员会的选举从共识过程中解耦出来，并采 用一种新颖的利用哈希函数产生固定规模的委 员会选举方法，降低了投票阶段的总延迟，同时 利用委员会生成的跨链证书降低跨链交易验证 的成本，从而提高跨链传输的及时性并减少带宽 和存储开销。此外，跨链数据共享还面临着查询 低效率的不足和结果不一致的风险，为此 Cao 等 人[60]将区块链分为以公有链为基础的授权链和 以联盟链为基础的访问链，利用授权链记录数据 注册和权限变更信息，并将数据访问控制策略和 访问事件记录在不同信任域的访问链中，通过依 次追溯数据注册交易、权限变更交易、策略创建 交易和访问记录交易，可以重构跨域数据交易、 权限授予、访问流程的全周期追溯结果。类似的 方案有 Vassago[61]，其设计了一个两层存储结构： 底层是参与跨链的区块链，又叫事务区块链；上 层是依赖区块链，负责记录下层的跨链事务依 赖。基于构建的跨链依赖图，Vassago 在保证查 询结果的一致性的前提下，可以在多链上并行化
+
+查询，提高查询效率。
+5 区块链数据可追溯性
+数据溯源是对数据源头及其演变过程的追 踪与描述 。 [62] 由于区块链去中心化地保存了系 统运行过程中的全部历史交易记录，可溯源成为 区块链系统最主要的应用特性之一。目前，包括 供应链[63-64]、科学计算 、原 [65] 创成果保护 、网 [66] 络 舆情治理[67-68]等多种领域都成功应用区块链技术 实现数据来源追溯。
+然而，区块链系统以时间顺序将历史交易数 据记录在区块链账本上的方式只是为历史数据 回溯提供了数据支持，没有提供高效的数据溯源 查询能力。现有溯源系统主要采用以下两种方 式进行历史数据检索：
+（1）基于区块链的数据溯源：由于区块链没 有提供溯源查询功能，数据溯源只能通过顺序遍 历从创世区块到当前区块记录的交易数据或状 态数据信息来完成。这种方式需要花费大量时 间，随着系统持续运行，账本数据逐渐增多，数据 溯源的代价越来越高。因此，这种方式难以应用 在大数据系统中。
+（2）基于链下数据库的数据溯源：将区块链 数据以溯源查询所需的格式存储在链下数据库 中可以有效解决历史数据查询效率问题。在这 种方式中，尽管交易记录和状态数据记录可以到 区块链中进行真实性验证，但数据演变过程的真 实性验证需要重放历史状态所涉及的全部区块 交易。
+为提供溯源查询的原生支持，部分工作通过 设计新型默克尔索引结构来实现支持溯源查询 的高效验证。Watanabe 等人[69]提出一种新型代 币设计，将产品来源和分销过程映射到区块链 上，并基于 Merkle DAG（Directed Acyclic Graph） 对代币状态转换进行建模，通过提交、合并、拆分 和分叉等 Git 语义对供应链中商品上链、加工、分 销等过程进行描述，从而记录区块链上代币合约 的用户操作轨迹，以实现供应链场景下的数据溯 源查询能力。LineageChain[70-71]重新定义了区块
+
+56
+
+数据与计算发展前沿，2023，5(5)
+
+钟子岳 等：基于区块链的数据要素可信流通技术综述
+
+链状态数据节点，并将状态数据以 Merkle DAG 的形式组成有向无环图，图的边上记录了促使状 态改变的交易信息，以增强区块链的存储层，并 提供高效的跟踪和篡改证据。进一步地，它用一 个确定性的只追加跳表（DASL）来索引 Merkle DAG 中的节点，来加速溯源查询过程中对 DAG 的搜索，同时支持前向溯源。DASL 利用了区块 链的只追加和非随机属性，以区别于普通的跳转 列表。这种方案实现了快速和低成本的历史数 据查询，使得在智能合约中进行在线溯源成为 可能。
+在数据查找方面，Wu 等人[63] 通过研究溯源 查询的并行处理来提高溯源查询效率，该工作将 记录复制到多个块中，采用并行搜索策略来提高 时间效率。为提高搜索的并行性，本文将记录和 区块建模为二分图，并使用二分图的最大匹配算 法解决分配问题。实验结果表明，在可承受的存 储开销下，时间开销最多可减少 85.1%。
+此外，为保证系统所记录的溯源信息的准确 性，如何进行溯源数据的记录与构建也是亟需解 决的问题。Cui 等人[72]对供应链管理过程中的系 统操作流程进行进一步设计，全面解决运输中盗 窃、人为错误、交付和管理失败以及供应链中不 诚实实体所带来的隐患。其提出了一种基于两 笔交易的所有权管理方法。发送方发送所有权 转让交易后，需要接收方进行额外的交易确认。 一旦发送方和接收方达成协议，则所有权转让将 完成。这种方式可以自动标记在运输过程中的 物品丢失、人为错误和交付失败等信息。
+目前，区块链可追溯性方面的研究主要集中 在如何利用区块链系统原有特性实现各个不同 领域的数据溯源，而如何改进区块链系统设计使 其支持更加完备、高效的数据溯源需求还有待进 一步探究。
+6 结论与展望
+本文从区块链数据的可用性、可信性、可流 通性、可追溯性 4 个方面，探讨了基于区块链的 数据要素可信流通关键技术。在区块链数据可
+
+用性方面，越来越多的研究尝试在区块链上建立 形式更加丰富的存储模型，以适应不同种类数据 要素存储需求，为基于区块链的数据要素流通打 下了良好基础；而受限于区块链的安全保障机 制，目前区块链系统的可扩展性普遍不如传统商 业数据库，一定程度上制约了区块链技术的进一 步发展和应用。在区块链数据可信性方面，最近 的研究聚焦于利用轻量级的可验证结构（ADS） 代替传统区块链中基于投票的数据验证方式，提 升了数据验证效率，接下来需要进一步如何更好 地平衡证明生成时间、证明大小、验证时间等方 面的开销；而可信硬件的发展则为这一方向的研 究带来了新的思路和挑战。在区块链数据可流 通性方面，虽然现有跨链技术已显著促进了数据 要素在不同区块链之间的流通，但目前跨链技术 对于多区块链的兼容性还难以满足数据要素高 效流通的需求。整体而言，跨链技术仍处于起步 探索阶段，尚未形成成熟的体系架构。在区块链 数据可追溯性方面，区块链系统溯源工作仍处于 应用探索阶段，如何基于区块链设计更加完备、 高效的数据溯源管理系统还有待研究。
+此外，为构建完备的数据要素可信流通体 系，区块链技术尚有许多值得深入探讨和研究的 问题。本文最后列举一些可能的研究方向，希望 对本领域的其他研究者有所启发：
+（1）在数据隐私方面：区块链促进了数据流 通，但同时造成了数据隐私泄露的问题。现有研 究工作聚焦于使用密码学技术实现私有数据的 访问控制[73]，将敏感数据存储在更好地支持数据 隐私的链下数据库中[12]。然而，如何构建数据分 级分类管理体系，实现细粒度的数据共享流通仍 面临挑战。
+（2）在数据使用方面：由于数据要素具有可 复制性、非消耗性、边际成本零等不同于传统生 产要素的特点，为了保护数据所有权，其在使用 过程中往往需要遵循“原始数据不出域、数据可 用不可见”的要求[4]，影响了数据使用的自由性。 现有研究工作将联邦学习与区块链技术相结合[74] 以解决上述问题。然而，联邦学习涉及多个参与 方之间的频繁通信，区块链拜占庭共识条件下的
+
+57
+
+数据与计算发展前沿，2023，5(5)
+
+钟子岳 等：基于区块链的数据要素可信流通技术综述
+
+通信开销和延迟会影响联邦学习的效率和性能。 （3）在数据表示方面：互联网应用的发展催
+生了图数据、文档数据等更加多样的数据形式， 需要区块链的进一步支持。以图数据为例，针对 图的挖掘和分析可以从大规模图数据中提取有用 的信息和见解。通过将图数据库与区块链集成， 可以以安全和去中心化的方式分析事务关系[75]。
+利益冲突声明 所有作者声明不存在利益冲突关系。
+参考文献
+[1] 国家互联网信息办公室. 数字中国发展报告（2021 年）[R]. 2022.
+[2] 数据要素白皮书（2022 年）. 数据要素白皮书（2022 年）[R]. 2023.
+[3] 中国信息通信研究院安全研究所. 数据要素流通视 角下数据安全保障研究报告（2022 年）[R]. 2022.
+[4] 中共中央国务院. 关于构建数据基础制度更好发挥 数据要素作用的意见[EB/OL]. [2023-04-18]. http:// www.gov.cn/zhengce/2022-12/19/content_5732695.htm.
+[5] 张志威, 王国仁, 徐建良, 等. 区块链的数据管理技 术综述[J]. 软件学报, 2020, 31(9): 2903-2925.
+[6] NAKAMOTO S. Bitcoin: A peer- to- peer electronic cash system[R/OL]. (2008). https://bitcoin.org/bitcoin. pdf.
+[7] BUTERIN V. Ethereum: A Next- Generation Smart Contract and Decentralized Application Platform[R/ OL]. (2014)[2023-05-03]. https://ethereum.org/669c9e2e2027310b6b3cdce6e1c52962/Ethereum_Whitepa per_-_Buterin_2014.pdf.
+[8] ANDROULAKI E, BARGER A, BORTNIKOV V, et al. Hyperledger fabric: a distributed operating system for permissioned blockchains[C]//Proceedings of the Thirteenth EuroSys Conference. Association for Computing Machinery, 2018: 1-15.
+[9] ZHU C, LI J, ZHONG Z, et al. A Survey on the Integration of Blockchains and Databases[J]. Data Science and Engineering, 2023, 8(2): 196-219.
+[10] 区块链+数字经济发展白皮书(上)[N]. 中国计算机 报, 2021-11-22(008).
+
+[11] AntChain[EB/OL]. https://antchain.net/. [12] ZHU Y, ZHANG Z, JIN C, et al. SEBDB: Semantics
+Empowered BlockChain DataBase[C]//2019 IEEE 35th International Conference on Data Engineering (ICDE). 2019: 1820-1831. [13] ZHU Y, ZHANG Z, JIN C, et al. Towards Rich Qery Blockchain Database[C]//Proceedings of the 29th ACM International Conference on Information & Knowledge Management. Association for Computing Machinery, 2020: 3497-3500. [14] NATHAN S, GOVINDARAJAN C, SARAF A, et al. Blockchain meets database: design and implementation of a blockchain relational database[J]. Proceedings of the VLDB Endowment, 2019, 12(11): 15391552. [15] PENG Y, DU M, LI F, et al. FalconDB: Blockchainbased Collaborative Database[C]//Proceedings of the 2020 ACM SIGMOD International Conference on Management of Data. Association for Computing Machinery, 2020: 637-652. [16] THE POSTGRESQL GLOBAL DEVELOPMENT GROUP. PostgreSQL: The World’s Most Advanced Open Source Relational Database[EB/OL]. https:// www.postgresql.org/. [17] ZHANG Y, KATZ J, PAPAMANTHOU C. IntegriDB: Verifiable SQL for Outsourced Databases[C]// Proceedings of the 22nd ACM SIGSAC Conference on Computer and Communications Security. Association for Computing Machinery, 2015: 1480-1491. [18] MySQL[EB/OL]. https://www.mysql.com/. [19] LIU Y, LIU J, VAZ SALLES M A, et al. Building blocks of sharding blockchain systems: Concepts, approaches, and open problems[J]. Computer Science Review, 2022, 46: 100513. [20] ZHANG C, XU C, XU J, et al. GEM^2-Tree: A GasEfficient Structure for Authenticated Range Queries in Blockchain[C]//2019 IEEE 35th International Conference on Data Engineering (ICDE). 2019: 842-853. [21] ZHANG C, XU C, WANG H, et al. Authenticated Keyword Search in Scalable Hybrid- Storage Blockchains[C]//2021 IEEE 37th International Conference on Data Engineering (ICDE). 2021: 996-1007. [22] LI F, HADJIELEFTHERIOU M, KOLLIOS G, et al.
+
+58
+
+数据与计算发展前沿，2023，5(5)
+
+钟子岳 等：基于区块链的数据要素可信流通技术综述
+
+Dynamic authenticated index structures for outsourced databases[C]//Proceedings of the 2006 ACM SIGMOD international conference on Management of data. Association for Computing Machinery, 2006: 121-132. [23] HASSANZADEH- NAZARABADI Y, KÜPÇÜ A, ÖZKASAP Ö. LightChain: Scalable DHT- Based Blockchain[J]. IEEE Transactions on Parallel and Distributed Systems, 2021, 32(10): 2582-2593. [24] 黄华威, 孔伟, 彭肖文, 等. 区块链分片技术综述[J]. 计算机工程, 2022, 48(6): 1-10. [25] LUU L, NARAYANAN V, ZHENG C, et al. A Secure Sharding Protocol For Open Blockchains[C]// Proceedings of the 2016 ACM SIGSAC Conference on Computer and Communications Security. Association for Computing Machinery, 2016: 17-30. [26] KOKORIS- KOGIAS E, JOVANOVIC P, GASSER L, et al. OmniLedger: A Secure, Scale- Out, Decentralized Ledger via Sharding[C]//IEEE Symposium on Security and Privacy. IEEE Computer Society, 2018: 583-598. [27] WANG J, WANG H. Monoxide: Scale out Blockchains with Asynchronous Consensus Zones[C]//16th USENIX Symposium on Networked Systems Design and Implementation (NSDI 19). 2019: 95-112. [28] HUANG H, PENG X, ZHAN J, et al. BrokerChain: A Cross-Shard Blockchain Protocol for Account/Balance- based State Sharding[C]//IEEE INFOCOM 2022 - IEEE Conference on Computer Communications. 2022: 1968-1977. [29] ZAMANI M, MOVAHEDI M, RAYKOVA M. RapidChain: Scaling Blockchain via Full Sharding[C]//Proceedings of the 2018 ACM SIGSAC Conference on Computer and Communications Security. Association for Computing Machinery, 2018: 931-948. [30] CHEN H, WANG Y. SSChain: A full sharding protocol for public blockchain without data migration overhead[J]. Pervasive and Mobile Computing, 2019, 59: 101055. [31] AMIRI M J, AGRAWAL D, EL ABBADI A. On Sharding Permissioned Blockchains[C]//2019 IEEE International Conference on Blockchain (Blockchain). 2019: 282-285.
+
+[32] AMIRI M J, AGRAWAL D, EL ABBADI A. SharPer: Sharding Permissioned Blockchains Over Network Clusters[C]//Proceedings of the 2021 International Conference on Management of Data. Association for Computing Machinery, 2021: 76-88.
+[33] HONG Z, GUO S, LI P, et al. Pyramid: A Layered Sharding Blockchain System[C]//IEEE INFOCOM 2021 - IEEE Conference on Computer Communications. 2021: 1-10.
+[34] ZHENG P, XU Q, ZHENG Z, et al. Meepo: Sharded Consortium Blockchain[C]//2021 IEEE 37th International Conference on Data Engineering (ICDE). 2021: 1847-1852.
+[35] HONG Z, GUO S, ZHOU E, et al. GriDB: Scaling Blockchain Database via Sharding and Off- Chain Cross- Shard Mechanism[J]. Proceedings of the VLDB Endowment, 2023, 16(7): 1685-1698.
+[36] TAMASSIA R. Authenticated Data Structures[C]//Algorithms- ESA 2003. Berlin, Heidelberg: Springer, 2003: 2-5.
+[37] PANG H, JAIN A, RAMAMRITHAM K, et al. Verifying completeness of relational query results in data publishing[C]//Proceedings of the 2005 ACM SIGMOD international conference on Management of data. Association for Computing Machinery, 2005: 407418.
+[38] YUE C, XIE Z, ZHANG M, et al. Analysis of Indexing Structures for Immutable Data[C]//Proceedings of the 2020 ACM SIGMOD International Conference on Management of Data. Association for Computing Machinery, 2020: 925-935.
+[39] WANG S, DINH T T A, LIN Q, et al. Forkbase: an efficient storage engine for blockchain and forkable applications[J]. Proceedings of the VLDB Endowment, 2018, 11(10): 1137-1150.
+[40] BENALOH J, DE MARE M. One- Way Accumulators: A Decentralized Alternative to Digital Signatures [C]//Advances in Cryptology—EUROCRYPT’93. Berlin, Heidelberg: Springer, 1994: 274-285.
+[41] XU C, ZHANG C, XU J. vChain: Enabling Verifiable Boolean Range Queries over Blockchain Databases[C]//Proceedings of the 2019 International Conference on Management of Data. Association for
+
+59
+
+数据与计算发展前沿，2023，5(5)
+
+钟子岳 等：基于区块链的数据要素可信流通技术综述
+
+Computing Machinery, 2019: 141-158. [42] WANG H, XU C, ZHANG C, et al. vChain + : Opti-
+mizing Verifiable Blockchain Boolean Range Queries [C]//2022 IEEE 38th International Conference on Data Engineering (ICDE). 2022: 1927-1940. [43] KARANDE V, BAUMAN E, LIN Z, et al. SGX-Log: Securing System Logs With SGX[C]//Proceedings of the 2017 ACM on Asia Conference on Computer and Communications Security. Association for Computing Machinery, 2017: 19-30. [44] SANTOS N, RAJ H, SAROIU S, et al. Using ARM trustzone to build a trusted language runtime for mobile applications[C]//Proceedings of the 19th international conference on Architectural support for programming languages and operating systems. Association for Computing Machinery, 2014: 67-80. [45] SHAO Q, PANG S, ZHANG Z, et al. Authenticated Range Query Using SGX for Blockchain Light Clients[C]//Database Systems for Advanced Applications. Cham: Springer International Publishing, 2020: 306-321. [46] PANG S, SHAO Q, ZHANG Z, et al. AuthQX: Enabling Authenticated Query over Blockchain via Intel SGX[C]//Database Systems for Advanced Applications. Cham: Springer International Publishing, 2020: 727-731. [47] DANG H, DINH T T A, LOGHIN D, et al. Towards Scaling Blockchain Systems via Sharding[C]//Proceedings of the 2019 International Conference on Management of Data. Association for Computing Machinery, 2019: 123-140. [48] FANG M, ZHANG Z, JIN C, et al. High- Performance Smart Contracts Concurrent Execution for Permissioned Blockchain Using SGX[C]//2021 IEEE 37th International Conference on Data Engineering (ICDE). 2021: 1907-1912. [49] FANG M, ZHOU X, ZHANG Z, et al. SEFrame: An SGX- enhanced Smart Contract Execution Framework for Permissioned Blockchain[C]//2022 IEEE 38th International Conference on Data Engineering (ICDE). 2022: 3166-3169. [50] LI D, LIU J, TANG Z, et al. AgentChain: A Decentralized Cross- Chain Exchange System[C]//2019
+
+18th IEEE International Conference On Trust, Security And Privacy In Computing And Communications/ 13th IEEE International Conference On Big Data Science And Engineering (TrustCom/BigDataSE). 2019: 491-498. [51] SUN Y, YI L, DUAN L, et al. A Decentralized CrossChain Service Protocol based on Notary Schemes and Hash-Locking[C]//2022 IEEE International Conference on Services Computing (SCC). 2022: 152157. [52] BTC Relay[EB/OL]. [2023- 05- 03]. https://github. com/ethereum/btcrelay/wiki. [53] KWON J, ETHAN B. A network of distributed ledgers cosmos[EB/OL]. https://v1.cosmos.network/intro. [54] 孟博, 王乙丙, 赵璨, 等. 区块链跨链协议综述[J]. 计 算机科学与探索, 2022, 16(10): 2177-2192. [55] LI Y, WENG J, LI M, et al. ZeroCross: A sidechainbased privacy- preserving Cross- chain solution for Monero[J]. Journal of Parallel and Distributed Computing, 2022, 169: 301-316. [56] XIE T, ZHANG J, CHENG Z, et al. zkBridge: Trustless Cross-chain Bridges Made Practical[C]//Proceedings of the 2022 ACM SIGSAC Conference on Computer and Communications Security. Association for Computing Machinery, 2022: 3003-3017. [57] KIAYIAS A, ZINDROS D. Proof-of-Work Sidechains [C]//Financial Cryptography and Data Security. Cham: Springer International Publishing, 2020: 2134. [58] GAŽI P, KIAYIAS A, ZINDROS D. Proof- of- Stake Sidechains[C]//2019 IEEE Symposium on Security and Privacy (SP). 2019: 139-156. [59] YIN L, XU J, TANG Q. Sidechains With Fast CrossChain Transfers[J]. IEEE Transactions on Dependable and Secure Computing, 2022, 19(6): 3925-3940. [60] CAO L, ZHAO S, GAO Z, et al. Cross- chain data traceability mechanism for cross- domain access[J]. The Journal of Supercomputing, 2023, 79(5): 49444961. [61] HAN R, XIAO J, DAI X, et al. Vassago: Efficient and Authenticated Provenance Query on Multiple Blockchains[C]//2021 40th International Symposium
+
+60
+
+数据与计算发展前沿，2023，5(5)
+
+钟子岳 等：基于区块链的数据要素可信流通技术综述
+
+on Reliable Distributed Systems (SRDS). 2021: 132142. [62] 刘海鸥, 何旭涛, 李凯, 等. 区块链数据溯源机制研 究综述[J]. 情报杂志, 2022, 41(7): 100-106. [63] WU H, JIANG S, CAO J. High- Efficiency Blockchain- Based Supply Chain Traceability[J]. IEEE Transactions on Intelligent Transportation Systems, 2023, 24(4): 3748-3758. [64] ORJUELA K G, GAONA-GARCÍA P A, MARIN C E M. Towards an agriculture solution for product supply chain using blockchain: case study Agro- chain with BigchainDB[J]. Acta Agriculturae Scandinavica, Section B — Soil & Plant Science, 2021, 71(1): 1-16. [65] AL-MAMUN A, YAN F, ZHAO D. SciChain: Blockchain-enabled Lightweight and Efficient Data Provenance for Reproducible Scientific Computing[C]// 2021 IEEE 37th International Conference on Data Engineering (ICDE). 2021: 1853-1858. [66] ZHU P, HU J, LI X, et al. Using Blockchain Technology to Enhance the Traceability of Original Achievements[J]. IEEE Transactions on Engineering Management, 2023, 70(5): 1693-1707. [67] DE SOTO H. A tale of two civilizations in the era of Facebook and blockchain[J]. Small Business Economics, 2017, 49(4): 729-739. [68] HUCKLE S, WHITE M. Fake News: A Technological Approach to Proving the Origins of Content, Using Blockchains[J]. Big Data, 2017, 5(4): 356-371. [69] WATANABE H, ISHIDA T, OHASHI S, et al. Enhancing Blockchain Traceability with DAG- Based Tokens[C]//2019 IEEE International Conference on Blockchain (Blockchain). 2019: 220-227. [70] RUAN P, CHEN G, DINH T T A, et al. Fine-grained, secure and efficient data provenance on blockchain systems[J]. Proceedings of the VLDB Endowment, 2019, 12(9): 975-988. [71] RUAN P, DINH T T A, LIN Q, et al. LineageChain: a fine- grained, secure and efficient data provenance system for blockchains[J]. The VLDB Journal, 2021, 30(1): 3-24. [72] CUI P, DIXON J, GUIN U, et al. A BlockchainBased Framework for Supply Chain Provenance[J]. IEEE Access, 2019, 7: 157113-157125.
+
+[73] RUAN P, KANZA Y, OOI B C, et al. LedgerView: Access- Control Views on Hyperledger Fabric[C]// Proceedings of the 2022 International Conference on Management of Data. Association for Computing Machinery, 2022: 2218-2231.
+[74] CAO M, ZHANG L, CAO B. Toward On- Device Federated Learning: A Direct Acyclic Graph- Based Blockchain Approach[J]. IEEE Transactions on Neural Networks and Learning Systems, 2023, 34(4): 2028-2042.
+[75] TSOULIAS K, PALAIOKRASSAS G, FRAGKOS G, et al. A Graph Model Based Blockchain Implementation for Increasing Performance and Security in Decentralized Ledger Systems[J]. IEEE Access, 2020, 8: 130952-130965.
+收稿日期：2023 年 5 月 4 日
+钟子岳，北京理工大学计算机学院， 博士研究生，主要研究方向为区块 链系统。 本文主要承担工作为论文选题，全 文统筹规划，论文主要部分的撰写 与修改。 ZHONG Ziyue is a Ph.D. student at the School of Computer Science & Technology, Beijing Institute of Technology. His research interests include blockchain systems. In this paper, he is responsible for selecting the research topic, coordinating the overall planning of the paper, and writing and revising the main sections of the paper. E-mail: ziyue_zhong@bit.edu.cn
+张美慧，北京理工大学计算机学院， 教授，曾于 2014 年至 2017 年任新加 坡科技设计大学助理教授。研究方 向包括数据分析、海量数据集成、分 布式和区块链系统。担任VLDB’18、 IEEE ICDE’18、VLDB’19、VLDB’20、 SIGMOD’21 和 ICDE’22 的程序委 员会副主席/副主编。 本文中负责选题与写作指导、论文最终审定。 ZHANG Meihui is currently a professor with the Beijing
+
+61
+
+数据与计算发展前沿，2023，5(5)
+
+钟子岳 等：基于区块链的数据要素可信流通技术综述
+
+Institute of Technology. She was an assistant professor with the Singapore University of Technology and Design (SUTD), from 2014 to 2017. Her research interests include data analytics, massive data integration, distributed and blockchain systems. She has served as a vice PC chair/asso-
+
+ciate editor for VLDB’18, IEEE ICDE’18, VLDB’19, VLDB’20, SIGMOD’21, and ICDE’22. In this paper, she is responsible for topic and writing instruction, paper review and editing. E-mail: meihui_zhang@bit.edu.cn
+
+引文格式：钟子岳，朱长昊，李浚哲，张美慧. 基于区块链的数据要素可信流通技术综述[J].数据与计算发展前沿, 2023,5(5): 46-62. DOI:10.11871/jfdc.issn.2096-742X.2023.05.005. https://cstr.cn/32002.14.jfdc.CN10-1649/TP.2023.05.005. ZHONG Ziyue, ZHU Changhao, LI Junzhe, ZHANG Meihui. A Survey on Blockchain-Based Trusted Data Elements Circulation[J]. Frontiers of Data & Computing, 2023, 5(5): 42-62. DOI:10.11871/jfdc.issn.2096-742X.2023.05.005. https://cstr.cn/32002.14.jfdc.CN10-1649/ TP.2023.05.005.
+62
+

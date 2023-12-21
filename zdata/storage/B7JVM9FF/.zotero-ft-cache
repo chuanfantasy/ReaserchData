@@ -1,0 +1,3414 @@
+ # SpringBoot
+
+### 鏂囨。鏇存柊鏃ュ織
+
+| 鐗堟湰 | 鏇存柊鏃ユ湡   | 鎿嶄綔 | 鎻忚堪   |
+| ---- | ---------- | ---- | ------ |
+| v1.0 | 2021/11/14 | A    | 鍩虹绡� |
+|      |            |      |        |
+|      |            |      |        |
+
+
+
+### 鍓嶈█
+
+鈥�		寰堣崳骞告湁鏈轰細鑳戒互杩欐牱鐨勫舰寮忓拰浜掕仈缃戜笂鐨勫悇浣嶅皬浼欎即涓€璧峰涔犱氦娴佹妧鏈绋嬶紝杩欐缁欏ぇ瀹跺甫鏉ョ殑鏄疭pring瀹舵棌涓瘮杈冮噸瑕佺殑涓€闂ㄦ妧鏈绋嬧€斺€擲pringBoot銆備竴鍙ヨ瘽浠嬬粛杩欎釜鎶€鏈紝搴旇鎬庝箞璇村憿锛熺幇鍦ㄥ鏋滃紑鍙慡pring绋嬪簭涓嶇敤SpringBoot閭ｅ氨鏄粰鑷繁杩囦笉鍘伙紝SpringBoot涓烘垜浠紑鍙慡pring绋嬪簭鎻愪緵浜嗗お澶氱殑甯姪浜嗭紝鍥犳鍊熻繖涓満浼氱粰澶у鍒嗕韩杩欓棬璇剧▼锛屽笇鏈涘悇浣嶅皬浼欎即瀛︽湁鎵€寰楋紝瀛︽湁鎵€鐢紝瀛︽湁鎵€鎴愩€�
+
+鈥�		姝ｅ涓婇潰鎻愬埌鐨勶紝杩欓棬鎶€鏈槸鐢ㄦ潵鍔犻€熷紑鍙慡pring绋嬪簭鐨勶紝鍥犳瀛︿範杩欓棬鎶€鏈槸鏈変竴瀹氱殑闂ㄦ鐨勩€備綘鍙互鐞嗚В涓轰綘鐜板湪鏄竴闂ㄤ紶缁熺殑鎵嬪伐鑹轰汉锛岀幇鍦ㄥ伐鑹哄崌绾э紝鍙互鍔犻€熶綘鐨勭敓浜у埗浣滆繃绋嬶紝浣嗘槸鍓嶆彁鏄綘瑕佷細鍘熷宸ヨ壓锛岀劧鍚庢墠鑳藉涔犳柊鐨勫伐鑹恒€傚棷锛屾€庝箞璇村憿锛熸湁涓€瀹氱殑闂ㄦ锛岃嚦灏慡pring鎬庝箞鍥炰簨锛屼笌Spring閰嶅悎鍦ㄤ竴璧峰伐浣滅殑涓€鍫嗘妧鏈張鏄€庝箞鍥炰簨锛岃繖浜涙悶鏄庣櫧鎵嶈兘鏉ョ湅杩欎釜鎶€鏈紝涓嶇劧灏卞彧鑳藉涓毊姣涳紝鎴栬€呭鐫€瀛︾潃灏卞紑濮嬪洜涓哄叾浠栨妧鏈笉澶繃鍏筹紝鐒跺悗灏卞涓嶄笅鍘讳簡锛岀劧鍚庯紝灏辨病鏈夌劧鍚庝簡锛屾灉鏂純鍧戜簡銆備笉绠℃€庝箞璇达紝鏃㈡潵涔嬪垯瀹変箣锛屽姞娌瑰涔犲惂锛屾姇璧勮嚜宸辫偗瀹氭槸娌℃瘺鐥呯殑銆�
+
+
+
+### 璇剧▼鍐呭璇存槑
+
+鈥�		SpringBoot杩欓棬鎶€鏈绋嬫墍鍖呭惈鐨勬妧鏈偣鍏跺疄骞朵笉鏄緢澶氾紝浣嗘槸鍥寸粫鐫€SpringBoot鐨勫懆杈圭煡璇嗭紝涔熷氨鏄疭pringBoot鏁村悎鍏朵粬鎶€鏈紝杩欐牱鐨勭煡璇嗛噺寰堝ぇ锛屼緥濡係pringBoot鏁村悎MyBatis绛夌瓑銆傚洜姝や负浜嗚兘澶熷皢鏈绋嬪埗浣滅殑鑳藉閫傚簲浜庡悇涓眰闈㈢殑瀛︿範鑰呰繘琛屽涔狅紝鏈璇剧▼浼氶拡瀵瑰皬鐧斤紝鍒濆鑰咃紝寮€鍙戣€呬笁绉嶄笉鍚岀殑浜虹兢鏉ヨ璁″叏濂楄绋嬨€傚叿浣撹繖涓夌浜虹兢濡備綍鍒掑垎锛屽氨鎸夌収鎴戠殑鎻忚堪褰㈠紡鏉ュ垎鍚э紝鍚勪綅灏忎紮浼村彲浠ュ鍙峰叆搴э紝姣忕浜虹兢鐪嬭绋嬬殑璧峰浣嶇疆鐣ユ湁宸埆銆�
+
+| 瀛︿範鑰�     | 褰掔被鏂瑰紡                                   |
+| ---------- | ------------------------------------------ |
+| **灏忕櫧**   | 瀹屽叏娌℃湁鐢ㄨ繃SpringBoot鎶€鏈�                 |
+| **鍒濆鑰�** | 鑳戒娇鐢⊿pringBoot鎶€鏈畬鎴愬熀纭€鐨凷SM鏁村悎      |
+| **寮€鍙戣€�** | 鑳戒娇鐢⊿pringBoot鎶€鏈疄鐜板父瑙佺殑鎶€鏈暣鍚堝伐浣� |
+
+鈥�		绠€鍗曡灏辨槸浣犺兘鐢⊿pringBoot鍋氬灏戜笢瑗匡紝涓€鐐逛笉浼氬氨鏄皬鐧斤紝浼氫竴鐐瑰氨鏄垵瀛﹁€咃紝澶ч儴鍒嗛兘浼氬氨鏄紑鍙戣€呫€傚叾瀹炶繖涓垝鍒嗕篃涓嶇敤澶籂缁擄紝杩欎釜鍒掑垎浠呬粎鏄负浜嗗府鍔╀綘瀵规湰鎶€鏈绋嬫墍鍖呭惈鐨勯樁娈垫ā鍧楀垝鍒嗗仛涓€涓竻鏅拌鐭ワ紝鍥犱负鏈绋嬩腑浼氬皢SpringBoot鎶€鏈垝鍒嗘垚4涓崟鍏冿紝姣忎釜鍗曞厓鏄拡瀵逛笉鍚岀殑瀛︿範鑰呭噯澶囩殑銆�
+
+| 瀛︿範鑰�     | 璇剧▼鍗曞厓                                                     |
+| ---------- | ------------------------------------------------------------ |
+| **灏忕櫧**   | <font color="#ff0000"><b>鍩虹绡�</b></font>                   |
+| **鍒濆鑰�** | <font color="#cc0000"><b>搴旂敤绡�</b></font>锛�  杩愮淮瀹炵敤绡�  &  寮€鍙戝疄鐢ㄧ瘒  锛� |
+| **寮€鍙戣€�** | <font color="#990000"><b>鍘熺悊绡�</b></font>                   |
+
+鈥�		鐪嬪畬杩欎釜鍒掑垎浣犲氨搴旇鏈夎繖涔堜釜姒傚康锛屾垜娌℃湁鐢ㄨ繃SpringBoot鎶€鏈紝鎵€浠ヤ粠鍩虹绡囧紑濮嬪涔狅紱鎴栬€呮垜浼氫竴鐐筍pringBoot鎶€鏈紝閭ｆ垜浠庡疄鐢ㄧ瘒寮€濮嬪灏卞ソ浜嗐€傚氨鏄繖涓剰鎬濄€�
+
+鈥�		姣忎釜璇剧▼鍗曞厓鍐呭璁剧疆涓嶅悓锛岀洰鏍囦篃涓嶄竴鏍凤紝浣滀负瀛︿範鑰呭鏋滄兂杈炬垚鏈€浣崇殑瀛︿範鏁堟灉锛屾渶濂芥槑纭嚜宸辩殑瀛︿範鐩爣鍐嶈繘琛屽涔狅紝杩欐牱鐩爣鏄庣‘锛屽涔犵殑鏃跺€欒兘澶熸洿杞绘澗锛屼綘灏变笉浼氬湪瀛︿範鐨勬椂鍊欑籂缁撳涓嬬殑闂浜嗐€傛瘮濡傚鐫€<font color="#ff0000"><b>鍩虹绡�</b></font>鍦ㄩ偅鎯筹紝杩欎釜涓滆タ鏄釜浠€涔堝師鐞嗗晩锛熻繖涓笢瑗挎槸杩欎箞鐢ㄧ殑锛岄偅涓笢瑗胯鎬庝箞鐢ㄥ晩锛熷洜涓哄師鐞嗘€х殑鍐呭缁熶竴鏀剧疆鍒颁簡<font color="#990000"><b>鍘熺悊绡�</b></font>璁茶В浜嗭紝搴旂敤鐩稿叧鐨勫唴瀹圭粺涓€鏀惧埌<font color="#cc0000"><b>搴旂敤绡�</b></font>閲岄潰璁茶В锛屼綘鍦�<font color="#ff0000"><b>鍩虹绡�</b></font>闃舵绾犵粨涔熸病鏈夌敤锛岃繖涓€閮ㄥ垎涓嶈杩欎簺鐭ヨ瘑锛屽湪<font color="#ff0000"><b>鍩虹绡�</b></font>鍏堟妸SpringBoot鐨勫熀纭€浣跨敤鎺屾彙瀹屽啀璇村悗闈㈢殑鐭ヨ瘑鍚с€�
+
+鈥�		姝ゅ杩樻湁涓€鐐归渶瑕佽鏄庣殑鏄紝鐩墠SpringBoot鎶€鏈彂灞曢€熷害寰堝揩锛屾洿鏂伴€熷害涔熷緢蹇紝鍥犳鍚庣画杩樹細瀵规湰濂楄绋嬭繘琛屾寔缁洿鏂帮紝鐗规鍦ㄤ笁涓绋嬪崟鍏冪殑鍩虹涓婅拷鍔犱竴涓�**鐣绡�**銆傜暘澶栫瘒鐨勮缃负浜嗚В鍐冲涓嬮棶棰橈細
+
+- 鎸佺画鏇存柊SpringBoot鍚庣画鍙戝睍鍑虹幇鐨勬柊鎶€鏈�
+- 璁茶В閮ㄥ垎鐭ヨ瘑鐐硅妯¤緝澶х殑鏀嚎鐭ヨ瘑锛堜緥濡俉ebFlux锛�
+- 鎵╁睍闈炲疄鐢ㄦ€х煡璇嗭紝鎵╁睍瀛︿範鑰呰閲�
+
+鈥�		姣忎竴涓绋嬪崟鍏冪殑瀛︿範鐩爣濡備笅锛岃鍚勪綅鏌ユ敹锛屽湪瀛︿範鐨勮繃绋嬩腑鍙互闃舵鎬х殑缁欒嚜宸辨彁涓棶棰橈紝涓嬮潰鍒楀嚭鏉ョ殑杩欎簺瀛︿範鐩爣浣犳槸鍚﹁揪鎴愪簡锛屽彲浠ユ楠屼綘鐨勫涔犳垚鏋溿€�
+
+| 璇剧▼鍗曞厓                                   | 瀛︿範鐩爣                                                     |
+| ------------------------------------------ | ------------------------------------------------------------ |
+| <font color="#ff0000"><b>鍩虹绡�</b></font> | 鑳藉鍒涘缓SpringBoot宸ョ▼<br/>鍩轰簬SpringBoot瀹炵幇ssm/ssmp鏁村悎    |
+| <font color="#cc0000"><b>搴旂敤绡�</b></font> | 鑳藉鎺屾彙SpringBoot绋嬪簭澶氱幆澧冨紑鍙�<br/>鑳藉鍩轰簬Linux绯荤粺鍙戝竷SpringBoot宸ョ▼<br/>鑳藉瑙ｅ喅绾夸笂鐏垫椿閰嶇疆SpringBoot宸ョ▼鐨勯渶姹�<br/>鑳藉鍩轰簬SpringBoot鏁村悎浠绘剰绗笁鏂规妧鏈� |
+| <font color="#990000"><b>鍘熺悊绡�</b></font> | 鎺屾彙SpringBoot鍐呴儴宸ヤ綔娴佺▼<br/>鐞嗚ВSpringBoot鏁村悎绗笁鏂规妧鏈殑鍘熺悊<br/>瀹炵幇鑷畾涔夊紑鍙戞暣鍚堢涓夋柟鎶€鏈殑缁勪欢 |
+| **鐣绡�**                                 | 鎺屾彙SpringBoot鏁村悎闈炲父瑙佺殑绗笁鏂规妧鏈�<br/>鎺屾彙鐩稿悓棰嗗煙鐨勬洿澶氱殑瑙ｅ喅鏂规锛屽苟鎻愬崌鍚岄鍩熸柟妗堣璁¤兘鍔� |
+
+鏁翠綋璇剧▼鍖呭惈鐨勫唴瀹瑰氨鏄繖浜涘暒锛岃鎯冲畬鎴愬墠闈㈣繖浜涘唴瀹圭殑瀛︿範锛岄『鍒╃殑杈炬垚瀛︿範鐩爣锛屾湁浜涗笢瑗胯繕鏄鎻愬墠鍜屽ぇ瀹惰娓呮鐨勩€係pringBoot璇剧▼涓嶅儚鏄疛ava鍩虹锛屼笉绠′綘鏈夋病鏈夊熀纭€锛岄兘鍙互鍚竴鍚紝杩欎釜璇剧▼杩樼湡涓嶈锛岄渶瑕佷竴瀹氱殑鍓嶇疆鐭ヨ瘑銆備笅闈㈢粰澶у鍒楄〃涓€浜涘墠缃煡璇嗭紝濡傛灉杩樻湁涓嶅お浼氱殑锛岄渶瑕佹兂鍔炴硶蹇€熻ˉ鏁戜竴涓�
+
+
+
+### 璇剧▼鍓嶇疆鐭ヨ瘑璇存槑
+
+| 璇剧▼鍗曞厓                                   | 鍓嶇疆鐭ヨ瘑                   | 瑕佹眰                                                         |
+| ------------------------------------------ | -------------------------- | ------------------------------------------------------------ |
+| <font color="#ff0000"><b>鍩虹绡�</b></font> | Java鍩虹璇硶               | 闈㈠悜瀵硅薄锛屽皝瑁咃紝缁ф壙锛屽鎬侊紝绫讳笌鎺ュ彛锛岄泦鍚堬紝IO锛岀綉缁滅紪绋嬬瓑   |
+| <font color="#ff0000"><b>鍩虹绡�</b></font> | Spring涓嶴pringMVC          | 鐭ラ亾Spring鏄敤鏉ョ鐞哹ean锛岃兘澶熷熀浜嶳estful瀹炵幇椤甸潰璇锋眰浜や簰鍔熻兘 |
+| <font color="#ff0000"><b>鍩虹绡�</b></font> | Mybatis涓嶮ybatis-Plus      | 鍩轰簬Mybatis鍜孧ybatisPlus鑳藉寮€鍙戝嚭鍖呭惈鍩虹CRUD鍔熻兘鐨勬爣鍑咲ao妯″潡 |
+| <font color="#ff0000"><b>鍩虹绡�</b></font> | 鏁版嵁搴揗ySQL                | 鑳藉璇绘噦鍩虹CRUD鍔熻兘鐨凷QL璇彞                                |
+| <font color="#ff0000"><b>鍩虹绡�</b></font> | 鏈嶅姟鍣�                     | 鐭ラ亾鏈嶅姟鍣ㄤ笌web宸ョ▼鐨勫叧绯伙紝鐔熸倝web鏈嶅姟鍣ㄧ殑鍩虹閰嶇疆           |
+| <font color="#ff0000"><b>鍩虹绡�</b></font> | maven                      | 鐭ラ亾maven鐨勪緷璧栧叧绯伙紝鐭ラ亾浠€涔堟槸渚濊禆鑼冨洿锛屼緷璧栦紶閫掞紝鎺掗櫎渚濊禆锛屽彲閫変緷璧栵紝缁ф壙 |
+| <font color="#ff0000"><b>鍩虹绡�</b></font> | web鎶€鏈紙鍚玽ue锛孍lementUI) | 鐭ラ亾vue濡備綍鍙戦€乤jax璇锋眰锛屽浣曡幏鍙栧搷搴旀暟鎹紝濡備綍杩涜鏁版嵁妯″瀷鍙屽悜缁戝畾 |
+| <font color="#cc0000"><b>搴旂敤绡�</b></font> | Linux锛圕enterOS7锛�         | 鐔熸倝甯哥敤鐨凩inux鍩虹鎸囦护锛岀啛鎮塋inux绯荤粺鐩綍缁撴瀯               |
+| <font color="#cc0000"><b>搴旂敤绡�</b></font> | 瀹炵敤寮€鍙戞妧鏈�               | 缂撳瓨锛歊edis銆丮ongoDB銆佲€︹€�<br/>娑堟伅涓棿浠�:RocketMq銆丷abbitMq銆佲€︹€� |
+| <font color="#990000"><b>鍘熺悊绡�</b></font> | Spring                     | 浜嗚ВSpring鍔犺浇bean鐨勫悇绉嶆柟寮�<br/>鐭ラ亾Spring瀹瑰櫒搴曞眰宸ヤ綔鍘熺悊锛岃兘澶熼槄璇荤畝鍗曠殑Spring搴曞眰婧愮爜 |
+
+鈥�		鐪嬬潃鐣ュ井鏈夌偣澶氾紝鍏跺疄杩樺ソ鍚э紝濡傛灉涓埆鎶€鏈湡鐨勪笉浼氾紝鍦ㄥ涔犺绋嬬殑鏃跺€欏鐢ㄥ績鍚氨濂斤紝鍩虹绡囨槸鍙互璺熺潃瀛︿笅鏉ヤ簡锛屽悗闈㈢殑瀹炵敤绡囧拰鍘熺悊绡囧氨姣旇緝闅句簡銆傛瘮濡傛垜瑕佸湪Linux绯荤粺涓嬫搷浣滐紝鍛戒护鎴戝氨鐩存帴浣跨敤浜嗭紝鐒跺悗浣犵湅涓嶆噦鍙兘瀛︿範璧锋潵灏辨瘮杈冨績绱簡銆�
+
+鈥�		璇剧▼瀹夋帓灏辫鍒拌繖閲屼簡锛屼笅闈㈣繘鍏ュ埌SpringBoot<font color="#ff0000"><b>鍩虹绡�</b></font>鐨勫涔�
+
+
+
+# SpringBoot鍩虹绡�
+
+鈥�		鍦ㄥ熀纭€绡囦腑锛屾垜缁欏涔犺€呯殑瀹氫綅鏄厛涓婃墜锛岃兘澶熶娇鐢⊿pringBoot鎼缓鍩轰簬SpringBoot鐨剋eb椤圭洰寮€鍙戯紝鎵€浠ュ唴瀹硅缃緝灏戯紝涓昏鍖呭惈濡備笅鍐呭锛�
+
+- SpringBoot蹇€熷叆闂�
+- SpringBoot鍩虹閰嶇疆
+- 鍩轰簬SpringBoot鏁村悎SSMP
+
+
+
+## JC-1.蹇€熶笂鎵婼pringBoot
+
+鈥�	瀛︿範浠绘剰涓€椤规妧鏈紝棣栧厛瑕佺煡閬撹繖涓妧鏈殑浣滅敤鏄粈涔堬紝涓嶇劧瀛﹀畬浠ュ悗锛屼綘閮戒笉鐭ラ亾浠€涔堟椂鍊欎娇鐢ㄨ繖涓妧鏈紝涔熷氨鏄妧鏈搴旂殑搴旂敤鍦烘櫙銆係pringBoot鎶€鏈敱Pivotal鍥㈤槦鐮斿彂鍒朵綔锛屽姛鑳界殑璇濈畝鍗曟鎷氨鏄姞閫烻pring绋嬪簭鐨勫紑鍙戯紝杩欎釜鍔犻€熻浠庡涓嬩袱涓柟闈㈡潵璇�
+
+- Spring绋嬪簭鍒濆鎼缓杩囩▼
+- Spring绋嬪簭鐨勫紑鍙戣繃绋�
+
+鈥�	閫氳繃涓婇潰涓や釜鏂归潰鐨勫畾浣嶏紝鎴戜滑鍙互浜х敓涓や釜妯＄硦鐨勬蹇碉細
+
+1. SpringBoot寮€鍙戝洟闃熻涓哄師濮嬬殑Spring绋嬪簭鍒濆鎼缓鐨勬椂鍊欏彲鑳芥湁浜涚箒鐞愶紝杩欎釜杩囩▼鏄彲浠ョ畝鍖栫殑锛岄偅鍘熷鐨凷pring绋嬪簭鍒濆鎼缓杩囩▼閮藉寘鍚摢浜涗笢瑗夸簡鍛紵涓轰粈涔堣寰楃箒鐞愬憿锛熸渶鍩烘湰鐨凷pring绋嬪簭鑷冲皯鏈変竴涓厤缃枃浠舵垨閰嶇疆绫伙紝鐢ㄦ潵鎻忚堪Spring鐨勯厤缃俊鎭紝鑾潪杩欎釜鏂囦欢閮藉彲浠ヤ笉鍐欙紵姝ゅ鐜板湪浼佷笟绾у紑鍙戜娇鐢⊿pring澶ч儴鍒嗘儏鍐典笅鏄仛web寮€鍙戯紝濡傛灉鍋歸eb寮€鍙戠殑璇濓紝杩樿鍦ㄥ姞杞絯eb鐜鏃跺姞杞芥椂鍔犺浇鎸囧畾鐨剆pring閰嶇疆锛岃繖閮芥槸鏈€鍩烘湰鐨勯渶姹備簡锛屼笉鍐欑殑璇濇€庝箞鐭ラ亾鍔犺浇鍝釜閰嶇疆鏂囦欢/閰嶇疆绫诲憿锛熼偅鎹簡SpringBoot鎶€鏈互鍚庡憿锛岃繖浜涜繕瑕佸啓鍚楋紵璋滃簳绋嶅悗鎻檽锛屽厛鍗栦釜鍏冲瓙
+2. SpringBoot寮€鍙戝洟闃熻涓哄師濮嬬殑Spring绋嬪簭寮€鍙戠殑杩囩▼涔熸湁浜涚箒鐞愶紝杩欎釜杩囩▼浠嶇劧鍙互绠€鍖栥€傚紑鍙戣繃绋嬫棤澶栦箮浣跨敤浠€涔堟妧鏈紝瀵煎叆瀵瑰簲鐨刯ar鍖咃紙鎴栧潗鏍囷級鐒跺悗灏嗚繖涓妧鏈殑鏍稿績瀵硅薄浜ょ粰Spring瀹瑰櫒绠＄悊锛屼篃灏辨槸閰嶇疆鎴怱pring瀹瑰櫒绠℃帶鐨刡ean灏卞彲浠ヤ簡銆傝繖閮芥槸鍩烘湰鎿嶄綔鍟婏紝闅鹃亾杩欎簺涓滆タSpringBoot涔熻兘甯垜浠畝鍖栵紵
+
+鈥�	甯︾潃涓婇潰杩欎簺鐤戦棶鎴戜滑灏辩潃鎵嬬涓€涓猄pringBoot绋嬪簭鐨勫紑鍙戜簡锛岀湅鐪嬪埌搴曚娇鐢⊿pringBoot鎶€鏈兘绠€鍖栧紑鍙戝埌浠€涔堢▼搴︺€�
+
+鈥�	<font color="#f0f"><b>娓╅Θ鎻愮ず</b></font>
+
+鈥�		濡傛灉瀵筍pring绋嬪簭鐨勫熀纭€寮€鍙戜笉澶噦鐨勫皬浼欎即锛岀湅鍒拌繖閲屽彲浠ュ純鍧戜簡锛屼笅闈㈢殑鍐呭瀛︿範闇€瑕佸叿澶嘢pring鎶€鏈殑鐭ヨ瘑锛岀‖鐫€澶寸毊瀛︿笉涓嬪幓鐨勩€�
+
+
+
+### JC-1-1.SpringBoot鍏ラ棬绋嬪簭鍒朵綔锛堜竴锛�
+
+鈥�	涓嬮潰璁╂垜浠紑濮嬪仛绗竴涓猄pringBoot绋嬪簭鍚э紝鏈绋嬪熀浜嶪dea2020.3鐗堟湰鍒朵綔锛屼娇鐢ㄧ殑Maven鐗堟湰涓�3.6.1锛孞DK鐗堟湰涓�1.8銆傚鏋滀綘鐨勭幆澧冨拰涓婅堪鐜涓嶅悓锛屽彲鑳藉湪鎿嶄綔鐣岄潰鍜屾搷浣滆繃绋嬩腑鐣ユ湁涓嶅悓锛屽彧瑕佽蒋浠跺尮閰嶅吋瀹瑰嵆鍙紙璇村埌杩欎釜Idea鍜孧aven锛屽畠浠袱涓繕鐪熶笉鏄粈涔堢増鏈兘鑳芥惌鍒颁竴璧风殑锛岃澶氫簡閮芥槸娉晩锛夈€�
+
+鈥�	涓嬮潰浣跨敤SpringBoot鎶€鏈揩閫熸瀯寤轰竴涓猄pringMVC鐨勭▼搴忥紝閫氳繃杩欎釜杩囩▼浣撲細<font color="#ff0000"><b>绠€鍖�</b></font>浜屽瓧鐨勫惈涔�
+
+**姝ラ鈶�**锛氬垱寤烘柊妯″潡锛岄€夋嫨Spring Initializr锛屽苟閰嶇疆妯″潡鐩稿叧鍩虹淇℃伅
+
+![image-20211116125259385](img\image-20211116125259385.png)
+
+鈥�	<font color="#ff0000"><b>鐗瑰埆鍏虫敞</b></font>锛氱3姝ョ偣鍑籒ext鏃讹紝Idea闇€瑕佽仈缃戠姸鎬佹墠鍙互杩涘叆鍒板悗闈㈤偅涓€椤碉紝濡傛灉涓嶈兘姝ｅ父鑱旂綉锛屽氨鏃犳硶姝ｇ‘鍒拌揪鍙抽潰閭ｄ釜璁剧疆椤典簡锛屼細涓€鐩�<font color="#ff0000"><b>鑱旂綉</b></font>杞浆杞�
+
+鈥�	<font color="#ff0000"><b>鐗瑰埆鍏虫敞</b></font>锛氱5姝ラ€夋嫨java鐗堟湰鍜屼綘璁＄畻鏈轰笂瀹夎鐨凧DK鐗堟湰鍖归厤鍗冲彲锛屼絾鏄渶浣庤姹備负JDK8鎴栦互涓婄増鏈紝鎺ㄨ崘浣跨敤8鎴�11
+
+**姝ラ鈶�**锛氶€夋嫨褰撳墠妯″潡闇€瑕佷娇鐢ㄧ殑鎶€鏈泦
+
+![image-20211116125615728](img\image-20211116125615728.png)
+
+鈥�	鎸夌収瑕佹眰锛屽乏渚ч€夋嫨web锛岀劧鍚庡湪涓棿閫夋嫨Spring Web鍗冲彲锛岄€夊畬鍙充晶灏卞嚭鐜颁簡鏂扮殑鍐呭椤癸紝杩欏氨琛ㄧず鍕鹃€夋垚鍔熶簡
+
+鈥�	<font color="#ff0000"><b>鍏虫敞</b></font>锛氭澶勯€夋嫨鐨凷pringBoot鐨勭増鏈娇鐢ㄩ粯璁ょ殑灏卞彲浠ヤ簡锛岄渶瑕佽涓€鐐癸紝SpringBoot鐨勭増鏈崌绾ч€熷害寰堝揩锛屽彲鑳芥槰澶╁垱寤哄伐绋嬬殑鏃跺€欓粯璁ょ増鏈槸2.5.4锛屼粖澶╁啀鍒涘缓宸ョ▼榛樿鐗堟湰灏卞彉鎴�2.5.5浜嗭紝宸埆涓嶅ぇ锛屾棤闇€杩囦簬绾犵粨锛屽洖澶村彲浠ュ埌閰嶇疆鏂囦欢涓慨鏀瑰搴旂殑鐗堟湰
+
+**姝ラ鈶�**锛氬紑鍙戞帶鍒跺櫒绫�
+
+```JAVA
+//Rest妯″紡
+@RestController
+@RequestMapping("/books")
+public class BookController {
+    @GetMapping
+    public String getById(){
+        System.out.println("springboot is running...");
+        return "springboot is running...";
+    }
+}
+```
+
+鈥�	鍏ラ棬妗堜緥鍒朵綔鐨凷pringMVC鐨勬帶鍒跺櫒鍩轰簬Rest椋庢牸寮€鍙戯紝褰撶劧姝ゅ浣跨敤鍘熷鏍煎紡鍒朵綔SpringMVC鐨勭▼搴忎篃鏄病鏈夐棶棰樼殑锛屼笂渚嬩腑鐨凘RestController涓嶡GetMapping娉ㄨВ鏄熀浜嶳estful寮€鍙戠殑鍏稿瀷娉ㄨВ
+
+鈥�	<font color="#ff0000"><b>鍏虫敞</b></font>锛氬仛鍒拌繖閲孲pringBoot绋嬪簭鐨勬渶鍩虹鐨勫紑鍙戝凡缁忓仛瀹屼簡锛岀幇鍦ㄥ氨鍙互姝ｅ父鐨勮繍琛孲pring绋嬪簭浜嗐€傚彲鑳芥湁浜涘皬浼欎即浼氭湁鐤戞儜锛孴omcat鏈嶅姟鍣ㄦ病鏈夐厤缃紝=-Spring涔熸病鏈夐厤缃紝浠€涔堥兘娌℃湁閰嶇疆杩欏氨鑳界敤鍚楋紵杩欏氨鏄疭pringBoot鎶€鏈殑寮哄ぇ涔嬪銆傚叧浜庡唴閮ㄥ伐浣滄祦绋嬪悗闈㈠啀璇达紝鍏堜笓蹇冨涔犲紑鍙戣繃绋�
+
+**姝ラ鈶�**锛氳繍琛岃嚜鍔ㄧ敓鎴愮殑Application绫�
+
+![image-20211116130152452](img\image-20211116130152452.png)
+
+鈥�	浣跨敤甯ain鏂规硶鐨刯ava绋嬪簭鐨勮繍琛屽舰寮忔潵杩愯绋嬪簭锛岃繍琛屽畬姣曞悗锛屾帶鍒跺彴杈撳嚭涓婅堪淇℃伅銆�
+
+鈥�	涓嶉毦鐪嬪嚭锛岃繍琛岀殑淇℃伅涓寘鍚簡8080鐨勭鍙ｏ紝Tomcat杩欑鐔熸倝鐨勫瓧鏍凤紝闅鹃亾杩欓噷鍚姩浜員omcat鏈嶅姟鍣紵鏄殑锛岃繖閲屽凡缁忓惎鍔ㄤ簡銆傞偅鏈嶅姟鍣ㄦ病鏈夐厤缃紝鍝噷鏉ョ殑鍛紵鍚庨潰鍐嶈銆傜幇鍦ㄤ綘灏卞彲浠ラ€氳繃娴忚鍣ㄨ闂姹傜殑璺緞锛屾祴璇曞姛鑳芥槸鍚﹀伐浣滄甯镐簡
+
+```JAVA
+璁块棶璺緞锛�	http://localhost:8080/books
+```
+
+鈥�	鏄笉鏄劅瑙夊緢绁炲锛熺洰鍓嶇殑鏁堟灉鍏跺疄渚濊禆鐨勫簳灞傞€昏緫杩樻槸寰堝鏉傜殑锛屼絾鏄粠寮€鍙戣€呰搴︽潵鐪嬶紝鐩墠鍙湁涓や釜鏂囦欢灞曠幇鍒颁簡寮€鍙戣€呴潰鍓�
+
+- pom.xml
+
+  鈥�	杩欐槸maven鐨勯厤缃枃浠讹紝鎻忚堪浜嗗綋鍓嶅伐绋嬫瀯寤烘椂鐩稿簲鐨勯厤缃俊鎭�
+
+  ```XML
+  <?xml version="1.0" encoding="UTF-8"?>
+  <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+      <modelVersion>4.0.0</modelVersion>
+  
+      <parent>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-parent</artifactId>
+          <version>2.5.4</version>
+      </parent>
+  
+      <groupId>com.itheima</groupId>
+      <artifactId>springboot_01_01_quickstart</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+  
+      <dependencies>
+          <dependency>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-starter-web</artifactId>
+          </dependency>
+  
+          <dependency>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-starter-test</artifactId>
+              <scope>test</scope>
+          </dependency>
+      </dependencies>
+  </project>
+  ```
+
+  閰嶇疆涓湁涓や釜淇℃伅闇€瑕佸叧娉紝涓€涓槸parent锛屼篃灏辨槸褰撳墠宸ョ▼缁ф壙浜嗗彟澶栦竴涓伐绋嬶紝骞蹭粈涔堢敤鐨勫悗闈㈠啀璇达紝杩樻湁渚濊禆鍧愭爣锛屽共浠€涔堢敤鐨勫悗闈㈠啀璇�
+
+- Application绫�
+
+  ```JAVA
+  @SpringBootApplication
+  public class Application {
+      public static void main(String[] args) {
+          SpringApplication.run(Application.class, args);
+      }
+  }
+  ```
+
+  鈥�	杩欎釜绫诲姛鑳藉緢绠€鍗曪紝灏变竴鍙ヤ唬鐮侊紝鍓嶉潰杩愯绋嬪簭灏辨槸杩愯鐨勮繖涓被
+
+鈥�	鍒拌繖閲屾垜浠彲浠ュぇ鑳嗘帹娴嬩竴涓嬶紝濡傛灉涓婇潰杩欎袱涓枃浠舵病鏈夌殑璇濓紝SpringBoot鑲畾娌℃硶鐜╋紝鐪嬫潵鏍稿績灏辨槸杩欎袱涓枃浠朵簡銆傜敱浜庢槸鍒朵綔绗竴涓猄pringBoot绋嬪簭锛屽厛涓嶈鍏虫敞杩欎袱涓枃浠剁殑鍔熻兘锛屽悗闈㈣缁嗚瑙ｅ唴閮ㄥ伐浣滄祦绋嬨€�
+
+鈥�	閫氳繃涓婇潰鐨勫埗浣滐紝鎴戜滑涓嶉毦鍙戠幇锛孲pringBoot绋嬪簭绠€鐩村お濂藉啓浜嗭紝鍑犱箮浠€涔堥兘娌″啓锛屽姛鑳藉氨鏈変簡锛岃繖涔熸槸SpringBoot鎶€鏈负浠€涔堢幇鍦ㄨ繖涔堢伀鐨勫師鍥狅紝鍜孲pirng绋嬪簭鐩告瘮锛孲pringBoot绋嬪簭鍦ㄥ紑鍙戠殑杩囩▼涓悇涓眰闈㈠潎鍏锋湁浼樺娍
+
+| **绫婚厤缃枃浠�**         | **Spring**   | **SpringBoot** |
+| ---------------------- | ------------ | -------------- |
+| pom鏂囦欢涓殑鍧愭爣        | **鎵嬪伐娣诲姞** | **鍕鹃€夋坊鍔�**   |
+| web3.0閰嶇疆绫�           | **鎵嬪伐鍒朵綔** | **鏃�**         |
+| Spring/SpringMVC閰嶇疆绫� | **鎵嬪伐鍒朵綔** | **鏃�**         |
+| 鎺у埗鍣�                 | **鎵嬪伐鍒朵綔** | **鎵嬪伐鍒朵綔**   |
+
+鈥�	涓€鍙ヨ瘽鎬荤粨涓€涓嬪氨鏄�<font color="#ff0000"><b>鑳藉皯鍐欏氨灏戝啓</b></font>锛�<font color="#ff0000"><b>鑳戒笉鍐欏氨涓嶅啓</b></font>锛岃繖灏辨槸SpringBoot鎶€鏈粰鎴戜滑甯︽潵鐨勫ソ澶勶紝琛屼簡锛岀幇鍦ㄤ綘灏卞彲浠ュ姩鎵嬪仛涓€鍋歋pringBoot绋嬪簭浜嗭紝鐪嬬湅鏁堟灉濡備綍锛屾槸鍚︾湡鐨勫府鍔╀綘绠€鍖栧紑鍙戜簡
+
+**鎬荤粨**
+
+1. 寮€鍙慡pringBoot绋嬪簭鍙互鏍规嵁鍚戝杩涜鑱旂綉蹇€熷埗浣�
+2. SpringBoot绋嬪簭闇€瑕佸熀浜嶫DK8浠ヤ笂鐗堟湰杩涜鍒朵綔
+3. SpringBoot绋嬪簭涓渶瑕佷娇鐢ㄤ綍绉嶅姛鑳介€氳繃鍕鹃€夐€夋嫨鎶€鏈紝涔熷彲浠ユ墜宸ユ坊鍔犲搴旂殑瑕佷娇鐢ㄧ殑鎶€鏈紙鍚庢湡璁茶В锛�
+4. 杩愯SpringBoot绋嬪簭閫氳繃杩愯Application绋嬪簭鍏ュ彛杩涜
+
+**鎬濊€�**
+
+鈥�	鍓嶉潰鍒朵綔鐨勬椂鍊欒杩囷紝杩欎釜杩囩▼蹇呴』鑱旂綉鎵嶅彲浠ヨ繘琛岋紝浣嗘槸鏈変簺鏃跺€欎綘浼氶亣鍒颁竴浜涜帿鍚嶅叾濡欑殑闂锛屾瘮濡傚熀浜嶪dea寮€鍙戞椂锛屼綘浼氬彂鐜颁綘閰嶇疆浜嗕竴浜涘潗鏍囷紝鐒跺悗Maven涓嬭浇瀵瑰簲涓滆タ鐨勬椂鍊欐鎱㈡鎱㈢殑锛岀敋鑷宠繕浼氬け璐ャ€傚叾瀹炶繖鍜孖dea杩欐IDE宸ュ叿鏈夊叧锛屼竾涓€Idea涓嶈兘姝ｅ父璁块棶缃戠粶鐨勮瘽锛屾垜浠槸涓嶆槸灏辨棤娉曞埗浣淪pringBoot绋嬪簭浜嗗憿锛熷挶浠笅涓€鑺傚啀璇�
+
+
+
+### JC-1-2.SpringBoot鍏ラ棬绋嬪簭鍒朵綔锛堜簩锛�
+
+鈥�	濡傛灉Idea涓嶈兘姝ｅ父鑱旂綉锛岃繖涓猄pringBoot绋嬪簭灏辨棤娉曞埗浣滀簡鍚楋紵寮€浠€涔堢帺绗戯紝涓栦笂IDE宸ュ叿鍗冨崈涓囷紝闅鹃亾SpringBoot鎶€鏈繕蹇呴』鍩轰簬Idea鏉ュ仛浜嗭紵杩欐槸涓嶅彲鑳界殑銆傚紑鍙慡pringBoot绋嬪簭锛屽彲浠ヤ笉鍩轰簬浠绘剰鐨処DE宸ュ叿杩涜锛屽叾瀹炲湪SpringBoot鐨勫畼缃戦噷闈㈠氨鍙互鐩存帴鍒涘缓SpringBoot绋嬪簭
+
+鈥�	SpringBoot瀹樼綉鍜孲pring鐨勫畼缃戞槸鍦ㄤ竴璧风殑锛岄兘鏄�  spring.io  銆備綘鍙互閫氳繃椤圭洰涓€绾т竴绾х殑鎵惧埌SpringBoot鎶€鏈殑浠嬬粛椤碉紝鐒跺悗鍦ㄩ〉闈腑闂撮儴浣嶆壘鍒板涓嬪唴瀹�
+
+<img src="img\image-20211122150444816.png" alt="image-20211122150444816" style="zoom: 67%;" />
+
+**姝ラ鈶�**锛氱偣鍑籗pring Initializr鍚庤繘鍏ュ埌鍒涘缓SpringBoot绋嬪簭鐨勭晫闈笂锛屼笅闈㈡槸杈撳叆淇℃伅鐨勮繃绋嬶紝鍜屽墠闈㈢殑涓€鏍凤紝鍙槸鐣岄潰鍙樹簡鑰屽凡锛屾牴鎹嚜宸辩殑瑕佹眰锛屽湪宸︿晶閫夋嫨瀵瑰簲淇℃伅鍜岃緭鍏ュ搴旂殑淇℃伅鍗冲彲
+
+<img src="img\image-20211122150608039.png" alt="image-20211122150608039"  />
+
+**姝ラ鈶�**锛氬彸渚х殑ADD DEPENDENCIES鐢ㄤ簬閫夋嫨浣跨敤浣曠鎶€鏈紝鍜屼箣鍓嶅嬀閫夌殑Spring WEB鏄湪鍋氬悓涓€浠朵簨锛屼粎浠呮槸鐣岄潰涓嶅悓鑰屽凡锛岀偣鍑诲悗鎵撳紑缃戦〉鐗堢殑鎶€鏈€夋嫨鐣岄潰
+
+<img src="img\image-20211122161257361.png" alt="image-20211122161257361" style="zoom:50%;" />
+
+**姝ラ鈶�**锛氭墍鏈変俊鎭缃畬姣曞悗锛岀偣鍑讳笅闈㈠乏渚ф寜閽紝鐢熸垚涓€涓枃浠跺寘
+
+![image-20211122161548022](C:\Users\itcast\AppData\Roaming\Typora\typora-user-images\image-20211122161548022.png)
+
+**姝ラ鈶�**锛氫繚瀛樺悗寰楀埌涓€涓帇缂╂枃浠讹紝杩欎釜鏂囦欢鎵撳紑鍚庡氨鏄垱寤虹殑SpringBoot宸ョ▼鏂囦欢澶逛簡		
+
+![image-20211122161709478](C:\Users\itcast\AppData\Roaming\Typora\typora-user-images\image-20211122161709478.png)
+
+**姝ラ鈶�**锛氳В鍘嬬缉姝ゆ枃浠跺悗锛屽緱鍒板伐绋嬬洰褰曪紝鍦↖dea涓鍏ュ嵆鍙娇鐢紝鍜屼箣鍓嶅垱寤虹殑涓滆タ瀹屽叏涓€鏍枫€備笅闈㈠氨鍙互鑷繁鍒涘缓涓€涓狢ontroller娴嬭瘯涓€涓嬫槸鍚﹁兘鐢ㄤ簡銆�
+
+<font color="#f0f"><b>娓╅Θ鎻愮ず</b></font>
+
+鈥�	鍋氬埌杩欓噷鍏跺疄鍙互閫忔紡涓€涓皬绉樺瘑锛孖dea宸ュ叿涓垱寤篠pringBoot宸ョ▼鍏跺疄杩炴帴鐨勫氨鏄疭pringBoot鐨勫畼缃戯紝璧扮殑灏辨槸杩欎釜杩囩▼锛屽彧涓嶈繃Idea鎶婄晫闈㈢粰鏁村悎浜嗕竴涓嬶紝璇诲彇鍒颁簡Spring瀹樼綉缁欑殑淇℃伅锛岀劧鍚庡睍绀哄埌浜咺dea鐨勭晫闈腑鑰屽凡锛屼笉淇′綘鍙互鐪嬬湅涓嬮潰杩欎釜姝ラ
+
+<img src="img\image-20211122162443035.png" alt="image-20211122162443035" style="zoom: 67%;" />
+
+鈥�	涓婇潰鎻忚堪浜嗚繛鎺ョ殑缃戝潃锛屽啀鐪嬬湅SpringBoot瀹樼綉鍒涘缓宸ョ▼鐨刄RL鍦板潃锛屾槸涓嶆槸涓€鏍凤紵
+
+<img src="C:\Users\itcast\AppData\Roaming\Typora\typora-user-images\image-20211122162820719.png" alt="image-20211122162820719"  />
+
+**鎬荤粨**
+
+1. 鎵撳紑SpringBoot瀹樼綉锛岄€夋嫨Quickstart Your Project
+
+   <img src="img\image-20211122150444816.png" alt="image-20211122150444816" style="zoom: 67%;" />
+
+2. 鍒涘缓宸ョ▼
+
+   <img src="img\image-20211122150608039.png" alt="image-20211122150608039"  />
+
+   骞朵繚瀛橀」鐩�
+
+   ![image-20211122161548022](C:\Users\itcast\AppData\Roaming\Typora\typora-user-images\image-20211122161548022.png)
+
+3. 瑙ｅ帇椤圭洰锛岄€氳繃IDE瀵煎叆椤圭洰
+
+**鎬濊€�**
+
+鈥�	鐜板湪鍒涘缓宸ョ▼闈犵殑鏄闂浗澶栫殑Spring涓荤珯锛屼絾鏄簰鑱旂綉璁块棶鏄彲浠ユ帶鍒剁殑锛屽鏋滀竴澶╄繖涓綉绔欎綘鍦ㄥ浗鍐呴兘鏃犳硶璁块棶浜嗭紝閭ｅ墠闈㈣繖涓ょ鏂瑰紡閮芥棤娉曞垱寤篠pringBoot宸ョ▼浜嗭紝杩欐椂鍊欏張璇ユ€庝箞瑙ｅ喅杩欎釜闂鍛紵鍜变滑涓嬩竴鑺傚啀璇�
+
+
+
+### JC-1-3.SpringBoot鍏ラ棬绋嬪簭鍒朵綔锛堜笁锛�
+
+鈥�	鍓嶉潰鎻愬埌缃戠珯濡傛灉琚檺鍒惰闂簡锛岃鎬庝箞鍔烇紵寮€鍔ㄨ剳绛嬫兂涓€鎯筹紝涓嶇鏄柟寮忎竴杩樻槸鏂瑰紡浜屽叾瀹為兘鏄蛋鐨勫悓涓€涓湴鏂癸紝涔熷氨鏄疭pringBoot鐨勫畼缃戝垱寤虹殑SpringBoot宸ョ▼锛岄偅濡傛灉鎴戜滑鍥藉唴鏈夎繖涔堜竴涓綉绔欒兘鎻愪緵杩欐牱鐨勫姛鑳斤紝鏄笉鏄氨瑙ｅ喅浜嗗憿锛熷繀鐒剁殑鍢涳紝鏂扮殑闂鍙堟潵浜嗭紝杩欎釜鍥藉唴鐨勭綉绔欐湁鍚楋紵杩樼湡鏈夛紝闃块噷鎻愪緵浜嗕竴涓紝涓嬮潰闂灏辩畝鍗曚簡锛岀綉鍧€鍛婅瘔鎴戜滑灏監K浜嗭紝娌￠敊锛屽氨鏄繖鏍�
+
+鈥�	鍒涘缓宸ョ▼鏃讹紝鍒囨崲閫夋嫨starter鏈嶅姟璺緞锛岀劧鍚庢墜宸ユ敹鍏ラ樋閲屼簯鎻愪緵缁欐垜浠殑浣跨敤鍦板潃鍗冲彲銆傚湴鍧€锛歨ttp://start.aliyun.com鎴杊ttps://start.aliyun.com
+
+![image-20211122163605950](img\image-20211122163605950.png)
+
+鈥�	闃块噷涓轰簡渚夸簬鑷繁寮€鍙戜娇鐢紝鍥犳鍦ㄤ緷璧栧潗鏍囦腑娣诲姞浜嗕竴浜涢樋閲岀浉鍏崇殑鎶€鏈紝涔熸槸涓轰簡鎺ㄥ箍鑷繁鐨勬妧鏈惂锛屾墍浠ュ湪渚濊禆閫夋嫨鍒楄〃涓紝浣犳湁浜嗘洿澶氱殑閫夋嫨銆備笉杩囨湁涓€鐐归渶瑕佽娓呮锛岄樋閲屼簯鍦板潃榛樿鍒涘缓鐨凷pringBoot宸ョ▼鐗堟湰鏄�<font color="#ff0000"><b>2.4.1</b></font>锛屾墍浠ュ鏋滀綘鎯虫洿鎹㈠叾浠栫殑鐗堟湰锛屽垱寤洪」鐩悗鎵嬪伐淇敼鍗冲彲锛屽埆蹇樹簡鍒锋柊涓€涓嬶紝鍔犺浇鏂扮増鏈俊鎭�
+
+![image-20211122163937408](img\image-20211122163937408.png)
+
+鈥�	闃块噷浜戞彁渚涚殑鍦板潃鏇寸鍚堝浗鍐呭紑鍙戣€呯殑浣跨敤涔犳儻锛岄噷闈㈡湁涓€浜汼pringBoot瀹樼綉涓婃病鏈夌粰鍑虹殑鍧愭爣锛屽ぇ瀹跺彲浠ュソ濂界湅涓€鐪嬨€�
+
+鈥�	<font color="#ff0000"><b>娉ㄦ剰</b></font>锛氶樋閲屼簯鎻愪緵鐨勫伐绋嬪垱寤哄湴鍧€鍒濆鍖栧畬姣曞悗鍜屽疄鐢⊿pringBoot瀹樼綉鍒涘缓鍑烘潵鐨勫伐绋嬬暐鏈夊尯鍒€備富瑕佹槸鍦ㄩ厤缃枃浠剁殑褰㈠紡涓婃湁鍖哄埆銆傝繖涓俊鎭湪鍚庨潰璁茶ВBoot绋嬪簭鐨勬墽琛屾祦绋嬫椂缁欏ぇ瀹舵彮鏅�
+
+**鎬荤粨**
+
+1. 閫夋嫨start鏉ユ簮涓鸿嚜瀹氫箟URL
+2. 杈撳叆闃块噷浜憇tart鍦板潃
+3. 鍒涘缓椤圭洰
+
+**鎬濊€�**
+
+鈥�	鍋氬埌杩欓噷鎴戜滑宸茬粡鏈変簡涓夌鏂瑰紡鍒涘缓SpringBoot宸ョ▼锛屼絾鏄瘡绉嶆柟寮忛兘瑕佹眰浣犲繀椤昏兘涓婄綉鎵嶈兘鍒涘缓宸ョ▼銆傚亣濡傛湁涓€澶╋紝浣犲姞鍏ヤ簡涓€涓繚瀵嗙骇鍒瘮杈冮珮鐨勯」鐩粍锛屾暣涓」鐩粍娌℃湁澶栫綉锛屾暣涓簨鎯呮槸涓嶆槸灏变笉鑳藉仛浜嗗憿锛熷挶浠笅涓€鑺傚啀璇�
+
+
+
+### JC-1-4.SpringBoot鍏ラ棬绋嬪簭鍒朵綔锛堝洓锛�
+
+鈥�	涓嶈兘涓婄綉锛岃繕鎯冲垱寤篠pringBoot宸ョ▼锛岃兘涓嶈兘鍋氬憿锛熻兘鍋氾紝浣嗘槸浣犺鍏堥棶闂嚜宸辫仈缃戝拰涓嶈仈缃戝埌搴曞樊鍒槸浠€涔堬紵杩欎釜淇℃伅鎵惧埌浠ュ悗锛屼綘灏卞彂鐜帮紝浣犳妸鑱旂綉瑕佸共鐨勪簨鎯呴兘鎻愬墠鍑嗗濂斤紝灏辨棤闇€鑱旂綉浜嗐€�
+
+鈥�	鑱旂綉鍋氫粈涔堝憿锛熼鍏圫pringBoot宸ョ▼涔熸槸鍩轰簬Maven鏋勫缓鐨勶紝鑰孧aven宸ョ▼褰撲娇鐢ㄤ簡涓€浜涜嚜宸遍渶瑕佷娇鐢ㄥ張涓嶅瓨鍦ㄧ殑涓滆タ鏃讹紝灏辫鍘讳笅杞姐€傚叾瀹濻pringBoot宸ョ▼鍒涘缓鐨勬椂鍊欏氨鏄幓涓嬭浇涓€浜涘繀瑕佺殑缁勪欢鐨勩€備綘鎶婅繖浜涗笢瑗跨粰鎻愬墠鍑嗗濂藉氨鍙互浜嗗悧锛熸槸鐨勶紝灏辨槸杩欐牱銆�
+
+鈥�	涓嬮潰鍜变滑灏变竴璧锋墜宸ュ垱寤轰竴涓猄pringBoot宸ョ▼
+
+**姝ラ鈶�**锛氬垱寤哄伐绋嬫椂锛岄€夋嫨鎵嬪伐鍒涘缓Maven宸ョ▼
+
+<img src="img\image-20211122165341684.png" alt="image-20211122165341684" style="zoom:50%;" />
+
+**姝ラ鈶�**锛氬弬鐓ф爣鍑哠pringBoot宸ョ▼鐨刾om鏂囦欢锛屼功鍐欒嚜宸辩殑pom鏂囦欢鍗冲彲
+
+```XML
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.5.4</version>
+    </parent>
+
+    <groupId>com.itheima</groupId>
+    <artifactId>springboot_01_04_quickstart</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>
+```
+
+鈥�	鐢ㄤ粈涔堝啓浠€涔堬紝涓嶇敤鐨勯兘鍙互涓嶅啓銆傚綋鐒讹紝鐜板湪灏忎紮浼翠滑鍙兘杩樹笉鐭ラ亾鐢ㄤ粈涔堝拰涓嶇敤浠€涔堬紝鏈€绠€鍗曠殑灏辨槸澶嶅埗绮樿创浜嗭紝闅忕潃鍚庨潰鐨勫涔狅紝浣犲氨鐭ラ亾鍝簺鍙互鐪佺暐浜嗐€傛澶勬垜鍒犲噺浜嗕竴浜涚洰鍓嶄笉鏄繀椤荤殑涓滆タ锛屼竴鏍疯兘鐢�
+
+**姝ラ鈶�**锛氫箣鍓嶈繍琛孲pringBoot宸ョ▼闇€瑕佷竴涓被锛岃繖涓己涓嶄簡锛岃嚜宸辨墜鍐欎竴涓氨琛屼簡锛屽缓璁寜鐓т箣鍓嶇殑鐩綍缁撴瀯鏉ュ垱寤猴紝鍏堝埆鐜╄姳鏍凤紝鍏堝璧板悗瀛﹁窇銆傜被鍚嶅彲浠ヨ嚜瀹氫箟锛屽叧鑱旂殑鍚嶇О涓€鍒囦慨鏀瑰嵆鍙�
+
+```JAVA
+@SpringBootApplication
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(<Application.class);
+    }
+}
+```
+
+鈥�	<font color="#ff0000"><b>鍏虫敞</b></font>锛氱被涓婇潰鐨勬敞瑙SpringBootApplication鍗冧竾鍒涪浜嗭紝杩欎釜鏄牳蹇冿紝鍚庨潰鍐嶄粙缁�
+
+鈥�	<font color="#ff0000"><b>鍏虫敞</b></font>锛氱被鍚嶅彲浠ヨ嚜瀹氫箟锛屽彧瑕佷繚闅滀笅闈唬鐮佷腑浣跨敤鐨勭被鍚嶅拰浣犺嚜宸卞畾涔夌殑鍚嶇О涓€鏍峰嵆鍙紝涔熷氨鏄痳un鏂规硶涓殑閭ｄ釜class瀵瑰簲鐨勫悕绉�
+
+**姝ラ鈶�**锛氫笅闈㈠氨鍙互鑷繁鍒涘缓涓€涓狢ontroller娴嬭瘯涓€涓嬫槸鍚﹁兘鐢ㄤ簡锛屽拰涔嬪墠娌℃湁宸埆浜�
+
+鈥�	鐪嬪埌杩欓噷鍏跺疄搴旇鑳藉鎯虫槑鐧戒簡锛岄€氳繃鍚戝鎴栬€呯綉绔欏垱寤虹殑SpringBoot宸ョ▼鍏跺疄灏辨槸甯綘鍐欎簡涓€浜涗唬鐮侊紝鑰岀幇鍦ㄦ槸鑷繁鎵嬪啓锛屽啓鐨勫唴瀹归兘涓€鏍凤紝浠呮鑰屽凡銆�
+
+<font color="#f0f"><b>娓╅Θ鎻愮ず</b></font>
+
+鈥�	濡傛灉浣犵殑璁＄畻鏈轰笂浠庢潵娌℃湁鍒涘缓鎴愬姛杩嘢pringBoot宸ョ▼锛岃嚜鐒朵篃灏辨病鏈変笅杞借繃SpringBoot瀵瑰簲鐨勫潗鏍囷紝閭ｇ敤鎵嬪啓鍒涘缓鐨勬柟寮忓湪涓嶈仈缃戠殑鎯呭喌涓嬭偗瀹氳鏄笉鑳界敤鐨勩€傛墍璋撴墜鍐欙紝鍏跺疄灏辨槸鑷繁鍐欏埆浜哄府浣犵敓鎴愮殑涓滆タ锛屼絾鏄紩鐢ㄧ殑鍧愭爣瀵瑰簲鐨勮祫婧愬繀椤讳繚闅渕aven浠撳簱閲岄潰鏈夋墠琛岋紝濡傛灉娌℃湁锛岃繕鏄鍘讳笅杞界殑
+
+**鎬荤粨**
+
+1. 鍒涘缓鏅€歁aven宸ョ▼
+2. 缁ф壙spring-boot-starter-parent
+3. 娣诲姞渚濊禆spring-boot-starter-web
+4. 鍒朵綔寮曞绫籄pplication
+
+鍒拌繖閲屽叾瀹炲涔犱簡4绉嶅垱寤篠pringBoot宸ョ▼鐨勬柟寮忥紝鍏跺疄鏈川鏄竴鏍风殑锛屽氨鏄牴鎹甋pringBoot宸ョ▼鐨勬枃浠舵牸寮忚姹傦紝閫氳繃涓嶅悓鏃舵柟寮忕敓鎴愭垨鑰呮墜鍐欏緱鍒板搴旂殑鏂囦欢锛屾晥鏋滃畬鍏ㄤ竴鏍枫€�
+
+
+
+#### 鏁欎綘涓€鎷涳細鍦↖dea涓殣钘忔寚瀹氭枃浠�/鏂囦欢澶�
+
+鈥�	鍒涘缓SpringBoot宸ョ▼鏃讹紝浣跨敤SpringBoot鍚戝涔熷ソ锛岄樋閲屼簯涔熺舰锛屽叾瀹為兘鏄负浜嗕竴涓洰鐨勶紝寰楀埌涓€涓爣鍑嗙殑SpringBoot宸ョ▼鏂囦欢缁撴瀯銆傝繖涓椂鍊欏氨鏈夋柊鐨勯棶棰樺嚭鐜颁簡锛屾爣鍑嗙殑宸ョ▼缁撴瀯涓寘鍚簡涓€浜涙湭鐭ョ殑鏂囦欢澶癸紝鍦ㄥ紑鍙戠殑鏃跺€欑湅璧锋潵鐗瑰埆鍒壄锛岃繖涓€鑺傚氨鏉ヨ璇磋繖浜涙枃浠舵€庝箞澶勭悊銆�
+
+鈥�	澶勭悊鏂规鏃犲涔庝袱绉嶏紝濡傛灉浣犲姣忎竴涓枃浠�/鐩綍瓒冲浜嗚В锛屾病鏈夌敤鐨勫畬鍏ㄥ彲浠ュ垹闄ゆ帀锛屾垨鑰呬笉鍒犻櫎锛屼絾鏄湅鐫€鍒壄锛屽氨璁剧疆鏂囦欢涓虹湅涓嶅埌灏辫浜嗐€傚垹闄や笉璇翠簡锛岀洿鎺elete鎺夊氨濂戒簡锛岃繖涓€鑺傝璇村浣曢殣钘忔寚瀹氱殑鏂囦欢鎴栨枃浠跺す淇℃伅銆�
+
+鈥�	鏃㈢劧鏄湪Idea涓嬪仛闅愯棌鍔熻兘锛岃偗瀹氶毝灞炰簬Idea鐨勮缃紝璁剧疆鏂瑰紡濡備笅銆�
+
+**姝ラ鈶�**锛氭墦寮€璁剧疆锛屻€怓iles銆戔啋銆怱ettings銆�
+
+<img src="img\image-20211122173835517.png" alt="image-20211122173835517" style="zoom:80%;" />
+
+**姝ラ鈶�**锛氭墦寮€鏂囦欢绫诲瀷璁剧疆鐣岄潰锛屻€怑ditor銆戔啋銆怓ile Types銆戔啋銆怚gnored Files and Folders銆戯紝蹇界暐鏂囦欢鎴栨枃浠跺す鏄剧ず
+
+<img src="img\image-20211122174020028.png" alt="image-20211122174020028" style="zoom: 67%;" />
+
+**姝ラ鈶�**锛氭坊鍔犱綘瑕侀殣钘忕殑鏂囦欢鍚嶇О鎴栨枃浠跺す鍚嶇О锛屽彲浠ヤ娇鐢�*鍙烽€氶厤绗︼紝琛ㄧず浠绘剰锛岃缃畬姣曞嵆鍙�
+
+鈥�	鍒拌繖閲屽氨鍋氬畬浜嗭紝鍏跺疄灏辨槸Idea鐨勪竴涓皬鍔熻兘
+
+**鎬荤粨**
+
+1. Idea涓殣钘忔寚瀹氭枃浠舵垨鎸囧畾绫诲瀷鏂囦欢
+   1. 銆怓iles銆戔啋銆怱ettings銆�
+   2. 銆怑ditor銆戔啋銆怓ile Types銆戔啋銆怚gnored Files and Folders銆�
+   3. 杈撳叆瑕侀殣钘忕殑鍚嶇О锛屾敮鎸�*鍙烽€氶厤绗�
+   4. 鍥炶溅纭娣诲姞
+
+
+
+### JC-1-5.SpringBoot绠€浠�
+
+鈥�	鍏ラ棬妗堜緥鍋氬畬浜嗭紝杩欎釜鏃跺€欏洖蹇嗕竴涓嬪挶浠箣鍓嶈鐨凷pringBoot鐨勫姛鑳芥槸浠€涔堣繕璁板緱鍚楋紵鍔犻€烻pring绋嬪簭鐨勫紑鍙戯紝鐜板湪鏄惁娣辨湁浣撲細锛熷啀鏉ョ湅SpringBoot鎶€鏈殑璁捐鍒濊》灏卞緢瀹规槗鐞嗚В浜嗐€�
+
+鈥�	SpringBoot鏄敱Pivotal鍥㈤槦鎻愪緵鐨勫叏鏂版鏋讹紝鍏惰璁＄洰鐨勬槸鐢ㄦ潵<font color="#ff0000"><b>绠€鍖朣pring搴旂敤鐨勫垵濮嬫惌寤轰互鍙婂紑鍙戣繃绋�</b></font>銆�
+
+鈥�	閮界畝鍖栦簡浜嗗摢浜涗笢瑗垮憿锛熷叾瀹炲氨鏄拡瀵瑰師濮嬬殑Spring绋嬪簭鍒朵綔鐨勪袱涓柟闈㈣繘琛屼簡绠€鍖栵細
+
+- Spring绋嬪簭缂虹偣
+  - 渚濊禆璁剧疆绻佺悙
+    - 浠ュ墠鍐橲pring绋嬪簭锛屼娇鐢ㄧ殑鎶€鏈兘瑕佽嚜宸变竴涓竴涓殑鍐欙紝鐜板湪涓嶉渶瑕佷簡锛屽鏋滃仛杩囧師濮婼pringMVC绋嬪簭鐨勫皬浼欎即搴旇鐭ラ亾锛屽啓SpringMVC绋嬪簭锛屾渶鍩虹鐨剆pring-web鍜宻pring-webmvc杩欎袱涓潗鏍囨椂蹇呴』鐨勶紝灏辫繖杩樹笉鍖呭惈浣犵敤json鍟婄瓑绛夎繖浜涘潗鏍囷紝鐜板湪鍛紵涓€涓潗鏍囨悶瀹氶潰
+  - 閰嶇疆绻佺悙
+    - 浠ュ墠鍐欓厤缃被鎴栬€呴厤缃枃浠讹紝鐒跺悗鐢ㄤ粈涔堜笢瑗垮氨瑕佽嚜宸卞啓鍔犺浇bean杩欎簺涓滆タ锛岀幇鍦ㄥ憿锛熶粈涔堥兘娌″啓锛岀収鏍疯兘鐢�
+
+> 鍥為【
+>
+> 鈥�	閫氳繃涓婇潰涓や釜鏂归潰鐨勫畾浣嶏紝鎴戜滑鍙互浜х敓涓や釜妯＄硦鐨勬蹇碉細
+>
+> 1. SpringBoot寮€鍙戝洟闃熻涓哄師濮嬬殑Spring绋嬪簭鍒濆鎼缓鐨勬椂鍊欏彲鑳芥湁浜涚箒鐞愶紝杩欎釜杩囩▼鏄彲浠ョ畝鍖栫殑锛岄偅鍘熷鐨凷pring绋嬪簭鍒濆鎼缓杩囩▼閮藉寘鍚摢浜涗笢瑗夸簡鍛紵涓轰粈涔堣寰楃箒鐞愬憿锛熸渶鍩烘湰鐨凷pring绋嬪簭鑷冲皯鏈変竴涓厤缃枃浠舵垨閰嶇疆绫伙紝鐢ㄦ潵鎻忚堪Spring鐨勯厤缃俊鎭紝鑾潪杩欎釜鏂囦欢閮藉彲浠ヤ笉鍐欙紵姝ゅ鐜板湪浼佷笟绾у紑鍙戜娇鐢⊿pring澶ч儴鍒嗘儏鍐典笅鏄仛web寮€鍙戯紝濡傛灉鍋歸eb寮€鍙戠殑璇濓紝杩樿鍦ㄥ姞杞絯eb鐜鏃跺姞杞芥椂鍔犺浇鎸囧畾鐨剆pring閰嶇疆锛岃繖閮芥槸鏈€鍩烘湰鐨勯渶姹備簡锛屼笉鍐欑殑璇濇€庝箞鐭ラ亾鍔犺浇鍝釜閰嶇疆鏂囦欢/閰嶇疆绫诲憿锛熼偅鎹簡SpringBoot鎶€鏈互鍚庡憿锛岃繖浜涜繕瑕佸啓鍚楋紵璋滃簳绋嶅悗鎻檽锛屽厛鍗栦釜鍏冲瓙
+> 2. SpringBoot寮€鍙戝洟闃熻涓哄師濮嬬殑Spring绋嬪簭寮€鍙戠殑杩囩▼涔熸湁浜涚箒鐞愶紝杩欎釜杩囩▼浠嶇劧鍙互绠€鍖栥€傚紑鍙戣繃绋嬫棤澶栦箮浣跨敤浠€涔堟妧鏈紝瀵煎叆瀵瑰簲鐨刯ar鍖咃紙鎴栧潗鏍囷級鐒跺悗灏嗚繖涓妧鏈殑鏍稿績瀵硅薄浜ょ粰Spring瀹瑰櫒绠＄悊锛屼篃灏辨槸閰嶇疆鎴怱pring瀹瑰櫒绠℃帶鐨刡ean灏卞彲浠ヤ簡銆傝繖閮芥槸鍩烘湰鎿嶄綔鍟婏紝闅鹃亾杩欎簺涓滆タSpringBoot涔熻兘甯垜浠畝鍖栵紵
+
+鈥�	鍐嶆潵鐪嬬湅鍓嶉潰鎻愬嚭鐨勪袱涓棶棰橈紝宸茬粡鏈夌瓟妗堜簡锛岄兘绠€鍖栦簡锛岄兘涓嶇敤鍐欎簡锛岃繖灏辨槸SpringBoot缁欐垜浠甫鏉ョ殑濂藉銆傝繖浜涚畝鍖栨搷浣滃湪SpringBoot涓湁涓撲笟鐨勭敤璇紝涔熸槸SpringBoot绋嬪簭鐨勬牳蹇冨姛鑳藉強浼樼偣锛�
+
+- 璧锋渚濊禆锛堢畝鍖栦緷璧栭厤缃級
+  - 渚濊禆閰嶇疆鐨勪功鍐欑畝鍖栧氨鏄潬杩欎釜璧锋渚濊禆杈炬垚鐨�
+- 鑷姩閰嶇疆锛堢畝鍖栧父鐢ㄥ伐绋嬬浉鍏抽厤缃級
+  - 閰嶇疆杩囦簬绻佺悙锛屼娇鐢ㄨ嚜鍔ㄩ厤缃氨鍙互鍋氬搷搴旂殑绠€鍖栵紝浣嗘槸鍐呴儴杩樻槸寰堝鏉傜殑锛屽悗闈㈠叿浣撳睍寮€璇�
+- 杈呭姪鍔熻兘锛堝唴缃湇鍔″櫒锛屸€︹€︼級
+  - 闄や簡涓婇潰鐨勫姛鑳斤紝鍏跺疄SpringBoot绋嬪簭杩樻湁鍏朵粬鐨勪竴浜涗紭鍔匡紝姣斿鎴戜滑娌℃湁閰嶇疆Tomcat鏈嶅姟鍣紝浣嗘槸鑳芥甯歌繍琛岋紝杩欐槸SpringBoot绋嬪簭鐨勪竴涓彲浠ユ劅鐭ュ埌鐨勫姛鑳斤紝涔熸槸SpringBoot鐨勮緟鍔╁姛鑳戒箣涓€銆備竴涓緟鍔╁姛鑳介兘鑳藉仛鐨勮繖涔�6锛屽お鐗涗簡
+
+鈥�	涓嬮潰缁撳悎鍏ラ棬绋嬪簭鏉ヨ璇磋繖浜涚畝鍖栨搷浣滈兘鍦ㄥ摢浜涙柟闈㈣繘琛屼綋鐜扮殑锛屼竴鍏卞垎涓�4涓柟闈�
+
+- parent
+- starter
+- 寮曞绫�
+- 鍐呭祵tomcat
+
+
+
+#### parent
+
+鈥�	SpringBoot鍏虫敞鍒板紑鍙戣€呭湪杩涜寮€鍙戞椂锛屽線寰€瀵逛緷璧栫増鏈殑閫夋嫨鍏锋湁鍥哄畾鐨勬惌閰嶆牸寮忥紝骞朵笖杩欎簺渚濊禆鐗堟湰鐨勯€夋嫨杩樹笉鑳戒贡鎼厤銆傛瘮濡侫鎶€鏈殑2.0鐗堜笌B鎶€鏈殑3.5鐗堝彲浠ュ悎浣滃湪涓€璧凤紝浣嗘槸鍜孊鎶€鏈殑3.7鐗堝悎骞朵娇鐢ㄦ椂灏辨湁鍐茬獊銆傚叾瀹炲緢澶氬紑鍙戣€呴兘涓€鐩存兂鍋氫竴浠朵簨鎯咃紝灏辨槸灏嗗悇绉嶅悇鏍风殑鎶€鏈厤鍚堜娇鐢ㄧ殑甯歌渚濊禆鐗堟湰杩涜鏀堕泦鏁寸悊锛屽埗浣滃嚭浜嗘渶鍚堢悊鐨勪緷璧栫増鏈厤缃柟妗堬紝杩欐牱浣跨敤璧锋潵灏辨柟渚垮浜嗐€�
+
+鈥�	SpringBoot涓€鐪嬭繖绉嶆儏鍐祍o easy鍟婏紝浜庢槸灏嗘墍鏈夌殑鎶€鏈増鏈殑甯歌浣跨敤鏂规閮界粰寮€鍙戣€呮暣鐞嗕簡鍑烘潵锛屼互鍚庡紑鍙戣€呬娇鐢ㄦ椂鐩存帴鐢ㄥ畠鎻愪緵鐨勭増鏈柟妗堬紝灏变笉鐢ㄦ媴蹇冨啿绐侀棶棰樹簡锛岀浉褰撲簬SpringBoot鍋氫簡鏃犳暟涓妧鏈増鏈惌閰嶇殑鍒楄〃锛岃繖涓妧鏈惌閰嶅垪琛ㄧ殑鍚嶅瓧鍙仛<font color="#ff0000"><b>parent</b></font>銆�
+
+鈥�	<font color="#ff0000"><b>parent</b></font>鑷韩鍏锋湁寰堝涓増鏈紝姣忎釜<font color="#ff0000"><b>parent</b></font>鐗堟湰涓寘鍚湁鍑犵櫨涓叾浠栨妧鏈殑鐗堟湰鍙凤紝涓嶅悓鐨刾arent闂翠娇鐢ㄧ殑鍚勭鎶€鏈殑鐗堟湰鍙锋湁鍙兘浼氬彂鐢熷彉鍖栥€傚綋寮€鍙戣€呬娇鐢ㄦ煇浜涙妧鏈椂锛岀洿鎺ヤ娇鐢⊿pringBoot鎻愪緵鐨�<font color="#ff0000"><b>parent</b></font>灏辫浜嗭紝鐢�<font color="#ff0000"><b>parent</b></font>甯姪寮€鍙戣€呯粺涓€鐨勮繘琛屽悇绉嶆妧鏈殑鐗堟湰绠＄悊
+
+鈥�	姣斿浣犵幇鍦ㄨ浣跨敤Spring閰嶅悎MyBatis寮€鍙戯紝娌℃湁parent涔嬪墠鎬庝箞鍋氬憿锛熼€変釜Spring鐨勭増鏈紝鍐嶉€変釜MyBatis鐨勭増鏈紝鍐嶆妸杩欎簺鎶€鏈娇鐢ㄦ椂鍏宠仈鐨勫叾浠栨妧鏈殑鐗堟湰閫愪竴纭畾涓嬫潵銆傚綋浣燬pring鐨勭増鏈彂鐢熷彉鍖栭渶瑕佸垏鎹㈡椂锛屼綘鐨凪yBatis鐗堟湰鏈夊彲鑳戒篃瑕佽窡鐫€鍒囨崲锛屽叧鑱旀妧鏈憿锛熷彲鑳介兘瑕佸垏鎹紝鑰屼笖鍒囨崲鍚庤繕鍙兘鍑虹幇闂銆傜幇鍦ㄨ繖涓€鍒囧伐浣滈兘鍙互浜ょ粰parent鏉ュ仛浜嗐€備綘鏃犻渶鍏虫敞杩欎簺鎶€鏈棿鐨勭増鏈啿绐侀棶棰橈紝浣犲彧闇€瑕佸叧娉ㄤ綘鐢ㄤ粈涔堟妧鏈氨琛屼簡锛屽啿绐侀棶棰樼敱<font color="#ff0000"><b>parent</b></font>璐熻矗澶勭悊銆�
+
+鈥�	鏈変汉鍙兘浼氭彁鍑烘潵锛屼竾涓€<font color="#ff0000"><b>parent</b></font>缁欐垜瀵煎叆浜嗕竴浜涙垜涓嶆兂浣跨敤鐨勪緷璧栨€庝箞鍔烇紵璁版竻妤氾紝杩欎竴鐐瑰緢鍏抽敭锛�<font color="#ff0000"><b>parent</b></font>浠呬粎甯垜浠繘琛岀増鏈鐞嗭紝瀹冧笉璐熻矗甯綘瀵煎叆鍧愭爣锛岃鐧戒簡鐢ㄤ粈涔堣繕鏄綘鑷繁瀹氾紝鍙笉杩囩増鏈笉闇€瑕佷綘绠＄悊浜嗐€傛暣浣撲笂鏉ヨ锛�<font color="#ff0000"><b>浣跨敤parent鍙互甯姪寮€鍙戣€呰繘琛岀増鏈殑缁熶竴绠＄悊</b></font>
+
+鈥�	<font color="#ff0000"><b>鍏虫敞</b></font>锛歱arent瀹氫箟鍑烘潵浠ュ悗锛屽苟涓嶆槸鐩存帴浣跨敤鐨勶紝浠呬粎缁欎簡寮€鍙戣€呬竴涓鏄庝功锛屼絾鏄苟娌℃湁瀹為檯浣跨敤锛岃繖涓竴瀹氳纭娓呮
+
+鈥�	閭pringBoot鍙堟槸濡備綍鍋氬埌杩欎竴鐐圭殑鍛紵鍙互鏌ラ槄SpringBoot鐨勯厤缃簮鐮侊紝鐪嬪埌杩欎簺瀹氫箟
+
+- 椤圭洰涓殑pom.xml涓户鎵夸簡涓€涓潗鏍�
+
+```XML
+<parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.5.4</version>
+</parent>
+```
+
+- 鎵撳紑鍚庡彲浠ユ煡闃呭埌鍏朵腑鍙堢户鎵夸簡涓€涓潗鏍�
+
+```XML
+<parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-dependencies</artifactId>
+    <version>2.5.4</version>
+</parent>
+```
+
+- 杩欎釜鍧愭爣涓畾涔変簡涓ょ粍淇℃伅锛岀涓€缁勬槸鍚勫紡鍚勬牱鐨勪緷璧栫増鏈彿灞炴€э紝涓嬮潰鍒楀嚭渚濊禆鐗堟湰灞炴€х殑灞€閮紝鍙互鐪嬬殑鍑烘潵锛屽畾涔変簡鑻ュ共涓妧鏈殑渚濊禆鐗堟湰鍙�
+
+```XML
+<properties>
+    <activemq.version>5.16.3</activemq.version>
+    <aspectj.version>1.9.7</aspectj.version>
+    <assertj.version>3.19.0</assertj.version>
+    <commons-codec.version>1.15</commons-codec.version>
+    <commons-dbcp2.version>2.8.0</commons-dbcp2.version>
+    <commons-lang3.version>3.12.0</commons-lang3.version>
+    <commons-pool.version>1.6</commons-pool.version>
+    <commons-pool2.version>2.9.0</commons-pool2.version>
+    <h2.version>1.4.200</h2.version>
+    <hibernate.version>5.4.32.Final</hibernate.version>
+    <hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
+    <httpclient.version>4.5.13</httpclient.version>
+    <jackson-bom.version>2.12.4</jackson-bom.version>
+    <javax-jms.version>2.0.1</javax-jms.version>
+    <javax-json.version>1.1.4</javax-json.version>
+    <javax-websocket.version>1.1</javax-websocket.version>
+    <jetty-el.version>9.0.48</jetty-el.version>
+    <junit.version>4.13.2</junit.version>
+</properties>
+```
+
+鈥�	绗簩缁勬槸鍚勫紡鍚勬牱鐨勭殑渚濊禆鍧愭爣淇℃伅锛屽彲浠ョ湅鍑轰緷璧栧潗鏍囧畾涔変腑娌℃湁鍏蜂綋鐨勪緷璧栫増鏈彿锛岃€屾槸寮曠敤浜嗙涓€缁勪俊鎭腑瀹氫箟鐨勪緷璧栫増鏈睘鎬у€�
+
+```XML
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+```
+
+<font color="#ff0000"><b>鍏虫敞</b></font>锛氫笂闈㈢殑渚濊禆鍧愭爣瀹氫箟鏄嚭鐜板湪<dependencyManagement>鏍囩涓殑锛屽叾瀹炴槸瀵瑰紩鐢ㄥ潗鏍囩殑渚濊禆绠＄悊锛屽苟涓嶆槸瀹為檯浣跨敤鐨勫潗鏍囥€傚洜姝ゅ綋浣犵殑椤圭洰涓户鎵夸簡杩欑粍parent淇℃伅鍚庯紝鍦ㄤ笉浣跨敤瀵瑰簲鍧愭爣鐨勬儏鍐典笅锛屽墠闈㈢殑杩欑粍瀹氫箟鏄笉浼氬叿浣撳鍏ユ煇涓緷璧栫殑
+
+<font color="#ff0000"><b>鍏虫敞</b></font>锛氬洜涓哄湪maven涓户鎵挎満浼氬彧鏈変竴娆★紝涓婅堪缁ф壙鐨勬牸寮忚繕鍙互鍒囨崲鎴愬鍏ョ殑褰㈠紡杩涜锛屽苟涓斿湪闃块噷浜戠殑starter鍒涘缓宸ョ▼鏃跺氨浣跨敤浜嗘绉嶅舰寮�
+
+```XML
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-dependencies</artifactId>
+            <version>${spring-boot.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+```
+
+**鎬荤粨**
+
+1. 寮€鍙慡pringBoot绋嬪簭瑕佺户鎵縮pring-boot-starter-parent
+2. spring-boot-starter-parent涓畾涔変簡鑻ュ共涓緷璧栫鐞�
+3. 缁ф壙parent妯″潡鍙互閬垮厤澶氫釜渚濊禆浣跨敤鐩稿悓鎶€鏈椂鍑虹幇渚濊禆鐗堟湰鍐茬獊
+4. 缁ф壙parent鐨勫舰寮忎篃鍙互閲囩敤寮曞叆渚濊禆鐨勫舰寮忓疄鐜版晥鏋�
+
+**鎬濊€�**
+
+鈥�	parent涓畾涔変簡鑻ュ共涓緷璧栫増鏈鐞嗭紝浣嗘槸涔熸病鏈変娇鐢紝閭ｈ繖涓瀹氫篃灏变笉鐢熸晥鍟婏紝绌剁珶璋佸湪浣跨敤杩欎簺瀹氫箟鍛紵
+
+
+
+#### starter
+
+鈥�	SpringBoot鍏虫敞鍒板紑鍙戣€呭湪瀹為檯寮€鍙戞椂锛屽浜庝緷璧栧潗鏍囩殑浣跨敤寰€寰€閮芥湁涓€浜涘浐瀹氱殑缁勫悎鏂瑰紡锛屾瘮濡備娇鐢╯pring-webmvc灏变竴瀹氳浣跨敤spring-web銆傛瘡娆￠兘瑕佸浐瀹氭惌閰嶇潃鍐欙紝闈炲父绻佺悙锛岃€屼笖鏍煎紡鍥哄畾锛屾病鏈変换浣曟妧鏈惈閲忋€�
+
+鈥�	SpringBoot涓€鐪嬭繖绉嶆儏鍐碉紝鐪嬫潵闇€瑕佺粰寮€鍙戣€呭甫鏉ヤ竴浜涘府鍔╀簡銆傚畨鎺掞紝鎶婃墍鏈夌殑鎶€鏈娇鐢ㄧ殑鍥哄畾鎼厤鏍煎紡閮界粰寮€鍙戝嚭鏉ワ紝浠ュ悗浣犵敤鏌愪釜鎶€鏈紝灏变笉鐢ㄤ竴娆″啓涓€鍫嗕緷璧栦簡锛岃繕瀹规槗鍐欓敊锛屾垜缁欎綘鍋氫竴涓笢瑗匡紝浠ｈ〃涓€鍫嗕笢瑗匡紝寮€鍙戣€呬娇鐢ㄧ殑鏃跺€欙紝鐩存帴鐢ㄦ垜鍋氬ソ鐨勮繖涓笢瑗垮氨濂戒簡锛屽浜庤繖鏍风殑鍥哄畾鎶€鏈惌閰嶏紝SpringBoot缁欏畠璧蜂簡涓悕瀛楀彨鍋�<font color="#ff0000"><b>starter</b></font>銆�
+
+鈥�	starter瀹氫箟浜嗕娇鐢ㄦ煇绉嶆妧鏈椂瀵逛簬渚濊禆鐨勫浐瀹氭惌閰嶆牸寮忥紝涔熸槸涓€绉嶆渶浣宠В鍐虫柟妗堬紝<font color="#ff0000"><b>浣跨敤starter鍙互甯姪寮€鍙戣€呭噺灏戜緷璧栭厤缃�</b></font>
+
+鈥�	杩欎釜涓滆タ鍏跺疄鍦ㄥ叆闂ㄦ渚嬮噷闈㈠凡缁忎娇鐢ㄨ繃浜嗭紝鍏ラ棬妗堜緥涓殑web鍔熻兘灏辨槸浣跨敤杩欑鏂瑰紡娣诲姞渚濊禆鐨勩€傚彲浠ユ煡闃匰pringBoot鐨勯厤缃簮鐮侊紝鐪嬪埌杩欎簺瀹氫箟
+
+- 椤圭洰涓殑pom.xml瀹氫箟浜嗕娇鐢⊿pringMVC鎶€鏈紝浣嗘槸骞舵病鏈夊啓SpringMVC鐨勫潗鏍囷紝鑰屾槸娣诲姞浜嗕竴涓悕瀛椾腑鍖呭惈starter鐨勪緷璧�
+
+```XML
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+```
+
+- 鍦╯pring-boot-starter-web涓張瀹氫箟浜嗚嫢骞蹭釜鍏蜂綋渚濊禆鐨勫潗鏍�
+
+```XML
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter</artifactId>
+        <version>2.5.4</version>
+        <scope>compile</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-json</artifactId>
+        <version>2.5.4</version>
+        <scope>compile</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-tomcat</artifactId>
+        <version>2.5.4</version>
+        <scope>compile</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-web</artifactId>
+        <version>5.3.9</version>
+        <scope>compile</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-webmvc</artifactId>
+        <version>5.3.9</version>
+        <scope>compile</scope>
+    </dependency>
+</dependencies>
+```
+
+鈥�	涔嬪墠鎻愬埌杩囧紑鍙慡pringMVC绋嬪簭闇€瑕佸鍏pring-webmvc鐨勫潗鏍囧拰spring鏁村悎web寮€鍙戠殑鍧愭爣锛屽氨鏄笂闈㈣繖缁勫潗鏍囦腑鐨勬渶鍚庝袱涓簡銆�
+
+鈥�	浣嗘槸鎴戜滑鍙戠幇闄や簡杩欎袱涓繕鏈夊叾浠栫殑锛屾瘮濡傜浜屼釜锛屽彨鍋歴pring-boot-starter-json銆傜湅鍚嶇О灏辩煡閬擄紝杩欎釜鏄笌json鏈夊叧鐨勫潗鏍囦簡锛屼絾鏄湅鍚嶅瓧鍙戠幇鍜屾渶鍚庝袱涓張涓嶅お涓€鏍凤紝瀹冪殑鍚嶅瓧涓篃鏈塻tarter锛屾墦寮€鐪嬬湅閲岄潰鏈変粈涔堬紵
+
+```XML
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter</artifactId>
+        <version>2.5.4</version>
+        <scope>compile</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-web</artifactId>
+        <version>5.3.9</version>
+        <scope>compile</scope>
+    </dependency>
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>2.12.4</version>
+        <scope>compile</scope>
+    </dependency>
+    <dependency>
+        <groupId>com.fasterxml.jackson.datatype</groupId>
+        <artifactId>jackson-datatype-jdk8</artifactId>
+        <version>2.12.4</version>
+        <scope>compile</scope>
+    </dependency>
+    <dependency>
+        <groupId>com.fasterxml.jackson.datatype</groupId>
+        <artifactId>jackson-datatype-jsr310</artifactId>
+        <version>2.12.4</version>
+        <scope>compile</scope>
+    </dependency>
+    <dependency>
+        <groupId>com.fasterxml.jackson.module</groupId>
+        <artifactId>jackson-module-parameter-names</artifactId>
+        <version>2.12.4</version>
+        <scope>compile</scope>
+    </dependency>
+</dependencies>
+```
+
+鈥�	鎴戜滑鍙互鍙戠幇锛岃繖涓猻tarter涓張鍖呭惈浜嗚嫢骞蹭釜鍧愭爣锛屽叾瀹炲氨鏄娇鐢⊿pringMVC寮€鍙戦€氬父閮戒細浣跨敤鍒癑son锛屼娇鐢╦son鍙堢涓嶅紑杩欓噷闈㈠畾涔夌殑杩欎簺鍧愭爣锛岀湅鏉ヨ繕鐪熸槸鏂逛究锛孲pringBoot鎶婃垜浠紑鍙戜腑浣跨敤鐨勪笢瑗胯兘鐢ㄥ埌鐨勯兘缁欐彁鍓嶅仛濂戒簡銆備綘浠旂粏鐪嬪畬浼氬彂鐜帮紝閲岄潰鏈変竴浜涗綘娌＄敤杩囩殑銆傜殑纭細鍑虹幇杩欑杩囬噺瀵煎叆鐨勫彲鑳芥€э紝娌″叧绯伙紝鍙互閫氳繃maven涓殑鎺掗櫎渚濊禆鍓旈櫎鎺変竴閮ㄥ垎銆備笉杩囦綘涓嶇瀹冧篃娌′簨锛屽ぇ涓嶄簡灏辨槸杩囬噺瀵煎叆鍛椼€�
+
+鈥�	鍒拌繖閲屽熀鏈笂寰楀埌浜嗕竴涓俊鎭紝浣跨敤starter鍙互甯紑鍙戣€呭揩閫熼厤缃緷璧栧叧绯汇€備互鍓嶅啓渚濊禆3涓潗鏍囩殑锛岀幇鍦ㄥ啓瀵煎叆涓€涓氨鎼炲畾浜嗭紝灏辨槸鍔犻€熶緷璧栭厤缃殑銆�
+
+**starter涓巔arent鐨勫尯鍒�**
+
+鈥�	鏈︽湨鑳ц儳涓劅瑙塻tarter涓巔arent濂藉儚閮芥槸甯姪鎴戜滑绠€鍖栭厤缃殑锛屼絾鏄姛鑳藉張涓嶄竴鏍凤紝姊崇悊涓€涓嬨€�
+
+鈥�	<font color="#ff0000"><b>starter</b></font>鏄竴涓潗鏍囦腑瀹氫簡鑻ュ共涓潗鏍囷紝浠ュ墠鍐欏涓殑锛岀幇鍦ㄥ啓涓€涓紝<font color="#ff0000"><b>鏄敤鏉ュ噺灏戜緷璧栭厤缃殑涔﹀啓閲忕殑</b></font>
+
+鈥�	<font color="#ff0000"><b>parent</b></font>鏄畾涔変簡鍑犵櫨涓緷璧栫増鏈彿锛屼互鍓嶅啓渚濊禆闇€瑕佽嚜宸辨墜宸ユ帶鍒剁増鏈紝鐜板湪鐢盨pringBoot缁熶竴绠＄悊锛岃繖鏍峰氨涓嶅瓨鍦ㄧ増鏈啿绐佷簡锛�<font color="#ff0000"><b>鏄敤鏉ュ噺灏戜緷璧栧啿绐佺殑</b></font>
+
+**瀹為檯寮€鍙戝簲鐢ㄦ柟寮�**
+
+- 瀹為檯寮€鍙戜腑濡傛灉闇€瑕佺敤浠€涔堟妧鏈紝鍏堝幓鎵炬湁娌℃湁杩欎釜鎶€鏈搴旂殑starter
+
+  - 濡傛灉鏈夊搴旂殑starter锛岀洿鎺ュ啓starter锛岃€屼笖鏃犻渶鎸囧畾鐗堟湰锛岀増鏈敱parent鎻愪緵
+  - 濡傛灉娌℃湁瀵瑰簲鐨剆tarter锛屾墜鍐欏潗鏍囧嵆鍙�
+
+- 瀹為檯寮€鍙戜腑濡傛灉鍙戠幇鍧愭爣鍑虹幇浜嗗啿绐佺幇璞★紝纭浣犺浣跨敤鐨勫彲琛岀殑鐗堟湰鍙凤紝浣跨敤鎵嬪伐涔﹀啓鐨勬柟寮忔坊鍔犲搴斾緷璧栵紝瑕嗙洊SpringBoot鎻愪緵缁欐垜浠殑閰嶇疆绠＄悊
+
+  - 鏂瑰紡涓€锛氱洿鎺ュ啓鍧愭爣
+  - 鏂瑰紡浜岋細瑕嗙洊<properties>涓畾涔夌殑鐗堟湰鍙凤紝灏辨槸涓嬮潰杩欏爢涓滆タ浜嗭紝鍝釜鍐茬獊浜嗚鐩栧摢涓氨OK浜�
+
+  ```XML
+  <properties>
+      <activemq.version>5.16.3</activemq.version>
+      <aspectj.version>1.9.7</aspectj.version>
+      <assertj.version>3.19.0</assertj.version>
+      <commons-codec.version>1.15</commons-codec.version>
+      <commons-dbcp2.version>2.8.0</commons-dbcp2.version>
+      <commons-lang3.version>3.12.0</commons-lang3.version>
+      <commons-pool.version>1.6</commons-pool.version>
+      <commons-pool2.version>2.9.0</commons-pool2.version>
+      <h2.version>1.4.200</h2.version>
+      <hibernate.version>5.4.32.Final</hibernate.version>
+      <hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
+      <httpclient.version>4.5.13</httpclient.version>
+      <jackson-bom.version>2.12.4</jackson-bom.version>
+      <javax-jms.version>2.0.1</javax-jms.version>
+      <javax-json.version>1.1.4</javax-json.version>
+      <javax-websocket.version>1.1</javax-websocket.version>
+      <jetty-el.version>9.0.48</jetty-el.version>
+      <junit.version>4.13.2</junit.version>
+  </properties>
+  ```
+
+<font color="#f0f"><b>娓╅Θ鎻愮ず</b></font>
+
+鈥�	SpringBoot瀹樻柟缁欏嚭浜嗗ソ澶氫釜starter鐨勫畾涔夛紝鏂逛究鎴戜滑浣跨敤锛岃€屼笖鍚嶇О閮芥槸濡備笅鏍煎紡
+
+```JAVA
+鍛藉悕瑙勫垯锛歴pring-boot-starter-鎶€鏈悕绉�
+```
+
+鈥�	鎵€浠ヤ互鍚庤浜唖pring-boot-starter-aaa杩欐牱鐨勫悕瀛楋紝杩欏氨鏄疭pringBoot瀹樻柟缁欏嚭鐨剆tarter瀹氫箟銆傞偅闈炲畼鏂瑰畾涔夌殑涔熸湁鍚楋紵鏈夌殑锛屽叿浣撳懡鍚嶆柟寮忓埌鏁村悎绔犺妭鍐嶈
+
+**鎬荤粨**
+
+1. 寮€鍙慡pringBoot绋嬪簭闇€瑕佸鍏ュ潗鏍囨椂閫氬父瀵煎叆瀵瑰簲鐨剆tarter
+2. 姣忎釜涓嶅悓鐨剆tarter鏍规嵁鍔熻兘涓嶅悓锛岄€氬父鍖呭惈澶氫釜渚濊禆鍧愭爣
+3. 浣跨敤starter鍙互瀹炵幇蹇€熼厤缃殑鏁堟灉锛岃揪鍒扮畝鍖栭厤缃殑鐩殑
+
+
+
+#### 寮曞绫�
+
+鈥�	閰嶇疆璇村畬浜嗭紝鎴戜滑鍙戠幇SpringBoot纭疄甯姪鎴戜滑鍑忓皯浜嗗緢澶氶厤缃伐浣滐紝涓嬮潰璇翠竴涓嬬▼搴忔槸濡備綍杩愯鐨勩€傜洰鍓嶇▼搴忚繍琛岀殑鍏ュ彛灏辨槸SpringBoot宸ョ▼鍒涘缓鏃惰嚜甯︾殑閭ｄ釜绫讳簡锛屽甫鏈塵ain鏂规硶鐨勯偅涓被锛岃繍琛岃繖涓被灏卞彲浠ュ惎鍔⊿pringBoot宸ョ▼鐨勮繍琛�
+
+```
+@SpringBootApplication
+public class Springboot0101QuickstartApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(Springboot0101QuickstartApplication.class, args);
+    }
+}
+```
+
+鈥�	SpringBoot鏈韩鏄负浜嗗姞閫烻pring绋嬪簭鐨勫紑鍙戠殑锛岃€孲pring绋嬪簭杩愯鐨勫熀纭€鏄渶瑕佸垱寤鸿嚜宸辩殑Spring瀹瑰櫒瀵硅薄锛圛oC瀹瑰櫒锛夊苟灏嗘墍鏈夌殑瀵硅薄浜ょ粰Spring鐨勫鍣ㄧ鐞嗭紝涔熷氨鏄竴涓竴涓殑Bean銆傞偅杩樹簡SpringBoot鍔犻€熷紑鍙慡pring绋嬪簭锛岃繖涓鍣ㄨ繕鍦ㄥ悧锛熻繖涓枒闂笉鐢ㄨ锛屼竴瀹氬湪銆傚綋鍓嶈繖涓被杩愯鍚庡氨浼氫骇鐢熶竴涓猄pring瀹瑰櫒瀵硅薄锛屽苟涓斿彲浠ュ皢杩欎釜瀵硅薄淇濆瓨璧锋潵锛岄€氳繃瀹瑰櫒瀵硅薄鐩存帴鎿嶄綔Bean銆�
+
+```JAVA
+@SpringBootApplication
+public class Springboot0101QuickstartApplication {
+    public static void main(String[] args) {
+        ConfigurableApplicationContext ctx = SpringApplication.run(Springboot0101QuickstartApplication.class, args);
+        BookController bean = ctx.getBean(BookController.class);
+        System.out.println("bean======>" + bean);
+    }
+}
+```
+
+鈥�	閫氳繃涓婅堪鎿嶄綔涓嶉毦鐪嬪嚭锛屽叾瀹濻pringBoot绋嬪簭鍚姩杩樻槸鍒涘缓浜嗕竴涓猄pring瀹瑰櫒瀵硅薄銆傝繖涓被鍦⊿pringBoot绋嬪簭涓槸鎵€鏈夊姛鑳界殑鍏ュ彛锛岀О杩欎釜绫讳负<font color="#ff0000"><b>寮曞绫�</b></font>銆�
+
+鈥�	浣滀负涓€涓紩瀵肩被鏈€鍏稿瀷鐨勭壒寰佸氨鏄綋鍓嶇被涓婃柟澹版槑浜嗕竴涓敞瑙�<font color="#ff0000"><b>@SpringBootApplication</b></font>
+
+**鎬荤粨**
+
+1. SpringBoot宸ョ▼鎻愪緵寮曞绫荤敤鏉ュ惎鍔ㄧ▼搴�
+2. SpringBoot宸ョ▼鍚姩鍚庡垱寤哄苟鍒濆鍖朣pring瀹瑰櫒
+
+**鎬濊€�**
+
+鈥�	绋嬪簭鐜板湪宸茬粡杩愯浜嗭紝閫氳繃寮曞绫荤殑main鏂规硶杩愯浜嗚捣鏉ャ€備絾鏄繍琛宩ava绋嬪簭涓嶅簲璇ユ槸鎵ц瀹屽氨缁撴潫浜嗗悧锛熶絾鏄垜浠幇鍦ㄦ槑鏄炬槸鍚姩浜嗕竴涓獁eb鏈嶅姟鍣ㄥ晩锛屼笉鐒剁綉椤垫€庝箞鑳芥甯歌闂憿锛熻繖涓湇鍔″櫒鏄湪鍝噷鍐欑殑鍛紵
+
+
+
+#### 鍐呭祵tomcat
+
+鈥�	褰撳墠鎴戜滑鍋氱殑SpringBoot鍏ラ棬妗堜緥鍕鹃€変簡Spirng-web鐨勫姛鑳斤紝骞朵笖瀵煎叆浜嗗搴旂殑starter銆�
+
+```XML
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+```
+
+鈥�	SpringBoot鍙戠幇锛屾棦鐒朵綘瑕佸仛web绋嬪簭锛岃偗瀹氱涓嶅紑浣跨敤web鏈嶅姟鍣紝杩欐牱鍚э紝甯汉甯埌搴曪紝閫佷經閫佸埌瑗裤€傛垜甯綘鎼炰竴涓獁eb鏈嶅姟鍣紝浣犺鎰挎剰鐢ㄧ殑锛岀洿鎺ヤ娇鐢ㄥ氨濂戒簡锛屽共鑴嗘垜鍐嶅缁欎綘鍑犵閫夋嫨锛屼綘闅忎究鍒囨崲銆備竾涓€浣犱笉鎯崇敤鎴戠粰浣犳彁渚涚殑锛屼篃琛岋紝浣犲彲浠ヨ嚜宸辨悶銆�
+
+鈥�	鐢变簬杩欎釜鍔熻兘涓嶅睘浜庣▼搴忕殑涓讳綋鍔熻兘锛屽彲鐢ㄥ彲涓嶇敤锛屼簬鏄箮SpringBoot灏嗗叾瀹氫綅鎴愯緟鍔╁姛鑳斤紝鍒皬鐪嬭繖涔堜竴涓緟鍔╁姛鑳斤紝瀹冨彲鏄府鎴戜滑寮€鍙戣€呭張鍑忓皯浜嗗ソ澶氱殑璁剧疆鎬у伐浣溿€�
+
+鈥�	涓嬮潰灏卞洿缁曠潃杩欎釜鍐呯疆鐨剋eb鏈嶅姟鍣紝涔熷彲浠ヨ鏄唴缃殑tomcat鏈嶅姟鍣ㄦ潵鐮旂┒鍑犱釜闂
+
+1. 杩欎釜鏈嶅姟鍣ㄥ湪浠€涔堜綅缃畾涔夌殑
+2. 杩欎釜鏈嶅姟鍣ㄦ槸鎬庝箞杩愯鐨�
+3. 杩欎釜鏈嶅姟鍣ㄥ鏋滄兂鎹㈡€庝箞鎹紵铏界劧杩欎釜闇€姹傚緢鍨冨溇锛屾悶寰楀紑鍙戣€呬細濂藉web鏈嶅姟鍣ㄤ竴鏍凤紝鐢ㄥ埆浜烘彁渚涘ソ鐨勪笉棣欎箞锛熼潪瑕佽嚜宸辨姌鑵�
+
+**鍐呭祵Tomcat瀹氫箟浣嶇疆**
+
+鈥�	璇村埌瀹氫箟鐨勪綅缃紝鎴戜滑灏辨兂锛屽鏋滄垜浠笉寮€鍙憌eb绋嬪簭锛岀敤鐨勭潃web鏈嶅姟鍣ㄥ悧锛熻偗瀹氱敤涓嶇潃鍟娿€傞偅濡傛灉杩欎釜涓滆タ琚姞鍏ュ埌浣犵殑绋嬪簭涓紝浼撮殢鐫€浠€涔堟妧鏈繘鏉ョ殑鍛紵鑲畾鏄痺eb鐩稿叧鐨勫姛鑳藉晩锛屾病閿欙紝灏辨槸鍓嶉潰瀵煎叆鐨剋eb鐩稿叧鐨剆tarter鍋氱殑杩欎欢浜嬨€�
+
+```XML
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+```
+
+鈥�	鎵撳紑鏌ョ湅web鐨剆tarter瀵煎叆浜嗗摢浜涗笢瑗�
+
+```XML
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter</artifactId>
+        <version>2.5.4</version>
+        <scope>compile</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-json</artifactId>
+        <version>2.5.4</version>
+        <scope>compile</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-tomcat</artifactId>
+        <version>2.5.4</version>
+        <scope>compile</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-web</artifactId>
+        <version>5.3.9</version>
+        <scope>compile</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-webmvc</artifactId>
+        <version>5.3.9</version>
+        <scope>compile</scope>
+    </dependency>
+</dependencies>
+```
+
+鈥�	绗笁涓緷璧栧氨鏄繖涓猼omcat瀵瑰簲鐨勪笢瑗夸簡锛屽眳鐒朵篃鏄竴涓猻tarter锛屽啀鎵撳紑鐪嬬湅
+
+```XML
+<dependencies>
+    <dependency>
+        <groupId>jakarta.annotation</groupId>
+        <artifactId>jakarta.annotation-api</artifactId>
+        <version>1.3.5</version>
+        <scope>compile</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-core</artifactId>
+        <version>9.0.52</version>
+        <scope>compile</scope>
+        <exclusions>
+            <exclusion>
+                <artifactId>tomcat-annotations-api</artifactId>
+                <groupId>org.apache.tomcat</groupId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-el</artifactId>
+        <version>9.0.52</version>
+        <scope>compile</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-websocket</artifactId>
+        <version>9.0.52</version>
+        <scope>compile</scope>
+        <exclusions>
+            <exclusion>
+                <artifactId>tomcat-annotations-api</artifactId>
+                <groupId>org.apache.tomcat</groupId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+</dependencies>
+```
+
+鈥�	杩欓噷闈㈡湁涓€涓牳蹇冪殑鍧愭爣锛宼omcat-embed-core锛屽彨鍋歵omcat鍐呭祵鏍稿績銆傚氨鏄繖涓笢瑗挎妸tomcat鍔熻兘寮曞叆鍒颁簡鎴戜滑鐨勭▼搴忎腑銆傜洰鍓嶈В鍐充簡绗竴涓棶棰橈紝鎵惧埌鏍瑰効浜嗭紝璋佹妸tomcat寮曞叆鍒扮▼搴忎腑鐨勶紵spring-boot-starter-web涓殑spring-boot-starter-tomcat鍋氱殑銆備箣鎵€浠ヤ綘鎰熻寰堝濡欑殑鍘熷洜灏辨槸锛岃繖涓笢瑗挎槸榛樿鍔犲叆鍒扮▼搴忎腑浜嗭紝鎵€浠ユ劅瑙夊緢绁炲锛屽眳鐒朵粈涔堥兘涓嶅仛锛屽氨鏈変簡web鏈嶅姟鍣ㄥ搴旂殑鍔熻兘锛屽啀鏉ヨ绗簩涓棶棰橈紝杩欎釜鏈嶅姟鍣ㄦ槸鎬庝箞杩愯鐨�
+
+**鍐呭祵Tomcat杩愯鍘熺悊**
+
+鈥�	Tomcat鏈嶅姟鍣ㄦ槸涓€娆捐蒋浠讹紝鑰屼笖鏄竴娆句娇鐢╦ava璇█寮€鍙戠殑杞欢锛岀啛鎮夌殑灏忎紮浼村彲鑳芥湁鍗拌薄锛宼omcat瀹夎鐩綍涓繚瀛樻湁jar锛屽ソ澶氫釜jar銆�
+
+鈥�	涓嬮潰鐨勯棶棰樻潵浜嗭紝鏃㈢劧鏄娇鐢╦ava璇█寮€鍙戠殑锛岃繍琛岀殑鏃跺€欒偗瀹氱鍚坖ava绋嬪簭杩愯鐨勫師鐞嗭紝java绋嬪簭杩愯闈犵殑鏄粈涔堬紵瀵硅薄鍛€锛屼竴鍒囩殕瀵硅薄锛屼竾鐗╃殕瀵硅薄銆傞偅tomcat杩愯璧锋潵鍛紵涔熸槸瀵硅薄銆�
+
+鈥�	濡傛灉鏄璞★紝閭pring瀹瑰櫒鏄敤鏉ョ鐞嗗璞＄殑锛岃繖涓璞¤兘涓嶈兘浜ょ粰Spring瀹瑰櫒绠＄悊鍛紵鎶婂悧鍘绘帀锛屾槸涓璞￠兘鍙互浜ょ粰Spring瀹瑰櫒绠＄悊锛岃浜嗭紝杩欎笅閫氫簡銆倀omcat鏈嶅姟鍣ㄨ繍琛屽叾瀹炴槸浠ュ璞＄殑褰㈠紡鍦⊿pring瀹瑰櫒涓繍琛岀殑锛屾€笉寰楁垜浠病鏈夊畨瑁呰繖涓猼omcat锛岃€屼笖杩樿兘鐢ㄣ€傞椆浜嗙櫧澶╄繖涓滆タ鏈€鍚庢槸浠ヤ竴涓璞＄殑褰㈠紡瀛樺湪锛屼繚瀛樺湪Spring瀹瑰櫒涓倓鎮勮繍琛岀殑銆傚叿浣撹繍琛岀殑鏄粈涔堝憿锛熷叾瀹炲氨鏄笂鍓嶉潰鎻愬埌鐨勯偅涓猼omcat鍐呭祵鏍稿績
+
+```XML
+<dependencies>
+    <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-core</artifactId>
+        <version>9.0.52</version>
+        <scope>compile</scope>
+    </dependency>
+</dependencies>
+```
+
+鈥�	閭ｆ棦鐒舵槸涓璞★紝濡傛灉鎶婅繖涓璞′粠Spring瀹瑰櫒涓幓鎺夋槸涓嶆槸灏辨病鏈墂eb鏈嶅姟鍣ㄧ殑鍔熻兘鍛紵鏄繖鏍风殑锛岄€氳繃渚濊禆鎺掗櫎鍙互鍘绘帀杩欎釜web鏈嶅姟鍣ㄥ姛鑳�
+
+```XML
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+        <exclusions>
+            <exclusion>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-tomcat</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+</dependencies>
+```
+
+鈥�	涓婇潰瀵箇eb-starter鍋氫簡涓€涓搷浣滐紝浣跨敤maven鐨勬帓闄や緷璧栧幓鎺変簡浣跨敤tomcat鐨剆tarter銆傝繖涓嬪ソ浜嗭紝瀹瑰櫒涓偗瀹氭病鏈夎繖涓璞′簡锛岄噸鏂板惎鍔ㄧ▼搴忓彲浠ヨ瀵熷埌绋嬪簭杩愯浜嗭紝浣嗘槸骞舵病鏈夊儚涔嬪墠閭ｆ牱杩愯鍚庝細绛夌潃鐢ㄦ埛鍙戣姹傦紝鑰屾槸鐩存帴鍋滄帀浜嗭紝灏辨槸杩欎釜鍘熷洜浜嗐€�
+
+**鏇存崲鍐呭祵Tomcat**
+
+鈥�	閭ｆ牴鎹笂闈㈢殑鎿嶄綔鎴戜滑鎬濊€冩槸鍚﹀彲浠ユ崲涓湇鍔″櫒鍛紵蹇呴』鐨勫槢銆傛牴鎹甋pringBoot鐨勫伐浣滄満鍒讹紝鐢ㄤ粈涔堟妧鏈紝鍔犲叆浠€涔堜緷璧栧氨琛屼簡銆係pringBoot鎻愪緵浜�3娆惧唴缃殑鏈嶅姟鍣�
+
+- tomcat(榛樿)锛歛pache鍑哄搧锛岀矇涓濆锛屽簲鐢ㄩ潰骞匡紝璐熻浇浜嗚嫢骞茶緝閲嶇殑缁勪欢
+
+- jetty锛氭洿杞婚噺绾э紝璐熻浇鎬ц兘杩滀笉鍙妕omcat
+
+- undertow锛氳礋杞芥€ц兘鍕夊己璺戣耽tomcat
+
+  鎯崇敤鍝釜锛屽姞涓潗鏍囧氨OK銆傚墠鎻愭槸鎶妕omcat鎺掗櫎鎺夛紝鍥犱负tomcat鏄粯璁ゅ姞杞界殑銆�
+
+```XML
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+        <exclusions>
+            <exclusion>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-tomcat</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-jetty</artifactId>
+    </dependency>
+</dependencies>
+```
+
+鈥�	鐜板湪灏卞凡缁忔垚鍔熸浛鎹簡web鏈嶅姟鍣紝鏍稿績鎬濇兂灏辨槸鐢ㄤ粈涔堝姞鍏ュ搴斿潗鏍囧氨鍙互浜嗐€傚鏋滄湁starter锛屼紭鍏堜娇鐢╯tarter銆�
+
+**鎬荤粨**
+
+1. 鍐呭祵Tomcat鏈嶅姟鍣ㄦ槸SpringBoot杈呭姪鍔熻兘涔嬩竴
+2. 鍐呭祵Tomcat宸ヤ綔鍘熺悊鏄皢Tomcat鏈嶅姟鍣ㄤ綔涓哄璞¤繍琛岋紝骞跺皢璇ュ璞′氦缁橲pring瀹瑰櫒绠＄悊
+3. 鍙樻洿鍐呭祵鏈嶅姟鍣ㄦ€濇兂鏄幓闄ょ幇鏈夋湇鍔″櫒锛屾坊鍔犲叏鏂扮殑鏈嶅姟鍣�
+
+
+
+鈥�	鍒拌繖閲岀涓€绔犲揩閫熶笂鎵婼pringBoot灏辩粨鏉熶簡锛岃繖涓€绔犳垜浠涔犱簡涓ゅぇ鍧楃煡璇�
+
+1. 浣跨敤浜�4绉嶆柟寮忓埗浣滀簡SpringBoot鐨勫叆闂ㄧ▼搴忥紝涓嶇鏄摢涓€绉嶏紝鍏跺疄鍐呴儴閮芥槸涓€妯′竴鏍风殑
+2. 瀛︿範浜嗗叆闂ㄧ▼搴忕殑宸ヤ綔娴佺▼锛岀煡閬撲粈涔堟槸parent锛屼粈涔堟槸starter锛岃繖涓や釜涓滆タ鏄€庝箞閰嶅悎宸ヤ綔鐨勶紝浠ュ強鎴戜滑鐨勭▼搴忎负浠€涔堝惎鍔ㄨ捣鏉ユ槸涓€涓猼omcat鏈嶅姟鍣ㄧ瓑绛�
+
+鈥�	绗竴绔犲埌杩欓噷灏辩粨鏉熶簡锛屽啀寰€涓嬪涔犲氨瑕佸幓鍩轰簬浼氬垱寤篠pringBoot宸ョ▼鐨勫熀纭€涓婏紝鐮旂┒SpringBoot宸ョ▼鐨勫叿浣撶粏鑺備簡銆�
+
+
+
+## JC-2.SpringBoot鍩虹閰嶇疆
+
+鈥�	鍏ラ棬妗堜緥鍋氬畬浜嗭紝涓嬮潰灏辫鐮旂┒SpringBoot鐨勭敤娉曚簡銆傞€氳繃鍏ラ棬妗堜緥锛屽悇浣嶅皬浼欎即鑳藉鎰熺煡鍒颁竴涓俊鎭紝SpringBoot娌℃湁鍏蜂綋鐨勫姛鑳斤紝瀹冨湪杈呭姪鍔犲揩Spring绋嬪簭鐨勫紑鍙戞晥鐜囥€傛垜浠彂鐜扮幇鍦ㄥ嚑涔庝笉鐢ㄥ仛浠讳綍鐨勯厤缃紝鍔熻兘灏辨湁浜嗭紝纭疄寰堝ソ鐢ㄣ€備絾鏄粩缁嗘兂鎯筹紝娌℃湁鍋氶厤缃剰鍛崇潃浠€涔堬紵鎰忓懗鐫€閰嶇疆宸茬粡鍋氬ソ浜嗭紝涓嶇敤浣犺嚜宸卞啓浜嗐€備絾鏄柊鐨勯棶棰樺張鏉ヤ簡锛屽鏋滀笉鎯崇敤宸茬粡鍐欏ソ鐨勯粯璁ら厤缃紝璇ュ浣曞共棰勫憿锛熻繖灏辨槸杩欎竴绔犲挶浠鐮旂┒鐨勯棶棰樸€�
+
+鈥�	濡傛灉鎴戜滑鎯充慨鏀归粯璁ょ殑閰嶇疆i锛岃繖涓俊鎭簲璇ュ啓鍦ㄤ粈涔堜綅缃憿锛熺洰鍓嶆垜浠帴瑙︾殑鍏ラ棬妗堜緥涓竴鍏辨湁3涓枃浠讹紝绗竴鏄痯om.xml鏂囦欢锛岃缃」鐩殑渚濊禆鐨勶紝杩欎釜娌′粈涔堝ソ鐮旂┒鐨勶紝鐩稿叧鐨勯珮绾у唴瀹瑰挶浠埌鍘熺悊绡囧啀璇达紝绗簩鏄紩瀵肩被锛岃繖涓槸鎵цSpringBoot绋嬪簭鐨勫叆鍙ｏ紝涔熶笉鍍忔槸鍋氶厤缃殑鍦版柟锛屽叾瀹炶繕鏈変竴涓俊鎭紝灏辨槸鍦╮esources鐩綍涓嬮潰鏈変竴涓┖鐧界殑鏂囦欢锛屽彨鍋歛pplication.properties銆備竴鐪嬪氨鏄釜閰嶇疆鏂囦欢锛屽挶浠繖涓€绔犲氨鏉ヨ璇撮厤缃枃浠舵€庝箞鍐欙紝鑳藉啓浠€涔堬紝鎬庝箞骞查SpringBoot鐨勯粯璁ら厤缃紝淇敼鎴愯嚜宸辩殑閰嶇疆銆�
+
+鈥�	
+
+### JC-2-1.灞炴€ч厤缃�
+
+鈥�	SpringBoot閫氳繃閰嶇疆鏂囦欢application.properties灏卞彲浠ヤ慨鏀归粯璁ょ殑閰嶇疆锛岄偅鍜变滑灏卞厛鎵句釜绠€鍗曠殑閰嶇疆涓嬫墜锛屽綋鍓嶈闂畉omcat鐨勯粯璁ょ鍙ｆ槸8080锛屽ソ鐔熸倝鐨勫懗閬擄紝浣嗘槸涓嶄究浜庝功鍐欙紝鎴戜滑鍏堟敼鎴�80锛岄€氳繃杩欎釜鎿嶄綔鏉ョ啛鎮変竴涓婼pringBoot鐨勯厤缃牸寮忔槸浠€涔堟牱鐨�
+
+![image-20211123165428245](img\image-20211123165428245.png)
+
+鈥�	閭ｈ濡備綍鍐欏憿锛焢roperties鏍煎紡鐨勬枃浠朵功鍐欒鑼冩槸key=value
+
+```properties
+name=itheima
+```
+
+鈥�	杩欎釜鏍煎紡鑲畾鏄笉鑳介瑕嗙殑锛岄偅灏卞皾璇曟€х殑鍐欏氨琛屼簡锛屾敼绔彛锛屽啓port銆傚綋浣犺緭鍏ort鍚庯紝绁炲鐨勪簨鎯呭氨鍙戠敓浜嗭紝杩欑帺鎰忓効甯︽彁绀猴紝澶ソ浜�
+
+<img src="img\image-20211123165719091.png" alt="image-20211123165719091" style="zoom:80%;" />
+
+鈥�	鏍规嵁鎻愮ず鏁插洖杞︼紝杈撳叆80绔彛锛屾悶瀹�
+
+```properties
+server.port=80
+```
+
+鈥�	涓嬮潰灏卞彲浠ョ洿鎺ヨ繍琛岀▼搴忥紝娴嬭瘯鏁堟灉浜嗐€�
+
+鈥�	鎴戜滑鎯婂鐨勫彂鐜癝pringBoot杩欑帺鎰忓効鐙犲晩锛屼互鍓嶄慨鏀圭鍙ｅ湪鍝噷鏀癸紵tomcat鏈嶅姟鍣ㄧ殑閰嶇疆鏂囦欢涓敼锛岀幇鍦ㄥ憿锛烻pringBoot涓撶敤鐨勯厤缃枃浠朵腑鏀癸紝鏄笉鏄剰鍛崇潃浠ュ悗鎵€鏈夌殑閰嶇疆閮藉彲浠ュ啓鍦ㄨ繖涓€涓枃浠朵腑鍛紵鏄殑锛岀畝鍖栧紑鍙戣€呴厤缃殑涔﹀啓浣嶇疆锛岄泦涓鐞嗐€傚鍟婏紝濡堝鍐嶄篃涓嶇敤鎷呭績鎴戞壘涓嶅埌閰嶇疆鏂囦欢浜嗐€�
+
+鈥�	鍏跺疄鍒拌繖閲屾垜浠簲璇ュ緱鍒板涓嬩笁涓俊鎭�
+
+1. SpringBoot绋嬪簭鍙互鍦╝pplication.properties鏂囦欢涓繘琛屽睘鎬ч厤缃�
+2. application.properties鏂囦欢涓彧瑕佽緭鍏ヨ閰嶇疆鐨勫睘鎬у叧閿瓧灏卞彲浠ユ牴鎹彁绀鸿繘琛岃缃�
+3. SpringBoot灏嗛厤缃俊鎭泦涓湪涓€涓枃浠朵腑鍐欙紝涓嶇浣犳槸鏈嶅姟鍣ㄧ殑閰嶇疆锛岃繕鏄暟鎹簱鐨勯厤缃紝鎬讳箣閮藉啓鍦ㄤ竴璧凤紝閫冪涓€涓」鐩崄鍑犵閰嶇疆鏂囦欢鏍煎紡鐨勫按灏眬闈�
+
+**鎬荤粨**
+
+1. SpringBoot榛樿閰嶇疆鏂囦欢鏄痑pplication.properties
+
+
+
+鈥�	鍋氬畬浜嗙鍙ｇ殑閰嶇疆锛岃秮鐑墦閾侊紝鍐嶅仛鍑犱釜閰嶇疆锛岀洰鍓嶉」鐩惎鍔ㄦ椂浼氭樉绀轰竴浜涙棩蹇椾俊鎭紝灏辨潵鏀逛竴鏀硅繖閲岄潰鐨勪竴浜涜缃€�
+
+**鍏抽棴杩愯鏃ュ織鍥捐〃锛坆anner)**
+
+```properties
+spring.main.banner-mode=off
+```
+
+**璁剧疆杩愯鏃ュ織鐨勬樉绀虹骇鍒�**
+
+```properties
+logging.level.root=debug
+```
+
+鈥�	浣犱細鍙戠幇锛岀幇鍦ㄨ繖涔堟悶閰嶇疆澶埥浜嗭紝浠ュ墠浣犲仛閰嶇疆鎬庝箞鍋氾紵涓嶅悓鐨勬妧鏈湁鑷繁涓撶敤鐨勯厤缃枃浠讹紝鏂囦欢涓嶅悓鏍煎紡涔熶笉缁熶竴锛岀幇鍦ㄥ憿锛熶笉鐢ㄤ笢濂旇タ璧扮殑鎵鹃厤缃枃浠跺啓閰嶇疆浜嗭紝缁熶竴鏍煎紡浜嗭紝杩欏氨鏄ぇ绉﹀笣鍥藉晩锛岀粺涓€鍏浗銆係pringBoot姣斿ぇ绉︾嫚锛屽洜涓烘湭鏉ュ嚭鐜扮殑鎶€鏈繕娌″嚭鐜板憿锛屼絾鏄幇鍦ㄥ凡缁忕‘璁や簡锛岄厤缃兘鍐欒繖涓枃浠堕噷闈€€�
+
+鈥�	鎴戜滑鐜板湪閰嶇疆浜�3涓俊鎭紝浣嗘槸鍙堟湁鏂扮殑闂浜嗐€傝繖涓厤缃槸闅忎究鍐欑殑鍚楋紵浠€涔堥兘鑳介厤锛熸湁娌℃湁涓€涓笢瑗挎樉绀烘墍鏈夎兘閰嶇疆鐨勯」鍛紵姝ゅ杩欎釜閰嶇疆鍜屼粈涔堜笢瑗挎湁鍏冲憿锛熶細涓嶄細鍥犱负鎴戝啓浜嗕粈涔堜笢瑗夸互鍚庢墠鍙互鍐欎粈涔堥厤缃憿锛熸瘮濡傛垜鐜板湪娌℃湁鍐欐暟鎹簱鐩稿叧鐨勪笢瑗匡紝鑳藉惁閰嶇疆鏁版嵁鍛紵涓€涓竴涓潵锛屽厛璇寸涓€涓棶棰橈紝閮借兘閰嶇疆浠€涔堛€�
+
+鈥�	鎵撳紑SpringBoot鐨勫畼缃戯紝鎵惧埌SpringBoot瀹樻柟鏂囨。锛屾墦寮€鏌ョ湅闄勫綍涓殑Application Properties灏卞彲浠ヨ幏鍙栧埌瀵瑰簲鐨勯厤缃」浜嗭紝缃戝潃濂変笂锛歨ttps://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#application-properties
+
+鈥�	鑳藉啓浠€涔堢殑闂瑙ｅ喅浜嗭紝鍐嶆潵璇寸浜屼釜闂锛岃繖涓厤缃」鍜屼粈涔堟湁鍏炽€傚湪pom涓敞閲婃帀瀵煎叆鐨剆pring-boot-starter-web锛岀劧鍚庡埛鏂板伐绋嬶紝浣犱細鍙戠幇閰嶇疆鐨勬彁绀烘秷澶变簡銆傞椆浜嗗崐澶╂槸璁惧畾浣跨敤浜嗕粈涔堟妧鏈墠鑳藉仛浠€涔堥厤缃€備篃鍚堢悊锛屼笉鐒堕厤缃殑涓滆タ閮芥病鏈変娇鐢ㄥ搴旀妧鏈紝閰嶄簡涔熸槸鐧介厤銆�
+
+<font color="#f0f"><b>娓╅Θ鎻愮ず</b></font>
+
+鈥�	鎵€鏈夌殑starter涓兘浼氫緷璧栦笅闈㈣繖涓猻tarter锛屽彨鍋歴pring-boot-starter銆傝繖涓猻tarter鏄墍鏈夌殑SpringBoot鐨剆tarter鐨勫熀纭€渚濊禆锛岄噷闈㈠畾涔変簡SpringBoot鐩稿叧鐨勫熀纭€閰嶇疆锛屽叧浜庤繖涓猻tarter鎴戜滑鍒板紑鍙戝簲鐢ㄧ瘒鍜屽師鐞嗙瘒涓啀娣卞叆璁茶В銆�
+
+```JAVA
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter</artifactId>
+    <version>2.5.4</version>
+    <scope>compile</scope>
+</dependency>
+```
+
+**鎬荤粨**
+
+1. SpringBoot涓鍏ュ搴攕tarter鍚庯紝鎻愪緵瀵瑰簲閰嶇疆灞炴€�
+2. 涔﹀啓SpringBoot閰嶇疆閲囩敤鍏抽敭瀛�+鎻愮ず褰㈠紡涔﹀啓
+
+
+
+### JC-2-2.閰嶇疆鏂囦欢鍒嗙被
+
+鈥�	鐜板湪宸茬粡鑳藉杩涜SpringBoot鐩稿叧鐨勯厤缃簡锛屼絾鏄痯roperties鏍煎紡鐨勯厤缃啓璧锋潵鎬绘槸瑙夊緱鐪嬬潃涓嶈垝鏈嶏紝鎵€浠ュ氨鏈熸湜瀛樺湪涓€绉嶄功鍐欒捣鏉ユ洿绠€渚跨殑閰嶇疆鏍煎紡鎻愪緵缁欏紑鍙戣€呬娇鐢ㄣ€傛湁鍚楋紵杩樼湡鏈夛紝SpringBoot闄や簡鏀寔properties鏍煎紡鐨勯厤缃枃浠讹紝杩樻敮鎸佸彟澶栦袱绉嶆牸寮忕殑閰嶇疆鏂囦欢銆傚垎鍒涓�:
+
+- properties鏍煎紡
+- yml鏍煎紡
+- yaml鏍煎紡
+
+   涓€鐪嬪埌鍏ㄦ柊鐨勬枃浠舵牸寮忥紝鍚勪綅灏忎紮浼磋偗瀹氭兂锛岃繖涓嬪張瑕佸涔犳柊鐨勮娉曟牸寮忎簡銆傛€庝箞璇村憿锛熶粠鐭ヨ瘑瑙掑害鏉ヨ锛岃瀛︼紝浠庡紑鍙戣搴︽潵璇达紝涓嶇敤瀛︺€備负浠€涔堝憿锛熷洜涓篠pringBoot鐨勯厤缃湪Idea宸ュ叿涓嬫湁鎻愮ず鍟婏紝璺熺潃鎻愮ず璧板氨琛屼簡銆備笅闈㈠垪涓句笁绉嶄笉鍚屾枃浠舵牸寮忛厤缃浉鍚岀殑灞炴€ц寖渚嬶紝鍏堜簡瑙ｄ竴涓�
+
+- application.properties锛坧roperties鏍煎紡锛�
+
+```properties
+server.port=80
+```
+
+- application.yml锛坹ml鏍煎紡锛�
+
+```YML
+server:
+  port: 81
+```
+
+- application.yaml锛坹aml鏍煎紡锛�
+
+```yaml
+server:
+  port: 82
+```
+
+鈥�	浠旂粏鐪嬩細鍙戠幇yml鏍煎紡鍜寉aml鏍煎紡闄や簡鏂囦欢鍚嶅悗缂€涓嶄竴鏍凤紝鏍煎紡瀹屽叏涓€鏍凤紝鏄繖鏍风殑锛寉ml鍜寉aml鏂囦欢鏍煎紡灏辨槸涓€妯′竴鏍风殑锛屽彧鏄枃浠跺悗缂€涓嶅悓锛屾墍浠ュ彲浠ュ悎骞舵垚涓€绉嶆牸寮忔潵鐪嬨€傞偅瀵逛簬杩欎笁绉嶆牸寮忔潵璇达紝浠ュ悗鐢ㄥ摢涓€绉嶆瘮杈冨鍛紵璁版竻妤氾紝浠ュ悗鍩烘湰涓婇兘鏄敤yml鏍煎紡鐨勶紝鏈绋嬪悗闈㈢殑鎵€鏈夌煡璇嗛兘鏄熀浜巠ml鏍煎紡鏉ュ埗浣滅殑锛屼互鍚庡湪浼佷笟寮€鍙戣繃绋嬩腑鐢ㄨ繖涓牸寮忕殑鏈轰細涔熸渶澶氾紝涓€瀹氳閲嶇偣鎺屾彙銆�
+
+**鎬荤粨**
+
+1. SpringBoot鎻愪緵浜�3绉嶉厤缃枃浠剁殑鏍煎紡
+   - properties锛堜紶缁熸牸寮�/榛樿鏍煎紡锛�
+   - **yml**锛堜富娴佹牸寮忥級
+   - yaml
+
+**鎬濊€�**
+
+鈥�	鐜板湪鎴戜滑宸茬粡鐭ラ亾浣跨敤涓夌鏍煎紡閮藉彲浠ュ仛閰嶇疆浜嗭紝濂藉瀹濆疂浠氨鏈夋柊鐨勭伒榄傛嫹闂簡锛屼竾涓€鎴戜笁涓兘鍐欎簡锛屼粬浠笁涓皝璇翠簡绠楀憿锛熸墦涓€鏋跺悧锛�
+
+
+
+#### 閰嶇疆鏂囦欢浼樺厛绾�
+
+鈥�	鍏跺疄涓変釜鏂囦欢濡傛灉鍏卞瓨鐨勮瘽锛岃皝鐢熸晥璇寸殑灏辨槸閰嶇疆鏂囦欢鍔犺浇鐨勪紭鍏堢骇鍒€傚厛璇翠竴鐐癸紝铏界劧浠ュ悗杩欑鎯呭喌寰堝皯鍑虹幇锛屼絾鏄繖涓煡璇嗚繕鏄彲浠ュ涔犱竴涓嬬殑銆傛垜浠氨璁╀笁涓厤缃枃浠朵功鍐欏悓鏍风殑淇℃伅锛屾瘮濡傞兘閰嶇疆绔彛锛岀劧鍚庢垜浠姣忎釜鏂囦欢閰嶇疆鐨勭鍙ｅ彿閮戒笉涓€鏍凤紝鏈€鍚庡惎鍔ㄧ▼搴忓悗鐪嬪惎鍔ㄧ鍙ｆ槸澶氬皯灏辩煡閬撹皝鐨勫姞杞戒紭鍏堢骇姣旇緝楂樹簡銆�
+
+- application.properties锛坧roperties鏍煎紡锛�
+
+```properties
+server.port=80
+```
+
+- application.yml锛坹ml鏍煎紡锛�
+
+```YML
+server:
+  port: 81
+```
+
+- application.yaml锛坹aml鏍煎紡锛�
+
+```yaml
+server:
+  port: 82
+```
+
+鈥�	鍚姩鍚庡彂鐜扮洰鍓嶇殑鍚姩绔彛涓�80锛屾妸80瀵瑰簲鐨勬枃浠跺垹闄ゆ帀锛岀劧鍚庡啀鍚姩锛岀幇鍦ㄧ鍙ｅ張鏀规垚浜�81銆傜幇鍦ㄦ垜浠氨宸茬粡鐭ラ亾浜�3涓枃浠剁殑鍔犺浇浼樺厛椤哄簭鏄粈涔�
+
+```XML
+application.properties  >  application.yml  >  application.yaml
+```
+
+鈥�	铏界劧寰楀埌浜嗕竴涓煡璇嗙粨璁猴紝浣嗘槸鎴戜滑瀹為檯寮€鍙戠殑鏃跺€欒繕鏄鐪嬫渶缁堢殑鏁堟灉涓哄噯銆備篃灏辨槸浣犺鐨勬渶缁堟晥鏋滄槸浠€涔堣嚜宸辨槸鏄庣‘鐨勶紝涓婅堪缁撹鍙兘甯姪浣犲垎鏋愮粨璁轰骇鐢熺殑鍘熷洜銆傝繖涓煡璇嗕簡瑙ｄ竴涓嬪氨琛屼簡锛屽洜涓轰互鍚庡悓鏃跺啓澶氱閰嶇疆鏂囦欢鏍煎紡鐨勬儏鍐靛疄鍦ㄦ槸杈冨皯銆�
+
+鈥�	鏈€鍚庢垜浠妸閰嶇疆鏂囦欢鍐呭缁欎慨鏀逛竴涓�
+
+- application.properties锛坧roperties鏍煎紡锛�
+
+```properties
+server.port=80
+spring.main.banner-mode=off
+```
+
+- application.yml锛坹ml鏍煎紡锛�
+
+```YML
+server:
+  port: 81
+logging: 
+  level: 
+    root: debug
+```
+
+- application.yaml锛坹aml鏍煎紡锛�
+
+```yaml
+server:
+  port: 82
+```
+
+鈥�	鎴戜滑鍙戠幇涓嶄粎绔彛鐢熸晥浜嗭紝鏈€缁堟樉绀�80锛屽悓鏃跺叾浠栦袱鏉￠厤缃篃鐢熸晥浜嗭紝鐪嬫潵姣忎釜閰嶇疆鏂囦欢涓殑椤归兘浼氱敓鏁堬紝鍙笉杩囧鏋滃涓厤缃枃浠朵腑鏈夌浉鍚岀被鍨嬬殑閰嶇疆浼氫紭鍏堢骇楂樼殑鏂囦欢瑕嗙洊浼樺厛绾х殑鏂囦欢涓殑閰嶇疆銆傚鏋滈厤缃」涓嶅悓鐨勮瘽锛岄偅鎵€鏈夌殑閰嶇疆椤归兘浼氱敓鏁堛€�
+
+**鎬荤粨**
+
+1. 閰嶇疆鏂囦欢闂寸殑鍔犺浇浼樺厛绾�	properties锛堟渶楂橈級>  yml  >  yaml锛堟渶浣庯級
+2. 涓嶅悓閰嶇疆鏂囦欢涓浉鍚岄厤缃寜鐓у姞杞戒紭鍏堢骇鐩镐簰瑕嗙洊锛屼笉鍚岄厤缃枃浠朵腑涓嶅悓閰嶇疆鍏ㄩ儴淇濈暀 
+
+
+
+#### 鏁欎綘涓€鎷涳細**鑷姩鎻愮ず鍔熻兘娑堝け瑙ｅ喅鏂规**
+
+鈥�	鍙兘鏈変簺灏忎紮浼翠細鍩轰簬鍚勭鍚勬牱鐨勫師鍥犲鑷撮厤缃枃浠朵腑娌℃湁鎻愮ず锛岃繖涓‘瀹炲緢璁╀汉澶寸柤锛屾墍浠ヤ笅闈㈢粰澶у璇翠竴涓嬪鏋滆嚜鍔ㄦ彁绀哄姛鑳芥秷澶变簡鎬庝箞瑙ｅ喅銆�
+
+鈥�	鍏堣鏄庣‘涓€涓牳蹇冿紝灏辨槸鑷姩鎻愮ず鍔熻兘涓嶆槸SpringBoot鎶€鏈粰鎴戜滑鎻愪緵鐨勶紝鏄垜浠湪Idea宸ュ叿涓嬬紪绋嬶紝杩欎釜缂栫▼宸ュ叿缁欐垜浠彁渚涚殑銆傛槑鐧戒簡杩欎竴鐐瑰悗锛屽啀鏉ヨ涓轰粈涔堜細鍑虹幇杩欑鐜拌薄銆傚叾瀹炶繖涓嚜鍔ㄦ彁绀哄姛鑳芥秷澶辩殑鍘熷洜杩樻槸铔鐨勶紝濡傛灉鎯宠В鍐宠繖涓棶棰橈紝灏辫鐭ラ亾涓轰粈涔堜細娑堝け锛屽ぇ浣撳師鍥犳湁濡備笅3绉嶏細
+
+1. Idea璁や负浣犵幇鍦ㄥ啓閰嶇疆鐨勬枃浠朵笉鏄釜閰嶇疆鏂囦欢锛屾墍浠ユ嫆缁濈粰浣犳彁渚涙彁绀哄姛鑳�
+2. Idea璁ゅ畾浣犳槸鍚堢悊鐨勯厤缃枃浠讹紝浣嗘槸Idea鍔犺浇涓嶅埌瀵瑰簲鐨勬彁绀轰俊鎭�
+
+   杩欓噷鎴戜滑涓昏瑙ｅ喅绗竴涓幇璞★紝绗簩绉嶇幇璞″埌鍘熺悊绡囧啀璁茶В銆傜涓€绉嶇幇璞＄殑瑙ｅ喅鏂瑰紡濡備笅锛�
+
+**姝ラ鈶�**锛氭墦寮€璁剧疆锛屻€怓iles銆戔啋銆怭roject Structure...銆�
+
+![image-20211126160548690](img\image-20211126160548690.png)
+
+**姝ラ鈶�**锛氬湪寮瑰嚭绐楀彛涓乏渚ч€夋嫨銆怓acets銆戯紝鍙充晶閫変腑Spring璺緞涓嬪搴旂殑妯″潡鍚嶇О锛屼篃灏辨槸浣犺嚜鍔ㄦ彁绀哄姛鑳芥秷澶辩殑閭ｄ釜妯″潡
+
+![image-20211126160726589](img\image-20211126160726589.png)![image-20211126160844372](img\image-20211126160844372.png)
+
+**姝ラ鈶�**锛氱偣鍑籆ustomize Spring Boot鎸夐挳锛屾鏃跺彲浠ョ湅鍒板綋鍓嶆ā鍧楀搴旂殑閰嶇疆鏂囦欢鏄摢浜涗簡銆傚鏋滄病鏈変綘鎯宠绉颁负閰嶇疆鏂囦欢鐨勬枃浠舵牸寮忥紝灏辨湁鍙兘鏃犳硶寮瑰嚭鎻愮ず
+
+![image-20211126160946448](img\image-20211126160946448.png)![image-20211126160954338](img\image-20211126160954338.png)
+
+**姝ラ鈶�**锛氶€夋嫨娣诲姞閰嶇疆鏂囦欢锛岀劧鍚庨€変腑瑕佷綔涓洪厤缃枃浠剁殑鍏蜂綋鏂囦欢灏監K浜�
+
+![image-20211126161145082](img\image-20211126161145082.png)<img src="img\image-20211126161156324.png" alt="image-20211126161156324" style="zoom:80%;" />
+
+鈥�	鍒拌繖閲屽氨鍋氬畬浜嗭紝鍏跺疄灏辨槸Idea鐨勪竴涓皬鍔熻兘
+
+![image-20211126161301699](img\image-20211126161301699.png)
+
+
+
+**鎬荤粨**
+
+1. 鎸囧畾SpringBoot閰嶇疆鏂囦欢
+
+   - Setting 鈫� Project Structure 鈫� Facets
+   - 閫変腑瀵瑰簲椤圭洰/宸ョ▼
+   - Customize Spring Boot
+   - 閫夋嫨閰嶇疆鏂囦欢
+
+   
+
+### JC-2-3.yaml鏂囦欢
+
+鈥�	SpringBoot鐨勯厤缃互鍚庝富瑕佷娇鐢▂ml缁撳熬鐨勮繖绉嶆枃浠舵牸寮忥紝骞朵笖鍦ㄤ功鍐欐椂鍙互閫氳繃鎻愮ず鐨勫舰寮忓姞杞芥纭殑鏍煎紡銆備絾鏄繖绉嶆枃浠惰繕鏄湁涓ユ牸鐨勪功鍐欐牸寮忚姹傜殑銆備笅闈㈠氨鏉ヨ涓€涓嬪叿浣撶殑璇硶鏍煎紡銆�
+
+鈥�	YAML锛圷AML Ain't Markup Language锛夛紝涓€绉嶆暟鎹簭鍒楀寲鏍煎紡銆傚叿鏈夊鏄撻槄璇汇€佸鏄撲笌鑴氭湰璇█浜や簰銆佷互鏁版嵁涓烘牳蹇冿紝閲嶆暟鎹交鏍煎紡鐨勭壒鐐广€傚父瑙佺殑鏂囦欢鎵╁睍鍚嶆湁涓ょ锛�
+
+- .yml鏍煎紡锛堜富娴侊級
+- .yaml鏍煎紡
+
+   瀵逛簬鏂囦欢鑷韩鍦ㄤ功鍐欐椂锛屽叿鏈変弗鏍肩殑璇硶鏍煎紡瑕佹眰锛屽叿浣撳涓嬶細
+
+1. 澶у皬鍐欐晱鎰�
+2. 灞炴€у眰绾у叧绯讳娇鐢ㄥ琛屾弿杩帮紝**姣忚缁撳熬浣跨敤鍐掑彿缁撴潫**
+3. 浣跨敤缂╄繘琛ㄧず灞傜骇鍏崇郴锛屽悓灞傜骇宸︿晶瀵归綈锛屽彧鍏佽浣跨敤绌烘牸锛堜笉鍏佽浣跨敤Tab閿級
+4. 灞炴€у€煎墠闈㈡坊鍔犵┖鏍硷紙灞炴€у悕涓庡睘鎬у€间箣闂翠娇鐢ㄥ啋鍙�+绌烘牸浣滀负鍒嗛殧锛�
+5. #鍙� 琛ㄧず娉ㄩ噴
+
+  涓婅堪瑙勫垯涓嶈姝昏纭儗锛屾寜鐓т功鍐欎範鎯參鎱㈤€傚簲锛屽苟涓斿湪Idea涓嬬敱浜庡叿鏈夋彁绀哄姛鑳斤紝鎱㈡參閫傚簲鐫€鍐欐牸寮忓氨琛屼簡銆傛牳蹇冪殑涓€鏉¤鍒欒璁颁綇锛�<font color="#ff0000"><b>鏁版嵁鍓嶉潰瑕佸姞绌烘牸涓庡啋鍙烽殧寮€</b></font>
+
+鈥�	涓嬮潰鍒楀嚭甯歌鐨勬暟鎹功鍐欐牸寮忥紝鐔熸倝涓€涓�
+
+```YAML
+boolean: TRUE  						#TRUE,true,True,FALSE,false锛孎alse鍧囧彲
+float: 3.14    						#6.8523015e+5  #鏀寔绉戝璁℃暟娉�
+int: 123       						#0b1010_0111_0100_1010_1110    #鏀寔浜岃繘鍒躲€佸叓杩涘埗銆佸崄鍏繘鍒�
+null: ~        						#浣跨敤~琛ㄧずnull
+string: HelloWorld      			#瀛楃涓插彲浠ョ洿鎺ヤ功鍐�
+string2: "Hello World"  			#鍙互浣跨敤鍙屽紩鍙峰寘瑁圭壒娈婂瓧绗�
+date: 2018-02-17        			#鏃ユ湡蹇呴』浣跨敤yyyy-MM-dd鏍煎紡
+datetime: 2018-02-17T15:02:31+08:00  #鏃堕棿鍜屾棩鏈熶箣闂翠娇鐢═杩炴帴锛屾渶鍚庝娇鐢�+浠ｈ〃鏃跺尯
+```
+
+鈥�	姝ゅ锛寉aml鏍煎紡涓篃鍙互琛ㄧず鏁扮粍锛屽湪灞炴€у悕涔﹀啓浣嶇疆鐨勪笅鏂逛娇鐢ㄥ噺鍙蜂綔涓烘暟鎹紑濮嬬鍙凤紝姣忚涔﹀啓涓€涓暟鎹紝鍑忓彿涓庢暟鎹棿绌烘牸鍒嗛殧
+
+```YAML
+subject:
+	- Java
+	- 鍓嶇
+	- 澶ф暟鎹�
+enterprise:
+	name: itcast
+    age: 16
+    subject:
+    	- Java
+        - 鍓嶇
+        - 澶ф暟鎹�
+likes: [鐜嬭€呰崳鑰€,鍒烘縺鎴樺満]			#鏁扮粍涔﹀啓缂╃暐鏍煎紡
+users:							 #瀵硅薄鏁扮粍鏍煎紡涓€
+  - name: Tom
+   	age: 4
+  - name: Jerry
+    age: 5
+users:							 #瀵硅薄鏁扮粍鏍煎紡浜�
+  -  
+    name: Tom
+    age: 4
+  -   
+    name: Jerry
+    age: 5			    
+users2: [ { name:Tom , age:4 } , { name:Jerry , age:5 } ]	#瀵硅薄鏁扮粍缂╃暐鏍煎紡
+```
+
+**鎬荤粨**
+
+1. yaml璇硶瑙勫垯
+   - 澶у皬鍐欐晱鎰�
+   - 灞炴€у眰绾у叧绯讳娇鐢ㄥ琛屾弿杩帮紝姣忚缁撳熬浣跨敤鍐掑彿缁撴潫
+   - 浣跨敤缂╄繘琛ㄧず灞傜骇鍏崇郴锛屽悓灞傜骇宸︿晶瀵归綈锛屽彧鍏佽浣跨敤绌烘牸锛堜笉鍏佽浣跨敤Tab閿級
+   - 灞炴€у€煎墠闈㈡坊鍔犵┖鏍硷紙灞炴€у悕涓庡睘鎬у€间箣闂翠娇鐢ㄥ啋鍙�+绌烘牸浣滀负鍒嗛殧锛�
+   - #鍙� 琛ㄧず娉ㄩ噴
+2. 娉ㄦ剰灞炴€у悕鍐掑彿鍚庨潰涓庢暟鎹箣闂存湁涓€涓�**绌烘牸**
+3. 瀛楅潰鍊笺€佸璞℃暟鎹牸寮忋€佹暟缁勬暟鎹牸寮�
+
+**鎬濊€�**
+
+鈥�	鐜板湪鎴戜滑宸茬粡鐭ラ亾浜唝aml鍏锋湁涓ユ牸鐨勬暟鎹牸寮忚姹傦紝骞朵笖宸茬粡鍙互姝ｇ‘鐨勪功鍐檡aml鏂囦欢浜嗭紝閭ｈ繖浜涙枃浠朵功鍐欏悗鍏跺疄鏄湪瀹氫箟涓€浜涙暟鎹€傝繖浜涙暟鎹椂缁欒皝鐢ㄧ殑鍛紵澶ч儴鍒嗘槸SpringBoot妗嗘灦鍐呴儴浣跨敤锛屼絾鏄鏋滄垜浠兂閰嶇疆涓€浜涙暟鎹嚜宸变娇鐢紝鑳戒笉鑳界敤鍛紵绛旀鏄彲浠ョ殑锛岄偅濡備綍璇诲彇yaml鏂囦欢涓殑鏁版嵁鍛紵鍜变滑涓嬩竴鑺傚啀璇淬€�
+
+
+
+### JC-2-4.yaml鏁版嵁璇诲彇
+
+鈥�	瀵逛簬yaml鏂囦欢涓殑鏁版嵁锛屽叾瀹炰綘灏卞彲浠ユ兂璞℃垚杩欏氨鏄竴涓皬鍨嬬殑鏁版嵁搴擄紝閲岄潰淇濆瓨鏈夎嫢骞叉暟鎹紝姣忎釜鏁版嵁閮芥湁涓€涓嫭绔嬬殑鍚嶅瓧锛屽鏋滀綘鎯宠鍙栭噷闈㈢殑鏁版嵁锛岃偗瀹氭槸鏀寔鐨勶紝涓嬮潰灏变粙缁�3绉嶈鍙栨暟鎹殑鏂瑰紡
+
+#### 璇诲彇鍗曚竴鏁版嵁
+
+鈥�	yaml涓繚瀛樼殑鍗曚釜鏁版嵁锛屽彲浠ヤ娇鐢⊿pring涓殑娉ㄨВ鐩存帴璇诲彇锛屼娇鐢ˊValue鍙互璇诲彇鍗曚釜鏁版嵁锛屽睘鎬у悕寮曠敤鏂瑰紡锛�<font color="#ff0000"><b>${涓€绾у睘鎬у悕.浜岀骇灞炴€у悕鈥︹€</b></font>
+
+<img src="img\image-20211126180433356.png" alt="image-20211126180433356" style="zoom:80%;" />
+
+鈥�	璁板緱浣跨敤@Value娉ㄨВ鏃讹紝瑕佸皢璇ユ敞鍏ュ啓鍦ㄦ煇涓€涓寚瀹氱殑Spring绠℃帶鐨刡ean鐨勫睘鎬у悕涓婃柟銆傜幇鍦ㄥ氨鍙互璇诲彇鍒板搴旂殑鍗曚竴鏁版嵁琛屼簡
+
+**鎬荤粨**
+
+1. 浣跨敤@Value閰嶅悎SpEL璇诲彇鍗曚釜鏁版嵁
+2. 濡傛灉鏁版嵁瀛樺湪澶氬眰绾э紝渚濇涔﹀啓灞傜骇鍚嶇О鍗冲彲
+
+
+
+#### 璇诲彇鍏ㄩ儴鏁版嵁
+
+鈥�	璇诲彇鍗曚竴鏁版嵁鍙互瑙ｅ喅璇诲彇鏁版嵁鐨勯棶棰橈紝浣嗘槸濡傛灉瀹氫箟鐨勬暟鎹噺杩囧ぇ锛岃繖涔堜竴涓竴涓功鍐欒偗瀹氫細绱浜虹殑锛孲pringBoot鎻愪緵浜嗕竴涓璞★紝鑳藉鎶婃墍鏈夌殑鏁版嵁閮藉皝瑁呭埌杩欎竴涓璞′腑锛岃繖涓璞″彨鍋欵nvironment锛屼娇鐢ㄨ嚜鍔ㄨ閰嶆敞瑙ｅ彲浠ュ皢鎵€鏈夌殑yaml鏁版嵁灏佽鍒拌繖涓璞′腑
+
+<img src="img\image-20211126180738569.png" alt="image-20211126180738569" style="zoom:80%;" />
+
+鈥�	鏁版嵁灏佽鍒颁簡Environment瀵硅薄涓紝鑾峰彇灞炴€ф椂锛岄€氳繃Environment鐨勬帴鍙ｆ搷浣滆繘琛岋紝鍏蜂綋鏂规硶鏃秅etProperties锛圫tring锛夛紝鍙傛暟濉啓灞炴€у悕鍗冲彲
+
+**鎬荤粨**
+
+1. 浣跨敤Environment瀵硅薄灏佽鍏ㄩ儴閰嶇疆淇℃伅
+2. 浣跨敤@Autowired鑷姩瑁呴厤鏁版嵁鍒癊nvironment瀵硅薄涓�
+
+
+
+#### 璇诲彇瀵硅薄鏁版嵁
+
+鈥�	鍗曚竴鏁版嵁璇诲彇涔﹀啓姣旇緝绻佺悙锛屽叏鏁版嵁灏佽鍙堝皝瑁呯殑澶帀瀹充簡锛屾瘡娆℃嬁鏁版嵁杩樿涓€涓竴涓殑getProperties锛堬級,鎬讳箣鐢ㄨ捣鏉ラ兘涓嶆槸寰堣垝鏈嶃€傜敱浜嶫ava鏄竴涓潰鍚戝璞＄殑璇█锛屽緢澶氭儏鍐典笅锛屾垜浠細灏嗕竴缁勬暟鎹皝瑁呮垚涓€涓璞°€係pringBoot涔熸彁渚涗簡鍙互灏嗕竴缁剏aml瀵硅薄鏁版嵁灏佽涓€涓狫ava瀵硅薄鐨勬搷浣�
+
+鈥�	棣栧厛瀹氫箟涓€涓璞★紝骞跺皢璇ュ璞＄撼鍏pring绠℃帶鐨勮寖鍥达紝涔熷氨鏄畾涔夋垚涓€涓猙ean锛岀劧鍚庝娇鐢ㄦ敞瑙ConfigurationProperties鎸囧畾璇ュ璞″姞杞藉摢涓€缁剏aml涓厤缃殑淇℃伅銆�
+
+<img src="img\image-20211126181126382.png" alt="image-20211126181126382" style="zoom:80%;" />
+
+鈥�	杩欎釜@ConfigurationProperties蹇呴』鍛婅瘔浠栧姞杞界殑鏁版嵁鍓嶇紑鏄粈涔堬紝杩欐牱褰撳墠鍓嶇紑涓嬬殑鎵€鏈夊睘鎬у氨灏佽鍒拌繖涓璞′腑銆傝寰楁暟鎹睘鎬у悕瑕佷笌瀵硅薄鐨勫彉閲忓悕涓€涓€瀵瑰簲鍟婏紝涓嶇劧娌℃硶灏佽銆傚叾瀹炰互鍚庡鏋滀綘瑕佸畾涔変竴缁勬暟鎹嚜宸变娇鐢紝灏卞彲浠ュ厛鍐欎竴涓璞★紝鐒跺悗瀹氫箟濂藉睘鎬э紝涓嬮潰鍒伴厤缃腑鏍规嵁杩欎釜鏍煎紡涔﹀啓鍗冲彲銆�
+
+鈥�	<img src="img\image-20211126181423432.png" alt="image-20211126181423432" style="zoom:80%;" />
+
+鈥�	<font color="#f0f"><b>娓╅Θ鎻愮ず</b></font>
+
+鈥�		缁嗗績鐨勫皬浼欎即浼氬彂鐜颁竴涓棶棰橈紝鑷畾涔夌殑杩欑鏁版嵁鍦▂aml鏂囦欢涓功鍐欐椂娌℃湁寮瑰嚭鎻愮ず锛屾槸杩欐牱鐨勶紝鍜变滑鍒板師鐞嗙瘒鍐嶆彮绉樺浣曞脊鍑烘彁绀恒€�
+
+**鎬荤粨**
+
+1. 浣跨敤@ConfigurationProperties娉ㄨВ缁戝畾閰嶇疆淇℃伅鍒板皝瑁呯被涓�
+2. 灏佽绫婚渶瑕佸畾涔変负Spring绠＄悊鐨刡ean锛屽惁鍒欐棤娉曡繘琛屽睘鎬ф敞鍏�
+
+
+
+#### yaml鏂囦欢涓殑鏁版嵁寮曠敤
+
+鈥�	濡傛灉浣犲湪涔﹀啓yaml鏁版嵁鏃讹紝缁忓父鍑虹幇濡備笅鐜拌薄锛屾瘮濡傚緢澶氫釜鏂囦欢閮藉叿鏈夌浉鍚岀殑鐩綍鍓嶇紑
+
+```YAML
+center:
+	dataDir: /usr/local/fire/data
+    tmpDir: /usr/local/fire/tmp
+    logDir: /usr/local/fire/log
+    msgDir: /usr/local/fire/msgDir
+```
+
+鎴栬€�
+
+```YAML
+center:
+	dataDir: D:/usr/local/fire/data
+    tmpDir: D:/usr/local/fire/tmp
+    logDir: D:/usr/local/fire/log
+    msgDir: D:/usr/local/fire/msgDir
+```
+
+鈥�	杩欎釜鏃跺€欎綘鍙互浣跨敤寮曠敤鏍煎紡鏉ュ畾涔夋暟鎹紝鍏跺疄灏辨槸鎼炰簡涓彉閲忓悕锛岀劧鍚庡紩鐢ㄥ彉閲忎簡锛屾牸寮忓涓嬶細
+
+```YAML
+baseDir: /usr/local/fire
+	center:
+    dataDir: ${baseDir}/data
+    tmpDir: ${baseDir}/tmp
+    logDir: ${baseDir}/log
+    msgDir: ${baseDir}/msgDir
+```
+
+鈥�	杩樻湁涓€涓敞鎰忎簨椤癸紝鍦ㄤ功鍐欏瓧绗︿覆鏃讹紝濡傛灉闇€瑕佷娇鐢ㄨ浆涔夊瓧绗︼紝闇€瑕佸皢鏁版嵁瀛楃涓蹭娇鐢ㄥ弻寮曞彿鍖呰９璧锋潵
+
+```YAML
+lesson: "Spring\tboot\nlesson"
+```
+
+**鎬荤粨**
+
+1. 鍦ㄩ厤缃枃浠朵腑鍙互浣跨敤${灞炴€у悕}鏂瑰紡寮曠敤灞炴€у€�
+2. 濡傛灉灞炴€т腑鍑虹幇鐗规畩瀛楃锛屽彲浠ヤ娇鐢ㄥ弻寮曞彿鍖呰９璧锋潵浣滀负瀛楃瑙ｆ瀽
+
+
+
+鈥�	鍒拌繖閲屾湁鍏硑aml鏂囦欢鐨勫熀纭€浣跨敤灏卞厛鍛婁竴娈佃惤锛屽湪瀹炵敤绡囦腑鍐嶇户缁爺绌舵洿娣卞叆鐨勫唴瀹广€�
+
+
+
+## JC-3.鍩轰簬SpringBoot瀹炵幇SSMP鏁村悎
+
+鈥�	閲嶅ご鎴忔潵浜嗭紝SpringBoot涔嬫墍浠ュソ鐢紝灏辨槸瀹冭兘鏂逛究蹇嵎鐨勬暣鍚堝叾浠栨妧鏈紝杩欎竴閮ㄥ垎鍜变滑灏辨潵鑱婅亰涓€浜涙妧鏈殑鏁村悎鏂瑰紡锛岄€氳繃杩欎竴绔犵殑瀛︿範锛屽ぇ瀹惰兘澶熸劅鍙楀埌SpringBoot鍒板簳鏈夊閰风偒銆傝繖涓€绔犲挶浠涔犲涓嬫妧鏈殑鏁村悎鏂瑰紡
+
+- 鏁村悎JUnit
+- 鏁村悎MyBatis
+- 鏁村悎MyBatis-Plus
+- 鏁村悎Druid
+
+   涓婇潰杩欎簺鎶€鏈兘鏁村悎瀹屾瘯鍚庯紝鎴戜滑鍋氫竴涓皬妗堜緥锛屼篃绠楁槸瀛︽湁鎵€鐢ㄥ惂銆傛秹鍙婄殑鎶€鏈瘮杈冨锛岀患鍚堣繍鐢ㄤ竴涓嬨€�
+
+
+
+### JC-3-1.鏁村悎JUnit
+
+鈥�	SpringBoot鎶€鏈殑瀹氫綅鐢ㄤ簬绠€鍖栧紑鍙戯紝鍐嶅叿浣撶偣鏄畝鍖朣pring绋嬪簭鐨勫紑鍙戙€傛墍浠ュ湪鏁村悎浠绘剰鎶€鏈殑鏃跺€欙紝濡傛灉浣犳兂鐩磋鎰熻Е鍒扮畝鍖栫殑鏁堟灉锛屼綘蹇呴』鍏堢煡閬撲娇鐢ㄩ潪SpringBoot鎶€鏈椂瀵瑰簲鐨勬暣鍚堟槸濡備綍鍋氱殑锛岀劧鍚庡啀鐪嬪熀浜嶴pringBoot鐨勬暣鍚堟槸濡備綍鍋氱殑锛屾墠鑳芥瘮瀵瑰嚭鏉ョ畝鍖栧湪浜嗗摢閲屻€�
+
+鈥�	鎴戜滑鍏堟潵鐪嬩竴涓嬩笉浣跨敤SpringBoot鎶€鏈椂锛孲pring鏁村悎JUnit鐨勫埗浣滄柟寮�
+
+```JAVA
+//鍔犺浇spring鏁村悎junit涓撶敤鐨勭被杩愯鍣�
+@RunWith(SpringJUnit4ClassRunner.class)
+//鎸囧畾瀵瑰簲鐨勯厤缃俊鎭�
+@ContextConfiguration(classes = SpringConfig.class)
+public class AccountServiceTestCase {
+    //娉ㄥ叆浣犺娴嬭瘯鐨勫璞�
+    @Autowired
+    private AccountService accountService;
+    @Test
+    public void testGetById(){
+        //鎵ц瑕佹祴璇曠殑瀵硅薄瀵瑰簲鐨勬柟娉�
+        System.out.println(accountService.findById(2));
+    }
+}
+
+```
+
+鈥�	鍏朵腑鏍稿績浠ｇ爜鏄墠涓や釜娉ㄨВ锛岀涓€涓敞瑙RunWith鏄缃甋pring涓撶敤浜庢祴璇曠殑绫昏繍琛屽櫒锛岀畝鍗曡灏辨槸Spring绋嬪簭鎵ц绋嬪簭鏈夎嚜宸辩殑涓€濂楃嫭绔嬬殑杩愯绋嬪簭鐨勬柟寮忥紝涓嶈兘浣跨敤JUnit鎻愪緵鐨勭被杩愯鏂瑰紡浜嗭紝蹇呴』鎸囧畾涓€涓嬶紝浣嗘槸鏍煎紡鏄浐瀹氱殑锛岀悽纾ㄤ竴涓嬶紝<font color="#ff0000"><b>姣忔閮芥寚瀹氫竴鏍风殑涓滆タ锛岃繖涓笢瑗垮啓璧锋潵娌℃湁鎶€鏈惈閲忓晩</b></font>锛岀浜屼釜娉ㄨВ@ContextConfiguration鏄敤鏉ヨ缃甋pring鏍稿績閰嶇疆鏂囦欢鎴栭厤缃被鐨勶紝绠€鍗曡灏辨槸鍔犺浇Spring鐨勭幆澧冧綘瑕佸憡璇塖pring鍏蜂綋鐨勭幆澧冮厤缃槸鍦ㄥ摢閲屽啓鐨勶紝铏界劧姣忔鍔犺浇鐨勬枃浠堕兘鏈夊彲鑳戒笉鍚岋紝浣嗘槸浠旂粏鎯虫兂锛屽鏋滄枃浠跺悕鏄浐瀹氱殑锛岃繖涓矊浼间篃鏄竴涓浐瀹氭牸寮忋€備技鐒�<font color="#ff0000"><b>鏈夊彲鑳芥槸鍥哄畾鏍煎紡锛岄偅灏辨湁鍙兘姣忔閮藉啓涓€鏍风殑涓滆タ锛屼篃鏄竴涓病鏈夋妧鏈惈閲忕殑鍐呭涔﹀啓</b></font>
+
+鈥�	SpringBoot灏辨姄浣忎笂杩颁袱鏉℃病鏈夋妧鏈惈閲忕殑鍐呭涔﹀啓杩涜寮€鍙戠畝鍖栵紝鑳借蛋榛樿鍊肩殑璧伴粯璁ゅ€硷紝鑳戒笉鍐欑殑灏变笉鍐欙紝鍏蜂綋鏍煎紡濡備笅
+
+```JAVA
+@SpringBootTest
+class Springboot04JunitApplicationTests {
+    //娉ㄥ叆浣犺娴嬭瘯鐨勫璞�
+    @Autowired
+    private BookDao bookDao;
+    @Test
+    void contextLoads() {
+        //鎵ц瑕佹祴璇曠殑瀵硅薄瀵瑰簲鐨勬柟娉�
+        bookDao.save();
+        System.out.println("two...");
+    }
+}
+```
+
+鈥�	鐪嬬湅杩欐绠€鍖栨垚浠€涔堟牱浜嗭紝涓€涓敞瑙ｅ氨鎼炲畾浜嗭紝鑰屼笖杩樻病鏈夊弬鏁帮紝鍐嶄綋浼歋pringBoot鏁村悎鍏朵粬鎶€鏈殑浼樺娍鍦ㄥ摢閲岋紝灏变袱涓瓧鈥斺€�<font color="#ff0000"><b>绠€鍖�</b></font>銆備娇鐢ㄤ竴涓敞瑙SpringBootTest鏇挎崲浜嗗墠闈袱涓敞瑙ｃ€傝嚦浜庡唴閮ㄦ槸鎬庝箞鍥炰簨锛熷拰涔嬪墠涓€鏍凤紝鍙笉杩囬兘璧伴粯璁ゅ€笺€�
+
+鈥�	杩欎釜鏃跺€欐湁浜哄氨闂簡锛屼綘鍔犺浇鐨勯厤缃被鎴栬€呴厤缃枃浠舵槸鍝竴涓紵灏辨槸鎴戜滑鍓嶉潰鍚姩绋嬪簭浣跨敤鐨勫紩瀵肩被銆傚鏋滄兂鎵嬪伐鎸囧畾寮曞绫绘湁涓ょ鏂瑰紡锛岀涓€绉嶆柟寮忎娇鐢ㄥ睘鎬х殑褰㈠紡杩涜锛屽湪娉ㄨВ@SpringBootTest涓坊鍔燾lasses灞炴€ф寚瀹氶厤缃被
+
+```JAVA
+@SpringBootTest(classes = Springboot04JunitApplication.class)
+class Springboot04JunitApplicationTests {
+    //娉ㄥ叆浣犺娴嬭瘯鐨勫璞�
+    @Autowired
+    private BookDao bookDao;
+    @Test
+    void contextLoads() {
+        //鎵ц瑕佹祴璇曠殑瀵硅薄瀵瑰簲鐨勬柟娉�
+        bookDao.save();
+        System.out.println("two...");
+    }
+}
+```
+
+鈥�	绗簩绉嶆柟寮忓洖褰掑師濮嬮厤缃柟寮忥紝浠嶇劧浣跨敤@ContextConfiguration娉ㄨВ杩涜锛屾晥鏋滄槸涓€鏍风殑
+
+```JAVA
+@SpringBootTest
+@ContextConfiguration(classes = Springboot04JunitApplication.class)
+class Springboot04JunitApplicationTests {
+    //娉ㄥ叆浣犺娴嬭瘯鐨勫璞�
+    @Autowired
+    private BookDao bookDao;
+    @Test
+    void contextLoads() {
+        //鎵ц瑕佹祴璇曠殑瀵硅薄瀵瑰簲鐨勬柟娉�
+        bookDao.save();
+        System.out.println("two...");
+    }
+}
+```
+
+鈥�	<font color="#f0f"><b>娓╅Θ鎻愮ず</b></font>
+
+鈥�		浣跨敤SpringBoot鏁村悎JUnit闇€瑕佷繚闅滃鍏est瀵瑰簲鐨剆tarter锛岀敱浜庡垵濮嬪寲椤圭洰鏃舵椤规槸榛樿瀵煎叆鐨勶紝鎵€浠ユ澶勬病鏈夋彁鍙婏紝鍏跺疄鍜屼箣鍓嶅涔犵殑鍐呭涓€鏍凤紝鐢ㄤ粈涔堟妧鏈鍏ュ搴旂殑starter鍗冲彲銆�
+
+**鎬荤粨**
+
+1. 瀵煎叆娴嬭瘯瀵瑰簲鐨剆tarter
+2. 娴嬭瘯绫讳娇鐢ˊSpringBootTest淇グ
+3. 浣跨敤鑷姩瑁呴厤鐨勫舰寮忔坊鍔犺娴嬭瘯鐨勫璞�
+4. 娴嬭瘯绫诲鏋滃瓨鍦ㄤ簬寮曞绫绘墍鍦ㄥ寘鎴栧瓙鍖呬腑鏃犻渶鎸囧畾寮曞绫�
+5. 娴嬭瘯绫诲鏋滀笉瀛樺湪浜庡紩瀵肩被鎵€鍦ㄧ殑鍖呮垨瀛愬寘涓渶瑕侀€氳繃classes灞炴€ф寚瀹氬紩瀵肩被
+
+
+
+### JC-3-2.鏁村悎MyBatis
+
+鈥�	鏁村悎瀹孞Unit涓嬮潰鍐嶆潵璇翠竴涓嬫暣鍚圡yBatis锛岃繖涓妧鏈槸澶ч儴鍒嗗叕鍙搁兘瑕佷娇鐢ㄧ殑鎶€鏈紝鍔″繀鎺屾彙銆傚鏋滃Spring鏁村悎MyBatis涓嶇啛鎮夌殑灏忎紮浼村ソ濂藉涔犱竴涓嬶紝涓嬮潰鍒椾妇鍑哄師濮嬫暣鍚堢殑鍏ㄩ儴鍐呭锛屼互閰嶇疆绫荤殑褰㈠紡涓轰緥杩涜
+
+- 瀵煎叆鍧愭爣锛孧yBatis鍧愭爣涓嶈兘灏戯紝Spring鏁村悎MyBatis杩樻湁鑷繁涓撶敤鐨勫潗鏍囷紝姝ゅSpring杩涜鏁版嵁搴撴搷浣滅殑jdbc鍧愭爣鏄繀椤荤殑锛屽墿涓嬭繕鏈塵ysql椹卞姩鍧愭爣锛屾湰渚嬩腑浣跨敤浜咲ruid鏁版嵁婧愶紝杩欎釜鍊掓槸鍙互涓嶈
+
+  ```XML
+  <dependencies>
+      <dependency>
+          <groupId>com.alibaba</groupId>
+          <artifactId>druid</artifactId>
+          <version>1.1.16</version>
+      </dependency>
+      <dependency>
+          <groupId>org.mybatis</groupId>
+          <artifactId>mybatis</artifactId>
+          <version>3.5.6</version>
+      </dependency>
+      <dependency>
+          <groupId>mysql</groupId>
+          <artifactId>mysql-connector-java</artifactId>
+          <version>5.1.47</version>
+      </dependency>
+      <!--1.瀵煎叆mybatis涓巗pring鏁村悎鐨刯ar鍖�-->
+      <dependency>
+          <groupId>org.mybatis</groupId>
+          <artifactId>mybatis-spring</artifactId>
+          <version>1.3.0</version>
+      </dependency>
+      <!--瀵煎叆spring鎿嶄綔鏁版嵁搴撳繀閫夌殑鍖�-->
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-jdbc</artifactId>
+          <version>5.2.10.RELEASE</version>
+      </dependency>
+  </dependencies>
+  ```
+
+- Spring鏍稿績閰嶇疆
+
+  ```JAVA
+  @Configuration
+  @ComponentScan("com.itheima")
+  @PropertySource("jdbc.properties")
+  public class SpringConfig {
+  }
+  ```
+
+- MyBatis瑕佷氦缁橲pring鎺ョ鐨刡ean
+
+  ```JAVA
+  //瀹氫箟mybatis涓撶敤鐨勯厤缃被
+  @Configuration
+  public class MyBatisConfig {
+  //    瀹氫箟鍒涘缓SqlSessionFactory瀵瑰簲鐨刡ean
+      @Bean
+      public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource){
+          //SqlSessionFactoryBean鏄敱mybatis-spring鍖呮彁渚涚殑锛屼笓鐢ㄤ簬鏁村悎鐢ㄧ殑瀵硅薄
+          SqlSessionFactoryBean sfb = new SqlSessionFactoryBean();
+          //璁剧疆鏁版嵁婧愭浛浠ｅ師濮嬮厤缃腑鐨別nvironments鐨勯厤缃�
+          sfb.setDataSource(dataSource);
+          //璁剧疆绫诲瀷鍒悕鏇夸唬鍘熷閰嶇疆涓殑typeAliases鐨勯厤缃�
+          sfb.setTypeAliasesPackage("com.itheima.domain");
+          return sfb;
+      }
+  //    瀹氫箟鍔犺浇鎵€鏈夌殑鏄犲皠閰嶇疆
+      @Bean
+      public MapperScannerConfigurer mapperScannerConfigurer(){
+          MapperScannerConfigurer msc = new MapperScannerConfigurer();
+          msc.setBasePackage("com.itheima.dao");
+          return msc;
+      }
+  
+  }
+  ```
+
+- 鏁版嵁婧愬搴旂殑bean锛屾澶勪娇鐢―ruid鏁版嵁婧�
+
+  ```JAVA
+  @Configuration
+  public class JdbcConfig {
+      @Value("${jdbc.driver}")
+      private String driver;
+      @Value("${jdbc.url}")
+      private String url;
+      @Value("${jdbc.username}")
+      private String userName;
+      @Value("${jdbc.password}")
+      private String password;
+  
+      @Bean("dataSource")
+      public DataSource dataSource(){
+          DruidDataSource ds = new DruidDataSource();
+          ds.setDriverClassName(driver);
+          ds.setUrl(url);
+          ds.setUsername(userName);
+          ds.setPassword(password);
+          return ds;
+      }
+  }
+  ```
+
+- 鏁版嵁搴撹繛鎺ヤ俊鎭紙properties鏍煎紡锛�
+
+  ```properties
+  jdbc.driver=com.mysql.jdbc.Driver
+  jdbc.url=jdbc:mysql://localhost:3306/spring_db?useSSL=false
+  jdbc.username=root
+  jdbc.password=root
+  ```
+
+  涓婅堪鏍煎紡鍩烘湰涓婃槸绠€鏍煎紡浜嗭紝瑕佸啓鐨勪笢瑗胯繕鐪熶笉灏戙€備笅闈㈢湅鐪婼pringBoot鏁村悎MyBaits鏍煎紡
+
+**姝ラ鈶�**锛氬垱寤烘ā鍧楁椂鍕鹃€夎浣跨敤鐨勬妧鏈紝MyBatis锛岀敱浜庤鎿嶄綔鏁版嵁搴擄紝杩樿鍕鹃€夊搴旀暟鎹簱
+
+![image-20211129092156020](img\image-20211129092156020.png)
+
+![image-20211129092210993](img\image-20211129092210993.png)
+
+鈥�	鎴栬€呮墜宸ュ鍏ュ搴旀妧鏈殑starter锛屽拰瀵瑰簲鏁版嵁搴撶殑鍧愭爣
+
+```XML
+<dependencies>
+    <!--1.瀵煎叆瀵瑰簲鐨剆tarter-->
+    <dependency>
+        <groupId>org.mybatis.spring.boot</groupId>
+        <artifactId>mybatis-spring-boot-starter</artifactId>
+        <version>2.2.0</version>
+    </dependency>
+
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <scope>runtime</scope>
+    </dependency>
+</dependencies>
+```
+
+**姝ラ鈶�**锛氶厤缃暟鎹簮鐩稿叧淇℃伅锛屾病鏈夎繖涓俊鎭綘杩炴帴鍝釜鏁版嵁搴撻兘涓嶇煡閬�
+
+```yaml
+#2.閰嶇疆鐩稿叧淇℃伅
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ssm_db
+    username: root
+    password: root
+```
+
+鈥�	瀹屼簡锛屽氨杩欎箞澶氾紝娌′簡銆傛湁浜哄氨寰堢撼闂凤紝杩欏氨缁撴潫浜嗭紵瀵癸紝杩欏氨缁撴潫浜嗭紝SpringBoot鎶婇厤缃腑鎵€鏈夊彲鑳藉嚭鐜扮殑閫氱敤閰嶇疆閮界畝鍖栦簡銆備笅闈㈠氨鍙互鍐欎竴涓婱yBatis绋嬪簭杩愯闇€瑕佺殑Dao锛堟垨鑰匨apper锛夊氨鍙互杩愯浜�
+
+**瀹炰綋绫�**
+
+```JAVA
+public class Book {
+    private Integer id;
+    private String type;
+    private String name;
+    private String description;
+}
+```
+
+**鏄犲皠鎺ュ彛锛圖ao锛�**
+
+```JAVA
+@Mapper
+public interface BookDao {
+    @Select("select * from tbl_book where id = #{id}")
+    public Book getById(Integer id);
+}
+```
+
+**娴嬭瘯绫�**
+
+```JAVA
+@SpringBootTest
+class Springboot05MybatisApplicationTests {
+    @Autowired
+    private BookDao bookDao;
+    @Test
+    void contextLoads() {
+        System.out.println(bookDao.getById(1));
+    }
+}
+```
+
+鈥�	瀹岀編锛屽紑鍙戜粠姝ゅ彉鐨勫氨杩欎箞绠€鍗曘€傚啀浣撲細涓€涓婼pringBoot濡備綍杩涜绗笁鏂规妧鏈暣鍚堢殑锛屾槸涓嶆槸寰堜紭绉€锛熷叿浣撳唴閮ㄧ殑鍘熺悊鍒板師鐞嗙瘒鍐嶅睍寮€璁茶В
+
+鈥�	<font color="#ff0000"><b>娉ㄦ剰</b></font>锛氬綋鍓嶄娇鐢ㄧ殑SpringBoot鐗堟湰鏄�2.5.4锛屽搴旂殑鍧愭爣璁剧疆涓璏ysql椹卞姩浣跨敤鐨勬槸8x鐗堟湰銆傚綋SpringBoot2.4.3锛堜笉鍚級鐗堟湰涔嬪墠浼氬嚭鐜颁竴涓皬BUG锛屽氨鏄疢ySQL椹卞姩鍗囩骇鍒�8浠ュ悗瑕佹眰寮哄埗閰嶇疆鏃跺尯锛屽鏋滀笉璁剧疆浼氬嚭闂銆傝В鍐虫柟妗堝緢绠€鍗曪紝椹卞姩url涓婇潰娣诲姞涓婂搴旇缃氨琛屼簡
+
+```YAML
+#2.閰嶇疆鐩稿叧淇℃伅
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ssm_db?serverTimezone=UTC
+    username: root
+    password: root
+```
+
+鈥�	杩欓噷璁剧疆鐨刄TC鏄叏鐞冩爣鍑嗘椂闂达紝浣犱篃鍙互鐞嗚В涓烘槸鑻卞浗鏃堕棿锛屼腑鍥藉鍦ㄤ笢鍏尯锛岄渶瑕佸湪杩欎釜鍩虹涓婂姞涓�8灏忔椂锛岃繖鏍锋墠鑳藉拰涓浗鍦板尯鐨勬椂闂村搴旂殑锛屼篃鍙互淇敼閰嶇疆涓嶅啓UTC锛屽啓Asia/Shanghai涔熷彲浠ヨВ鍐宠繖涓棶棰樸€�
+
+```YAML
+#2.閰嶇疆鐩稿叧淇℃伅
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ssm_db?serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+```
+
+鈥�	濡傛灉涓嶆兂姣忔閮借缃繖涓笢瑗匡紝涔熷彲浠ュ幓淇敼mysql涓殑閰嶇疆鏂囦欢mysql.ini锛屽湪mysqld椤逛腑娣诲姞default-time-zone=+8:00涔熷彲浠ヨВ鍐宠繖涓棶棰樸€傚叾瀹炴柟寮忔柟娉曞緢澶氾紝杩欓噷灏辫杩欎箞澶氬惂銆�
+
+鈥�	姝ゅ鍦ㄨ繍琛岀▼搴忔椂杩樹細缁欏嚭涓€涓彁绀猴紝璇存暟鎹簱椹卞姩杩囨椂鐨勮鍛婏紝鏍规嵁鎻愮ず淇敼閰嶇疆鍗冲彲锛屽純鐢�**com.mysql.jdbc.Driver**锛屾崲鐢�<font color="#ff0000"><b>com.mysql.cj.jdbc.Driver</b></font>銆傚墠闈㈢殑渚嬪瓙涓凡缁忔洿鎹簡椹卞姩浜嗭紝鍦ㄦ璇存槑涓€涓嬨€�
+
+```tex
+Loading class `com.mysql.jdbc.Driver'. This is deprecated. The new driver class is `com.mysql.cj.jdbc.Driver'. The driver is automatically registered via the SPI and manual loading of the driver class is generally unnecessary.
+```
+
+**鎬荤粨**
+
+1. 鏁村悎鎿嶄綔闇€瑕佸嬀閫塎yBatis鎶€鏈紝涔熷氨鏄鍏yBatis瀵瑰簲鐨剆tarter
+
+2. 鏁版嵁搴撹繛鎺ョ浉鍏充俊鎭浆鎹㈡垚閰嶇疆
+
+3. 鏁版嵁搴揝QL鏄犲皠闇€瑕佹坊鍔燖Mapper琚鍣ㄨ瘑鍒埌
+
+4. MySQL 8.X椹卞姩寮哄埗瑕佹眰璁剧疆鏃跺尯
+
+   - 淇敼url锛屾坊鍔爏erverTimezone璁惧畾
+   - 淇敼MySQL鏁版嵁搴撻厤缃�
+
+5. 椹卞姩绫昏繃鏃讹紝鎻愰啋鏇存崲涓篶om.mysql.cj.jdbc.Driver
+
+   
+
+### JC-3-3.鏁村悎MyBatis-Plus
+
+鈥�	鍋氬畬浜嗕袱绉嶆妧鏈殑鏁村悎浜嗭紝鍚勪綅灏忎紮浼磋瀛︿細鎬荤粨锛屾垜浠仛杩欎釜鏁村悎绌剁珶鍝簺鏄牳蹇冿紵鎬荤粨涓嬫潵灏变袱鍙ヨ瘽
+
+- 瀵煎叆瀵瑰簲鎶€鏈殑starter鍧愭爣
+- 鏍规嵁瀵瑰簲鎶€鏈殑瑕佹眰鍋氶厤缃�
+
+鈥�    铏界劧鐪嬭捣鏉ユ湁鐐硅櫄锛屼絾鏄‘瀹炴槸杩欎釜鐞嗗効锛屼笅闈㈣秮鐑墦閾侊紝鍐嶆崲涓€涓妧鏈紝鐪嬬湅鏄笉鏄笂闈㈣繖涓ゆ銆�
+
+鈥�	鎺ヤ笅鏉ュ湪MyBatis鐨勫熀纭€涓婂啀鍗囩骇涓€涓嬶紝鏁村悎MyBaitsPlus锛堢畝绉癕P锛夛紝鍥戒汉寮€鍙戠殑鎶€鏈紝绗﹀悎涓浗浜哄紑鍙戜範鎯紝璋佺敤璋佺煡閬撱€傛潵鍚э紝涓€璧峰仛鏁村悎
+
+**姝ラ鈶�**锛氬鍏ュ搴旂殑starter
+
+```XML
+<dependency>
+    <groupId>com.baomidou</groupId>
+    <artifactId>mybatis-plus-boot-starter</artifactId>
+    <version>3.4.3</version>
+</dependency>
+```
+
+鈥�	鍏充簬杩欎釜鍧愭爣锛屾澶勮璇存槑涓€鐐癸紝涔嬪墠鎴戜滑鐪嬬殑starter閮芥槸spring-boot-starter-锛燂紵锛燂紝涔熷氨鏄閮芥槸涓嬮潰鐨勬牸寮�
+
+```tex
+Spring-boot-start-***
+```
+
+鈥�	鑰岃繖涓潗鏍囩殑鍚嶅瓧涔﹀啓姣旇緝鐗规畩锛屾槸绗笁鏂规妧鏈悕绉板湪鍓嶏紝boot鍜宻tarter鍦ㄥ悗銆傛澶勭畝鍗曟彁涓€涓嬪懡鍚嶈鑼冿紝鍚庢湡鍘熺悊绡囦細鍐嶈缁嗚瑙�
+
+| starter鎵€灞� | 鍛藉悕瑙勫垯                                                    | 绀轰緥                                                  |
+| ----------- | ----------------------------------------------------------- | ----------------------------------------------------- |
+| 瀹樻柟鎻愪緵    | spring-boot-starter-鎶€鏈悕绉�                                | spring-boot-starter-web <br/>spring-boot-starter-test |
+| 绗笁鏂规彁渚�  | 绗笁鏂规妧鏈悕绉�-spring-boot-starter                          | druid-spring-boot-starter                             |
+| 绗笁鏂规彁渚�  | 绗笁鏂规妧鏈悕绉�-boot-starter锛堢涓夋柟鎶€鏈悕绉拌繃闀匡紝绠€鍖栧懡鍚嶏級 | mybatis-plus-boot-starter                             |
+
+<font color="#f0f"><b>娓╅Θ鎻愮ず</b></font>
+
+鈥�	鏈変簺灏忎紮浼村湪鍒涘缓椤圭洰鏃舵兂閫氳繃鍕鹃€夌殑褰㈠紡鎵惧埌杩欎釜鍚嶅瓧锛屽埆缈讳簡锛屾病鏈夈€傛埅姝㈢洰鍓嶏紝SpringBoot瀹樼綉杩樻湭鏀跺綍姝ゅ潗鏍囷紝鑰屾垜浠琁dea鍒涘缓妯″潡鏃惰鍙栫殑鏄疭pringBoot瀹樼綉鐨凷pring Initializr锛屾墍浠ヤ篃娌℃湁銆傚鏋滄崲鐢ㄩ樋閲屼簯鐨剈rl鍒涘缓椤圭洰鍙互鎵惧埌瀵瑰簲鐨勫潗鏍�
+
+**姝ラ鈶�**锛氶厤缃暟鎹簮鐩稿叧淇℃伅
+
+```yaml
+#2.閰嶇疆鐩稿叧淇℃伅
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ssm_db
+    username: root
+    password: root
+```
+
+鈥�	娌′簡锛屽氨杩欎箞澶氾紝鍓╀笅鐨勫氨鏄啓MyBaitsPlus鐨勭▼搴忎簡
+
+**鏄犲皠鎺ュ彛锛圖ao锛�**
+
+```JAVA
+@Mapper
+public interface BookDao extends BaseMapper<Book> {
+}
+```
+
+鈥�	鏍稿績鍦ㄤ簬Dao鎺ュ彛缁ф壙浜嗕竴涓狟aseMapper鐨勬帴鍙ｏ紝杩欎釜鎺ュ彛涓府鍔╁紑鍙戣€呴瀹氫簡鑻ュ共涓父鐢ㄧ殑API鎺ュ彛锛岀畝鍖栦簡閫氱敤API鎺ュ彛鐨勫紑鍙戝伐浣溿€�
+
+<img src="img\image-20211129100313919.png" alt="image-20211129100313919" style="zoom:80%;" />
+
+鈥�	涓嬮潰灏卞彲浠ュ啓涓€涓祴璇曠被杩涜娴嬭瘯浜嗭紝姝ゅ鐪佺暐銆�
+
+<font color="#f0f"><b>娓╅Θ鎻愮ず</b></font>
+
+鈥�	鐩墠鏁版嵁搴撶殑琛ㄥ悕瀹氫箟瑙勫垯鏄痶bl_妯″潡鍚嶇О锛屼负浜嗚兘鍜屽疄浣撶被鐩稿搴旓紝闇€瑕佸仛涓€涓厤缃紝鐩稿叧鐭ヨ瘑鍚勪綅灏忎紮浼村彲浠ュ埌MyBatisPlus璇剧▼涓幓瀛︿範锛屾澶勪粎缁欏嚭瑙ｅ喅鏂规銆傞厤缃產pplication.yml鏂囦欢锛屾坊鍔犲涓嬮厤缃嵆鍙紝璁剧疆鎵€鏈夎〃鍚嶇殑閫氱敤鍓嶇紑鍚�
+
+```yaml
+mybatis-plus:
+  global-config:
+    db-config:
+      table-prefix: tbl_		#璁剧疆鎵€鏈夎〃鐨勯€氱敤鍓嶇紑鍚嶇О涓簍bl_
+```
+
+**鎬荤粨**
+
+1. 鎵嬪伐娣诲姞MyBatis-Plus瀵瑰簲鐨剆tarter
+2. 鏁版嵁灞傛帴鍙ｄ娇鐢˙aseMapper绠€鍖栧紑鍙�
+3. 闇€瑕佷娇鐢ㄧ殑绗笁鏂规妧鏈棤娉曢€氳繃鍕鹃€夌‘瀹氭椂锛岄渶瑕佹墜宸ユ坊鍔犲潗鏍�
+
+
+
+### JC-3-4.鏁村悎Druid
+
+鈥�	浣跨敤SpringBoot鏁村悎浜�3涓妧鏈簡锛屽彂鐜板璺熀鏈浉鍚岋紝瀵煎叆瀵瑰簲鐨剆tarter锛岀劧鍚庡仛閰嶇疆锛屽悇浣嶅皬浼欎即闇€瑕佷竴鐩村己鍖栬繖濂楁€濇兂銆備笅闈㈠啀鏁村悎涓€涓妧鏈紝缁х画娣卞叆寮哄寲姝ゆ€濇兂銆�
+
+鈥�	鍓嶉潰鏁村悎MyBatis鍜孧P鐨勬椂鍊欙紝浣跨敤鐨勬暟鎹簮瀵硅薄閮芥槸SpringBoot榛樿鐨勬暟鎹簮瀵硅薄锛屼笅闈㈡垜浠墜宸ユ帶鍒朵竴涓嬶紝鑷繁鎸囧畾浜嗕竴涓暟鎹簮瀵硅薄锛孌ruid銆�
+
+鈥�	鍦ㄦ病鏈夋寚瀹氭暟鎹簮鏃讹紝鎴戜滑鐨勯厤缃涓嬶細
+
+```YAML
+#2.閰嶇疆鐩稿叧淇℃伅
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ssm_db?serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+```
+
+鈥�	姝ゆ椂铏界劧娌℃湁鎸囧畾鏁版嵁婧愶紝浣嗘槸鏍规嵁SpringBoot鐨勫痉琛岋紝鑲畾甯垜浠€変簡涓€涓畠璁や负鏈€濂界殑鏁版嵁婧愬璞★紝杩欏氨鏄疕iKari銆傞€氳繃鍚姩鏃ュ織鍙互鏌ョ湅鍒板搴旂殑韬奖銆�
+
+```tex
+2021-11-29 09:39:15.202  INFO 12260 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-29 09:39:15.208  WARN 12260 --- [           main] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2021-11-29 09:39:15.551  INFO 12260 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+```
+
+鈥�	涓婅堪淇℃伅涓瘡涓€琛岄兘鏈塇iKari鐨勮韩褰憋紝濡傛灉闇€瑕佹洿鎹㈡暟鎹簮锛屽叾瀹炲彧闇€瑕佷袱姝ュ嵆鍙€�
+
+1. 瀵煎叆瀵瑰簲鐨勬妧鏈潗鏍�
+2. 閰嶇疆浣跨敤鎸囧畾鐨勬暟鎹簮绫诲瀷
+
+鈥�    涓嬮潰灏卞垏鎹竴涓嬫暟鎹簮瀵硅薄
+
+**姝ラ鈶�**锛氬鍏ュ搴旂殑鍧愭爣锛堟敞鎰忥紝鏄潗鏍囷紝姝ゅ涓嶆槸starter锛�
+
+```XML
+<dependencies>
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid</artifactId>
+        <version>1.1.16</version>
+    </dependency>
+</dependencies>
+```
+
+**姝ラ鈶�**锛氫慨鏀归厤缃紝鍦ㄦ暟鎹簮閰嶇疆涓湁涓€涓猼ype灞炴€э紝涓撶敤浜庢寚瀹氭暟鎹簮绫诲瀷
+
+```YAML
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ssm_db?serverTimezone=UTC
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+```
+
+鈥�	杩欓噷鍏跺疄瑕佹彁鍑轰竴涓棶棰樼殑锛岀洰鍓嶇殑鏁版嵁婧愰厤缃牸寮忔槸涓€涓€氱敤鏍煎紡锛屼笉绠′綘鎹粈涔堟暟鎹簮閮藉彲浠ョ敤杩欑褰㈠紡杩涜閰嶇疆銆備絾鏄柊鐨勯棶棰樺張鏉ヤ簡锛屽鏋滃鏁版嵁婧愯繘琛屼釜鎬у寲鐨勯厤缃紝渚嬪閰嶇疆鏁版嵁婧愬搴旂殑杩炴帴鏁伴噺锛岃繖涓椂鍊欏氨鏈夋柊鐨勯棶棰樹簡銆傛瘡涓暟鎹簮鎶€鏈搴旂殑閰嶇疆鍚嶇О閮戒竴鏍峰悧锛熻偗瀹氫笉鏄晩锛屽悇涓巶鍟嗕笉鍙兘鎻愬墠鍟嗛噺濂介兘鍐欎竴鏍风殑鍚嶅瓧鍟婏紝鎬庝箞鍔烇紵灏辫浣跨敤涓撶敤鐨勯厤缃牸寮忎簡銆傝繖涓椂鍊欎笂闈㈣繖绉嶉€氱敤鏍煎紡灏变笉鑳戒娇鐢ㄤ簡锛屾€庝箞鍔烇紵杩樿兘鎬庝箞鍔烇紵鎸夌収SpringBoot鏁村悎鍏朵粬鎶€鏈殑閫氱敤瑙勫垯鏉ュ鍟婏紝瀵煎叆瀵瑰簲鐨剆tarter锛岃繘琛岀浉搴旂殑閰嶇疆鍗冲彲銆�
+
+**姝ラ鈶�**锛氬鍏ュ搴旂殑starter
+
+```XML
+<dependencies>
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid-spring-boot-starter</artifactId>
+        <version>1.2.6</version>
+    </dependency>
+</dependencies>
+```
+
+**姝ラ鈶�**锛氫慨鏀归厤缃�
+
+```YAML
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/ssm_db?serverTimezone=UTC
+      username: root
+      password: root
+```
+
+鈥�	娉ㄦ剰瑙傚療锛岄厤缃」涓紝鍦╠atasource涓嬮潰骞朵笉鏄洿鎺ラ厤缃畊rl杩欎簺灞炴€х殑锛岃€屾槸鍏堥厤缃簡涓€涓猟ruid鑺傜偣锛岀劧鍚庡啀閰嶇疆鐨剈rl杩欎簺涓滆タ銆傝█澶栦箣鎰忥紝url杩欎釜灞炴€ф椂druid涓嬮潰鐨勫睘鎬э紝閭ｄ綘鑳芥兂鍒板悧锛熼櫎浜嗚繖4涓父瑙勯厤缃锛岃繕鏈塪ruid涓撶敤鐨勫叾浠栭厤缃€傞€氳繃鎻愮ず鍔熻兘鍙互鎵撳紑druid鐩稿叧鐨勯厤缃煡闃�
+
+<img src="img\image-20211129112610729.png" alt="image-20211129112610729" style="zoom:80%;" />
+
+鈥�	涓巇ruid鐩稿叧鐨勯厤缃秴杩�200鏉′互涓婏紝杩欏氨鍛婅瘔浣狅紝濡傛灉鎯冲仛druid鐩稿叧鐨勯厤缃紝浣跨敤杩欑鏍煎紡灏卞彲浠ヤ簡锛岃繖閲屽氨涓嶅睍寮€鎻忚堪浜嗭紝澶浜嗐€�
+
+鈥�	杩欐槸鎴戜滑鍋氱殑绗�4涓妧鏈殑鏁村悎鏂规锛岃繕鏄偅涓ゅ彞璇濓細<font color="#ff0000"><b>瀵煎叆瀵瑰簲starter锛屼娇鐢ㄥ搴旈厤缃�</b></font>銆傛病浜嗭紝SpringBoot鏁村悎鍏朵粬鎶€鏈氨杩欎箞绠€鍗曠矖鏆淬€�
+
+**鎬荤粨**
+
+1. 鏁村悎Druid闇€瑕佸鍏ruid瀵瑰簲鐨剆tarter
+2. 鏍规嵁Druid鎻愪緵鐨勯厤缃柟寮忚繘琛岄厤缃�
+3. 鏁村悎绗笁鏂规妧鏈€氱敤鏂瑰紡
+   - 瀵煎叆瀵瑰簲鐨剆tarter
+   - 鏍规嵁鎻愪緵鐨勯厤缃牸寮忥紝閰嶇疆闈為粯璁ゅ€煎搴旂殑閰嶇疆椤�
+
+
+
+### JC-3-5.SSMP鏁村悎缁煎悎妗堜緥
+
+鈥�	SpringBoot鑳藉鏁村悎鐨勬妧鏈お澶氬お澶氫簡锛屽浜庡垵瀛﹁€呮潵璇存參鎱㈡潵锛屼竴鐐圭偣鎺屾彙銆傚墠闈㈠挶浠仛浜�4涓暣鍚堜簡锛屼笅闈㈠氨閫氳繃涓€涓◢寰患鍚堜竴鐐圭殑妗堜緥锛屽皢鎵€鏈夌煡璇嗚疮绌胯捣鏉ワ紝鍚屾椂鍋氫竴涓皬鍔熻兘锛屼綋浼氫竴涓嬨€備笉杩囨湁瑷€鍦ㄥ厛锛岃繖涓渚嬪埗浣滅殑鏃跺€欙紝浣犲彲鑳戒細鏈夎繖绉嶆劅瑙夛紝璇村ソ鐨凷pringBoot鏁村悎鍏朵粬鎶€鏈殑妗堜緥锛屼负浠€涔堟劅瑙塖pringBoot鏁村悎鍏朵粬鎶€鏈殑韬奖涓嶅鍛紵鍥犱负杩欎笢瑗夸功鍐欏お绠€鍗曚簡锛岀畝鍗曞埌鐬棿鍐欏畬锛屽ぇ閲忕殑鏃堕棿鍋氱殑涓嶆槸杩欎簺鏁村悎宸ヤ綔銆�
+
+鈥�	鍏堢湅涓€涓嬭繖涓渚嬬殑鏈€缁堟晥鏋�
+
+**涓婚〉闈�**
+
+![image-20211129113447844](img\image-20211129113447844.png)
+
+**娣诲姞**
+
+![image-20211129113522459](img\image-20211129113522459.png)
+
+**鍒犻櫎**
+
+![image-20211129113550829](img\image-20211129113550829.png)
+
+**淇敼**
+
+![image-20211129113610966](C:\Users\itcast\AppData\Roaming\Typora\typora-user-images\image-20211129113610966.png)
+
+**鍒嗛〉**
+
+![image-20211129113628969](img\image-20211129113628969.png)
+
+**鏉′欢鏌ヨ**
+
+![image-20211129113650369](img\image-20211129113650369.png)
+
+鈥�	鏁翠綋妗堜緥涓渶瑕侀噰鐢ㄧ殑鎶€鏈涓嬶紝鍏堜簡瑙ｄ竴涓嬶紝鍋氬埌鍝竴涓鍝竴涓�
+
+1. 瀹炰綋绫诲紑鍙戔€斺€斺€斺€斾娇鐢↙ombok蹇€熷埗浣滃疄浣撶被
+2. Dao寮€鍙戔€斺€斺€斺€旀暣鍚圡yBatisPlus锛屽埗浣滄暟鎹眰娴嬭瘯
+3. Service寮€鍙戔€斺€斺€斺€斿熀浜嶮yBatisPlus杩涜澧為噺寮€鍙戯紝鍒朵綔涓氬姟灞傛祴璇曠被
+4. Controller寮€鍙戔€斺€斺€斺€斿熀浜嶳estful寮€鍙戯紝浣跨敤PostMan娴嬭瘯鎺ュ彛鍔熻兘
+5. Controller寮€鍙戔€斺€斺€斺€斿墠鍚庣寮€鍙戝崗璁埗浣�
+6. 椤甸潰寮€鍙戔€斺€斺€斺€斿熀浜嶸UE+ElementUI鍒朵綔锛屽墠鍚庣鑱旇皟锛岄〉闈㈡暟鎹鐞嗭紝椤甸潰娑堟伅澶勭悊
+   - 鍒楄〃
+   - 鏂板
+   - 淇敼
+   - 鍒犻櫎
+   - 鍒嗛〉
+   - 鏌ヨ
+7. 椤圭洰寮傚父澶勭悊
+8. 鎸夋潯浠舵煡璇⑩€斺€斺€斺€旈〉闈㈠姛鑳借皟鏁淬€丆ontroller淇鍔熻兘銆丼ervice淇鍔熻兘
+
+鈥�    鍙互鐪嬬殑鍑烘潵锛屼笢瑗胯繕鏄緢澶氱殑锛屽笇鏈涢€氳繃杩欎釜妗堜緥锛屽悇浣嶅皬浼欎即鑳藉瀹屾垚鍩虹寮€鍙戠殑鎶€鑳借缁冦€傛暣浣撳紑鍙戣繃绋嬮噰鐢ㄥ仛涓€灞傛祴涓€灞傜殑褰㈠紡杩涜锛岃繃绋嬪畬鏁达紝鎴樼嚎杈冮暱锛屽笇鏈涘悇浣嶈兘璺熻繘杩涘害锛屽畬鎴愯繖涓皬妗堜緥鐨勫埗浣溿€�
+
+#### 0.妯″潡鍒涘缓
+
+鈥�	瀵逛簬杩欎釜妗堜緥濡傛灉鎸夌収浼佷笟寮€鍙戠殑褰㈠紡杩涜搴旇鍒朵綔鍚庡彴寰湇鍔★紝鍓嶅悗绔垎绂荤殑寮€鍙戙€�
+
+<img src="img\image-20211129114306062.png" alt="image-20211129114306062" style="zoom:80%;" />
+
+鎴戠煡閬撹繖涓鍒濆鐨勫皬浼欎即瑕佹眰澶珮浜嗭紝鍜变滑绠€鍖栦竴涓嬨€傚悗鍙板仛鍗曚綋鏈嶅姟鍣紝鍓嶇涓嶄娇鐢ㄥ墠鍚庣鍒嗙鐨勫埗浣滀簡銆�
+
+<img src="img\image-20211129114328967.png" alt="image-20211129114328967" style="zoom:80%;" />
+
+涓€涓湇鍔″櫒鍗冲厖褰撳悗鍙版湇鍔¤皟鐢紝鍙堣礋璐ｅ墠绔〉闈㈠睍绀猴紝闄嶄綆瀛︿範鐨勯棬妲涖€�
+
+涓嬮潰鎴戜滑灏卞彲浠ュ垱寤轰竴涓柊鐨勬ā鍧楋紝鍔犺浇瑕佷娇鐢ㄧ殑鎶€鏈搴旂殑starter锛屼慨鏀归厤缃枃浠舵牸寮忎负yml鏍煎紡锛屽苟鎶妛eb璁块棶绔彛鍏堣缃垚80銆�
+
+**pom.xml**
+
+```XML
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
+    </dependency>
+</dependencies>
+```
+
+**application.yml**
+
+```yaml
+server:
+  port: 80
+```
+
+#### 1.瀹炰綋绫诲紑鍙�
+
+鈥�	鏈渚嬪搴旂殑妯″潡琛ㄧ粨鏋勫涓嬶細
+
+```tex
+-- ----------------------------
+-- Table structure for tbl_book
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_book`;
+CREATE TABLE `tbl_book`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 51 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tbl_book
+-- ----------------------------
+INSERT INTO `tbl_book` VALUES (1, '璁＄畻鏈虹悊璁�', 'Spring瀹炴垬 绗�5鐗�', 'Spring鍏ラ棬缁忓吀鏁欑▼锛屾繁鍏ョ悊瑙pring鍘熺悊鎶€鏈唴骞�');
+INSERT INTO `tbl_book` VALUES (2, '璁＄畻鏈虹悊璁�', 'Spring 5鏍稿績鍘熺悊涓�30涓被鎵嬪啓瀹炴垬', '鍗佸勾娌夋穩涔嬩綔锛屾墜鍐橲pring绮惧崕鎬濇兂');
+INSERT INTO `tbl_book` VALUES (3, '璁＄畻鏈虹悊璁�', 'Spring 5 璁捐妯″紡', '娣卞叆Spring婧愮爜鍓栨瀽Spring婧愮爜涓暣鍚殑10澶ц璁℃ā寮�');
+INSERT INTO `tbl_book` VALUES (4, '璁＄畻鏈虹悊璁�', 'Spring MVC+MyBatis寮€鍙戜粠鍏ラ棬鍒伴」鐩疄鎴�', '鍏ㄦ柟浣嶈В鏋愰潰鍚慦eb搴旂敤鐨勮交閲忕骇妗嗘灦锛屽甫浣犳垚涓篠pring MVC寮€鍙戦珮鎵�');
+INSERT INTO `tbl_book` VALUES (5, '璁＄畻鏈虹悊璁�', '杞婚噺绾ava Web浼佷笟搴旂敤瀹炴垬', '婧愮爜绾у墫鏋怱pring妗嗘灦锛岄€傚悎宸叉帉鎻ava鍩虹鐨勮鑰�');
+INSERT INTO `tbl_book` VALUES (6, '璁＄畻鏈虹悊璁�', 'Java鏍稿績鎶€鏈� 鍗稩 鍩虹鐭ヨ瘑锛堝師涔︾11鐗堬級', 'Core Java 绗�11鐗堬紝Jolt澶у鑾峰浣滃搧锛岄拡瀵笿ava SE9銆�10銆�11鍏ㄩ潰鏇存柊');
+INSERT INTO `tbl_book` VALUES (7, '璁＄畻鏈虹悊璁�', '娣卞叆鐞嗚ВJava铏氭嫙鏈�', '5涓淮搴﹀叏闈㈠墫鏋怞VM锛屽ぇ鍘傞潰璇曠煡璇嗙偣鍏ㄨ鐩�');
+INSERT INTO `tbl_book` VALUES (8, '璁＄畻鏈虹悊璁�', 'Java缂栫▼鎬濇兂锛堢4鐗堬級', 'Java瀛︿範蹇呰缁忓吀,娈垮爞绾ц憲浣滐紒璧㈠緱浜嗗叏鐞冪▼搴忓憳鐨勫箍娉涜禐瑾�');
+INSERT INTO `tbl_book` VALUES (9, '璁＄畻鏈虹悊璁�', '闆跺熀纭€瀛ava锛堝叏褰╃増锛�', '闆跺熀纭€鑷缂栫▼鐨勫叆闂ㄥ浘涔︼紝鐢辨祬鍏ユ繁锛岃瑙ava璇█鐨勭紪绋嬫€濇兂鍜屾牳蹇冩妧鏈�');
+INSERT INTO `tbl_book` VALUES (10, '甯傚満钀ラ攢', '鐩存挱灏辫杩欎箞鍋氾細涓绘挱楂樻晥娌熼€氬疄鎴樻寚鍗�', '鏉庡瓙鏌掋€佹潕浣崇惁銆佽枃濞呮垚闀夸负缃戠孩鐨勭瀵嗛兘鍦ㄤ功涓�');
+INSERT INTO `tbl_book` VALUES (11, '甯傚満钀ラ攢', '鐩存挱閿€璁插疄鎴樹竴鏈€�', '鍜岀鍙朵竴璧峰绯诲垪缃戠粶钀ラ攢涔︾睄');
+INSERT INTO `tbl_book` VALUES (12, '甯傚満钀ラ攢', '鐩存挱甯﹁揣锛氭窐瀹濄€佸ぉ鐚洿鎾粠鏂版墜鍒伴珮鎵�', '涓€鏈暀浣犲浣曠帺杞洿鎾殑涔︼紝10鍫傝杞绘澗瀹炵幇甯﹁揣鏈堝叆3W+');
+```
+
+鈥�	鏍规嵁涓婅堪琛ㄧ粨鏋勶紝鍒朵綔瀵瑰簲鐨勫疄浣撶被
+
+**瀹炰綋绫�**
+
+```JAVA
+public class Book {
+    private Integer id;
+    private String type;
+    private String name;
+    private String description;
+}
+```
+
+鈥�	瀹炰綋绫荤殑寮€鍙戝彲浠ヨ嚜鍔ㄩ€氳繃宸ュ叿鎵嬪伐鐢熸垚get/set鏂规硶锛岀劧鍚庤鐩杢oString()鏂规硶锛屾柟渚胯皟璇曪紝绛夌瓑銆備笉杩囪繖涓€濂楁搷浣滀功鍐欏緢绻佺悙锛屾湁瀵瑰簲鐨勫伐鍏峰彲浠ュ府鍔╂垜浠畝鍖栧紑鍙戯紝浠嬬粛涓€涓皬宸ュ叿锛宭ombok銆�
+
+鈥�	Lombok锛屼竴涓狫ava绫诲簱锛屾彁渚涗簡涓€缁勬敞瑙ｏ紝绠€鍖朠OJO瀹炰綋绫诲紑鍙戯紝SpringBoot鐩墠榛樿闆嗘垚浜唋ombok鎶€鏈紝骞舵彁渚涗簡瀵瑰簲鐨勭増鏈帶鍒讹紝鎵€浠ュ彧闇€瑕佹彁渚涘搴旂殑鍧愭爣鍗冲彲锛屽湪pom.xml涓坊鍔爈ombok鐨勫潗鏍囥€�
+
+```XML
+<dependencies>
+    <!--lombok-->
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+    </dependency>
+</dependencies>
+```
+
+鈥�	浣跨敤lombok鍙互閫氳繃涓€涓敞瑙Data瀹屾垚涓€涓疄浣撶被瀵瑰簲鐨刧etter锛宻etter锛宼oString锛宔quals锛宧ashCode绛夋搷浣滅殑蹇€熸坊鍔�
+
+```JAVA
+import lombok.Data;
+@Data
+public class Book {
+    private Integer id;
+    private String type;
+    private String name;
+    private String description;
+}
+```
+
+鈥�	鍒拌繖閲屽疄浣撶被灏卞仛濂戒簡锛屾槸涓嶆槸姣斾笉浣跨敤lombok绠€鍖栧ソ澶氾紝杩欑宸ュ叿鍦↗ava寮€鍙戜腑杩樻湁N澶氾紝鍚庨潰璇剧▼涓亣鍒颁簡鑳界敤鐨勪笢瑗挎椂锛屽湪涓嶅鍔犲悇浣嶅皬浼欎即澶ч噺鐨勫涔犳椂闂寸殑鎯呭喌涓嬶紝灏介噺澶氱粰澶у浠嬬粛涓€浜�
+
+**鎬荤粨**
+
+1. 瀹炰綋绫诲埗浣�
+2. 浣跨敤lombok绠€鍖栧紑鍙�
+   - 瀵煎叆lombok鏃犻渶鎸囧畾鐗堟湰锛岀敱SpringBoot鎻愪緵鐗堟湰
+   - @Data娉ㄨВ
+
+
+
+#### 2.鏁版嵁灞傚紑鍙戔€斺€斿熀纭€CRUD
+
+鈥�	鏁版嵁灞傚紑鍙戞湰娆′娇鐢∕yBatisPlus鎶€鏈紝鏁版嵁婧愪娇鐢ㄥ墠闈㈠涔犵殑Druid锛屽閮藉浜嗛兘鐢ㄤ笂
+
+**姝ラ鈶�**锛氬鍏yBatisPlus涓嶥ruid瀵瑰簲鐨剆tarter锛屽綋鐒秏ysql鐨勯┍鍔ㄤ笉鑳藉皯
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-boot-starter</artifactId>
+        <version>3.4.3</version>
+    </dependency>
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid-spring-boot-starter</artifactId>
+        <version>1.2.6</version>
+    </dependency>
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <scope>runtime</scope>
+    </dependency>
+</dependencies>
+```
+
+**姝ラ鈶�**锛氶厤缃暟鎹簱杩炴帴鐩稿叧鐨勬暟鎹簮閰嶇疆
+
+```YAML
+server:
+  port: 80
+
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/ssm_db?serverTimezone=UTC
+      username: root
+      password: root
+```
+
+**姝ラ鈶�**锛氫娇鐢∕P鐨勬爣鍑嗛€氱敤鎺ュ彛BaseMapper鍔犻€熷紑鍙戯紝鍒繕浜咢Mapper鍜屾硾鍨嬬殑鎸囧畾
+
+```JAVA
+@Mapper
+public interface BookDao extends BaseMapper<Book> {
+}
+```
+
+**姝ラ鈶�**锛氬埗浣滄祴璇曠被娴嬭瘯缁撴灉锛岃繖涓祴璇曠被鍒朵綔鏄釜濂戒範鎯紝涓嶈繃鍦ㄤ紒涓氬紑鍙戜腑寰€寰€閮戒负鍔犻€熷紑鍙戣烦杩囨姝ワ紝涓旇涓旂弽鎯滃惂
+
+```JAVA
+package com.itheima.dao;
+
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.itheima.domain.Book;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+public class BookDaoTestCase {
+
+    @Autowired
+    private BookDao bookDao;
+
+    @Test
+    void testGetById(){
+        System.out.println(bookDao.selectById(1));
+    }
+
+    @Test
+    void testSave(){
+        Book book = new Book();
+        book.setType("娴嬭瘯鏁版嵁123");
+        book.setName("娴嬭瘯鏁版嵁123");
+        book.setDescription("娴嬭瘯鏁版嵁123");
+        bookDao.insert(book);
+    }
+
+    @Test
+    void testUpdate(){
+        Book book = new Book();
+        book.setId(17);
+        book.setType("娴嬭瘯鏁版嵁abcdefg");
+        book.setName("娴嬭瘯鏁版嵁123");
+        book.setDescription("娴嬭瘯鏁版嵁123");
+        bookDao.updateById(book);
+    }
+
+    @Test
+    void testDelete(){
+        bookDao.deleteById(16);
+    }
+
+    @Test
+    void testGetAll(){
+        bookDao.selectList(null);
+    }
+}
+```
+
+<font color="#f0f"><b>娓╅Θ鎻愮ず</b></font>
+
+鈥�	MP鎶€鏈粯璁ょ殑涓婚敭鐢熸垚绛栫暐涓洪洩鑺辩畻娉曪紝鐢熸垚鐨勪富閿甀D闀垮害杈冨ぇ锛屽拰鐩墠鐨勬暟鎹簱璁惧畾瑙勫垯涓嶇浉绗︼紝闇€瑕侀厤缃竴涓嬩娇MP浣跨敤鏁版嵁搴撶殑涓婚敭鐢熸垚绛栫暐锛屾柟寮忓槢杩樻槸鑰佷竴濂楋紝鍋氶厤缃€傚湪application.yml涓坊鍔犲搴旈厤缃嵆鍙紝鍏蜂綋濡備笅
+
+```yaml
+server:
+  port: 80
+
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/ssm_db?serverTimezone=UTC
+      username: root
+      password: root
+
+mybatis-plus:
+  global-config:
+    db-config:
+      table-prefix: tbl_		#璁剧疆琛ㄥ悕閫氱敤鍓嶇紑
+      id-type: auto				#璁剧疆涓婚敭id瀛楁鐨勭敓鎴愮瓥鐣ヤ负鍙傜収鏁版嵁搴撹瀹氱殑绛栫暐锛屽綋鍓嶆暟鎹簱璁剧疆id鐢熸垚绛栫暐涓鸿嚜澧�
+```
+
+##### 鏌ョ湅MP杩愯鏃ュ織
+
+鈥�	鍦ㄨ繘琛屾暟鎹眰娴嬭瘯鐨勬椂鍊欙紝鍥犱负鍩虹鐨凜RUD鎿嶄綔鍧囩敱MP缁欐垜浠彁渚涗簡锛屾墍浠ュ氨鍑虹幇浜嗕竴涓眬闈紝寮€鍙戣€呬笉闇€瑕佷功鍐橲QL璇彞浜嗭紝杩欐牱绋嬪簭杩愯鐨勬椂鍊欐€绘湁涓€绉嶆劅瑙夛紝涓€鍒囩殑涓€鍒囬兘鏄粦鐩掔殑锛屼綔涓哄紑鍙戣€呮垜浠暐涔熶笉鐭ラ亾灏卞畬浜嗐€傚鏋滅▼搴忔甯歌繍琛岃繕濂斤紝濡傛灉鎶ラ敊浜嗭紝杩欎釜鏃跺€欏氨寰堝穿婧冿紝浣犵敋鑷抽兘涓嶇煡閬撲粠浣曚笅鎵嬶紝鍥犱负浼犻€掑弬鏁般€佸皝瑁匰QL璇彞杩欎簺鎿嶄綔瀹屽叏涓嶆槸浣犲共棰勫紑鍙戝嚭鏉ョ殑锛屾墍浠ユ煡鐪嬫墽琛屾湡杩愯鐨凷QL璇彞灏辨垚涓哄綋鍔′箣鎬ャ€�
+
+鈥�	SpringBoot鏁村悎MP鐨勬椂鍊欏厖鍒嗚€冭檻鍒颁簡杩欑偣锛岄€氳繃閰嶇疆鐨勫舰寮忓氨鍙互鏌ラ槄鎵ц鏈烻QL璇彞锛岄厤缃涓�
+
+```YAML
+mybatis-plus:
+  global-config:
+    db-config:
+      table-prefix: tbl_
+      id-type: auto
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+```
+
+鈥�	鍐嶆潵鐪嬭繍琛岀粨鏋滐紝姝ゆ椂灏辨樉绀轰簡杩愯鏈熸墽琛孲QL鐨勬儏鍐点€�
+
+```tex
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2c9a6717] was not registered for synchronization because synchronization is not active
+JDBC Connection [com.mysql.cj.jdbc.ConnectionImpl@6ca30b8a] will not be managed by Spring
+==>  Preparing: SELECT id,type,name,description FROM tbl_book
+==> Parameters: 
+<==    Columns: id, type, name, description
+<==        Row: 1, 璁＄畻鏈虹悊璁�, Spring瀹炴垬 绗�5鐗�, Spring鍏ラ棬缁忓吀鏁欑▼锛屾繁鍏ョ悊瑙pring鍘熺悊鎶€鏈唴骞�
+<==        Row: 2, 璁＄畻鏈虹悊璁�, Spring 5鏍稿績鍘熺悊涓�30涓被鎵嬪啓瀹炴垬, 鍗佸勾娌夋穩涔嬩綔锛屾墜鍐橲pring绮惧崕鎬濇兂
+<==        Row: 3, 璁＄畻鏈虹悊璁�, Spring 5 璁捐妯″紡, 娣卞叆Spring婧愮爜鍓栨瀽Spring婧愮爜涓暣鍚殑10澶ц璁℃ā寮�
+<==        Row: 4, 璁＄畻鏈虹悊璁�, Spring MVC+MyBatis寮€鍙戜粠鍏ラ棬鍒伴」鐩疄鎴�, 鍏ㄦ柟浣嶈В鏋愰潰鍚慦eb搴旂敤鐨勮交閲忕骇妗嗘灦锛屽甫浣犳垚涓篠pring MVC寮€鍙戦珮鎵�
+<==        Row: 5, 璁＄畻鏈虹悊璁�, 杞婚噺绾ava Web浼佷笟搴旂敤瀹炴垬, 婧愮爜绾у墫鏋怱pring妗嗘灦锛岄€傚悎宸叉帉鎻ava鍩虹鐨勮鑰�
+<==        Row: 6, 璁＄畻鏈虹悊璁�, Java鏍稿績鎶€鏈� 鍗稩 鍩虹鐭ヨ瘑锛堝師涔︾11鐗堬級, Core Java 绗�11鐗堬紝Jolt澶у鑾峰浣滃搧锛岄拡瀵笿ava SE9銆�10銆�11鍏ㄩ潰鏇存柊
+<==        Row: 7, 璁＄畻鏈虹悊璁�, 娣卞叆鐞嗚ВJava铏氭嫙鏈�, 5涓淮搴﹀叏闈㈠墫鏋怞VM锛屽ぇ鍘傞潰璇曠煡璇嗙偣鍏ㄨ鐩�
+<==        Row: 8, 璁＄畻鏈虹悊璁�, Java缂栫▼鎬濇兂锛堢4鐗堬級, Java瀛︿範蹇呰缁忓吀,娈垮爞绾ц憲浣滐紒璧㈠緱浜嗗叏鐞冪▼搴忓憳鐨勫箍娉涜禐瑾�
+<==        Row: 9, 璁＄畻鏈虹悊璁�, 闆跺熀纭€瀛ava锛堝叏褰╃増锛�, 闆跺熀纭€鑷缂栫▼鐨勫叆闂ㄥ浘涔︼紝鐢辨祬鍏ユ繁锛岃瑙ava璇█鐨勭紪绋嬫€濇兂鍜屾牳蹇冩妧鏈�
+<==        Row: 10, 甯傚満钀ラ攢, 鐩存挱灏辫杩欎箞鍋氾細涓绘挱楂樻晥娌熼€氬疄鎴樻寚鍗�, 鏉庡瓙鏌掋€佹潕浣崇惁銆佽枃濞呮垚闀夸负缃戠孩鐨勭瀵嗛兘鍦ㄤ功涓�
+<==        Row: 11, 甯傚満钀ラ攢, 鐩存挱閿€璁插疄鎴樹竴鏈€�, 鍜岀鍙朵竴璧峰绯诲垪缃戠粶钀ラ攢涔︾睄
+<==        Row: 12, 甯傚満钀ラ攢, 鐩存挱甯﹁揣锛氭窐瀹濄€佸ぉ鐚洿鎾粠鏂版墜鍒伴珮鎵�, 涓€鏈暀浣犲浣曠帺杞洿鎾殑涔︼紝10鍫傝杞绘澗瀹炵幇甯﹁揣鏈堝叆3W+
+<==        Row: 13, 娴嬭瘯绫诲瀷, 娴嬭瘯鏁版嵁, 娴嬭瘯鎻忚堪鏁版嵁
+<==        Row: 14, 娴嬭瘯鏁版嵁update, 娴嬭瘯鏁版嵁update, 娴嬭瘯鏁版嵁update
+<==        Row: 15, -----------------, 娴嬭瘯鏁版嵁123, 娴嬭瘯鏁版嵁123
+<==      Total: 15
+```
+
+鈥�	鍏朵腑娓呮櫚鐨勬爣娉ㄤ簡褰撳墠鎵ц鐨凷QL璇彞鏄粈涔堬紝鎼哄甫浜嗕粈涔堝弬鏁帮紝瀵瑰簲鐨勬墽琛岀粨鏋滄槸浠€涔堬紝鎵€鏈変俊鎭簲鏈夊敖鏈夈€�
+
+鈥�	姝ゅ璁剧疆鐨勬槸鏃ュ織鐨勬樉绀哄舰寮忥紝褰撳墠閰嶇疆鐨勬槸鎺у埗鍙拌緭鍑猴紝褰撶劧杩樺彲浠ョ敱鏇村鐨勯€夋嫨锛屾牴鎹渶姹傚垏鎹㈠嵆鍙�
+
+<img src="img\image-20211129143207295.png" alt="image-20211129143207295" style="zoom:80%;" />
+
+
+
+**鎬荤粨**
+
+1. 鎵嬪伐瀵煎叆starter鍧愭爣锛�2涓級锛宮ysql椹卞姩锛�1涓級
+
+2. 閰嶇疆鏁版嵁婧愪笌MyBatisPlus瀵瑰簲鐨勯厤缃�
+
+3. 寮€鍙慏ao鎺ュ彛锛堢户鎵緽aseMapper锛�
+
+4. 鍒朵綔娴嬭瘯绫绘祴璇旸ao鍔熻兘鏄惁鏈夋晥
+
+5. 浣跨敤閰嶇疆鏂瑰紡寮€鍚棩蹇楋紝璁剧疆鏃ュ織杈撳嚭鏂瑰紡涓烘爣鍑嗚緭鍑哄嵆鍙煡闃匰QL鎵ц鏃ュ織
+
+   
+
+#### 3.鏁版嵁灞傚紑鍙戔€斺€斿垎椤靛姛鑳藉埗浣�
+
+鈥�	鍓嶉潰浠呬粎鏄娇鐢ㄤ簡MP鎻愪緵鐨勫熀纭€CRUD鍔熻兘锛屽疄闄呬笂MP缁欐垜浠彁渚涗簡鍑犱箮鎵€鏈夌殑鍩虹鎿嶄綔锛岃繖涓€鑺傝涓€涓嬪鏋滃疄鐜版暟鎹簱绔殑鍒嗛〉鎿嶄綔
+
+鈥�	MP鎻愪緵鐨勫垎椤垫搷浣淎PI濡備笅
+
+```JAVA
+@Test
+void testGetPage(){
+    IPage page = new Page(2,5);
+    bookDao.selectPage(page, null);
+    System.out.println(page.getCurrent());
+    System.out.println(page.getSize());
+    System.out.println(page.getTotal());
+    System.out.println(page.getPages());
+    System.out.println(page.getRecords());
+}
+```
+
+鈥�	鍏朵腑selectPage鏂规硶闇€瑕佷紶鍏ヤ竴涓皝瑁呭垎椤垫暟鎹殑瀵硅薄锛屽彲浠ラ€氳繃new鐨勫舰寮忓垱寤鸿繖涓璞★紝褰撶劧杩欎釜瀵硅薄涔熸槸MP鎻愪緵鐨勶紝鍒€夐敊鍖呬簡銆傚垱寤烘瀵硅薄鏃跺氨闇€瑕佹寚瀹氬垎椤电殑涓や釜鍩烘湰鏁版嵁
+
+- 褰撳墠鏄剧ず绗嚑椤�
+- 姣忛〉鏄剧ず鍑犳潯鏁版嵁
+
+鈥�    鍙互閫氳繃鍒涘缓Page瀵硅薄鏃跺埄鐢ㄦ瀯閫犳柟娉曞垵濮嬪寲杩欎袱涓暟鎹�
+
+```JAVA
+IPage page = new Page(2,5);
+```
+
+鈥�	灏嗚瀵硅薄浼犲叆鍒版煡璇㈡柟娉晄electPage鍚庯紝鍙互寰楀埌鏌ヨ缁撴灉锛屼絾鏄垜浠細鍙戠幇褰撳墠鎿嶄綔鏌ヨ缁撴灉杩斿洖鍊间粛鐒舵槸涓€涓狪Page瀵硅薄锛岃繖鍙堟槸鎬庝箞鍥炰簨锛�
+
+```JAVA
+IPage page = bookDao.selectPage(page, null);
+```
+
+鈥�	鍘熸潵杩欎釜IPage瀵硅薄涓皝瑁呬簡鑻ュ共涓暟鎹紝鑰屾煡璇㈢殑缁撴灉浣滀负IPage瀵硅薄灏佽鐨勪竴涓暟鎹瓨鍦ㄧ殑锛屽彲浠ョ悊瑙ｄ负鏌ヨ缁撴灉寰楀埌鍚庯紝鍙堝鍒颁簡杩欎釜IPage瀵硅薄涓紝鍏跺疄杩樻槸涓轰簡楂樺害鐨勫皝瑁咃紝涓€涓狪Page鎻忚堪浜嗗垎椤垫墍鏈夌殑淇℃伅銆備笅闈�5涓搷浣滃氨鏄疘Page瀵硅薄涓皝瑁呯殑鎵€鏈変俊鎭簡
+
+```JAVA
+@Test
+void testGetPage(){
+    IPage page = new Page(2,5);
+    bookDao.selectPage(page, null);
+    System.out.println(page.getCurrent());		//褰撳墠椤电爜鍊�
+    System.out.println(page.getSize());			//姣忛〉鏄剧ず鏁�
+    System.out.println(page.getTotal());		//鏁版嵁鎬婚噺
+    System.out.println(page.getPages());		//鎬婚〉鏁�
+    System.out.println(page.getRecords());		//璇︾粏鏁版嵁
+}
+```
+
+鈥�	鍒拌繖閲屽氨鐭ラ亾杩欎簺鏁版嵁濡備綍鑾峰彇浜嗭紝浣嗘槸褰撲綘鍘绘墽琛岃繖涓搷浣滄椂锛屼綘浼氬彂鐜板苟涓嶅儚鎴戜滑鍒嗘瀽鐨勮繖鏍凤紝瀹為檯涓婅繖涓垎椤靛綋鍓嶆槸鏃犳晥鐨勩€備负浠€涔堣繖鏍峰憿锛熻繖涓婧愪簬MP鐨勫唴閮ㄦ満鍒躲€�
+
+鈥�	瀵逛簬MySQL鐨勫垎椤垫搷浣滀娇鐢╨imit鍏抽敭瀛楄繘琛岋紝鑰屽苟涓嶆槸鎵€鏈夌殑鏁版嵁搴撻兘浣跨敤limit鍏抽敭瀛楀疄鐜扮殑锛岃繖涓椂鍊橫P涓轰簡鍒朵綔鐨勫吋瀹规€у己锛屽皢鍒嗛〉鎿嶄綔璁剧疆涓哄熀纭€鏌ヨ鎿嶄綔鐨勫崌绾х増锛屼綘鍙互鐞嗚В涓篒Phone6涓嶪Phone6S-PLUS鐨勫叧绯汇€�
+
+鈥�	鍩虹鎿嶄綔涓湁鏌ヨ鍏ㄩ儴鐨勫姛鑳斤紝鑰屽湪杩欎釜鍩虹涓婂彧闇€瑕佸崌绾т竴涓嬶紙PLUS锛夊氨鍙互寰楀埌鍒嗛〉鎿嶄綔銆傛墍浠P灏嗗垎椤垫搷浣滃仛鎴愪簡涓€涓紑鍏筹紝浣犵敤鍒嗛〉鍔熻兘灏辨妸寮€鍏冲紑鍚紝涓嶇敤灏变笉闇€瑕佸紑鍚繖涓紑鍏炽€傝€屾垜浠幇鍦ㄦ病鏈夊紑鍚繖涓紑鍏筹紝鎵€浠ュ垎椤垫搷浣滄槸娌℃湁鐨勩€傝繖涓紑鍏虫槸閫氳繃MP鐨勬嫤鎴櫒鐨勫舰寮忓瓨鍦ㄧ殑锛屽叾涓殑鍘熺悊杩欓噷涓嶅垎鏋愪簡锛屾湁鍏磋叮鐨勫皬浼欎即鍙互瀛︿範MyBatisPlus杩欓棬璇剧▼杩涜璇︾粏瑙ｈ銆傚叿浣撹缃柟寮忓涓�
+
+**瀹氫箟MP鎷︽埅鍣ㄥ苟灏嗗叾璁剧疆涓篠pring绠℃帶鐨刡ean**
+
+```JAVA
+@Configuration
+public class MPConfig {
+    @Bean
+    public MybatisPlusInterceptor mybatisPlusInterceptor(){
+        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+        interceptor.addInnerInterceptor(new PaginationInnerInterceptor());
+        return interceptor;
+    }
+}
+```
+
+鈥�	涓婅堪浠ｇ爜绗竴琛屾槸鍒涘缓MP鐨勬嫤鎴櫒鏍堬紝杩欎釜鏃跺€欐嫤鎴櫒鏍堜腑娌℃湁鍏蜂綋鐨勬嫤鎴櫒锛岀浜岃鏄垵濮嬪寲浜嗗垎椤垫嫤鎴櫒锛屽苟娣诲姞鍒版嫤鎴櫒鏍堜腑銆傚鏋滃悗鏈熷紑鍙戝叾浠栧姛鑳斤紝闇€瑕佹坊鍔犲叏鏂扮殑鎷︽埅鍣紝鎸夌収绗簩琛岀殑鏍煎紡缁х画add杩涘幓鏂扮殑鎷︽埅鍣ㄥ氨鍙互浜嗐€�
+
+**鎬荤粨**
+
+1. 浣跨敤IPage灏佽鍒嗛〉鏁版嵁
+2. 鍒嗛〉鎿嶄綔渚濊禆MyBatisPlus鍒嗛〉鎷︽埅鍣ㄥ疄鐜板姛鑳�
+3. 鍊熷姪MyBatisPlus鏃ュ織鏌ラ槄鎵цSQL璇彞
+
+
+
+#### 4.鏁版嵁灞傚紑鍙戔€斺€旀潯浠舵煡璇㈠姛鑳藉埗浣�
+
+鈥�	闄や簡鍒嗛〉鍔熻兘锛孧P杩樻彁渚涙湁寮哄ぇ鐨勬潯浠舵煡璇㈠姛鑳姐€備互寰€鎴戜滑鍐欐潯浠舵煡璇㈣鑷繁鍔ㄦ€佹嫾鍐欏鏉傜殑SQL璇彞锛岀幇鍦ㄧ畝鍗曚簡锛孧P灏嗚繖浜涙搷浣滈兘鍒朵綔鎴怉PI鎺ュ彛锛岃皟鐢ㄤ竴涓張涓€涓殑鏂规硶灏卞彲浠ュ疄鐜板悇绉嶅浠剁殑鎷艰銆傝繖閲岀粰澶у鏅強涓€涓嬪熀鏈牸寮忥紝璇︾粏鐨勬搷浣滆繕鏄埌MP鐨勮绋嬩腑鏌ラ槄鍚�
+
+鈥�	涓嬮潰鐨勬搷浣滃氨鏄墽琛屼竴涓ā绯婂尮閰嶅搴旂殑鎿嶄綔锛岀敱like鏉′欢涔﹀啓鍙樹负浜唋ike鏂规硶鐨勮皟鐢�
+
+```JAVA
+@Test
+void testGetBy(){
+    QueryWrapper<Book> qw = new QueryWrapper<>();
+    qw.like("name","Spring");
+    bookDao.selectList(qw);
+}
+```
+
+鈥�	鍏朵腑绗竴鍙ueryWrapper瀵硅薄鏄竴涓敤浜庡皝瑁呮煡璇㈡潯浠剁殑瀵硅薄锛岃瀵硅薄鍙互鍔ㄦ€佷娇鐢ˋPI璋冪敤鐨勬柟娉曟坊鍔犳潯浠讹紝鏈€缁堣浆鍖栨垚瀵瑰簲鐨凷QL璇彞銆傜浜屽彞灏辨槸涓€涓潯浠朵簡锛岄渶瑕佷粈涔堟潯浠讹紝浣跨敤QueryWapper瀵硅薄鐩存帴璋冪敤瀵瑰簲鎿嶄綔鍗冲彲銆傛瘮濡傚仛澶т簬灏忎簬鍏崇郴锛屽氨鍙互浣跨敤lt鎴杇t鏂规硶锛岀瓑浜庝娇鐢╡q鏂规硶锛岀瓑绛夛紝姝ゅ涓嶅仛鏇村鐨勮В閲婁簡銆�
+
+鈥�	杩欑粍API浣跨敤杩樻槸姣旇緝绠€鍗曠殑锛屼絾鏄叧浜庡睘鎬у瓧娈靛悕鐨勪功鍐欏瓨鍦ㄧ潃瀹夊叏闅愭偅锛屾瘮濡傛煡璇㈠瓧娈祅ame锛屽綋鍓嶆槸浠ュ瓧绗︿覆鐨勫舰鎬佷功鍐欑殑锛屼竾涓€鍐欓敊锛岀紪璇戝櫒杩樻病鏈夊姙娉曞彂鐜帮紝鍙兘灏嗛棶棰樻姏鍒拌繍琛屽櫒閫氳繃寮傚父鍫嗘爤鍛婅瘔寮€鍙戣€咃紝涓嶅お鍙嬪ソ銆�
+
+鈥�	MP閽堝瀛楁妫€鏌ヨ繘琛屼簡鍔熻兘鍗囩骇锛屽叏闈㈡敮鎸丩ambda琛ㄨ揪寮忥紝灏辨湁浜嗕笅闈㈣繖缁凙PI銆傜敱QueryWrapper瀵硅薄鍗囩骇涓篖ambdaQueryWrapper瀵硅薄锛岃繖涓嬪氨鍙樹簡涓婅堪闂鐨勫嚭鐜�
+
+```JAVA
+@Test
+void testGetBy2(){
+    String name = "1";
+    LambdaQueryWrapper<Book> lqw = new LambdaQueryWrapper<Book>();
+    lqw.like(Book::getName,name);
+    bookDao.selectList(lqw);
+}
+```
+
+鈥�	涓轰簡渚夸簬寮€鍙戣€呭姩鎬佹嫾鍐橲QL锛岄槻姝㈠皢null鏁版嵁浣滀负鏉′欢浣跨敤锛孧P杩樻彁渚涗簡鍔ㄦ€佹嫾瑁匰QL鐨勫揩鎹蜂功鍐欐柟寮�
+
+```JAVA
+@Test
+void testGetBy2(){
+    String name = "1";
+    LambdaQueryWrapper<Book> lqw = new LambdaQueryWrapper<Book>();
+    //if(name != null) lqw.like(Book::getName,name);		//鏂瑰紡涓€锛欽AVA浠ｇ爜鎺у埗
+    lqw.like(name != null,Book::getName,name);				//鏂瑰紡浜岋細API鎺ュ彛鎻愪緵鎺у埗寮€鍏�
+    bookDao.selectList(lqw);
+}
+```
+
+鈥�	鍏跺疄灏辨槸涓牸寮忥紝娌℃湁鍖哄埆銆傚叧浜嶮P鐨勫熀纭€鎿嶄綔灏辫鍒拌繖閲屽惂锛屽鏋滆繖涓€鍧楃煡璇嗕笉澶啛鎮夌殑灏忎紮浼磋繕鏄幓瀹屾暣鐨勫涔犱竴涓婱P鐨勭煡璇嗗惂锛岃繖閲屽彧鏄溁铚撶偣姘寸殑鐢ㄤ簡鍑犱釜鎿嶄綔鑰屽凡銆�
+
+**鎬荤粨**
+
+1. 浣跨敤QueryWrapper瀵硅薄灏佽鏌ヨ鏉′欢
+
+2. 鎺ㄨ崘浣跨敤LambdaQueryWrapper瀵硅薄
+
+3. 鎵€鏈夋煡璇㈡搷浣滃皝瑁呮垚鏂规硶璋冪敤
+
+4. 鏌ヨ鏉′欢鏀寔鍔ㄦ€佹潯浠舵嫾瑁�
+
+   
+
+#### 5.涓氬姟灞傚紑鍙�
+
+鈥�	鏁版嵁灞傚紑鍙戝憡涓€娈佃惤锛屼笅闈㈣繘琛屼笟鍔″眰寮€鍙戯紝鍏跺疄鏍囧噯涓氬姟灞傚紑鍙戝緢澶氬垵瀛﹁€呰涓哄氨鏄皟鐢ㄦ暟鎹眰锛屾€庝箞璇村憿锛熻繖涓悊瑙ｆ槸娌℃湁澶ч棶棰樼殑锛屾洿绮惧噯鐨勮娉曞簲璇ユ槸<font color="#ff0000"><b>缁勭粐涓氬姟閫昏緫鍔熻兘锛屽苟鏍规嵁涓氬姟闇€姹傦紝瀵规暟鎹寔涔呭眰鍙戣捣璋冪敤</b></font>銆傛湁浠€涔堝樊鍒憿锛熺洰鏍囨槸涓轰簡缁勭粐鍑虹鍚堥渶姹傜殑涓氬姟閫昏緫鍔熻兘锛岃嚦浜庤皟涓嶈皟鐢ㄦ暟鎹眰杩樼湡涓嶅ソ璇达紝鏈夐渶姹傚氨璋冪敤锛屾病鏈夐渶姹傚氨涓嶈皟鐢ㄣ€�
+
+鈥�	涓€涓父璇嗘€х殑鐭ヨ瘑鏅強涓€涓嬶紝涓氬姟灞傜殑鏂规硶鍚嶅畾涔変竴瀹氳涓庝笟鍔℃湁鍏筹紝渚嬪鐧诲綍鎿嶄綔
+
+```JAVA
+login(String username,String password);
+```
+
+鈥�	鑰屾暟鎹眰鐨勬柟娉曞悕瀹氫箟涓€瀹氫笌涓氬姟鏃犲叧锛屾槸涓€瀹氾紝涓嶆槸鍙兘锛屼篃涓嶆槸鏈夊彲鑳斤紝渚嬪鏍规嵁鐢ㄦ埛鍚嶅瘑鐮佹煡璇�
+
+```JAVA
+selectByUserNameAndPassword(String username,String password);
+```
+
+鈥�	鎴戜滑鍦ㄥ紑鍙戠殑鏃跺€欐槸鍙互鏍规嵁瀹屾垚鐨勫伐浣滀笉鍚屽垝鍒嗘垚涓嶅悓鑱岃兘鐨勫紑鍙戝洟闃熺殑銆傛瘮濡備竴涓摜浠埗浣滄暟鎹眰锛屼粬灏卞彲浠ヤ笉鐭ラ亾涓氬姟鏄粈涔堟牱瀛愶紝鎷垮埌鐨勯渶姹傛枃妗ｈ姹傚彲鑳芥槸杩欐牱鐨�
+
+```tex
+鎺ュ彛锛氫紶鍏ョ敤鎴峰悕涓庡瘑鐮佸瓧娈碉紝鏌ヨ鍑哄搴旂粨鏋滐紝缁撴灉鏄崟鏉℃暟鎹�
+鎺ュ彛锛氫紶鍏D瀛楁锛屾煡璇㈠嚭瀵瑰簲缁撴灉锛岀粨鏋滄槸鍗曟潯鏁版嵁
+鎺ュ彛锛氫紶鍏ョ鑱屽瓧娈碉紝鏌ヨ鍑哄搴旂粨鏋滐紝缁撴灉鏄鏉℃暟鎹�
+```
+
+鈥�	浣嗘槸杩涜涓氬姟鍔熻兘寮€鍙戠殑鍝ヤ滑锛屾嬁鍒扮殑闇€姹傛枃妗ｈ姹傚樊鍒氨寰堝ぇ
+
+```tex
+鎺ュ彛锛氫紶鍏ョ敤鎴峰悕涓庡瘑鐮佸瓧娈碉紝瀵圭敤鎴峰悕瀛楁鍋氶暱搴︽牎楠岋紝4-15浣嶏紝瀵瑰瘑鐮佸瓧娈靛仛闀垮害鏍￠獙锛�8鍒�24浣嶏紝瀵瑰柕鍠靛柕瀛楁鍋氱壒娈婂瓧绗︽牎楠岋紝涓嶅厑璁稿瓨鍦ㄧ┖鏍硷紝鏌ヨ缁撴灉涓哄璞°€傚鏋滀负null锛岃繑鍥濨usinessException锛屽皝瑁呮秷鎭爜INFO_LOGON_USERNAME_PASSWORD_ERROR
+```
+
+鈥�	浣犳瘮杈冧竴涓嬶紝鑳芥槸涓€鍥炰簨鍚楋紵宸埆澶ぇ浜嗭紝鎵€浠ヨ涓氬姟灞傛柟娉曞畾涔変笌鏁版嵁灞傛柟娉曞畾涔夊樊寮傚寲寰堝ぇ锛屽彧涓嶈繃鏈変簺鍏ラ棬绾х殑寮€鍙戣€呮墜鎳掓垨鑰呮病鏈変娇鐢ㄨ繃鍏徃鐩稿叧鐨処SO鏍囧噯鍖栨枃妗ｈ€屽凡銆�
+
+鈥�	澶氫綑鐨勮瘽涓嶈浜嗭紝鍜变滑鍋氭渚嬪氨绠€鍗曞埗浣滀簡锛屼笟鍔″眰鎺ュ彛瀹氫箟濡備笅锛�
+
+```JAVA
+public interface BookService {
+    Boolean save(Book book);
+    Boolean update(Book book);
+    Boolean delete(Integer id);
+    Book getById(Integer id);
+    List<Book> getAll();
+    IPage<Book> getPage(int currentPage,int pageSize);
+}
+```
+
+鈥�	涓氬姟灞傚疄鐜扮被濡備笅锛岃浆璋冩暟鎹眰鍗冲彲
+
+```JAVA
+@Service
+public class BookServiceImpl implements BookService {
+
+    @Autowired
+    private BookDao bookDao;
+
+    @Override
+    public Boolean save(Book book) {
+        return bookDao.insert(book) > 0;
+    }
+
+    @Override
+    public Boolean update(Book book) {
+        return bookDao.updateById(book) > 0;
+    }
+
+    @Override
+    public Boolean delete(Integer id) {
+        return bookDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public Book getById(Integer id) {
+        return bookDao.selectById(id);
+    }
+
+    @Override
+    public List<Book> getAll() {
+        return bookDao.selectList(null);
+    }
+
+    @Override
+    public IPage<Book> getPage(int currentPage, int pageSize) {
+        IPage page = new Page(currentPage,pageSize);
+        bookDao.selectPage(page,null);
+        return page;
+    }
+}
+```
+
+鈥�	鍒繕浜嗗涓氬姟灞傛帴鍙ｈ繘琛屾祴璇曪紝娴嬭瘯绫诲涓�
+
+```JAVA
+@SpringBootTest
+public class BookServiceTest {
+    @Autowired
+    private IBookService bookService;
+
+    @Test
+    void testGetById(){
+        System.out.println(bookService.getById(4));
+    }
+    @Test
+    void testSave(){
+        Book book = new Book();
+        book.setType("娴嬭瘯鏁版嵁123");
+        book.setName("娴嬭瘯鏁版嵁123");
+        book.setDescription("娴嬭瘯鏁版嵁123");
+        bookService.save(book);
+    }
+    @Test
+    void testUpdate(){
+        Book book = new Book();
+        book.setId(17);
+        book.setType("-----------------");
+        book.setName("娴嬭瘯鏁版嵁123");
+        book.setDescription("娴嬭瘯鏁版嵁123");
+        bookService.updateById(book);
+    }
+    @Test
+    void testDelete(){
+        bookService.removeById(18);
+    }
+
+    @Test
+    void testGetAll(){
+        bookService.list();
+    }
+
+    @Test
+    void testGetPage(){
+        IPage<Book> page = new Page<Book>(2,5);
+        bookService.page(page);
+        System.out.println(page.getCurrent());
+        System.out.println(page.getSize());
+        System.out.println(page.getTotal());
+        System.out.println(page.getPages());
+        System.out.println(page.getRecords());
+    }
+
+}
+```
+
+**鎬荤粨**
+
+1. Service鎺ュ彛鍚嶇О瀹氫箟鎴愪笟鍔″悕绉帮紝骞朵笌Dao鎺ュ彛鍚嶇О杩涜鍖哄垎
+2. 鍒朵綔娴嬭瘯绫绘祴璇昐ervice鍔熻兘鏄惁鏈夋晥
+
+
+
+##### 涓氬姟灞傚揩閫熷紑鍙�
+
+鈥�	鍏跺疄MP鎶€鏈笉浠呮彁渚涗簡鏁版嵁灞傚揩閫熷紑鍙戞柟妗堬紝涓氬姟灞侻P涔熺粰浜嗕竴涓€氱敤鎺ュ彛锛屼釜浜鸿鐐逛笉鎺ㄨ崘浣跨敤锛屽噾鍚堣兘鐢ㄥ惂锛屽叾瀹炲氨鏄竴涓皝瑁�+缁ф壙鐨勬€濇兂锛屼唬鐮佺粰鍑猴紝瀹為檯寮€鍙戞厧鐢�
+
+鈥�	涓氬姟灞傛帴鍙ｅ揩閫熷紑鍙�
+
+```JAVA
+public interface IBookService extends IService<Book> {
+    //娣诲姞闈為€氱敤鎿嶄綔API鎺ュ彛
+}
+```
+
+鈥�	涓氬姟灞傛帴鍙ｅ疄鐜扮被蹇€熷紑鍙戯紝鍏虫敞缁ф壙鐨勭被闇€瑕佷紶鍏ヤ袱涓硾鍨嬶紝涓€涓槸鏁版嵁灞傛帴鍙ｏ紝鍙︿竴涓槸瀹炰綋绫�
+
+```JAVA
+@Service
+public class BookServiceImpl extends ServiceImpl<BookDao, Book> implements IBookService {
+    @Autowired
+    private BookDao bookDao;
+	//娣诲姞闈為€氱敤鎿嶄綔API
+}
+```
+
+鈥�	濡傛灉鎰熻MP鎻愪緵鐨勫姛鑳戒笉瓒充互鏀拺浣犵殑浣跨敤闇€瑕侊紝鍏跺疄鏄竴瀹氫笉鑳芥敮鎾戠殑锛屽洜涓洪渶姹備笉鍙兘鏄€氱敤鐨勶紝鍦ㄥ師濮嬫帴鍙ｅ熀纭€涓婃帴鐫€瀹氫箟鏂扮殑API鎺ュ彛灏辫浜嗭紝姝ゅ涓嶅啀璇村お澶氫簡锛屽氨鏄嚜瀹氫箟鑷繁鐨勬搷浣滀簡锛屼絾鏄笉瑕佸拰宸叉湁鐨凙PI鎺ュ彛鍚嶅啿绐佸嵆鍙€�
+
+**鎬荤粨**
+
+1. 浣跨敤閫氱敤鎺ュ彛锛圛Serivce<T>锛夊揩閫熷紑鍙慡ervice
+2. 浣跨敤閫氱敤瀹炵幇绫伙紙ServiceImpl<M,T>锛夊揩閫熷紑鍙慡erviceImpl
+3. 鍙互鍦ㄩ€氱敤鎺ュ彛鍩虹涓婂仛鍔熻兘閲嶈浇鎴栧姛鑳借拷鍔�
+4. 娉ㄦ剰閲嶈浇鏃朵笉瑕佽鐩栧師濮嬫搷浣滐紝閬垮厤鍘熷鎻愪緵鐨勫姛鑳戒涪澶�
+
+
+
+#### 6.琛ㄧ幇灞傚紑鍙�
+
+鈥�	缁堜簬鍋氬埌琛ㄧ幇灞備簡锛屽仛浜嗚繖涔堝閮芥槸鍩虹宸ヤ綔銆傚叾瀹炰綘鐜板湪鍥炲ご鐪嬬湅锛屽摢閲岃繕鏈変粈涔圫pringBoot鐨勫奖瀛愶紵鍓嶉潰1,2姝ュ氨鎼炲畬浜嗐€傜户缁畬鎴愯〃鐜板眰鍒朵綔鍚э紝鍜变滑琛ㄧ幇灞傜殑寮€鍙戜娇鐢ㄥ熀浜嶳estful鐨勮〃鐜板眰鎺ュ彛寮€鍙戯紝鍔熻兘娴嬭瘯閫氳繃Postman宸ュ叿杩涜
+
+鈥�	琛ㄧ幇灞傛帴鍙ｅ涓�:
+
+```JAVA
+@RestController
+@RequestMapping("/books")
+public class BookController2 {
+
+    @Autowired
+    private IBookService bookService;
+
+    @GetMapping
+    public List<Book> getAll(){
+        return bookService.list();
+    }
+
+    @PostMapping
+    public Boolean save(@RequestBody Book book){
+        return bookService.save(book);
+    }
+
+    @PutMapping
+    public Boolean update(@RequestBody Book book){
+        return bookService.modify(book);
+    }
+
+    @DeleteMapping("{id}")
+    public Boolean delete(@PathVariable Integer id){
+        return bookService.delete(id);
+    }
+
+    @GetMapping("{id}")
+    public Book getById(@PathVariable Integer id){
+        return bookService.getById(id);
+    }
+
+    @GetMapping("{currentPage}/{pageSize}")
+    public IPage<Book> getPage(@PathVariable int currentPage,@PathVariable int pageSize){
+        return bookService.getPage(currentPage,pageSize, null);
+    }
+}
+```
+
+鈥�	鍦ㄥ疄鐢≒ostman娴嬭瘯鏃跺叧娉ㄦ彁浜ょ被鍨嬶紝瀵瑰簲涓婂嵆鍙紝涓嶇劧灏变細鎶�405鐨勯敊璇爜浜�
+
+**鏅€欸ET璇锋眰**
+
+![image-20211129152237371](img\image-20211129152237371.png)
+
+**PUT璇锋眰浼犻€抝son鏁版嵁锛屽悗鍙板疄鐢ˊRequestBody鎺ユ敹鏁版嵁**
+
+![image-20211129152300177](img\image-20211129152300177.png)
+
+**GET璇锋眰浼犻€掕矾寰勫彉閲忥紝鍚庡彴瀹炵敤@PathVariable鎺ユ敹鏁版嵁**
+
+![image-20211129152320073](C:\Users\itcast\AppData\Roaming\Typora\typora-user-images\image-20211129152320073.png)
+
+**鎬荤粨**
+
+1. 鍩轰簬Restful鍒朵綔琛ㄧ幇灞傛帴鍙�
+   - 鏂板锛歅OST
+   - 鍒犻櫎锛欴ELETE
+   - 淇敼锛歅UT
+   - 鏌ヨ锛欸ET
+2. 鎺ユ敹鍙傛暟
+   - 瀹炰綋鏁版嵁锛欯RequestBody
+   - 璺緞鍙橀噺锛欯PathVariable
+
+
+
+#### 7.琛ㄧ幇灞傛秷鎭竴鑷存€у鐞�
+
+鈥�	鐩墠鎴戜滑閫氳繃Postman娴嬭瘯鍚庝笟鍔″眰鎺ュ彛鍔熻兘鏃堕€氱殑锛屼絾鏄繖鏍风殑缁撴灉缁欏埌鍓嶇寮€鍙戣€呬細鍑虹幇涓€涓皬闂銆備笉鍚岀殑鎿嶄綔缁撴灉鎵€灞曠ず鐨勬暟鎹牸寮忓樊寮傚寲涓ラ噸
+
+鈥�	**澧炲垹鏀规搷浣滅粨鏋�**
+
+```tex
+true
+```
+
+鈥�	**鏌ヨ鍗曚釜鏁版嵁鎿嶄綔缁撴灉**
+
+```json
+{
+聽聽聽聽"id":聽1,
+聽聽聽聽"type":聽"璁＄畻鏈虹悊璁�",
+聽聽聽聽"name":聽"Spring瀹炴垬聽绗�5鐗�",
+聽聽聽聽"description":聽"Spring鍏ラ棬缁忓吀鏁欑▼"
+}
+```
+
+鈥�	**鏌ヨ鍏ㄩ儴鏁版嵁鎿嶄綔缁撴灉**
+
+```json
+[
+聽聽聽聽{
+聽聽聽聽聽聽聽聽"id":聽1,
+聽聽聽聽聽聽聽聽"type":聽"璁＄畻鏈虹悊璁�",
+聽聽聽聽聽聽聽聽"name":聽"Spring瀹炴垬聽绗�5鐗�",
+聽聽聽聽聽聽聽聽"description":聽"Spring鍏ラ棬缁忓吀鏁欑▼"
+聽聽聽聽},
+聽聽聽聽{
+聽聽聽聽聽聽聽聽"id":聽2,
+聽聽聽聽聽聽聽聽"type":聽"璁＄畻鏈虹悊璁�",
+聽聽聽聽聽聽聽聽"name":聽"Spring聽5鏍稿績鍘熺悊涓�30涓被鎵嬪啓瀹炴垬",
+聽聽聽聽聽聽聽聽"description":聽"鍗佸勾娌夋穩涔嬩綔"
+聽聽聽聽}
+]
+```
+
+鈥�	姣忕涓嶅悓鎿嶄綔杩斿洖鐨勬暟鎹牸寮忛兘涓嶄竴鏍凤紝鑰屼笖杩樹笉鐭ラ亾浠ュ悗杩樹細鏈変粈涔堟牸寮忥紝杩欐牱鐨勭粨鏋滆鍓嶇浜哄憳鐪嬩簡鏄緢瀹规槗璁╀汉宕╂簝鐨勶紝蹇呴』灏嗘墍鏈夋搷浣滅殑鎿嶄綔缁撴灉鏁版嵁鏍煎紡缁熶竴璧锋潵锛岄渶瑕佽璁¤〃鐜板眰杩斿洖缁撴灉鐨勬ā鍨嬬被锛岀敤浜庡悗绔笌鍓嶇杩涜鏁版嵁鏍煎紡缁熶竴锛屼篃绉颁负**鍓嶅悗绔暟鎹崗璁�**
+
+```JAVA
+@Data
+public class R {
+    private Boolean flag;
+    private Object data;
+}
+```
+
+鈥�	鍏朵腑flag鐢ㄤ簬鏍囪瘑鎿嶄綔鏄惁鎴愬姛锛宒ata鐢ㄤ簬灏佽鎿嶄綔鏁版嵁锛岀幇鍦ㄧ殑鏁版嵁鏍煎紡灏卞彉浜�
+
+```JSON
+{
+聽聽聽聽"flag":聽true,
+聽聽聽聽"data":{
+聽聽聽聽聽聽聽聽"id":聽1,
+聽聽聽聽聽聽聽聽"type":聽"璁＄畻鏈虹悊璁�",
+聽聽聽聽聽聽聽聽"name":聽"Spring瀹炴垬聽绗�5鐗�",
+聽聽聽聽聽聽聽聽"description":聽"Spring鍏ラ棬缁忓吀鏁欑▼"
+聽聽聽聽}
+}
+```
+
+鈥�	琛ㄧ幇灞傚紑鍙戞牸寮忎篃闇€瑕佽浆鎹竴涓�
+
+<img src="img\image-20211129153301262.png" alt="image-20211129153301262" style="zoom:80%;" />
+
+<img src="img\image-20211129153319052.png" alt="image-20211129153319052" style="zoom:80%;" />
+
+<img src="img\image-20211129153332499.png" alt="image-20211129153332499" style="zoom:80%;" />
+
+鈥�	缁撴灉杩欎箞涓€鎶樿吘锛屽叏鏍煎紡缁熶竴锛岀幇鍦ㄥ悗绔彂閫佺粰鍓嶇鐨勬暟鎹牸寮忓氨缁熶竴浜嗭紝鍏嶅幓浜嗕笉灏戝墠绔В鏋愭暟鎹殑楹荤儲銆�
+
+**鎬荤粨**
+
+1. 璁捐缁熶竴鐨勮繑鍥炲€肩粨鏋滅被鍨嬩究浜庡墠绔紑鍙戣鍙栨暟鎹�
+
+2. 杩斿洖鍊肩粨鏋滅被鍨嬪彲浠ユ牴鎹渶姹傝嚜琛岃瀹氾紝娌℃湁鍥哄畾鏍煎紡
+
+3. 杩斿洖鍊肩粨鏋滄ā鍨嬬被鐢ㄤ簬鍚庣涓庡墠绔繘琛屾暟鎹牸寮忕粺涓€锛屼篃绉颁负鍓嶅悗绔暟鎹崗璁�
+
+   
+
+#### 8.鍓嶅悗绔仈閫氭€ф祴璇�
+
+鈥�	鍚庣鐨勮〃鐜板眰鎺ュ彛寮€鍙戝畬姣曪紝灏卞彲浠ヨ繘琛屽墠绔殑寮€鍙戜簡銆�
+
+鈥�	灏嗗墠绔汉鍛樺紑鍙戠殑椤甸潰淇濆瓨鍒發resources鐩綍涓嬬殑static鐩綍涓紝寤鸿鎵цmaven鐨刢lean鐢熷懡鍛ㄦ湡锛岄伩鍏嶇紦瀛樼殑闂鍑虹幇銆�
+
+鈥�	![image-20211129153831990](img\image-20211129153831990.png)
+
+鈥�	鍦ㄨ繘琛屽叿浣撶殑鍔熻兘寮€鍙戜箣鍓嶏紝鍏堝仛鑱旈€氭€х殑娴嬭瘯锛岄€氳繃椤甸潰鍙戦€佸紓姝ユ彁浜わ紙axios锛夛紝杩欎竴姝ヨ皟璇曢€氳繃鍚庡啀杩涜杩涗竴姝ョ殑鍔熻兘寮€鍙�
+
+```js
+//鍒楄〃
+getAll() {
+	axios.get("/books").then((res)=>{
+		console.log(res.data);
+	});
+},
+```
+
+鈥�	鍙鍚庡彴浠ｇ爜鑳藉姝ｅ父宸ヤ綔锛屽墠绔兘澶熷湪鏃ュ織涓帴鏀跺埌鏁版嵁锛屽氨璇佹槑鍓嶅悗绔槸閫氱殑锛屼篃灏卞彲浠ヨ繘琛屼笅涓€姝ョ殑鍔熻兘寮€鍙戜簡
+
+**鎬荤粨**
+
+1. 鍗曚綋椤圭洰涓〉闈㈡斁缃湪resources/static鐩綍涓�
+2. created閽╁瓙鍑芥暟鐢ㄤ簬鍒濆鍖栭〉闈㈡椂鍙戣捣璋冪敤
+3. 椤甸潰浣跨敤axios鍙戦€佸紓姝ヨ姹傝幏鍙栨暟鎹悗纭鍓嶅悗绔槸鍚﹁仈閫�
+
+
+
+#### 9.椤甸潰鍩虹鍔熻兘寮€鍙�
+
+##### 	F-1.鍒楄〃鍔熻兘锛堥潪鍒嗛〉鐗堬級
+
+鈥�		鍒楄〃鍔熻兘涓昏鎿嶄綔灏辨槸鍔犺浇瀹屾暟鎹紝灏嗘暟鎹睍绀哄埌椤甸潰涓婏紝姝ゅ瑕佸埄鐢╒UE鐨勬暟鎹ā鍨嬬粦瀹氾紝鍙戦€佽姹傚緱鍒版暟鎹紝鐒跺悗椤甸潰涓婅鍙栨寚瀹氭暟鎹嵆鍙�
+
+鈥�		**椤甸潰鏁版嵁妯″瀷瀹氫箟**
+
+```vue
+data:{
+	dataList: [],//褰撳墠椤佃灞曠ず鐨勫垪琛ㄦ暟鎹�
+	...
+},
+```
+
+鈥�		寮傛璇锋眰鑾峰彇鏁版嵁
+
+```JS
+//鍒楄〃
+getAll() {
+    axios.get("/books").then((res)=>{
+        this.dataList = res.data.data;
+    });
+},
+```
+
+鈥�		杩欐牱鍦ㄩ〉闈㈠姞杞芥椂灏卞彲浠ヨ幏鍙栧埌鏁版嵁锛屽苟涓旂敱VUE灏嗘暟鎹睍绀哄埌椤甸潰涓婁簡
+
+鎬荤粨锛�
+
+1. 灏嗘煡璇㈡暟鎹繑鍥炲埌椤甸潰锛屽埄鐢ㄥ墠绔暟鎹粦瀹氳繘琛屾暟鎹睍绀�
+
+
+
+##### 	F-2.娣诲姞鍔熻兘
+
+鈥�		娣诲姞鍔熻兘鐢ㄤ簬鏀堕泦鏁版嵁鐨勮〃鍗曟槸閫氳繃涓€涓脊绐楀睍绀虹殑锛屽洜姝ゅ湪娣诲姞鎿嶄綔鍓嶉鍏堣杩涜寮圭獥鐨勫睍绀猴紝娣诲姞鍚庨殣钘忓脊绐楀嵆鍙€傚洜涓鸿繖涓脊绐椾竴鐩村瓨鍦紝鍥犳褰撻〉闈㈠姞杞芥椂棣栧厛璁剧疆杩欎釜寮圭獥涓轰笉鍙樉绀虹姸鎬侊紝闇€瑕佸睍绀猴紝鍒囨崲鐘舵€佸嵆鍙�
+
+鈥�		**榛樿鐘舵€�**
+
+```vue
+data:{
+	dialogFormVisible: false,//娣诲姞琛ㄥ崟鏄惁鍙
+	...
+},
+```
+
+鈥�		**鍒囨崲涓烘樉绀虹姸鎬�**
+
+```JS
+//寮瑰嚭娣诲姞绐楀彛
+handleCreate() {
+	this.dialogFormVisible = true;
+},
+```
+
+鈥�		鐢变簬姣忔娣诲姞鏁版嵁閮芥槸浣跨敤鍚屼竴涓脊绐楀綍鍏ユ暟鎹紝鎵€浠ユ瘡娆℃搷浣滅殑鐥曡抗灏嗗湪涓嬩竴娆℃搷浣滄椂灞曠ず鍑烘潵锛岄渶瑕佸湪姣忔鎿嶄綔涔嬪墠娓呯悊鎺変笂娆℃搷浣滅殑鐥曡抗
+
+鈥�		**瀹氫箟娓呯悊鏁版嵁鎿嶄綔**
+
+```js
+//閲嶇疆琛ㄥ崟
+resetForm() {
+    this.formData = {};
+},
+```
+
+鈥�		**鍒囨崲寮圭獥鐘舵€佹椂娓呯悊鏁版嵁**
+
+```js
+//寮瑰嚭娣诲姞绐楀彛
+handleCreate() {
+    this.dialogFormVisible = true;
+    this.resetForm();
+},
+```
+
+鈥�		鑷虫鍑嗗宸ヤ綔瀹屾垚锛屼笅闈㈠氨瑕佽皟鐢ㄥ悗鍙板畬鎴愭坊鍔犳搷浣滀簡
+
+鈥�		**娣诲姞鎿嶄綔**
+
+```js
+//娣诲姞
+handleAdd () {
+    //鍙戦€佸紓姝ヨ姹�
+    axios.post("/books",this.formData).then((res)=>{
+        //濡傛灉鎿嶄綔鎴愬姛锛屽叧闂脊灞傦紝鏄剧ず鏁版嵁
+        if(res.data.flag){
+            this.dialogFormVisible = false;
+            this.$message.success("娣诲姞鎴愬姛");
+        }else {
+            this.$message.error("娣诲姞澶辫触");
+        }
+    }).finally(()=>{
+        this.getAll();
+    });
+},
+```
+
+1. 灏嗚淇濆瓨鐨勬暟鎹紶閫掑埌鍚庡彴锛岄€氳繃post璇锋眰鐨勭浜屼釜鍙傛暟浼犻€抝son鏁版嵁鍒板悗鍙�
+2. 鏍规嵁杩斿洖鐨勬搷浣滅粨鏋滃喅瀹氫笅涓€姝ユ搷浣�
+   - 濡備綍鏄痶rue灏卞叧闂坊鍔犵獥鍙ｏ紝鏄剧ず娣诲姞鎴愬姛鐨勬秷鎭�
+   - 濡傛灉鏄痜alse淇濈暀娣诲姞绐楀彛锛屾樉绀烘坊鍔犲け璐ョ殑娑堟伅
+3. 鏃犺娣诲姞鏄惁鎴愬姛锛岄〉闈㈠潎杩涜鍒锋柊锛屽姩鎬佸姞杞芥暟鎹紙瀵筭etAll鎿嶄綔鍙戣捣璋冪敤锛�
+
+鈥�		**鍙栨秷娣诲姞鎿嶄綔**
+
+```JS
+//鍙栨秷
+cancel(){
+    this.dialogFormVisible = false;
+    this.$message.info("鎿嶄綔鍙栨秷");
+},
+```
+
+**鎬荤粨**
+
+1. 璇锋眰鏂瑰紡浣跨敤POST璋冪敤鍚庡彴瀵瑰簲鎿嶄綔
+2. 娣诲姞鎿嶄綔缁撴潫鍚庡姩鎬佸埛鏂伴〉闈㈠姞杞芥暟鎹�
+3. 鏍规嵁鎿嶄綔缁撴灉涓嶅悓锛屾樉绀哄搴旂殑鎻愮ず淇℃伅
+4. 寮瑰嚭娣诲姞Div鏃舵竻闄よ〃鍗曟暟鎹�
+
+
+
+##### 	F-3.鍒犻櫎鍔熻兘
+
+鈥�		妯′豢娣诲姞鎿嶄綔鍒朵綔鍒犻櫎鍔熻兘锛屽樊鍒箣澶勫湪浜庡垹闄ゆ搷浣滀粎浼犻€掍竴涓緟鍒犻櫎鐨勬暟鎹甶d鍒板悗鍙板嵆鍙�
+
+鈥�		**鍒犻櫎鎿嶄綔**
+
+```JS
+// 鍒犻櫎
+handleDelete(row) {
+    axios.delete("/books/"+row.id).then((res)=>{
+        if(res.data.flag){
+            this.$message.success("鍒犻櫎鎴愬姛");
+        }else{
+            this.$message.error("鍒犻櫎澶辫触");
+        }
+    }).finally(()=>{
+        this.getAll();
+    });
+},
+```
+
+鈥�		**鍒犻櫎鎿嶄綔鎻愮ず淇℃伅**
+
+```JS
+// 鍒犻櫎
+handleDelete(row) {
+    //1.寮瑰嚭鎻愮ず妗�
+    this.$confirm("姝ゆ搷浣滄案涔呭垹闄ゅ綋鍓嶆暟鎹紝鏄惁缁х画锛�","鎻愮ず",{
+        type:'info'
+    }).then(()=>{
+        //2.鍋氬垹闄や笟鍔�
+        axios.delete("/books/"+row.id).then((res)=>{
+       		if(res.data.flag){
+            	this.$message.success("鍒犻櫎鎴愬姛");
+        	}else{
+            	this.$message.error("鍒犻櫎澶辫触");
+        	}
+        }).finally(()=>{
+            this.getAll();
+        });
+    }).catch(()=>{
+        //3.鍙栨秷鍒犻櫎
+        this.$message.info("鍙栨秷鍒犻櫎鎿嶄綔");
+    });
+}锛�	
+```
+
+**鎬荤粨**
+
+1. 璇锋眰鏂瑰紡浣跨敤Delete璋冪敤鍚庡彴瀵瑰簲鎿嶄綔
+2. 鍒犻櫎鎿嶄綔闇€瑕佷紶閫掑綋鍓嶈鏁版嵁瀵瑰簲鐨刬d鍊煎埌鍚庡彴
+3. 鍒犻櫎鎿嶄綔缁撴潫鍚庡姩鎬佸埛鏂伴〉闈㈠姞杞芥暟鎹�
+4. 鏍规嵁鎿嶄綔缁撴灉涓嶅悓锛屾樉绀哄搴旂殑鎻愮ず淇℃伅
+5. 鍒犻櫎鎿嶄綔鍓嶅脊鍑烘彁绀烘閬垮厤璇搷浣�
+
+
+
+##### 	F-4.淇敼鍔熻兘
+
+鈥�		淇敼鍔熻兘鍙互璇存槸鍒楄〃鍔熻兘銆佸垹闄ゅ姛鑳戒笌娣诲姞鍔熻兘鐨勫悎浣撱€傚嚑涓浉浼肩偣濡備笅锛�
+
+1. 椤甸潰涔熼渶瑕佹湁涓€涓脊绐楃敤鏉ュ姞杞戒慨鏀圭殑鏁版嵁锛岃繖涓€鐐逛笌娣诲姞鐩稿悓锛岄兘鏄寮圭獥
+
+2. 寮瑰嚭绐楀彛涓鍔犺浇寰呬慨鏀圭殑鏁版嵁锛岃€屾暟鎹渶瑕侀€氳繃鏌ヨ寰楀埌锛岃繖涓€鐐逛笌鏌ヨ鍏ㄩ儴鐩稿悓锛岄兘鏄鏌ユ暟鎹�
+
+3. 鏌ヨ鎿嶄綔闇€瑕佸皢瑕佷慨鏀圭殑鏁版嵁id鍙戦€佸埌鍚庡彴锛岃繖涓€鐐逛笌鍒犻櫎鐩稿悓锛岄兘鏄紶閫抜d鍒板悗鍙�
+
+4. 鏌ヨ寰楀埌鏁版嵁鍚庨渶瑕佸睍绀哄埌寮圭獥涓紝杩欎竴鐐逛笌鏌ヨ鍏ㄩ儴鐩稿悓锛岄兘鏄閫氳繃鏁版嵁妯″瀷缁戝畾灞曠ず鏁版嵁
+
+5. 淇敼鏁版嵁鏃堕渶瑕佸皢琚慨鏀圭殑鏁版嵁浼犻€掑埌鍚庡彴锛岃繖涓€鐐逛笌娣诲姞鐩稿悓锛岄兘鏄浼犻€掓暟鎹�
+
+   鎵€浠ユ暣浣撲笂鏉ョ湅锛屼慨鏀瑰姛鑳藉氨鏄墠闈㈠嚑涓姛鑳界殑澶у悎浣�
+
+   **鏌ヨ骞跺睍绀烘暟鎹�**
+
+```JS
+//寮瑰嚭缂栬緫绐楀彛
+handleUpdate(row) {
+    axios.get("/books/"+row.id).then((res)=>{
+        if(res.data.flag){
+            //灞曠ず寮瑰眰锛屽姞杞芥暟鎹�
+            this.formData = res.data.data;
+            this.dialogFormVisible4Edit = true;
+        }else{
+            this.$message.error("鏁版嵁鍚屾澶辫触锛岃嚜鍔ㄥ埛鏂�");
+        }
+    });
+},
+```
+
+鈥�		**淇敼鎿嶄綔**
+
+```JS
+//淇敼
+handleEdit() {
+    axios.put("/books",this.formData).then((res)=>{
+        //濡傛灉鎿嶄綔鎴愬姛锛屽叧闂脊灞傚苟鍒锋柊椤甸潰
+        if(res.data.flag){
+            this.dialogFormVisible4Edit = false;
+            this.$message.success("淇敼鎴愬姛");
+        }else {
+            this.$message.error("淇敼澶辫触锛岃閲嶈瘯");
+        }
+    }).finally(()=>{
+        this.getAll();
+    });
+},
+```
+
+**鎬荤粨**
+
+1. 鍔犺浇瑕佷慨鏀规暟鎹€氳繃浼犻€掑綋鍓嶈鏁版嵁瀵瑰簲鐨刬d鍊煎埌鍚庡彴鏌ヨ鏁版嵁锛堝悓鍒犻櫎涓庢煡璇㈠叏閮級
+2. 鍒╃敤鍓嶇鍙屽悜鏁版嵁缁戝畾灏嗘煡璇㈠埌鐨勬暟鎹繘琛屽洖鏄撅紙鍚屾煡璇㈠叏閮級
+3. 璇锋眰鏂瑰紡浣跨敤PUT璋冪敤鍚庡彴瀵瑰簲鎿嶄綔锛堝悓鏂板浼犻€掓暟鎹級
+4. 淇敼鎿嶄綔缁撴潫鍚庡姩鎬佸埛鏂伴〉闈㈠姞杞芥暟鎹紙鍚屾柊澧烇級
+5. 鏍规嵁鎿嶄綔缁撴灉涓嶅悓锛屾樉绀哄搴旂殑鎻愮ず淇℃伅锛堝悓鏂板锛�
+
+鈥�	
+
+#### 10.涓氬姟娑堟伅涓€鑷存€у鐞�
+
+鈥�	鐩墠鐨勫姛鑳藉埗浣滃熀鏈笂杈炬垚浜嗘甯镐娇鐢ㄧ殑鎯呭喌锛屼粈涔堝彨姝ｅ父浣跨敤鍛紵涔熷氨鏄繖涓▼搴忎笉鍑築UG锛屽鏋滄垜浠悶涓€涓狟UG鍑烘潵锛屼綘浼氬彂鐜扮▼搴忛┈涓婂穿婧冩帀銆傛瘮濡傚悗鍙版墜宸ユ姏鍑轰竴涓紓甯革紝鐪嬬湅鍓嶇鎺ユ敹鍒扮殑鏁版嵁浠€涔堟牱瀛�
+
+```json
+{
+聽聽聽聽"timestamp":聽"2021-09-15T03:27:31.038+00:00",
+聽聽聽聽"status":聽500,
+聽聽聽聽"error":聽"Internal聽Server聽Error",
+聽聽聽聽"path":聽"/books"
+}
+```
+
+鈥�	闈㈠杩欑鎯呭喌锛屽墠绔殑鍚屽鍙堜笉浼氫簡锛岃繖鍙堟槸浠€涔堟牸寮忥紵鎬庝箞鍜屼箣鍓嶇殑鏍煎紡涓嶄竴鏍凤紵
+
+```json
+{
+聽聽聽聽"flag":聽true,
+聽聽聽聽"data":{
+聽聽聽聽聽聽聽聽"id":聽1,
+聽聽聽聽聽聽聽聽"type":聽"璁＄畻鏈虹悊璁�",
+聽聽聽聽聽聽聽聽"name":聽"Spring瀹炴垬聽绗�5鐗�",
+聽聽聽聽聽聽聽聽"description":聽"Spring鍏ラ棬缁忓吀鏁欑▼"
+聽聽聽聽}
+}
+```
+
+鈥�	鐪嬫潵涓嶄粎瑕佸姝ｇ‘鐨勬搷浣滄暟鎹牸寮忓仛澶勭悊锛岃繕瑕佸閿欒鐨勬搷浣滄暟鎹牸寮忓仛鍚屾牱鐨勬牸寮忓鐞�
+
+鈥�	棣栧厛鍦ㄥ綋鍓嶇殑鏁版嵁缁撴灉涓坊鍔犳秷鎭瓧娈碉紝鐢ㄦ潵鍏煎鍚庡彴鍑虹幇鐨勬搷浣滄秷鎭�
+
+```JAVA
+@Data
+public class R{
+    private Boolean flag;
+    private Object data;
+    private String msg;		//鐢ㄤ簬灏佽娑堟伅
+}
+```
+
+鈥�	鍚庡彴浠ｇ爜涔熻鏍规嵁鎯呭喌鍋氬鐞嗭紝褰撳墠鏄ā鎷熺殑閿欒
+
+```JAVA
+@PostMapping
+public R save(@RequestBody Book book) throws IOException {
+    Boolean flag = bookService.insert(book);
+    return new R(flag , flag ? "娣诲姞鎴愬姛^_^" : "娣诲姞澶辫触-_-!");
+}
+```
+
+鈥�	鐒跺悗鍦ㄨ〃鐜板眰鍋氱粺涓€鐨勫紓甯稿鐞嗭紝浣跨敤SpringMVC鎻愪緵鐨勫紓甯稿鐞嗗櫒鍋氱粺涓€鐨勫紓甯稿鐞�
+
+```JAVA
+@RestControllerAdvice
+public class ProjectExceptionAdvice {
+    @ExceptionHandler(Exception.class)
+    public R doOtherException(Exception ex){
+        //璁板綍鏃ュ織
+        //鍙戦€佹秷鎭粰杩愮淮
+        //鍙戦€侀偖浠剁粰寮€鍙戜汉鍛�,ex瀵硅薄鍙戦€佺粰寮€鍙戜汉鍛�
+        ex.printStackTrace();
+        return new R(false,null,"绯荤粺閿欒锛岃绋嶅悗鍐嶈瘯锛�");
+    }
+}
+```
+
+鈥�	椤甸潰涓婂緱鍒版暟鎹悗锛屽厛鍒ゅ畾鏄惁鏈夊悗鍙颁紶閫掕繃鏉ョ殑娑堟伅锛屾爣蹇楀氨鏄綋鍓嶆搷浣滄槸鍚︽垚鍔燂紝濡傛灉杩斿洖鎿嶄綔缁撴灉false锛屽氨璇诲彇鍚庡彴浼犻€掔殑娑堟伅
+
+```JS
+//娣诲姞
+handleAdd () {
+	//鍙戦€乤jax璇锋眰
+    axios.post("/books",this.formData).then((res)=>{
+        //濡傛灉鎿嶄綔鎴愬姛锛屽叧闂脊灞傦紝鏄剧ず鏁版嵁
+        if(res.data.flag){
+            this.dialogFormVisible = false;
+            this.$message.success("娣诲姞鎴愬姛");
+        }else {
+            this.$message.error(res.data.msg);			//娑堟伅鏉ヨ嚜浜庡悗鍙颁紶閫掕繃鏉ワ紝鑰岄潪鍥哄畾鍐呭
+        }
+    }).finally(()=>{
+        this.getAll();
+    });
+},
+```
+
+**鎬荤粨**
+
+1. 浣跨敤娉ㄨВ@RestControllerAdvice瀹氫箟SpringMVC寮傚父澶勭悊鍣ㄧ敤鏉ュ鐞嗗紓甯哥殑
+2. 寮傚父澶勭悊鍣ㄥ繀椤昏鎵弿鍔犺浇锛屽惁鍒欐棤娉曠敓鏁�
+3. 琛ㄧ幇灞傝繑鍥炵粨鏋滅殑妯″瀷绫讳腑娣诲姞娑堟伅灞炴€х敤鏉ヤ紶閫掓秷鎭埌椤甸潰
+
+鈥�	
+
+#### 11.椤甸潰鍔熻兘寮€鍙�
+
+##### 	F-5.鍒嗛〉鍔熻兘
+
+鈥�		鍒嗛〉鍔熻兘鐨勫埗浣滅敤浜庢浛鎹㈠墠闈㈢殑鏌ヨ鍏ㄩ儴锛屽叾涓浣跨敤鍒癳lementUI鎻愪緵鐨勫垎椤电粍浠�
+
+```js
+<!--鍒嗛〉缁勪欢-->
+<div class="pagination-container">
+    <el-pagination
+		class="pagiantion"
+		@current-change="handleCurrentChange"
+		:current-page="pagination.currentPage"
+		:page-size="pagination.pageSize"
+		layout="total, prev, pager, next, jumper"
+		:total="pagination.total">
+    </el-pagination>
+</div>
+```
+
+鈥�		涓轰簡閰嶅悎鍒嗛〉缁勪欢锛屽皝瑁呭垎椤靛搴旂殑鏁版嵁妯″瀷
+
+```vue
+data:{
+	pagination: {	
+		//鍒嗛〉鐩稿叧妯″瀷鏁版嵁
+		currentPage: 1,	//褰撳墠椤电爜
+		pageSize:10,	//姣忛〉鏄剧ず鐨勮褰曟暟
+		total:0,		//鎬昏褰曟暟
+	}
+},
+```
+
+鈥�		淇敼鏌ヨ鍏ㄩ儴鍔熻兘涓哄垎椤垫煡璇紝閫氳繃璺緞鍙橀噺浼犻€掗〉鐮佷俊鎭弬鏁�
+
+```JS
+getAll() {
+    axios.get("/books/"+this.pagination.currentPage+"/"+this.pagination.pageSize).then((res) => {
+    });
+},
+```
+
+鈥�		鍚庡彴鎻愪緵瀵瑰簲鐨勫垎椤靛姛鑳�
+
+```JAVA
+@GetMapping("/{currentPage}/{pageSize}")
+public R getAll(@PathVariable Integer currentPage,@PathVariable Integer pageSize){
+    IPage<Book> pageBook = bookService.getPage(currentPage, pageSize);
+    return new R(null != pageBook ,pageBook);
+}
+```
+
+鈥�		椤甸潰鏍规嵁鍒嗛〉鎿嶄綔缁撴灉璇诲彇瀵瑰簲鏁版嵁锛屽苟杩涜鏁版嵁妯″瀷缁戝畾
+
+```JS
+getAll() {
+    axios.get("/books/"+this.pagination.currentPage+"/"+this.pagination.pageSize).then((res) => {
+        this.pagination.total = res.data.data.total;
+        this.pagination.currentPage = res.data.data.current;
+        this.pagination.pagesize = res.data.data.size;
+        this.dataList = res.data.data.records;
+    });
+},
+```
+
+鈥�		瀵瑰垏鎹㈤〉鐮佹搷浣滆缃皟鐢ㄥ綋鍓嶅垎椤垫搷浣�
+
+```JS
+//鍒囨崲椤电爜
+handleCurrentChange(currentPage) {
+    this.pagination.currentPage = currentPage;
+    this.getAll();
+},
+```
+
+**鎬荤粨**
+
+1. 浣跨敤el鍒嗛〉缁勪欢
+2. 瀹氫箟鍒嗛〉缁勪欢缁戝畾鐨勬暟鎹ā鍨�
+3. 寮傛璋冪敤鑾峰彇鍒嗛〉鏁版嵁
+4. 鍒嗛〉鏁版嵁椤甸潰鍥炴樉
+
+
+
+##### 	F-6.鍒犻櫎鍔熻兘缁存姢
+
+鈥�		鐢变簬浣跨敤浜嗗垎椤靛姛鑳斤紝褰撴渶鍚庝竴椤靛彧鏈変竴鏉℃暟鎹椂锛屽垹闄ゆ搷浣滃氨浼氬嚭鐜癇UG锛屾渶鍚庝竴椤垫棤鏁版嵁浣嗘槸鐙珛灞曠ず锛屽鍒嗛〉鏌ヨ鍔熻兘杩涜鍚庡彴鍔熻兘缁存姢锛屽鏋滃綋鍓嶉〉鐮佸€煎ぇ浜庢渶澶ч〉鐮佸€硷紝閲嶆柊鎵ц鏌ヨ銆傚叾瀹炶繖涓棶棰樿В鍐虫柟妗堝緢澶氾紝杩欓噷缁欏嚭姣旇緝绠€鍗曠殑涓€绉嶅鐞嗘柟妗�
+
+```JAVA
+@GetMapping("{currentPage}/{pageSize}")
+public R getPage(@PathVariable int currentPage,@PathVariable int pageSize){
+    IPage<Book> page = bookService.getPage(currentPage, pageSize);
+    //濡傛灉褰撳墠椤电爜鍊煎ぇ浜庝簡鎬婚〉鐮佸€硷紝閭ｄ箞閲嶆柊鎵ц鏌ヨ鎿嶄綔锛屼娇鐢ㄦ渶澶ч〉鐮佸€间綔涓哄綋鍓嶉〉鐮佸€�
+    if( currentPage > page.getPages()){
+        page = bookService.getPage((int)page.getPages(), pageSize);
+    }
+    return new R(true, page);
+}
+```
+
+
+
+##### 	F-7.鏉′欢鏌ヨ鍔熻兘
+
+鈥�		鏈€鍚庝竴涓姛鑳芥潵鍋氭潯浠舵煡璇紝鍏跺疄鏉′欢鏌ヨ鍙互鐞嗚В涓哄垎椤垫煡璇㈢殑鏃跺€欓櫎浜嗘惡甯﹀垎椤垫暟鎹啀澶氬甫鍑犱釜鏁版嵁鐨勬煡璇€€傝繖浜涘甯︾殑鏁版嵁灏辨槸鏌ヨ鏉′欢銆傛瘮杈冧竴涓嬩笉甯︽潯浠剁殑鍒嗛〉鏌ヨ涓庡甫鏉′欢鐨勫垎椤垫煡璇㈠樊鍒箣澶勶紝杩欎釜鍔熻兘灏卞ソ鍋氫簡
+
+- 椤甸潰灏佽鐨勬暟鎹細甯︿笉甯︽潯浠跺奖鍝嶇殑浠呬粎鏄竴娆℃€т紶閫掑埌鍚庡彴鐨勬暟鎹€婚噺锛岀敱浼犻€�2涓垎椤电浉鍏崇殑鏁版嵁杞崲鎴�2涓垎椤垫暟鎹姞鑻ュ共涓潯浠�
+
+- 鍚庡彴鏌ヨ鍔熻兘锛氭煡璇㈡椂鐢变笉甯︽潯浠讹紝杞崲鎴愬甫鏉′欢锛屽弽姝ｄ笉甯︽潯浠剁殑鏃跺€欐煡璇㈡潯浠跺璞′娇鐢ㄧ殑鏄痭ull锛岀幇鍦ㄦ崲鎴愬叿浣撴潯浠讹紝宸埆涓嶅ぇ
+
+- 鏌ヨ缁撴灉锛氫笉绠″甫涓嶅甫鏉′欢锛屽嚭鏉ョ殑鏁版嵁鍙槸鏈夋暟閲忎笂鐨勫樊鍒紝鍏朵粬閮藉樊鍒紝杩欎釜鍙互蹇界暐
+
+  缁忚繃涓婅堪鍒嗘瀽锛岀湅鏉ラ渶瑕佸湪椤甸潰鍙戦€佽姹傜殑鏍煎紡鏂归潰鍋氫竴瀹氱殑淇敼锛屽悗鍙扮殑璋冪敤鏁版嵁灞傛搷浣滄椂鍙戦€佷慨鏀癸紝鍏朵粬娌℃湁鍖哄埆
+
+  椤甸潰鍙戦€佽姹傛椂锛屼袱涓垎椤垫暟鎹粛鐒朵娇鐢ㄨ矾寰勫彉閲忥紝鍏朵粬鏉′欢閲囩敤鍔ㄦ€佹嫾瑁卽rl鍙傛暟鐨勫舰寮忎紶閫�
+
+  **椤甸潰灏佽鏌ヨ鏉′欢瀛楁**
+
+  ```vue
+  pagination: {		
+  //鍒嗛〉鐩稿叧妯″瀷鏁版嵁
+  	currentPage: 1,		//褰撳墠椤电爜
+  	pageSize:10,		//姣忛〉鏄剧ず鐨勮褰曟暟
+  	total:0,			//鎬昏褰曟暟
+  	name: "",
+  	type: "",
+  	description: ""
+  },
+  ```
+
+  椤甸潰娣诲姞鏌ヨ鏉′欢瀛楁瀵瑰簲鐨勬暟鎹ā鍨嬬粦瀹氬悕绉�
+
+  ```HTML
+  <div class="filter-container">
+      <el-input placeholder="鍥句功绫诲埆" v-model="pagination.type" class="filter-item"/>
+      <el-input placeholder="鍥句功鍚嶇О" v-model="pagination.name" class="filter-item"/>
+      <el-input placeholder="鍥句功鎻忚堪" v-model="pagination.description" class="filter-item"/>
+      <el-button @click="getAll()" class="dalfBut">鏌ヨ</el-button>
+      <el-button type="primary" class="butT" @click="handleCreate()">鏂板缓</el-button>
+  </div>
+  ```
+
+  灏嗘煡璇㈡潯浠剁粍缁囨垚url鍙傛暟锛屾坊鍔犲埌璇锋眰url鍦板潃涓紝杩欓噷鍙互鍊熷姪鍏朵粬绫诲簱蹇€熷紑鍙戯紝褰撳墠浣跨敤鎵嬪伐褰㈠紡鎷兼帴锛岄檷浣庡涔犺姹�
+
+  ```JS
+  getAll() {
+      //1.鑾峰彇鏌ヨ鏉′欢,鎷兼帴鏌ヨ鏉′欢
+      param = "?name="+this.pagination.name;
+      param += "&type="+this.pagination.type;
+      param += "&description="+this.pagination.description;
+      console.log("-----------------"+ param);
+      axios.get("/books/"+this.pagination.currentPage+"/"+this.pagination.pageSize+param).then((res) => {
+          this.dataList = res.data.data.records;
+      });
+  },
+  ```
+
+  鍚庡彴浠ｇ爜涓畾涔夊疄浣撶被灏佹煡璇㈡潯浠�
+
+  ```JAVA
+  @GetMapping("{currentPage}/{pageSize}")
+  public R getAll(@PathVariable int currentPage,@PathVariable int pageSize,Book book) {
+      System.out.println("鍙傛暟=====>"+book);
+      IPage<Book> pageBook = bookService.getPage(currentPage,pageSize);
+      return new R(null != pageBook ,pageBook);
+  }
+  ```
+
+  瀵瑰簲涓氬姟灞傛帴鍙ｄ笌瀹炵幇绫昏繘琛屼慨姝�
+
+  ```JAVA
+  public interface IBookService extends IService<Book> {
+      IPage<Book> getPage(Integer currentPage,Integer pageSize,Book queryBook);
+  }
+  ```
+
+  ```JAVA
+  @Service
+  public class BookServiceImpl2 extends ServiceImpl<BookDao,Book> implements IBookService {
+      public IPage<Book> getPage(Integer currentPage,Integer pageSize,Book queryBook){
+          IPage page = new Page(currentPage,pageSize);
+          LambdaQueryWrapper<Book> lqw = new LambdaQueryWrapper<Book>();
+          lqw.like(Strings.isNotEmpty(queryBook.getName()),Book::getName,queryBook.getName());
+          lqw.like(Strings.isNotEmpty(queryBook.getType()),Book::getType,queryBook.getType());
+          lqw.like(Strings.isNotEmpty(queryBook.getDescription()),Book::getDescription,queryBook.getDescription());
+          return bookDao.selectPage(page,lqw);
+      }
+  }
+  ```
+
+  椤甸潰鍥炴樉鏁版嵁
+
+  ```js
+  getAll() {
+      //1.鑾峰彇鏌ヨ鏉′欢,鎷兼帴鏌ヨ鏉′欢
+      param = "?name="+this.pagination.name;
+      param += "&type="+this.pagination.type;
+      param += "&description="+this.pagination.description;
+      console.log("-----------------"+ param);
+      axios.get("/books/"+this.pagination.currentPage+"/"+this.pagination.pageSize+param).then((res) => {
+          this.pagination.total = res.data.data.total;
+          this.pagination.currentPage = res.data.data.current;
+          this.pagination.pagesize = res.data.data.size;
+          this.dataList = res.data.data.records;
+      });
+  },
+  ```
+
+**鎬荤粨**
+
+1. 瀹氫箟鏌ヨ鏉′欢鏁版嵁妯″瀷锛堝綋鍓嶅皝瑁呭埌鍒嗛〉鏁版嵁妯″瀷涓級
+2. 寮傛璋冪敤鍒嗛〉鍔熻兘骞堕€氳繃璇锋眰鍙傛暟浼犻€掓暟鎹埌鍚庡彴
+
+
+
+## 鍩虹绡囧畬缁�
+
+鈥�	鍩虹绡囧埌杩欓噷灏卞叏閮ㄧ粨鏉熶簡锛屽湪鍩虹绡囦腑甯︾潃澶у瀛︿範浜嗗鏋滃垱寤轰竴涓猄pringBoot宸ョ▼锛岀劧鍚庡涔犱簡SpringBoot鐨勫熀纭€閰嶇疆璇硶鏍煎紡锛屾帴涓嬫潵瀵瑰父瑙佺殑甯傞潰涓婄殑瀹炵敤鎶€鏈仛浜嗘暣鍚堬紝鏈€鍚庨€氳繃涓€涓皬鐨勬渚嬪鍓嶉潰瀛︿範鐨勫唴瀹瑰仛浜嗕竴涓患鍚堝簲鐢ㄣ€傛暣浣撴潵璇村氨鏄竴涓渶鍩烘湰鐨勫叆闂紝鍏充簬SpringBoot鐨勫疄闄呭紑鍙戝叾瀹炴帴瑙︾殑杩樻槸寰堝皯鐨勶紝鎴戜滑鍒板疄鐢ㄧ瘒鍜屽師鐞嗙瘒涓户缁惂锛屽悇浣嶅皬浼欎即锛屽姞娌瑰涔狅紝鍐嶈銆�
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

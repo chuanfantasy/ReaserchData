@@ -1,0 +1,274 @@
+2023 年 5 月 15 日 第 46 卷第 10 期
+
+现代电子技术 Modern Electronics Technique
+
+166 DOI：10.16652/j.issn.1004⁃373x.2023.10.031
+
+引用格式：翁渊瀚，李南 . 基于深度学习的知识空间自增扩展方法研究[J]. 现代电子技术，2023，46（10）：166⁃172.
+
+May 2023 Vol. 46 No. 10
+
+基于深度学习的知识空间自增扩展方法研究
+
+翁渊瀚 ， 1，2 李 南 1
+（1. 南京航空航天大学 经济与管理学院，江苏 南京 211000；2. 南京工业大学 经济与管理学院，江苏 南京 211800）
+
+摘 要：为解决传统知识空间可拓方法可拓范围小、精度低等问题，文中提出一种基于深度学习算法的知识空间可拓
+
+方 法 。 通 过 将 深 度 学 习 算 法 与 多 模 态 信 息 融 合 方 法 相 结 合 ，构 建 知 识 空 间 扩 展 框 架 ，包 括 对 现 有 知 识 空 间 的 融 合 与 扩 展 。
+
+在空间结构拓展方面，将框架设置为空间组织知识、知识索引、知识导航、知识检索等部分，根据知识序列信息的连续分类实
+
+现知识划分。在扩展空间中，通过语义描述技术整合知识元素的多结构状态，实现知识空间的自增扩展。实验结果表明，基
+
+于深度学习算法的知识空间扩展方法整体效果较好。
+
+关键词：知识空间；自增扩展；深度学习算法；信息融合；拓展框架；知识分类；仿真实验
+
+中图分类号：TN911⁃34；TP311
+
+文献标识码：A
+
+文章编号：1004⁃373X（2023）10⁃0166⁃07
+
+Research on knowledge space self⁃increasing expansion method based on deep learning
+WENG Yuanhan1，2，LI Nan1
+（1. School of Economics and Management，Nanjing University of Aeronautics and Astronautics，Nanjing 211000，China； 2. School of Economics and Management，Nanjing Tech University，Nanjing 211800，China）
+Abstract： In order to solve the problems of small extension range and low precision of traditional knowledge space extension methods，a knowledge space extension method based on deep learning algorithm is proposed. By combining the deep learning algorithm with the multimodal information fusion method，the knowledge space expansion framework is constructed， including the fusion and expansion of the existing knowledge space. In the aspect of spatial structure expansion，the framework is set as spatial organization knowledge，knowledge index，knowledge navigation，knowledge retrieval and other parts to realize knowledge division according to the continuous classification of knowledge sequence information. In the extended space，the semantic description technology is used to integrate the multi⁃structure state of knowledge elements to realize the self⁃expansion of knowledge space. The experimental results show that the knowledge space expansion method based on deep learning algorithm has good overall effect.
+Keywords： knowledge space； self ⁃ increasing expansion； deep learning algorithm； information fusion； expansion framework；knowledge classification；simulation experiment
+
+0引言
+知识经济是当今生产力发展的高级阶段。在现代 教育教学活动中，学科论文是教育教学资源的主要学科 知识类型之一 。 [1] 随着现代计算机和社会结构的不断变 化 和 发 展 ，相 关 知 识 资 源 的 数 量 也 在 不 断 增 加 。 此 外 ， 社会信息的不断扩张导致现代知识资源向群体复杂性 方向发展。在大数据共生发展的趋势下，人们往往无法 有效适应知识的广度。因此，学科知识空间的构建和有 序增长是解决上述问题的核心。如何有效提高同期空
+
+座的教育学习效果，并在新的学习环境中增加其知识空 间总量，已成为需要解决的首要问题。在知识空间的现 阶 段 ，根 据 知 识 自 身 独 特 的 资 源 整 合 和 共 生 关 系 ，可 以 建立知识框架来实现知识空间的扩展，其中深度学习算 法为知识空间的增长提供了参考和思考。深度学习算 法 是 通 过 级 扩 展 ，以 多 层 次 、多 线 性 为 核 心 的 复 杂 关 系 建模方法。该算法采用多级结构，能有效避免因样本抽 取而产生的不必要的知识错误[2]。
+在此基础上，有学者利用属性和属性值之间的共现 关系扩展知识库，提出了一种基于词的共现图的属性知
+
+收稿日期：2022⁃09⁃13
+
+修回日期：2022⁃10⁃28
+
+基金项目：国家自然科学基金面上项目：技术范式转换预警的理论与方法（71473119）
+
+第 10 期
+
+翁渊瀚，等：基于深度学习的知识空间自增扩展方法研究
+
+167
+
+识库迭代自增长算法，主要是设计一种基于图的社区发 现 算 法 ，找 出 社 区 的 核 心 节 点 ，通 过 卷 积 神 经 网 络 的 模 型去噪提取结果[3]。该方法具有较好的知识空间扩展质 量 ，但 在 短 文 本 处 理 中 效 果 较 差 ，召 回 率 较 低 [4]。 于 是 ， 有学者提出了“互联网+”背景下基于社交网络知识空间 的研究方法。通过分析社交媒体对图书馆服务创新的 影 响 ，构 建 了 基 于 社 交 互 动 的 知 识 空 间 模 型 ，给 出 了 知 识空间的框架结构，实现了知识空间的扩展。但这种方 法的精度较差，应用效果不理想。还有学者提出了创客 知识空间构建的研究方法，并建立了服务策略和服务体 系 [5]。 该 方 法 以 知 识 空 间 、知 识 建 构 和 知 识 协 调 理 论 为 基础，按照针对性、科学性、协调性和可持续性原则构建 图 书 馆 知 识 空 间 的 运 行 框 架 ，分 析 其 内 部 运 行 机 制 ，完 成知识空间的拓展。这种方法缺点是稳定性和安全性 较差。
+因为当前的方法没有将知识通过知识序列信息进 行分层处理，导致知识空间扩张范围小和精度低。为了 解决当前方法存在的问题，有效实现知识空间的自增扩 展 ，本 文 提 出 一 种 基 于 深 度 学 习 算 法 的 自 增 长 知 识 空 间。简单描述知识空间扩展在社会经济发展中的重要 作 用 ，并 介 绍 传 统 的 知 识 空 间 自 增 扩 展 方 法 ，阐 述 其 扩 展性能的不足；再将深度学习算法与多模态信息融合方 法 相 结 合 ，构 建 知 识 空 间 扩 展 框 架 ，通 过 不 断 对 知 识 序 列信息进行分类，完成知识划分；之后，通过语义描述技 术 实 现 知 识 元 素 多 结 构 状 态 的 集 成 ，扩 展 知 识 空 间 ，完 成 知 识 空 间 的 自 增 扩 展 ；最 后 ，通 过 实 验 和 讨 论 以 验 证 所提方法的整体有效性。
+
+1 一种知识空间的自增扩展方法
+
+1.1 多模态信息融合
+
+本文通过信息融合构建知识空间，保证知识空间的
+
+有效增长。根据分层思想实现信息融合，主要包括知识
+
+空间中的特征层融合和决策层融合[6]。多模态信息是指
+
+通过不同层次和信息交换渠道对当前知识扩展的描述。
+
+一 般 情 况 下 ，知 识 点 的 可 靠 性 和 重 点 方 向 存 在 差 异 ，需
+
+要 建 立 RBM 网 络 ，通 过 层 间 的 互 联 来 寻 找 知 识 差 异 。
+
+构建的 RBM 网络如图 1 所示。 第一层是视觉层（V）的输入层，相当于神经网络；第
+
+二层为隐含层（h），其特征条件为提取输出，内层包含多
+
+个隐含节点 。 [7⁃8] 在隐含层确定的情况下，所有异常节点
+
+之间的条件处于独立状态，即：
+
+p ( h V ) = p ( hn V )
+
+（1）
+
+同 样 ，在 确 定 当 前 隐 含 层 的 情 况 下 ，所 有 可 见 节 点
+
+都 有 一 个 独 立 的 层 ，即 不 存 在 内 部 连 接 节 点 ，层 间 节 点
+
+的连接如图 2 所示。
+图 1 RBM 网络示意图
+图 2 层间节点连接示意图
+根据层间节点的思想，对当前多模态的知识信息进 行整合，保证当前信息融合的集簇发展。综合利用现有 知识信息标注可以分析其语义理解，优化现有知识空间 结构，并对有效的知识信息进行有规律的处理。多模态 信息融合方法可以有效地实现知识融合，但知识融合的 发 现 层 、特 征 层 和 决 策 层 不 能 完 全 独 立 ，需 要 根 据 当 前 知识空间的特点对混合层进行融合。基于不同层次的 融合算法如图 3 所示 。 [9]
+图 3 基于不同层次的融合算法
+目 前 ，根 据 衍 生 出 的 信 息 融 合 算 法 的 层 次 不 同 ，相 应 的 融 合 规 则 一 般 分 为 规 则 融 合 、分 类 融 合 、估 计 融 合 三种。这三种估计方法可以涵盖当前信息层次融合设 计的全部演示[10]。 1.2 空间序列的构建
+本文采用三种并行融合方法进行知识融合。从本 质上讲，信息融合可以看作是现代信息融合发展的重要
+
+168
+
+现代电子技术
+
+2023 年第 46 卷
+
+理论[11]。信息融合是指通过对不同语言知识的处理、语 义分析和统计分析，对模态资源进行多维关联检测和评 价处理分析的过程。优化其信息对象的结构和内涵是 当前领域的关键资源解释，以确保更准确地检索多结构 深度信息，提高对数据正确的理解 。 [12] 融合方法规则详 情如表 1 所示。
+
+表 1 融合方法规则详情
+
+方法
+
+规则
+
+基于规则的融合方法
+
+包括内部加权融合、基于表达的决策规则和 自定义规则
+
+基于分类的融合方法
+
+包括支持向量机和贝叶斯推理的应用，它们 都需要依靠 D⁃S 理论和动态贝叶斯网络特 征，建立在神经网络基础上
+
+基于估计的融合方法 基于卡尔曼滤波和扩展卡尔曼滤波的粒子
+
+理 论 和 知 识 空 间 进 行 更 详 细 的 划 分 ，具 体 的 方 法 是 ：使 用粒度计算的视角将所有需要集成到详细知识颗粒中 的知识转换为详细的知识颗粒。在现有条件属性约束 下 ，知 识 条 件 种 类 越 多 ，知 识 空 间 划 分 越 详 细 。 从 粒 度 角 度 看 ，知 识 空 间 越 详 细 ，粗 粒 度 空 间 的 知 识 描 述 越 有 效 。 一 般 情 况 下 ，知 识 空 间 中 的 融 合 知 识 粒 越 小 ，相 应 的 属 性 代 价 越 高 。 因 此 ，在 当 前 融 合 后 的 知 识 空 间 中 ， 对不确定性概念的描述需要较高的精度。此外，为了降 低融合成本，需要在不确定性概念和知识的粒度之间进 行平衡[15]。
+
+根据上述构造思想对模态信息进行融合。如果当 前知识领域为有限域 U，R 表示当前知识领域的等价模
+
+糊关系，则有：
+{ } Rλ = ( x, y )| R ( x, y ) ≥ λ
+
+（2）
+
+式中：Rλ 可以看作是电流 U 上对应的等价关系，也可以 称为截断关系。本文以集合的形式建立模糊等价矩阵 M R，公 式 如 下 ：
+
+■ 1 0.3 0.7 0.5 0.5 ■
+
+MR
+
+=
+
+||||
+
+0.3 0.7
+
+1 0.3
+
+0.3 1
+
+0.3 0.5
+
+0.3 0.5
+
+||||
+
+|| 0.5 0.3 0.5 1 0.9 ||
+
+■ 0.5 0.3 0.5 0.9 0.7 ■
+
+（3）
+
+根据上述学习算法的空间结构，一一对应如下：
+
+U Rλ1 = { x1, x2, x3, x4, x5 }
+
+U Rλ2 = { x1, x3, x3, x4, x5 }, { x2 }
+
+{ } U Rλ3 = { x1, x2 }, { x3 }, x4, x5
+
+（4）
+
+{ } U Rλ4 = { x1 }, { x2 }, { x3 }, { x4 }, x5
+
+U Rλ5 = {{ x1 }, { x2 }, { x3 }, { x4 }, { x5 }}
+
+根 据 式（3）、式（4）建 立 的 等 价 关 系 ，可 以 构 建 当 前
+
+学科知识的空间序列。
+
+2 深度学习算法在知识空间扩展上的应用
+
+如果对知识数据进行标注，设 D 为取值范围，则当 前的特征序列为 0 < λ1 < λ2 < … ≤ 1。基于深度学习算
+法，对低阶商空间控制结构中的不确定性概念进行分层 处理 ，它的近似序列可以表示为 ak ( X )。换句话说 ，在 模态信息融合过程中，不确定性概念 X 的近似值及其精 度阈值可以按 λ 值单调递增。不确定性概念的空间描 述如图 4 所示 。 [13⁃14]
+为了更好地描述知识不确定性的概念，对 U 的知识
+
+图 4 不确定性概念的空间描述
+2.1 空间结构的构建 知识空间可以看作是当前学科知识研究方向的组
+织形式，研究的空间方向信息可以通过学术参考作为载 体来体现。知识空间结构的构建是：根据资源基础学科 扩大资源，形成对应关系结构；根据不同的连接组件，确 保当前主题知识的空间结构和当前的各种知识资源集 合中的模式状态，并确保稳定的知识空间通过信息融合 和其他的有序的信息融合 。 [16] 基于现有信息服务组织 之 间 的 距 离 ，知 识 资 源 聚 类 可 以 接 收 和 传 输 外 部 资 源 ， 提高知识空间资源配置效率。为了展示不同知识来源 的数据源，需要将当前知识空间中的知识以不同的资源 深度形式进行分解，并通过数学方法对标签与语义的整 合进行标注，从而形成相对完整的空间尺度架构。学科 知识空间体系结构如图 5 所示。
+图 5 学科知识空间架构
+
+第 10 期
+
+翁渊瀚，等：基于深度学习的知识空间自增扩展方法研究
+
+169
+
+在知识空间结构的设计和扩展过程中，将现有框架 转化为知识元素、知识点和学科知识三部分。知识元素 是当前知识空间中最基本的知识元素，每个知识元素都 是相对独立的，都有自己的确定性知识属性。但从宏观 上 看 ，知 识 要 素 并 不 是 完 全 独 立 的 ，不 同 的 知 识 要 素 是 相互联系的。知识元素的内涵可以按照属性进行分 类[17]。知识点也是构成学科知识空间的基本组成部分。 知识点作为学科知识空间的基本单元，可以自上而下将 知识元素以链式的形式组合，并根据不同的网络元素形 成分布式的网络结构。一般来说，知识点可以理解为现 有 知 识 的 基 础 部 分 ，可 以 按 照 某 些 异 常 的 原 理 ，以 点 状 的分散结构进行扩展。作为知识集合的单个组成部分， 知识点的划分需要根据不同学科的差异和知识扩散的 基本原理，以保证知识内容能够完整且相对独立 。 [18] 知 识空间的最后一个环节是知识本体，也是知识空间中一 个非常复杂的结构。主体知识空间的知识应表示为一 种知识点集，通过线性和隐式知识链结构的组织形成非 常复杂的网络结构。
+根 据 上 述 三 种 结 构 ，可 以 构 建 当 前 知 识 空 间 的 框 架。由于知识空间的扩展可以看作是框架扩展和资源 整 合 的 结 构 化 系 统 形 式 ，因 此 设 计 了 框 架 来 组 织 知 识 、 知 识 索 引 、知 识 导 航 和 知 识 检 索 。 知 识 框 架 如 图 6 所示。
+图 6 知识框架
+在构建学科知识空间的过程中，可以省略知识空间 的整合。因为在空间建构的过程中，建构者的个体需求 和潜在知识的显性表达会产生知识的确定性，所以其知 识结构和用户空间顺序具有明显的特征顺序，用户需要 通过日常的扩展来更好地积累和建立知识与知识的结 构库。
+以知识空间为例，知识空间在扩展过程中很容易引 起混乱。我国所处的信息环境下，知识空间中的知识资 源增长处于无限状态，不同语言之间建立的空间知识系 统趋于复杂，不同模式的学科信息资源覆盖了整个知识
+
+空间。为了实现空间的扩展，必须建立一般知识组织结 构与特殊个性化知识需求之间的关系。这样，不同的交 互行为可以以不同的方式聚集在一起，并在整个知识空 间内进行控制。
+如果用抽象的数据坐标系来表示空间，交互行为的 空间聚类就是对不同需求相关资源的整合。抽象空间 聚类示意图如图 7 所示。
+图 7 抽象空间聚类
+通 过 这 种 转 换 、分 解 和 重 组 ，可 以 获 得 当 前 学 科 知 识空间的主体部分，其空间特征如下：
+知识空间以知识资源主体的形式存在。在构建过 程 中 ，需 要 根 据 知 识 状 态 完 成 特 征 划 分 ，通 过 分 类 性 质 和组态仿真获取当前控制内容信息。
+完成对知识空间的分解后，对知识特征进行不同形 式的分割，能够得到单模态下的空间数据定位。
+在现有构建的知识空间基础上，知识点不具有相对 独立的特征，但优于知识空间组织。根据对应的空间知 识 集 合 ，不 同 的 知 识 点 有 相 应 的 交 叉 关 系 序 列 ，这 些 交 叉关系序列可以直接连接属性信息，包括空间特征。
+知识粒度是知识空间中最小的单元，是对知识要素 的参考描述。基于知识元素的空间定位可以保证知识 空间的完整链接关系。在现有知识的基础上，只有空间 的差异是由位置间隙信息决定的。根据以上特点归纳 出 所 有 的 知 识 模 式 后 ，才 能 完 成 知 识 空 间 框 架 的 构 建 。 知识空间框架的构建流程如图 8 所示。
+图 8 中构建知识空间框架的主要流程如下：首先对 空间知识点按照特征进行划分；然后对数据元素进行处 理 ，并 对 知 识 元 素 进 行 描 述 和 降 维 处 理 ；最 后 通 过 对 知 识点的二次聚类来判断是否符合链结构，从而决定是否 需要重新对数据元素进行处理。
+综上所述，本文提出的基于深度学习算法的知识空 间框架的核心功能是自增扩展知识空间。通过知识框 架，可以有效地解决当前知识空间内知识分类不一致的 问题。为了完善知识空间的内部知识管理，有必要在现 有 知 识 语 义 描 述 功 能 的 保 证 下 ，实 现 知 识 本 体 的 构 建 ， 使用知识编码的形式化构建知识概念。然而，由于当前
+
+170
+
+现代电子技术
+
+2023 年第 46 卷
+
+模态组成的知识资源单一，需要依赖知识的存储数据实 现 完 整 的 、固 定 的 数 据 ，它 可 以 不 断 减 少 当 前 的 知 识 节 点的物理层知识协会，并需要实现知识共享和交换领域 的协会。此外，信息交换技术的发展导致知识空间建设 的主题行为不能直接通过网络结构来建立，这就需要对 知识网络进行描述。一方面，它要求知识空间中各种平 台 之 间 的 信 息 融 合 与 利 用 ；另 一 方 面 ，根 据 融 合 和 利 用 下的知识主体关系确定大尺度的三维信息，以保证结构 的稳定性。
+
+共享和交互问题对知识点进行分解，以保证知识的有效 性。通过语义描述技术，可以在扩展空间中标准化当前 知 识 元 素 的 多 结 构 状 态 ，用 于 知 识 点 建 立 和 实 时 知 识 聚类。
+
+图 8 构建知识空间框架流程
+2.2 知识空间的形式扩展 根据已有的知识空间规范和结构规则，对不同来源
+和模式的知识资源进行分解，确定分解后知识资源的标 准化表示，一般包括知识属性和检索词的数据知识点组 成 部 分 。 如 有 必 要 ，可 以 对 现 有 的 知 识 空 间 进 行 简 化 ， 简化特征知识可以挖掘出知识空间的效率。根据统一 的 知 识 规 范 ，不 同 的 知 识 载 体 可 以 在 空 间 中 有 序 分 布 ， 为了实现知识空间的形式化扩展，需要进行空间自增扩 展处理。空间的自增扩展过程如图 9 所示。
+图 9 的空间自增扩展主要流程如下：首先确定选择 何种知识框架，并根据该框架是否包含 TCP 来决定是否 消除数据；然后对主题组织进行描述、发表和规格映射， 并 生 成 知 识 元 素 映 射 、知 识 图 谱 和 知 识 地 图 ，从 而 实 现 空间结构的自增扩展功能。
+在现有设计的知识框架下，知识资源的标准化处理 需要基于知识标准进行描述。对于现有的知识组织序 列，最重要的是对知识点问题的描述。以目前的语义为 例 ，在 日 常 应 用 中 ，可 以 建 立 标 准 化 的 语 音 知 识 库 。 在 当前的网络环境下，根据独特的知识顺序和现有的知识
+
+图 9 空间自增长扩展流程
+通过现有最优化和标准化的学科信息发布机制，将 现有知识空间的知识要素贡献标准化。通过构建一个 开放的登录发布系统，为用户共享机制的使用提供相应 的参考，从而有效地整合现有的信息资源。信息交换的 形 式 多 种 多 样 ，为 了 保 证 操 作 的 顺 序 ，需 要 进 行 空 间 排 序操作，空间知识结构的演化如图 10 所示。
+图 10 空间知识结构的演变
+与传统方法相比，基于深度学习算法的知识空间自 增扩展方法可以优化当前主题知识空间的层次结构；通 过 结 构 标 准 化 方 法 ，它 可 以 确 立 一 个 更 深 层 次 的 呈 现 ， 并实现资源重组，在当前主题下完全挖掘出知识点的匹 配 情 境 。 本 文 方 法 是 通 过 智 能 化（结 构 化 自 增 扩 展）和 语义处理描述来实现现代知识空间的基本组织。
+3 实验研究
+为了验证基于深度学习算法的知识空间自增扩展 方 法 的 有 效 性 ，开 展 仿 真 实 验 。 在 实 验 前 ，从 标 准 数 据
+
+第 10 期
+
+翁渊瀚，等：基于深度学习的知识空间自增扩展方法研究
+
+171
+
+集中随机选取几组实验数据作为知识空间样本进行对 比 分 析 ，以 测 试 所 提 方 法 的 性 能 。 实 验 环 境 为 ：操 作 系 统为 Windows 10（64 位），CPU 频率为 1.90 GHz，内存为 16.0 GB，机械硬盘存储容量为 1 TB，在 Matlab 平台上进 行仿真处理。为了提高数据分类的准确性，Weka 被设 计为准确性评估的数据分类和挖掘平台。实验指标为 不同方法的准确性和知识核扩展能力，其中准确性可以 直接反映方法的可靠性，知识核扩展能力可以进一步反 映方法的扩展性能。将本文提出的方法作为实验组，文 献 [2]的 方 法 作 为 对 照 组 ，首 先 检 测 不 同 方 法 的 精 度 ，然 后通过阈值确定扩展性能。本文方法和文献[2]方法的 精度比较如图 11 所示。
+图 11 不同方法的精度比较
+从图 11 可以看出，在不同实验时间下，基于深度学 习算法的知识空间自增扩展方法的准确率始终在 60% 以上 ，而文献[2]方法中的准确率在 15% 以下。准确率 越高，表示方法的性能越好，实验数据表明，本文方法具 有较好的扩展精度和应用性能。这是因为该方法结合 了深度学习算法与多模式信息融合方法，并进行了不断 的 分 类 处 理 ，根 据 序 列 信 息 的 知 识 ，可 以 有 效 地 实 现 知 识 的 准 确 划 分 ，从 而 提 高 分 类 精 度 ，实 现 知 识 的 准 确 性 扩展。
+为了进一步验证方法的可靠性，扩展效果由阈值决 定，将当前的知识粒度值设置为 0.5。不同方法的实验 结果如图 12 所示。
+图 12 不同方法的知识核扩展范围
+
+由图 12 可以看出：基于深度学习设计的知识空间 扩展方法在知识核范围为 0~0.7 的情况下稳步增加，而 文献[2]提出的知识扩展跟踪方法有明显的波动和不稳 定的发展趋势；当阈值扩大到 0.28 时，知识核有下降的 趋势，其范围仅在 0~0.42 之间，明显低于本文方法的知 识 核 范 围 。 知 识 核 的 价 值 越 高 ，该 方 法 的 扩 展 效 果 越 好。实验结果表明，基于深度学习的知识空间自增扩展 方法整体效果较好。这是因为在扩展空间中，该方法利 用语义描述技术实现了知识元素多结构状态的集成，提 高了知识核的扩展范围和方法的性能。
+4结论
+1）基于深度学习算法的学科知识空间扩展方法集 成了学科领域的探索，构造一个多维知识资源量化和易 于 使 用 的 组 织 系 统 ，拓 展 了 学 习 空 间 ，成 为 一 个 综 合 性 的知识库，是获取知识的最佳途径。
+2）针对现有知识空间自增扩展方法存在扩展范围 小 、精 度 低 的 问 题 ，提 出 一 种 基 于 深 度 学 习 算 法 的 知 识 空间自增扩展方法。
+3）利用深度学习算法和多模式信息融合方法建立 知识空间扩展框架，通过对知识序列信息的连续层次处 理 ，完 成 知 识 划 分 。 在 扩 展 空 间 中 ，引 入 语 义 描 述 技 术 调 整 知 识 元 素 的 多 结 构 状 态 ，实 现 知 识 空 间 的 自 增 扩展。
+4）实验结果表明，所提方法具有较好的分类效果， 知识核范围为 0~0.7，增长趋势稳定，适用性较好。
+5）在实验过程中，由于实验环境参数的设置，使得 实验环境与真实环境存在一定的差异，实验结果与实际 结果存在一定的偏差，但并不影响实验结论。为了得到 更准确的实验结果，需要不断优化基于深度学习算法的 知识空间自增扩展方法，并进一步研究该方法的扩展效 率和质量，以提高知识空间的扩展能力。
+参考文献
+[1] HAN S S， KIM M S， LIM W， et al. Classification of the clinical images for benign and malignant cutaneous tumors using a deep learning algorithm [J]. Journal of investigative dermatology，2018（2）：134⁃142.
+[2] KIM J C， CHUNG K Y. Knowledge expansion of metadata using script mining analysis in multimedia recommendation [J]. Multimedia tools and applications，2020（1）：21⁃30.
+[2] DU Q D. 3D point cloud registration denoising method for human motion image using deep learning algorithm [J]. Multimedia systems，2019，5（17）：1⁃8.
+[3] LI Z X，SHEN Y X，CHEN J，et al. Iterative bootstrapping
+
+172
+
+现代电子技术
+
+2023 年第 46 卷
+
+attribute knowledge base expansion algorithm based on word co⁃ occurrence graph [J]. Pattern recognition and artificial intelligence，2018，31（12）：10⁃18. [4] HEN H L. Study on the knowledge space construction of higher vocational college library based on social media in the"Internet + "Era [J]. Science ⁃ technology information development & economy，2017，2（8）：4⁃6. [5] LIANG W， LU Z P， et al. Research on library knowledge space construction for makers [J]. Library，2019，5（1）：17⁃25. [6] YEO K，MELNYK I. Deep learning algorithm for data ⁃ driven simulation of noisy dynamical system [J]. Journal of computational physics，2019，2（7）：10⁃18. [7] MEDEIROS F A，JAMMAL A A，THOMPSON A C. From machine to machine：an oct⁃trained deep learning algorithm for objective quantification of glaucomatous damage in fundus photographs [J]. Ophthalmology，2019，8（1）：513⁃521. [8] GRASSMANN F，MENGELKAMP J，BRANDL C，et al. A deep learning algorithm for prediction of age ⁃ related eye disease study severity scale for age ⁃ related macular degeneration from color fundus photography [J]. Ophthalmology，2018，17（12）：1410⁃1420. [9] REN R，HUNG T，TAN K C. A generic deep ⁃ learning ⁃ based approach for automated surface inspection [J]. IEEE transactions on cybernetics，2018，48（3）：929⁃940. [10] HUANG T E， GUO Q， SUN H， et al. A deep learning
+approach for power system knowledge discovery based on multitask learning [J]. IET generation transmission & distribution，2019，13（5）：733⁃740. [11] KIM K H，CHOI S H，PARK S H. Improving arterial spin labeling by using deep learning [J]. Radiology， 2018， 287 （2）：154⁃171. [12] CAI C， GUO P， ZHOU Y， et al. Deep learning ⁃ based prediction of drug ⁃ induced cardiotoxicity [J]. Journal of
+
+chemical information and modeling， 2019， 59（3）： 1073 ⁃ 1084. [13] TAYLOR J C，PELL R，ALVEYN E，et al. Deep learning for detecting tumour⁃infiltrating lymphocytes in testicular germ cell tumours [J]. Journal of clinical pathology，2018，72（2）： 17⁃18. [14] PASQUALE L R，PENG L，CAMPBELL J P，et al. Artificial intelligence and deep learning in ophthalmology [J]. British journal of ophthalmology，2018，103（2）：18⁃73. [15] WANG F， ZHANG B， CHAI S. Community detection in complex networks using deep auto ⁃ encoded extreme learning machine [J]. Modern physics letters B，2018，32（16）：185 ⁃ 188. [16] GONG K，CATANA C，QI J，et al. PET image reconst ⁃ ruction using deep image prior [J]. IEEE transactions on medical imaging，2018，17（9）：1655⁃1665. [17] HOSEINI F，SHAHBAHRAMI A，BAYAT P. Adapt ahead optimization algorithm for learning deep CNN applied to MRI segmentation [J]. Journal of digital imaging，2019，32（1）： 105⁃115. [18] FERDOWSI A，SAAD W. Deep learning for signal authent ⁃ ication and security in massive Internet of Things systems [J]. IEEE transactions on communications，2018，67（2）：1371 ⁃ 1383. [19] CARDENAS C E，MCCARROLL R E，COURT L E，et al. Deep learning algorithm for auto ⁃ delineation of high ⁃ risk oropharyngeal clinical target volumes with built ⁃ in dice similarity coefficient parameter optimization function [J]. International journal of radiation oncology biology physics， 2018，101（2）：468. [20] CHENG C T，HO T Y，LEE T Y，et al. Application of a deep learning algorithm for detection and visualization of hip fractures on plain pelvic radiographs [J]. European radiology， 2019，29（10）：1⁃9.
+
+作者简介：翁渊瀚（1983—），男，江苏扬州人，博士研究生，副研究员，研究方向为知识管理和技术创新。 李 南（1956—），女，重庆人，博士，教授，博士生导师，研究方向为研发与创新管理、知识系统工程。
+

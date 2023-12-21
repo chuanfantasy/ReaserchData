@@ -1,0 +1,342 @@
+Skip to Main Content
+Scheduled Maintenance: On Tuesday, December 12, IEEE Xplore will undergo scheduled maintenance from 1:00-5:00 PM ET (5:00-9:00 PM UTC). During this time, there may be intermittent impact on performance. We apologize for any inconvenience.
+
+    IEEE.org
+    IEEE Xplore
+    IEEE SA
+    IEEE Spectrum
+    More Sites 
+
+        Cart 
+        Create Account
+        Personal Sign In 
+
+IEEE Xplore logo - Link to home
+
+    Browse
+    My Settings
+    Help
+
+Access provided by:
+Nanjing Univ of Post & Telecommunications
+Sign Out
+IEEE logo - Link to IEEE main site homepage
+ADVANCED SEARCH
+Conferences > 2021 3rd International Cyber ...
+Secured Tracking and Tracing System Based on Blockchain Technology
+Publisher: IEEE
+Cite This
+PDF
+Mohamed Mostafa Ali Montaser ; Siti Hajar Othman ; Raja Zahilah Raja Md Radzi
+All Authors
+292
+Full
+Text Views
+
+    Alerts
+
+Abstract
+Document Sections
+
+    I.
+    Introduction
+    II.
+    Literature Review
+    III.
+    Blockchain-Based Tracking And Tracing Management System
+    IV.
+    Conclusion And Future Works
+
+Authors
+Figures
+References
+Keywords
+Metrics
+Abstract:
+Tracking and tracing management is a system which require recording of product's related information associated with product movement, shipping, transition between location until the product reach its final destination. In this management, traceability is a critical element to be satisfied by the business processes. Tracking and tracing of product is important for many purposes from the time product start its order process, prepared, shipping, movement from one delivery stakeholder to other delivery stakeholder until the product reach its destination. This is where we found the effectiveness of technology that is called the blockchain that could increase the safety of all tracking management processes. The blockchain technology since it emerges has contributed to many wide ranges of applications from various fields where safety and trust are critical in the field business process. Through this research, we are willing to present the contribution which can be offered by blockchain that obviously can increase the safety such like other tracking technology such as the use of QR-code, RFID, man-to-man delivery and few others.
+Published in: 2021 3rd International Cyber Resilience Conference (CRC)
+Date of Conference: 29-31 January 2021
+Date Added to IEEE Xplore : 05 April 2021
+ISBN Information:
+INSPEC Accession Number: 20653138
+DOI: 10.1109/CRC50527.2021.9392440
+Publisher: IEEE
+Conference Location: Langkawi Island, Malaysia
+Funding Agency:
+SECTION I.
+Introduction
+
+The blockchain has shown a prominent and significant impact on many fields such as supply chain, data and asset management, Internet of Things (IoT), healthcare, education and many more due to its important features and properties. This promising technology has contributed much to digital information including the quality of being contents accurately processed and efficiently transferred. Other than this, the decentralized distribution feature which exists in the blockchain has solved many problems such as the third-party authentication which subsequently has an impact on the whole system in term of computation time and speed of process of transactions which cause very much time due to a huge number of transactions or communication through the peer-to-peer network.
+
+Tracking and tracing is a domain which aim to determine a location of a unit (e.g., device or product) within the current location and the past location at two different intervals of time. Information about the unit’s locations will be stored in a real-time database for further processing. Sometimes, these types of systems can store information and details related to the departure of a product or arrival at a certain location. Information stored can contain an object’s identification, time of currently performed transition, and the location.
+
+Recently, tracking systems have become one of the examples of blockchain-utilizing applications and services that are integrated with the blockchain technology. There have been various research studies proposed in which the blockchain has been used. One of these studies is discussed in (Syed et al. 2020). The proposed study has utilized a blockchain in order to constitute a framework that can be able to perform tracking tasks.
+
+The issue of tracking units or devices has been considered by many research studies. Thus, a number of proposed studies and systems designed for such purpose has been presented in literature. Different designs have been proposed aiming to achieve better performance in traceability of units. Some proposed systems have achieved good level(s) of traceability but those systems lack some other issues either in security, use-of-use, or simplicity in implementation. Some other systems have applied different technologies and/ or methods to achieve similar purpose(s).
+SECTION II.
+Literature Review
+A) Blockchain Technology and Characteristic
+
+Blockchain is a type of database that differently stores information from other traditional databases. It specifically stores information in a series of blocks linked together as they are connected by a chain. When a new block of data is inserted, it will be chained with the previous block using a reference obtained from the previous block called a hash. These blocks are stored and distributed in a decentralized mechanism to ensure that all users or nodes have a copy from blockchain related information.
+Fig. 1 - A Selected Number of Blockchain’s Applications
+Fig. 1
+
+A Selected Number of Blockchain’s Applications
+
+Show All
+
+That is called a distributed decentralized ledger of transactions. Thus, there have many researches and studies from different fields and areas utilized the way the blockchain technology works. For example, digital finance [1] , computer networks and applications [2] , information security [3] , Internet of Things (IoT) [4] , supply chain management [5] , smart grids and energy [6] , and others are number of fields to which the blockchain technology has contributed and enhanced related performances.
+1) Blockchain Components
+
+When there are a number of blocks of data connected to each other by a link or chain and these blocks are gradually increasing, they can be called a blockchain. There are several main components of which such a blockchain consists. These components are briefly mentioned and defined as follows:
+
+    Transaction : is a small block inside the blockchain.
+
+    Block of data : a set of fields of data representing metadata of a group of transactions inside the blockchain.
+
+    Chain : is the sequence on which blocks inside the blockchain will be ordered based.
+
+    Nodes : are users inside the network to which transactions are distributed by the block.
+
+    Consensus : is a set of procedures on which operations of blockchain are performed.
+
+    Miners : are a selected group of nodes to verify the blocks.
+
+2) Blockchain Features
+
+Blockchain technology has described as a revolution that has the ability to be the key to several dilemmas, such as the long transferring time, the transferring fees, and the most important matter, which is the centralization. Owing to the safety, high reliability, efficiency, and low cost of decentralization, the issues of centralization are addressed. The Blockchain is not just a technological advancement, but also the beginning of an era. With the Blockchain technology, big data has become more accurate, while big data, in turn, has made BCT more valuable. Blockchain technology makes significant data flow more safely and guarantees data privacy. Also, it is an uninsurable technology for data storage that offers a traceable data path and provides a reliable environment for data assets trading. Considering the impact of BCT on accounting from the side of extensive data, it provides good accounting security and data un-traceability; this is a requirement for new financial accounting & sharing system establishment.
+
+As we mentioned above Blockchain technology has various features and therefore a wide range of applications from varied fields has come out. Selected features the blockchain has can be graphically represented in Figure 2 .
+Fig. 2 - Selected Features and Properties of the Blockchain Technology
+Fig. 2
+
+Selected Features and Properties of the Blockchain Technology
+
+Show All
+3) Permission and Permissionless Blockchain
+
+Permissioned and permission-less blockchains are two types of blockchain based systems used depending on the purpose each system aims. There are a number of differences between these two types which are summarized in Table 1 .
+4) Blockchain Technology Potential
+
+Figure 3 presents the report in graph-based published through Gartner, an Enterprise research firm that is well-known for its informative reports and predictions across industries and business verticals. The company developed the Gartner Hype Cycle in a bid to analyse new technologies and try to distinguish marketing and "hype" from actual use cases and progress.
+TABLE I. Permissioned and Permissionless Blockchain
+Table I.- Permissioned and Permissionless Blockchain
+
+Through Gartner Hype Cycle for blockchain business 2019 report [7] , the report mentioned that "We are witnessing many developments in blockchain technology that will change the current pattern. By 2023, blockchain platforms will be scalable, interoperable, and will support smart contract portability and cross chain functionality. They will also support trusted private transactions with the data confidentiality required. All together, these technology advances will take us much closer to mainstream blockchain and the decentralized web, also known as Web 3.0".
+
+Figure 3 presents the report in graph-based published through Gartner, an Enterprise research firm that is well-known for its informative reports and predictions across industries and business verticals. The company developed the Gartner Hype Cycle in a bid to analyse new technologies and try to distinguish marketing and "hype" from actual use cases and progress. Through Gartner Hype Cycle for blockchain business 2019 report [7] , the report mentioned that "We are witnessing many developments in blockchain technology that will change the current pattern. By 2023, blockchain platforms will be scalable, interoperable, and will support smart contract portability and cross chain functionality. They will also support trusted private transactions with the data confidentiality required. All together, these technology advances will take us much closer to mainstream blockchain and the decentralized web, also known as Web 3.0".
+Fig. 3 - Hype Cycle for the Blockchain Business 2019 [7]
+Fig. 3
+
+Hype Cycle for the Blockchain Business 2019 [7]
+
+Show All
+B) Tracking and Tracing
+1) Past studies on techniques applied for tracking and tracing system
+
+Tracking and tracing systems are becoming developed gradually since it has been emerged utilizing the infrared technique. Information processed for this purpose has been changed due to the development of the technique used. In order for this task to be implemented, there have been various techniques exploited containing the Infrared, Radio Frequency Identification (RFID), barcodes, QR codes and others. A brief discussion about these techniques will be provided and selected reviews and research papers from literature will be mentioned.
+▪ RFID-based tracking system
+
+Tracers sometimes can be dedicated to carry out tasks such as identification of products and other items in shipment from the first location until the item has reached the last location. A number of examples of tracking systems that have utilized different techniques for tracking and tracing purposes will be herein reviewed and in detail discussed. One of these examples is proposed in [8] . the main objective of the paper is to propose a low-cost tracking and tracing system utilizing simple tracking techniques. When information of tracking and tracing related to supply chain is processed, management of activities such as storing, restoring, and tracking of data and products still lack a number of issues. The paper has implemented a framework utilizing RFIDs and the IoT based system dedicated for tracking systems of goods. A conceptual framework has been designed and its performance is being enhanced for certain scenarios such as limited number of applications-associated operations. One of the advantages of the proposed system is that it designed with low cost. The proposed system has not been tested in term of efficiency. The potential applications include e-health, e-commerce, and cloud-based manufacturing.
+▪ QR Code Tracking
+
+Another research study proposed in [9] has exploited the RFID and Quick Response code (QR code) because they are considered effective tools used for traceability and identification of items. Traceability of items can be done using different techniques each of which has a different feature. This paper designs a method for traceability using a mix of two techniques to contribute to the tracking and tracing systems. The proposed system has used both RFID and barcodes to identify and trace items. The proposed system has utilized the feature of RFID and barcodes to perform the analysis function in order for the transformation of information of the items traced be efficiently implemented in a bi-directional way. Also, the feature of RFID and barcode can be compared. This process has also used an RFID reader and a barcode scanner. Obtained findings from this system have shown that the traceability has been efficiently implemented. Also, the results have mentioned that the identification of items has been improved. This system is considered cost effective. The proposed system can be suitable for the items packaging and tracing applications.
+
+In [10] , the QR code technique has been used to track and trace a product in an online way and in different phases and stages such as production phase, shipping phase, arrival to the destination phase. There is a difficulty to implement the function of tracking and tracing of such a certain item when more than a source can send related information. Such a process requires specific components. The selection of technique that is use for that purpose needs to be carefully considered in order to produce a high level of efficiency. This paper has designed a method to be implemented with tracking and tracing systems. It has proposed a QR-based traceability mechanism that scan the coded details to find out the information about the product. The method is able to perform the identification task. The results obtained from this method have shown that tracking and tracing systems can practically utilize the identification process proposed by the paper. Also, the identification of item can be automatically done as results reported so. An automatically identify product by extracting related information. The process of identification can be implemented under certain conditions. Packaging small items and products tracing systems are examples of potential applications and uses.
+2) Tracking and Tracing Security Challenges
+
+For tracking and tracing system, some of the applications which applied conventional/ traditional techniques or methods have a number of shortcomings such as, in addition to above mentioned issues, containing transparency in traceability, ease of access to recorded information, and proof of confidentiality and authentication. Hence, there are issues in current systems containing third party authentication and transparency. Additionally, confidentiality verification needs to be carefully performed. Ease-of-use and processing time for data to be retrieved, for example, are additional considerable issues. In literature, a lot of proposed systems used to trace parcels lack several issues such as a delay in reading data, a delay in authentication procedure of contents, or accessibility to information. However, these issues are considered one of the challenges in these types of systems. In addition to that, a number of issues can be solved by using different designs for the problem(s) being addressed. Meaning, different technologies and methods can contribute in achieving better performance in tracking items. For example, the blockchain technology can work better to enhance the tracking and tracing [11] .
+
+However, these issues can be addressed utilizing the blockchain technology to ease the accessibility, for example and reduce the accessibility computation time. Also, the security of contents and stored data can be enhanced and more protection can be applied by utilizing IoT technology. Thus, in this research study, a tracking algorithm is proposed in order to track items by using the blockchain technology. To add more security to the system, a Quick Response (QR) code can be used so that contents will be more protected from being in an unauthorized manner accessed. To ease the use of shared information, a QR code is used to make it easy to send data with less computation time required for Internet connection. There are few examples from literature used the QR code to share data and that has enhanced the computation time and size of data [12] . In this research, the QR code has been utilized so that less data will be transferred between parties. In addition, the process of passing data between more than an entity (i.e., party) will make it easier in term of use of these data. That is, data received by a selected entity attends to have less intermediaries.
+
+One of the most important considerable issues in blockchain related tracking and tracing systems is the data explosion caused by the huge number of communication and the data’s size [13] , [14] . The proposed system in [13] has shown that the data size inside the ledger is huge and can be as large as gigabyte (GB). Thus, it is important to reduce the huge size of data transactions inside the ledger of the blockchain technology. This research study aims to reduce the huge amount of data’s size by proposing a permissioned and permission less blockchain architecture. In addition, the process of sharing information and processed data between members of the blockchain network and nodes will increase of the size of data. This causes huge amount of energy consumption and computation time. A number of studies have used the QR code in order to help reduce the size of data being shared [9] . In this research study, the data will be shared and traced back by utilizing the QR technique so that the amount of data in term of size will be reduced.
+
+A number of related studies have mentioned that the blockchain is being enhanced in term of security related to the contents and communications between nodes inside the blockchain network [15] . This research attempts to help increase the security of contents by proposing a verification procedure that verify the request of data is being accepted once the node making the request has been verified and is authorized. This procedure can be performed with tracking items purposes.
+3) Blockchain Potential for Tracking and Tracing System Problems
+
+The proposed framework has been designed in such a way to control additional types of transactions that the system needs, for example, an examination transaction. This customization is designed in order to enable the blockchain framework be integrated with an IoT platform. This has made it easy for the integrated blockchain-IoT framework do further tasks such as the ability to carry out a monitoring task for items being tracked in in any time. So that, the system can perform remotely an access when needed. The proposed framework is designed to record transactions completely using a stable ledger. This proposed framework can be suitable to provide transparency and trust. Also, the framework has historically recorded and stored transactions associated.
+
+Another proposed work is proposed in [16] , the main aim is to implement the traceability service using a blockchain-based system. The ability of tracing an item’s data or information can be referred to the traceability. The proposed system has considered the traceability related to supply chains. It aimed to overcome a number of issues caused by using the conventional traceability systems. So, the proposed system has applied a blockchain technology to gain a decentralized feature. So that the database is accessible in a secure and transparent mode. The authors in [16] have focused to replace the conventional tracking systems with the blockchain based one in order to address several reported issues and shortcomings faced by conventional tracking systems like the centralized traceability solutions. In [16] , in order to efficiently increase the usability of traceability feature achieved by blockchain-based solutions, an IoT technology has been considered with the help of smart contracts.
+
+There are lots of research studies that have implemented conventional tracking systems for traceability purpose where they have been implemented in various fields such as food supply chains [17] , tracking of parcels [18] , management of business procedures in organizations, and tracking of medical products. For such purpose, different techniques have been utilized and used but the performance(s) achieved vary depending on the technique and other conditions related to the application and design. The above-mentioned tracking systems have been implemented with the help of various techniques containing smart contracts, Radio-frequency identification (RFID), Quick Response code, barcodes, IoT platform. The technology of blockchain can contribute much better for tracking i.e., traceability of units than those techniques specifically when some of those techniques have been well and efficiently integrated with the blockchain to gain features of both.
+4) Consensus Algorithm
+
+The PoW has been only used to provide a creation of data procedure. Blocks of data are created using the PoW and with the help of a sorting algorithm. So that the computation time in this scenario has been as minimum as the sorting algorithms. In this scenario, the computation time was very short and there is no much energy consumption consequently.
+SECTION III.
+Blockchain-Based Tracking And Tracing Management System
+
+In this section, an introduction to tracking and tracing systems and related operations will be provided. Blockchain components will be mentioned. Features of blockchain will also be highlighted. Permissioned and permission-less blockchains are compared. Also, types of tracking and systems that have applied the blockchain technology are discussed and related studies are reviewed.
+
+Figure 4 presents three main steps applied sequentially to achieve the conception of blockchain technology. The first step is data processing where the data is created and formed according to the blockchain conception. Data are linked using hash function and ordered in a reversible time conception. In the second one, permission-less and permissioned blockchain architectures are design and performed. Finally, data security schemes are built where the QR code is implemented for data tracing back data and sharing. Verification processes are designed.
+A) The Proposed Architecture of the Blockchain-based Tracking and Tracing System
+
+The proposed architecture of the blockchain based tracking and tracing system contains three levels. Data processing, tracking and tracing operations, and network’s nodes and members. These three levels comprise a secure blockchain network. There are two ways of communications the first one ensures that the data is created while the second communication is to ensure that the data is accessible by the network’s nodes and members. The proposed architecture resembles the conception of the blockchain technology. This is briefly explained in a simple algorithmic procedure as follows:
+
+    Firstly, the data is created and stored.
+
+    Created data in the previous step is dedicated to make sure that metadata related to tracking and tracing operations and phases will be recorded.
+
+    Data is stored in a decentralized stack.
+
+    The stack is accessible by all nodes involved in the network
+
+    Blocks of data can be created.
+
+    Those blocks of data are distributed and can be represented in a ledger.
+
+    The nodes of the network defined previously are involved in the ledger.
+
+    In addition, all these recorded and shared data are transparent and designed to be distributed in a decentralized way.
+
+    Finally, the metadata, operations, and network’s nodes can be interacted in a secure, transparent, automatically updated system with traceable transactions.
+
+The proposed architecture resembles the conception of the blockchain technology. This is briefly explained in a simple algorithmic procedure as follows:
+
+    Firstly, the data is created and stored.
+
+    Created data in the previous step is dedicated to make sure that metadata related to tracking and tracing operations and phases will be recorded.
+
+    Data is stored in a decentralized stack.
+
+    The stack is accessible by all nodes involved in the network
+
+    Blocks of data can be created.
+
+    Those blocks of data are distributed and can be represented in a ledger.
+
+    The nodes of the network defined previously are involved in the ledger.
+
+    In addition, all these recorded and shared data are transparent and designed to be distributed in a decentralized way.
+
+    Finally, the metadata, operations, and network’s nodes can be interacted in a secure, transparent, automatically updated system with traceable transactions.
+
+Fig. 4 - The Proposed Blockchain based Tracking and Tracing System’s Flowchart
+Fig. 4
+
+The Proposed Blockchain based Tracking and Tracing System’s Flowchart
+
+Show All
+B) The Proposed Enhanced Architecture of Blockchain Based Tracking And Tracing System
+
+The proposed design of architecture of the blockchain based tracking and tracing system can be enhanced in term of security. As known, the way the blockchain works is gradually and rapidly growing the size of data. Another important feature that can be added to the proposed design of the blockchain based tracking and tracing system mentioned previously is that, in order to prevent the data explosion caused by the huge number of communications inside the network’s ledger. The proposed enhanced architecture of the blockchain based tracking and tracing system will contain four main steps, which are briefly discussed as follows:
+
+    There will be two types of blockchains, permissionless and permissioned.
+
+    Subsequently, communications between operations and members of the networks will be reduced.
+
+    The data can be shared utilizing the technique of QR code.
+
+    The traced back data is allowed for authorized nodes and is completely done using the form of data in a QR code basis.
+
+SECTION IV.
+Conclusion And Future Works
+
+In this paper, a tracking and tracing system based on unconventional and conventional techniques has been studied. The proposed blockchain-based for tracking and tracing system has utilized the QR code and the blockchain technology in order to gain more security and less computation time while transferring as well as less data size. The proposed system has aimed to reduce the size of data and also to prevent the data explosion inside the ledger. It is believed that with the emerging of 4.0 Industrial Revolution (IR4.0), the blockchain technology will be thriving and will also influence other domain such as tracking and tracing (which part of component in supply chain industry).
+ACKNOWLEDGMENT
+
+We would like to convey gratitude to Information Assurance and Security Research Group (IASRG), School of Computing UTM who contribute unanimously to this research. Apart from that, thank you to the Ministry of Higher Education, Malaysia and Universiti Teknologi Malaysia, that support this research under the UTM Research Grant: PY/2018/03246/ Q.J130000.3551.06G31.
+
+Authors
+Figures
+References
+Keywords
+Metrics
+  < Previous    |    Back to Results    |    Next >  
+More Like This
+A Trustworthy Safety Inspection Framework Using Performance-Security Balanced Blockchain
+
+IEEE Internet of Things Journal
+
+Published: 2022
+Planning Secure Consumption: Food Safety Using Blockchain
+
+2021 IEEE International Conference on Technology, Research, and Innovation for Betterment of Society (TRIBES)
+
+Published: 2021
+Show More
+References
+1.
+C. Harwick and J. Caton, "What’s holding back blockchain finance? On the possibility of decentralized autonomous finance", The Quarterly Review of Economics and Finance , 2020, [online] Available: https://doi.org/10.1016/j.qref.2020.09.006.
+Show in Context Google Scholar
+2.
+M. Li, S. Shao, Q. Ye, G. Xu and G. Q. Huang, "Blockchain-enabled logistics finance execution platform for capital-constrained E-commerce retail", Robotics and Computer-Integrated Manufacturing , vol. 65, pp. 101962, 2020, [online] Available: https://doi.org/10.1016/j.rcim.2020.101962.
+Show in Context CrossRef Google Scholar
+3.
+S. Shi, D. He, L. Li, N. Kumar, M. K. Khan and K.-K. R. Choo, "Applications of blockchain in ensuring the security and privacy of electronic health record systems: A survey", Computers & Security , vol. 97, pp. 101966, 2020, [online] Available: https://doi.org/10.1016/j.cose.2020.101966.
+Show in Context CrossRef Google Scholar
+4.
+T. Dimitriou, "Efficient Coercion-free and Universally Verifiable Blockchain-based Voting", Computer Networks , vol. 174, pp. 107234, 2020.
+Show in Context CrossRef Google Scholar
+5.
+Z. Ma, W. Zhao, S. Luo and L. Wang, "TrustedBaaS: Blockchain-Enabled Distributed and Higher-Level Trusted Platform", Computer Networks , vol. 183, pp. 107600, 2020.
+Show in Context CrossRef Google Scholar
+6.
+K. Christidis, D. Sikeridis, Y. Wang and M. Devetsikiotis, "A framework for designing and evaluating realistic blockchain-based local energy markets", Applied Energy , vol. 281, pp. 115963, 2021, [online] Available: https://doi.org/10.1016/j.apenergy.2020.115963.
+Show in Context CrossRef Google Scholar
+7.
+"2019 Hype Cycle for Blockchain Technologies", 2019, [online] Available: https://www.gartner.com/en/newsroom/press-releases/2019-10-08-gartner-2019-hype-cycle-shows-most-blockchain-technologies-are-still-five-to-10-years-away-from-transformational-impact.
+Show in Context Google Scholar
+8.
+R. Addo-Tenkorang, N. Gwangwava, E. N. Ogunmuyiwa and A. U. Ude, "Advanced Animal Track-&-Trace Supply-Chain Conceptual Framework: An Internet of Things Approach", Procedia Manufacturing , vol. 30, pp. 56-63, 2019.
+Show in Context CrossRef Google Scholar
+9.
+B. Fan et al., "Improving continuous traceability of food stuff by using barcode-RFID bidirectional transformation equipment: Two field experiments", Food Control , vol. 98, pp. 449-456, 2019.
+Show in Context CrossRef Google Scholar
+10.
+K. Liang et al., "Development and parameter optimization of automatic separation and identification equipment for grain tracing systems based on grain tracers with QR codes", Computers and Electronics in Agriculture , vol. 162, pp. 709-718, 2019, [online] Available: https://doi.org/10.1016/j.compag.2019.04.039.
+Show in Context CrossRef Google Scholar
+11.
+A. Chauhan, G. Savner, P. Venkatesh, V. Patil and W. Wu, "A Blockchain-Based Tracking System", 2020 IEEE International Conference on Service Oriented Systems Engineering (SOSE) , pp. 111-115, 3-6 Aug. 2020.
+Show in Context View Article
+Google Scholar
+12.
+P. Dutta, T.-M. Choi, S. Somani and R. Butala, "Blockchain technology in supply chain operations: Applications challenges and research opportunities", Transportation Research Part E: Logistics and Transportation Review , vol. 142, pp. 102067, 2020, [online] Available: https://doi.org/10.1016/j.tre.2020.102067.
+Show in Context CrossRef Google Scholar
+13.
+Q. Lin, H. Wang, X. Pei and J. Wang, "Food Safety Traceability System Based on Blockchain and EPCIS", IEEE Access , vol. 7, pp. 20698-20707, 2019.
+Show in Context View Article
+Google Scholar
+14.
+H. Huang, X. Zhou and J. Liu, "Food Supply Chain Traceability Scheme Based on Blockchain and EPC Technology" in Smart Blockchain, Cham:Springer International Publishing, pp. 32-42, 2019.
+Show in Context Google Scholar
+15.
+V. Zakhary, M. J. Amiri, S. Maiyya, D. Agrawal and A. E. Abbadi, "Towards global asset management in blockchain systems", 2019.
+Show in Context Google Scholar
+16.
+J. Sunny, N. Undralla and V. Madhusudanan Pillai, "Supply Chain Transparency through Blockchain-Based Traceability: An Overview with Demonstration", Computers & Industrial Engineering , pp. 106895, 2020.
+Show in Context CrossRef Google Scholar
+17.
+Y. P. Tsang, K. L. Choy, C. H. Wu, G. T. S. Ho and H. Y. Lam, "Blockchain-Driven IoT for Food Traceability With an Integrated Consensus Mechanism", IEEE Access , vol. 7, pp. 129000-129017, 2019.
+Show in Context View Article
+Google Scholar
+18.
+P. Helo and Y. Hao, "Blockchains in operations and supply chains: A model and reference implementation", Computers & Industrial Engineering , vol. 136, pp. 242-251, 2019, [online] Available: https://doi.org/10.1016/j.cie.2019.07.023.
+Show in Context CrossRef Google Scholar
+IEEE Personal Account
+
+    Change username/password 
+
+Purchase Details
+
+    Payment Options
+    View Purchased Documents 
+
+Profile Information
+
+    Communications Preferences
+    Profession and Education
+    Technical interests 
+
+Need Help?
+
+    US & Canada: +1 800 678 4333
+    Worldwide: +1 732 981 0060
+    Contact & Support 
+
+Follow
+
+About IEEE Xplore | Contact Us | Help | Accessibility | Terms of Use | Nondiscrimination Policy | IEEE Ethics Reporting | Sitemap | IEEE Privacy Policy
+
+A not-for-profit organization, IEEE is the world's largest technical professional organization dedicated to advancing technology for the benefit of humanity.
+
+© Copyright 2023 IEEE - All rights reserved.

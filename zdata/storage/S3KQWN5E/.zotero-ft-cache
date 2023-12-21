@@ -1,0 +1,1379 @@
+第 40 卷第 12 期 2019 年 12 月
+
+通 信 学 报
+Journal on Communications
+
+Vol.40 No.12 December 2019
+
+基于演化博弈的隐私风险自适应访问控制模型
+丁红发 1,2,3，彭长根 1,3，田有亮 1,3，向淑文 1
+（1. 贵州大学数学与统计学院公共大数据国家重点实验室，贵州 贵阳 550025；2. 贵州财经大学信息学院，贵州 贵阳 550025； 3. 贵州大学计算机科学与技术学院，贵州 贵阳 550025）
+摘 要：针对以数据为中心的开放信息系统，亟需能够保护隐私的细粒度自适应访问控制，并平衡隐私保护与数 据访问效用间平衡的问题，提出了一种面向隐私保护的多参与者理性风险自适应访问控制模型。该模型基于香农 自信息提出了动态访问数据集的隐私量化方法，构造了访问请求隐私风险函数和用户隐私风险函数；进一步基于 演化博弈在有限理性假设下构建多参与者的访问控制演化博弈模型，利用复制动态方程分析了访问控制参与者的 动态策略选择，提出了该博弈模型的演化稳定策略选取方法。仿真和对比表明，所提出的模型能够有效动态自适 应地保护隐私，具有更好的隐私风险适应性，有限理性参与者的动态演化访问策略选取更加符合实际场景。 关键词：风险自适应访问控制；隐私保护；演化博弈；隐私风险量化；信息量 中图分类号：TP309 文献标识码：A doi: 10.11959/j.issn.1000−436x.2019240
+Privacy risk adaptive access control model via evolutionary game
+DING Hongfa1,2,3, PENG Changgen1,3, TIAN Youliang1,3, XIANG Shuwen1
+1. State Key Laboratory of Pubic Big Data, College of Mathematics and Statistics, Guizhou University, Guiyang 550025, China 2. College of Information, Guizhou University of Finance and Economics, Guiyang 550025, China 3. College of Computer Science and Technology, Guizhou University, Guiyang 550025, China
+Abstract: Aiming at the problem that in the private sensitive date centralized and opening information systems, a fine-grained and self-adaptive access control model for privacy preserving is desperately needed, thus the balance between privacy preserving and data access utility should be achieved, a rational multi-player risk-adaptive based access control model for privacy preserving was proposed. Firstly, the privacy risk values of access request and requester were formulized by the private information quantity of the requested dataset, and by using Shannon information. Secondly, a risk-adaptive based access control evolutionary game model was constructed by using evolutionary game under the supposing of bounded rational players. Furthermore, dynamic strategies of participants were analyzed by using replicator dynamics equation, and the method of choosing evolutionary stable strategy was proposed. Simulation and comparison results show that, the proposed model is effective to dynamically and adaptively preserve privacy and more risk adaptive, and dynamic evolutionary access strategies of the bounded rational participants are more suitable for practical scenarios. Key words: risk-adaptive based access control, privacy preserving, evolutionary game, privacy risk estimation, quantity of information
+收稿日期：2019–09–04；修回日期：2019–12–06 通信作者：彭长根，peng_stud@163.com 基金项目：国家自然科学基金项目资助项目（No.U1836205, No.61662009, No.61772008, No.11761020）；贵州省科技计划基 金资助项目（黔科合重大专项字[2018]3001, 黔科合重大专项字[2018]3007, 黔科合重大专项字[2017]3002, 黔科合支撑 [2019]2004, 黔科合支撑[2018]2162, 黔科合支撑[2018]2159, 黔科合基础[2019]1049）；贵州大学研究生创新基金资助项目（研 理工 2016068） Foundation Items: The National Natural Science Foundation of China (No.U1836205, No.61662009, No.61772008, No.11761020), The Science and Technology Program Foundation of Guizhou Province (No.Guizhou-Science-Contract-Major-Program[2018]3001, No.Guizhou-Science-Contract-Major-Program[2018]3007, No.Guizhou-Science-Contract-Major-Program[2017]3002, No.GuizhouScience-Contract-Support[2019]2004, No.Guizhou-Science-Contract-Support[2018]2162, No.Guizhou-Science-Contract-Support [2018]2159, No.Guizhou-Science-Contract-Foundation [2019]1049), The Graduate Innovation Foundation of Guizhou University (No.Graduate-Science-Engineering 2016068)
+2019240-1
+
+·10·
+
+通 信 学 报
+
+第 40 卷
+
+1 引言
+访问控制是信息系统保障数据安全和系统安 全的重要和基础性工具[1]。云计算、大数据及物联 网的兴起和发展，使网络和系统更加复杂、开放， 数据安全和隐私需求更加多样化，用户和系统的角 色、属性更加难以发掘，需要更加动态化、自适应、 细粒度的访问控制模型以满足新环境下的安全和 隐私需求[2]。
+强制访问控制[3]、自主访问控制[4]、基于角色 访问控制[5]等访问控制模型的访问策略是静态的， 访问控制粒度粗放，且面对大规模用户的开放系统 难以预先指定用户身份，故这些模型难以适用于云 计算、大数据和物联网中新型的应用场景。基于属 性访问控制[6]因其访问控制粒度较细、不需要指定 用户身份或角色而受到了广泛关注，在云计算、物 联网等场景得到了广泛应用，但其需要预先定义访 问策略，属性挖掘与属性撤销的计算和实施都比较 困难，不能适应动态访问控制需求[7]。为了解决基 于属性访问控制等传统访问控制模型存在的诸多 问题，风险和信任被先后引入访问控制中，提出了 基于角色或属性的风险访问控制模型[8-10]，一定程 度上解决了用户访问的动态控制，并进一步发展为 基于风险访问控制[11-12]，更加适用于大数据环境的 访问控制需求。同时，医疗、社交网络、位置信息 服务等系统的大量多样性数据集访问具有开放性、 动态性和隐私敏感需求，隐私侵犯来自内部和外部 访问[13]，迫切需要在访问过程中对用户隐私信息进 行隐私保护。
+访问控制模型中存在授权不足或授权过度的 现象，引发数据和系统安全、隐私泄露的风险，亟 需能够平衡安全隐私与授权度间的解决方案。访问 控制可看作访问主体（用户）与访问客体（服务提 供者或系统）间的冲突与合作。博弈论[14]作为一种 解决参与者对抗与合作，并使参与者获取最大化利 益的数学工具，被自然引入访问控制以平衡安全和 访问效用[15-17]，但现有研究多集中于二人访问控制 博弈，要求参与者是完全理性的，难以客观描述访 问控制模型中多个用户与系统间的博弈。
+本文针对现有访问控制模型难以满足适应性 保护隐私的需求，且其访问控制博弈模型难以刻画 多用户与系统间的非完全理性对抗与合作问题，基 于用户访问隐私风险量化和多人演化博弈，面向开
+
+放环境的数据存储隐私保护，提出一种基于演化博 弈的多参与者的理性风险访问控制模型，并分析其 演化稳定状态和演化稳定策略求解。该访问控制模 型在保持风险访问控制优势的同时，通过用户访问 隐私风险约束，限制用户高隐私风险的恶意、好奇 访问请求，实现隐私保护，同时仅假设参与者有限 理性，用多人非合作博弈对多用户对系统资源访问 的策略、收益进行分析，通过演化达到博弈演化稳 定状态，实现了用户和系统间的均衡及稳定，有效 平衡隐私保护和访问效用，更加符合现实场景中用 户与系统间的策略动态变化选取特征。具体而言， 本文的贡献如下。
+1) 面向开放环境的数据存储隐私保护，在有限 理性假设下，通过分析多用户场景的敏感数据隐私 保护访问控制问题及需求，提出了一种包含隐私风 险量化和演化博弈模块的多人隐私风险自适应访 问控制模型。减弱了现有理性访问控制模型的参与 者完全理性假设，将二人博弈扩展为多人的群体博 弈，且能够适应以数据为中心的系统敏感数据隐私 保护需求。
+2) 在“Need to Know”的原则下，根据用户访 问请求敏感资源的特征，定义了基于信息量化的访 问请求隐私风险和用户隐私风险，并给出了自适应 的动态隐私风险计算方法。
+3) 对所提的多用户隐私保护访问控制模型构 建了演化博弈模型，提出了基于隐私风险自适应的 效用函数，利用动态复制方程分析并求解了所提访 问控制模型的博弈演化均衡策略。
+4) 利用动力学理论对所提访问控制模型的演 化博弈过程进行了仿真，结果表明所提多用户隐私 风险自适应访问控制模型可在有限理性的演化博 弈过程中达到演化稳定状态，能够实现自适应风险 的敏感数据隐私保护。
+5) 与相关基于风险访问控制模型和理性访问 控制模型相比，所提访问控制模型在以数据为中心 的信息系统隐私保护方面具有更好的优势，风险自 适应程度好，访问控制参与者假设更符合实际，能 达到较好的隐私保护效果。
+2 相关工作
+在风险访问控制[18]的概念提出后，Cheng 等[11] 用多层安全的思路量化了风险，将风险划分为不同 等级，实现了该模型的一个实例，但该量化方法缺
+
+2019240-2
+
+第 12 期
+
+丁红发等：基于演化博弈的隐私风险自适应访问控制模型
+
+·11·
+
+乏数学理论支持。随后，Ni 等[12]用模糊推测理论在 Cheng 等的基础上重新量化风险，使风险量化满足 合取、析取及取反操作需求，用以处置访问控制中 的紧急访问需求。但文献[11-12]中风险量化是静态 的，无法应对访问需求多样、无法预先定义安全等级， 因此缺乏适用性，同时不能满足系统的隐私保护需 求，也不能对访问主体的高风险访问进行激励约束。
+针对文献[11-12]的风险量化静态和不适应高 敏感环境的问题，Shaikh 等[19]利用历史访问行为进 行风险和信任动态量化，其风险通过威胁概率和数 据泄露影响量化，利用指数移动加权平均算法提出 了动态风险的访问控制，以保护系统安全。Armando 等[20]基于策略访问控制，将访问风险和用户信任进 行对比，通过增强用户信任、削减访问安全风险以平 衡二者，保护系统资源安全。Diaz-Lopez 等[21]将访问 风险量化多层分类，并定义对应的风险控制策略，利 用遗传算法为动态访问的访问行为提供安全应对 措施，以保护高敏感环境的数据安全。但这些方法 在风险量化过程中所依赖的信息过多，在实际环境 中不能全部获取，易使风险量化不精确而导致访问 控制失败。为此，Santos 等[22]提出基于权重的多因 子聚合风险量化，并提出一种面向云安全的风险访 问控制框架。Ding 等[23]利用马尔可夫模型对主体访 问行为的风险进行量化，并提出了基于信用卡额度 约束的风险访问控制模型，在云环境数据安全保护 中激励低风险访问行为，约束高风险访问行为。但 文献[19-23]提出的风险量化是面向安全的，不适用 于隐私保护需求。
+为了满足隐私保护需求，Wang 等[24]针对医疗 信息系统，利用信息熵按照“Need to Know”的原 则，基于恶意医生和诚实医生间访问信息的不同， 对医生访问病患信息的风险进行量化，提出了一种 灵活的风险访问控制模型，但该模型预先假设了诚 实医生的行为，风险量化缺乏适应性以对应访问需 求变化。在文献[24]的基础上，惠榛等[25]利用最大 期望（EM, expectation maximization）二分算法对基 于信息熵的医生访问行为进行区分，监测和控制隐 私侵犯的高风险访问性。Zhang 等[26]定义了隐蔽非 诚实医生行为，基于时间盒和迭代实现了以主题建 模为核心的风险自适应访问控制模型。文献[24-26] 提出的方法仅适用于医疗信息系统隐私保护，且并 未考虑访问主体与客体间的合作与对抗。针对用户 匿名保护需求，Armando 等[27]将风险访问控制与匿
+
+名访问结合，同时考虑匿名与数据效用，在匿名系 统中抑制高风险访问。
+与传统访问控制模型中的参与者博弈[16,28-29]类 似，基于风险访问控制中的访问主体与客体间也存 在二人或多人冲突与合作关系。Helil 等[15]基于二人 非合作博弈模型，利用用户信任和访问风险刻画效 用函数，分析了风险访问控制模型中的子博弈完美 Nash 均衡，有效保证了访问控制决策的科学性，但 其并未考虑多访问主体访问客体间的冲突与合作。
+本文针对开放、动态的大规模多样性数据访问 隐私保护需求及多用户与系统间的冲突与合作关 系，提出一种多参与者的理性隐私风险自适应访问 控制模型。相比已有工作，该模型仅要求参与者有 限理性，通过对访问控制过程中的多参与者的行 为、策略和隐私效用的博弈要素进行多参与者演化 博弈建模，解决了现有文献对风险访问控制参与者 行为刻画不足的问题；通过对历史访问行为和资源 建模，利用信息论对访问请求和用户的隐私侵犯风 险量进行评估，仅用少量先验信息资源，减少了对 系统历史访问信息的要求；仅利用隐私风险量化， 不再依赖信任机制，简化了模型的设计复杂度；通 过多人演化博弈的演化稳定策略状态求解，不但有 效约束了高隐私风险的访问请求，激励用户进行低 隐私侵犯访问，而且实现了动态风险访问控制的优 化访问决策，可有效保护系统隐私数据。
+3 基础知识
+本节介绍风险访问控制模型、信息论与博弈论 相关基础知识，为提出面向隐私保护的基于演化博 弈风险自适应访问控制模型提供基础。 3.1 基于风险访问控制模型
+基于风险访问控制往往包含访问控制管理、风 险量化评估和上下文检索 3 个核心模块[18, 23, 26]，如 图 1 所示。其中，风险量化评估模块是关键模块， 其负责对访问请求的安全或隐私风险进行量化，以 支持访问控制管理模块做出允许访问或者拒绝访 问决策。风险的量化取决于当前访问请求及其关联 的上下文资源，如历史访问行为、拟访问的信息资 源等，通过上下文检索模块实现对上下文资源的关 联应用。访问控制管理模块通过对风险值和上下文 的处理，做出访问决策。
+根据风险值计算的对象不同，基于风险访问控 制模型可分为面向安全需求[12]和面向隐私保护需
+
+2019240-3
+
+·12·
+
+通 信 学 报
+
+第 40 卷
+
+求[26]。根据风险的计算方法不同，基于风险访问控 制模型可分为基于模糊逻辑[12]、基于历史决策的分 类训练[22]和基于用户历史行为[24]等。
+
+图 1 基于风险访问控制模型示意
+
+3.2 自信息与信息熵 信息论[30]是一种量化信息量和不确定度的有
+效工具，在访问控制中具有广泛的应用[23-25]。一般 地 ， 有 随 机 变 量 X  (x 1, x2 ,, xn ) 及 其 概 率 分 布 P( X )  ( p(x1), p(x2 ),, p(xn )) ，则事件 xi 的香农信
+息或自信息为
+
+I (xi )   log p(xi )
+
+(1)
+
+自信息表示了事件所蕴含的信息量，自信息越
+
+大，该事件携带的信息量越多，反之越少。香农信
+
+息熵是香农信息的平均值，可表示为
+
+n
+
+ H ( X )   p(xi ) log p(xi )
+
+(2)
+
+i 1
+
+信息熵表示随机变量的不确定度，熵越大，不
+
+确定度越大，反之越小。香农信息熵也被扩展为极
+
+大熵、极小熵、正规熵、Renyi 熵等，以适应不同 的场景[31]。 3.3 博弈模型与演化博弈 3.3.1 博弈模型
+博弈论[14]研究利益存在冲突的多个理性主体
+
+在对抗合作过程中的策略选择。经典博弈论中的理
+
+性参与者总是选择对自己最有利的策略，并达到均 衡。策略博弈模型   (P, A,u) 中包含参与者 P {P1, P2 ,, Pn} 、所有参与者行为集合 A  {A1, A2 ,, An} 和效用函数 u  {u1,u2 ,,un} 。称 n 个参与者的行为 有序集合 a  (a1, a2 ,, an ) 为行为组态，其中 ai  Ai 是参与者 Pi 在其行为集合 Ai 中的一个策略选择。行 为组态 a 可表示为 a  (ai , ai ) ，其中 ai 表示除参与
+
+者 Pi 之外其他参与者的策略组合。ui (ai , ai ) 表示参 与者 Pi 在策略组合 (ai , ai ) 状态下的效用函数。
+定义 1 Nash 均衡[14]。在策略博弈  中，对任 意参与者 Pi  P ，其效用函数有
+
+u(ai , a1) ≥ u(ai, a1)
+
+(3)
+
+其中， ai  Ai ，则称策略组合 a  (a1, a2 ,, an ) 达到
+
+Nash 均衡。
+
+策略博弈是一次性博弈，其可进行多次扩展，
+
+称为扩展式博弈。博弈可分为合作博弈与非合作博
+
+弈，也可分为完美信息博弈和非完美信息博弈。 3.3.2 演化博弈
+演化博弈[32]将经典博弈中参与者的理性假设
+
+放宽为有限理性，并引入了群体演化。参与者的策
+
+略选择在每一次博弈中不一定是最优的，其可在演
+
+化过程中模仿其他参与者的高收益策略，调整其后
+
+续博弈策略以提高其收益。演化博弈关注所有参与
+
+者策略的动态平衡，其核心在于演化稳定策略。
+
+定义 2 演化稳定策略。演化博弈中，若一个
+
+被所有个体采用的策略可成功抵抗所有其他策略
+
+的少量个体入侵，则此策略就被称为演化稳定策
+
+略。形式化地，若策略 se 满足
+
+E(se , se )  E(si , se ),i  e
+
+(4)
+
+或
+
+E(se , se )=E(si , se ),i  e
+
+(5)
+
+E(se , si )  E(si , si ),i  e
+
+则称策略 se 为演化稳定策略[32]，其中 E(se , si ) 表示 当策略 se 遇到 si 时 se 的收益。
+
+4 问题描述与建模
+
+本节首先分析本文构建的多参与者博弈的风 险访问控制模型所要解决的问题，其次提出多参与 者隐私风险访问控制模型。 4.1 多参与者隐私风险访问控制问题描述
+在医疗信息系统、情报信息系统、外包计算数 据池等环境中存在大量包含个人隐私的数据，访问 用户量大且动态更新其访问需求，用户的角色、属 性、访问策略等信息难以预先定义，这些信息难以 随用户的访问而动态更新。为了保护隐私，需对访 问请求的数据所包含的隐私量进行量化，现有的风 险访问控制模型难以对隐私进行有效描述和精确 动态的量化。访问控制模型中，参与者间是长期的
+
+2019240-4
+
+第 12 期
+
+丁红发等：基于演化博弈的隐私风险自适应访问控制模型
+
+·13·
+
+多次访问控制交互，在访问过程中往往无法对所有 背景知识和他人信息全部了解，也无法在每次访问 时理性地做出最佳策略选择，但参与者可模仿其他 参与者的高收益策略，调整其后续行为策略。因此， 需要设计效用函数促使非完全理性的多参与者诚 实合作，尽可能不侵犯隐私且取得高收益，并使参 与者短期利益和长期利益一致。
+在所提的面向隐私保护的多参与者理性风险访 问控制模型中，试图通过以下措施解决上述问题。
+1) 定义并量化访问请求的隐私风险 依据“Need to Know”的原则，用户为完整工 作职责而访问信息资源中的敏感信息不应当是隐 私侵犯，除此之外的访问应当认为是隐私侵犯。在 经认证的用户群体中，用户会优先完成自己的职 责，其大多数访问请求都是为了完成自己的职责， 若该用户单次访问请求与其历史访问请求产生偏 移距离，则偏离越远，其违背“Need to Know”原 则越严重，访问的隐私信息资源的隐私量越大，隐 私风险越高。 2) 定义并量化用户的隐私风险 将具有相似访问请求行为模式的用户群看作 具有相同职责的用户。在历史访问过程中，某一用 户的访问偏离该用户群的距离越远，其违背“Need to Know”原则越严重，其用户隐私风险越高。 3) 构建演化博弈以刻画多用户和系统的非理 性多次博弈 不再假设参与者是完全理性的，而将所有用户和 系统视为有限理性的参与者。将访问控制系统的所有 参与者看作用户群体和信息资源系统群体，2 个群体 之间进行多次动态博弈。博弈过程中，群体中的低收 益参与者会模仿高收益参与者的博弈选择策略，不断 进行演化，最终达到稳定的状态，该状态下的参与者 策略选择即为演化稳定策略，是参与者的最优策略。 4) 所设计的动态访问控制博弈模型求解 利用动态复制方程的动力学原理，提出并分析 风险自适应访问控制演化博弈模型的参与者收益 函数和信念函数，进一步分析其演化稳定状态及其 机理，提出演化稳定策略的求解式。在不同的初始 状态下，通过博弈的不断演化，访问控制博弈总能 达到某个演化稳定状态，该状态下的博弈策略选择 即为参与者的最优策略。 4.2 多参与者隐私风险访问控制模型构建 面向隐私保护需求，多用户和信息资源系统间
+
+的有限理性参与者隐私风险访问控制模型如图 2 所 示，包含访问请求决策管理模块、演化博弈建模模 块、隐私风险评估模块、上下文信息模块和风险策 略模块。
+图 2 基于演化博弈的隐私风险访问控制模型
+图 2 中，访问请求决策管理模块接收用户访问 请求，根据博弈结果和风险策略模块提供的信息做 出授权或不授权等访问决策，并反馈至上下文信息 模块。演化博弈建模模块对参与访问控制的用户和 系统进行博弈演化，博弈过程中通过隐私风险信息 和上下文信息进行动态策略选择，给出演化策略结 果，并将结果反馈给上下文信息模块和访问请求决 策管理模块。隐私风险评估模块对访问请求隐私风 险和用户隐私风险进行动态量化，支撑演化博弈建 模和风险策略更新，并将结果反馈存储至上下文信 息模块中。上下文信息模块动态记录并存储用户信 息、信息资源、访问历史、历史隐私风险值、历史 博弈策略及收益函数等信息。风险策略模块动态更 新各用户的隐私风险访问控制策略。
+5 隐私风险定义及自适应计算方法
+本节针对 4.1 节所述隐私风险量化问题，分别 定义访问请求隐私风险和用户隐私风险，并给出自 适应风险计算方法。 5.1 访问请求隐私风险
+访问控制系统中，信息资源可以通过自然语言 处理或机器学习的方式进行标签化，使所有信息资 源记录或原子集合都包含与系统资源使用功能、目 的相关的标签信息，如医疗系统中所有的医疗数据 可以根据 ICD-10 标准进行标签化处理，情报系统 中所有的情报信息可按照情报属性和功能进行标 签化标注。将访问控制过程按照时间划分为不同的
+
+2019240-5
+
+·14·
+
+通 信 学 报
+
+第 40 卷
+
+时间段 T0 ,T1,T2 , ，每个时间段可以是一小时、一 天或一周等。用户 U 在前一个时间段 T 内和当前时
+
+间段内截至目前向系统发出了 n 次访问请求
+
+q1U , q2U ,, qUn ，对应的访问信息资源集合（实际应
+
+用中利用信息资源集合对应的标签集合进行风险
+
+计算）为 R1U , R2U , , RnU ，则 U 访问的信息资源集
+
+ 合为 RU =
+
+R n U
+i1 i
+
+。当前用户
+
+U
+
+的访问请求为 q0U
+
+，
+
+该请求对应的系统信息资源集合为 R0U 。根据各用
+
+户的历史访问信息资源集合的相似性和聚类，可将
+
+具有相似访问行为的用户划分为一组，在某一组
+
+中，所有的用户具有相同的系统职责，在访问行为
+
+上仅有较小的差异。设用户 U 属于用户分组 g，用
+
+户分组 g 在前一个时间段 T 内和当前时间段内截至 目前，访问的信息资源集合为 Rg 。则用户 U 的当
+
+前访问请求 q0U 隐私风险为
+
+r(q0U ) 
+
+1, 
+
+R0U Rg
+
+
+
+ 
+ 
+
+  
+
+
+
+R0U RU
+
+
+max{log p(x)}
+
+x
+
+R0U RU
+
+log p(x)
+
+
+
+ log p(x)
+
+xR0U RU
+
+,
+
+ log p(x)
+
+
+
+xRU
+
+xRU
+
+R0U Rg
+
+
+
+(6)
+
+其中， p(x) 表示 x 在 Rg 中的概率，1      0 ，
+
+且 + =1 。
+
+根据用户组 g 中用户的访问请求风险值的历史 及分布可利用分位数设置阈值 tg ，若 r(q0U )  tg ，则 定义 q0U 为隐私侵犯访问请求，否则为非隐私侵犯访 问请求。特别注意的是，前述定义是从系统的角度
+
+看待某一访问请求，用户 U 会主动选择正常访问或
+
+隐私侵犯访问，但系统仅根据访问请求本身来判
+
+定，可能将用户的正常访问识别为隐私侵犯访问，
+
+亦有可能将用户的隐私侵犯访问识别为非隐私侵
+
+犯访问。当某一访问请求被识别为隐私侵犯访问
+
+时，用户可通过风险消除措施降低隐私风险，文献[21]
+
+讨论了相关措施。
+
+5.2 用户隐私风险
+
+用户 U 的隐私风险根据其访问行为特征而发
+
+生变化，当用户访问请求隐私风险值高时，则用户
+
+的隐私风险提高；当用户访问请求隐私风险值低
+
+时，则用户隐私风险降低，且用户隐私风险提高的
+
+速率高而降低的速率低。这样的假设与银行对客户
+
+的信用风险评估一致，若客户发生一次信用违约，
+
+其信用风险提高很快，需要很多次的信用守约才能
+
+将其信用风险降低至原来的值。用户隐私风险仅与
+
+其前一隐私风险值和前一次访问请求隐私风险值 相关。设用户 U 的初始隐私风险值为 r0U ，其在当 前访问请求 q0U 之前的隐私风险值为 rnU ，则当前访 问请求 q0U 发出之后，系统根据其隐私风险值 rnU 和 访问请求 q0U 的隐私风险值 r(q0U ) 计算用户 U 的更
+新隐私风险值
+
+rU n 1
+
+
+
+rrnnUU
+
++r(q0U ),q0U 是隐私侵犯访问请求  r(q0U ),其他
+
+(7)
+
+当 q0U 是隐私侵犯访问请求时，其隐私风险值大
+
+于当 q0U 是非隐私侵犯访问请求时的隐私风险值，因
+
+此式(7)中用户
+
+U
+
+的隐私风险值
+
+rU n 1
+
+符合增长快且下
+
+降慢的特征。
+
+6 所提访问控制模型的演化博弈模型及均 衡分析
+
+本节将访问敏感信息的用户和信息资源系统 看作 2 个有限理性的群体，2 个群体中的参与者进 行动态演化博弈，通过不断演化达到演化稳定状 态，所有博弈参与者都选取最优博弈策略。定义隐 私风险访问控制的演化博弈模型，包含参与者、博 弈策略、信念和收益函数，并给出演化稳定策略均 衡求解计算方法，进一步分析演化稳定状态及演化 稳定策略的特征和机理。 6.1 隐私风险访问控制的演化博弈模型
+在有限理性参与者假设下，基于演化博弈可构 建面向隐私保护的风险自适应访问控制演化博弈 模型。
+定义 3 风险自适应访问控制演化博弈模型 （risk-adaptive based access control evolutionary game model ）， 可 表 示 为 四 元 组 RaBACEGM  (P, A,
+Pr,u) 。 1) P  {U , S} 是演化博弈的参与者空间，其中，
+U 是用户， S 是信息资源系统。 2) A  {AU , AS } 是博弈策略空间，其中， AU 
+{Normal, Malicious} 是用户的可选策略集合，包含 正常访问和恶意访问；AS  {Grant, Deny} 是信息资 源系统的可选策略集合，包含授权和拒绝。
+3) Pr  {p, q} 是博弈信念集合，其中， p 
+
+2019240-6
+
+第 12 期
+
+丁红发等：基于演化博弈的隐私风险自适应访问控制模型
+
+·15·
+
+{ pNormal , p } Malicious 表示用户分别采取正常访问和恶 意访问的概率，且 p +p Normal Malicious  1 ； q  {qGrant , qDeny} 表示信息资源系统分别采取授权和拒绝的概 率，且 qGrant  qDeny  1 。
+4) u  {uU ,uS } 是博弈参与者的收益函数集合， 其中， uU ={uUN ,G ,uUN ,D , uUM ,G , uUM ,D} 是用户的收益函 数，uS ={uSN ,G ,uSN ,D , uSM ,G , uSM ,D} 是信息资源系统的收 益函数，二者的值由参与者的访问策略选择所决定。
+本文的访问控制系统中，用户 U 和资源信息系 统 S 都有 2 个策略可以选择，在博弈的不同阶段， 用户和资源信息系统对策略的选择概率不同，且该 概率根据演化博弈的演化学习机制而不断变化，使 访问控制参与者的策略选择形成动态变化的过程。 该博弈模型形成的基本博弈树如图 3 所示，表示单 次博弈中用户与信息资源系统的博弈策略和收益 情况。
+
+图 3 风险自适应访问控制演化博弈模型的基本博弈树
+
+博弈参与者根据自身和其他参与者的策略选 择而获取不同的数值收益，所有参与者的收益矩阵 如表 1 所示。
+
+表 1 风险自适应访问控制演化博弈模型的 基本收益矩阵
+
+用户 U
+
+信息资源系统 S
+
+授权
+
+拒绝
+
+正常访问 恶意访问
+
+uUN,G, uSN,G uUM,G, uSM,G
+
+uUN,D, uSN,D uUM,D, uSM,D
+
+表 1 中对演化博弈模型中各参与者的信念、
+
+策略和收益进行了形式化描述，特别地，参与者的
+
+收益根据访问请求的隐私风险不同而不同。
+
+1)
+
+u N,G U
+
+
+
+0 表示用户采用正常访问策略，被授
+
+权访问时的收益。该收益由正常访问获取工作职责
+
+完成的信息价值决定，并受到用户的隐私风险影
+
+响，用户的隐私风险越低其收益越高，反之越低，
+
+可表示为 uUN ,G
+
+
+
+U
+
+N ,G Benefit
+
+(rmUax
+
+ rU
+
+)
+
+，其中，
+
+U
+
+N ,G Benefit
+
+为
+
+用户采用正常访问策略被授权访问时的基础性收
+
+益，
+
+rU
+max
+
+为用户的最大隐私风险， rU
+
+为用户的当前
+
+隐私风险。
+
+2)
+
+uN,D U
+
+
+
+0 表示用户采用正常访问策略，被拒
+
+绝访问时的收益。
+
+3)
+
+uM ,G U
+
+
+
+0
+
+表示用户采用恶意访问策略，进行
+
+隐私侵犯访问被授权访问时的收益。该收益由用户
+
+正常访问的收益、隐私侵犯访问的额外收益组成，
+
+并受用户的隐私风险和当前访问请求的隐私风险
+
+影响
+
+。
+
+收
+
+益
+
+表
+
+示
+
+为
+
+uM ,G U
+
+
+
+U
+
+N ,G Benefit
+
+(rmUax
+
+
+
+rU
+
+)
+
+ U M ,G Extra
+
+
+
+(rmUax
+
+
+
+rU
+
+)r (qU
+
+)
+
+，其中
+
+U
+
+M ,G Extra
+
+为用户采用恶意访问策
+
+略被授权访问时的基础性额外收益。
+
+4)
+
+uM ,D U
+
+
+
+0 表示用户采用恶意访问策略，进行
+
+隐私侵犯访问被拒绝访问时的收益。该收益是信息
+
+资源系统对用户的惩罚，并受到用户隐私风险和访
+
+问请求隐私风险的影响，风险值越大惩罚越大。该
+
+收益表示为
+
+uUM
+
+,D
+
+=U M ,D Punish
+
+rU
+
+r (qU
+
+)
+
+，其中
+
+U M ,G Punish
+
+是对用
+
+户在采取恶意访问策略时的基础性惩罚。
+
+5)
+
+u N,G S
+
+
+
+0
+
+表示信息资源系统授权用户正常
+
+的访问请求时的收益。该收益是用户正常访问完成
+
+工作职责时对系统的正向回馈，并受用户的隐私风
+
+险影响，用户隐私风险越低，系统收益越大。该收
+
+益可表示为
+
+uSN
+
+,G
+
+=S N ,G Benefit
+
+(rmUax
+
+
+
+rU
+
+) ，其中
+
+S N ,G Benefit
+
+为系
+
+统得到的基础性正向回馈。
+
+6)
+
+uN,D S
+
+
+
+0
+
+表示信息资源系统拒绝用户正常
+
+访问请求时的收益。该收益是信息资源系统拒绝用
+
+户正常访问，无法完成用户工作职责而对系统造成
+
+的损失，用户的隐私风险越低，对系统的损失越大。
+
+该收益可表示为 uSN ,D =SLNo,sDs (rmUax
+
+
+
+rU
+
+) ，其中
+
+S N,D Loss
+
+为
+
+系统受到的基础性损失。
+
+7)
+
+uM ,G S
+
+
+
+0
+
+表示信息资源系统授权用户恶意
+
+访问请求时的收益。该收益是被用户恶意访问所损
+
+失的隐私信息价值，受用户访问请求的隐私风险和
+
+用户隐私风险影响，风险值越大，信息资源系统的
+
+损失越大。该收益可表示为 uSM ,G =SLMos,Gs rU r(qU ) ，其
+
+中
+
+S M ,G Loss
+
+表示信
+
+息
+
+资
+
+源系统授权
+
+用
+
+户恶意访问
+
+时
+
+的
+
+基础性损失。
+
+8)
+
+uM ,D S
+
+
+
+0
+
+表示信息资源系统拒绝用户的恶
+
+意访问时的收益。
+
+基于表 1，可计算用户不同访问策略的期望收
+
+2019240-7
+
+·16·
+
+通 信 学 报
+
+第 40 卷
+
+益和平均收益为
+
+u Normal U
+
+
+
+q u N,G Grant U
+
+
+
+q uN,D Deny U
+
+u  q u  q u Malicious U
+
+M ,G Grant U
+
+M ,D Deny U
+
+(8)
+
+u  p u  p u Normal
+
+Maliciious
+
+U
+
+Normal U
+
+Malicious U
+
+由于风险访问收益较低者会学习模仿高收益 参与者所选取的策略，针对用户可选策略集合 AU  {Normal,Malicious} ，选取不同策略的用户比例将随
+时间发生变化。 pNormal (t) 表示选取正常访问策略的 用户比例，pMalicious (t) 表示选取恶意访问策略的用户 比例，满足 pNormal (t)+pMalicious (t)=1 。对于某一用户访
+问策略，选取该策略的用户比例是时间的函数，其 动态变化速率可用复制动态方程[33]表示。
+
+D( pi )
+
+
+
+dpi (t) dt
+
+
+
+p(uUi
+
+ uU )
+
+(9)
+
+其中， i {Normal,Malicious} 。
+
+同理，信息资源系统不同策略选择的期望收益
+
+和平均收益为
+
+u  p u  p u Grant S
+
+N ,G Normal S
+
+M ,G Malicious S
+
+u  p u  p u Deny S
+
+N,D Normal S
+
+M ,D Malicious S
+
+uS
+
+
+
+q uGrant Grant S
+
+
+
+q uDeny Deny S
+
+(10)
+
+对信息资源系统的博弈策略选取亦可建立复 制动态方程
+
+A(q j )
+
+
+
+dq j (t) dt
+
+
+
+q(uSj
+
+
+
+uS
+
+)
+
+(11)
+
+其中， j {Grant,Deny} ，且 q j (t) 。通过联立式(9) 和式(11)，令
+
+Y
+
+
+
+D( p)
+
+ 
+
+A(q)
+
+ 
+
+
+
+f
+
+(Y ,t)
+
+
+
+0
+
+(12)
+
+通过求解式(12)，即可得到隐私风险访问模型 的演化博弈平衡状态点，从而实现访问控制策略选 取的分析和预测。 6.2 隐私风险访问控制博弈演化稳定策略均衡求解
+
+所提出的隐私风险访问控制模型中，用户选取 不同的访问行为策略会产生不同的收益，收益低的 用户会模仿收益高的用户所选取的访问行为策略。 对于相同工作职责的 n 个用户，有 2 种访问策略 {Normal, Malicious}可选，选取这 2 种访问策略的 用户比例随着时间发生变化，分别为 pNormal(t)和 1–pNormal(t)。对于访问策略 Normal，选取该策略的
+
+用户人数比例是时间的函数，其动态变化速率可表
+
+示为动态复制函数
+
+D( pNormal )
+
+
+
+dpNormal (t) dt
+
+
+
+p (u Normal Normal U
+
+ uU
+
+)
+
+(13)
+
+令 D( pNormal )=0 ，将式(8)代入式(13)可求解，得
+
+pNormal
+
+ 0 ，pNormal =1和 qGrant
+
+
+
+uN,G U
+
+uM,D U
+ uUN,D
+
+ uUM,G  uUM,G +uUM,D
+
+。
+
+类似地，信息资源系统的 2 种可选行为策略
+
+为 {Grant,Deny} ， 其 策 略 选 取 概 率 为 qGrant(t)和
+
+1–qGrant(t)，对于策略 Grant 的选取概率时间变化
+
+函 数 ， 亦 可 求 解 得 q  0 ， q  1 和 pNormal 
+
+u N ,G S
+
+uM ,D S
+
+ uSM ,G
+
+ uSN ,D  uSM ,G +uSM ,D
+
+。
+
+将用户与信息资源系统的策略选取复制动态
+
+方程相结合，构建隐私风险访问控制演化博弈方程
+
+组，对博弈模型进行稳定性分析。求解方程组得到
+
+5
+
+个解： Y1
+
+
+
+0 0
+
+， Y2
+
+
+
+0
+
+1
+
+ 
+
+， Y3
+
+
+
+1  0
+
+， Y4
+
+
+
+1 1
+
+和
+
+Y5
+
+
+
+
+
+ 
+
+uSN
+
+,G
+
+
+
+ 
+
+uUN
+
+,G
+
+uM ,D S
+ uSN ,D
+uM ,D U
+ uUN ,D
+
+ uSM ,G  uSM ,G +uSM ,D
+ uUM ,G  uUM ,G +uUM ,D
+
+     
+
+。其中， Y1
+
+
+
+0 0
+
+表
+
+示用户选取纯策略恶意访问请求 Malicious，信息资
+
+源系统选取纯策略拒绝访问
+
+Deny；Y2
+
+
+
+0 1 
+
+表示用
+
+户纯策略选取恶意访问请求 Malicious，信息资源系
+
+统选取纯策略允许访问
+
+Grant；Y3
+
+
+
+1  0
+
+表示用户纯
+
+策略选取正常访问请求 Normal，信息资源系统选取
+
+纯策略拒绝访问
+
+Deny； Y4
+
+
+
+1 1
+
+表示用户纯策略选
+
+取正常访问请求 Normal，信息资源系统选取纯策略
+
+允许访问
+
+Grant； Y5
+
+
+
+
+
+ 
+
+uSN
+
+,G
+
+
+
+ 
+
+uUN
+
+,G
+
+uM ,D S
+ uSN ,D
+uM ,D U
+ uUN ,D
+
+ 
+ 
+
+uM ,G S
+uM ,G S
+uM ,G U
+uM ,G U
+
++uSM ,D +uUM ,D
+
+     
+
+表
+
+示用户以混合概率组合
+
+  
+
+u N ,G S
+
+uM ,D S
+ uSN ,D
+
+ uSM ,G  uSM ,G +uSM ,D
+
+,
+
+1–
+
+u N ,G S
+
+uM ,D S
+ uSN ,D
+
+ uSM ,G  uSM ,G
+
++uSM ,D
+
+  
+
+选取策略{Normal,
+
+Ma-
+
+licious} ， 信 息 资 源 系 统 以 混 合 概 率 组 合
+
+2019240-8
+
+第 12 期
+
+丁红发等：基于演化博弈的隐私风险自适应访问控制模型
+
+·17·
+
+, 1– 选 
+
+ 
+
+uUN
+
+,G
+
+uM ,D U
+ uUN ,D
+
+ uUM ,G  uUM ,G +uUM ,D
+
+u N ,G U
+
+uM ,D U
+ uUN ,D
+
+ uUM ,G  uUM ,G +uUM ,D
+
+  
+
+取策略{Grant, Deny}。根据演化稳定策略理论可
+
+知 Y1、Y2、Y3、Y4 为鞍点，Y5 为中心点，故所提 风险自适应访问控制演化博弈模型存在演化稳定
+
+均衡。 6.3 隐私风险访问控制博弈演化稳定策略分析
+
+演化稳定策略是演化博弈模型中能够抵抗侵
+
+犯的策略。在所提风险自适应访问控制演化博弈模
+
+型中，用户和信息资源系统双方各自存在复制动
+
+态，以用户为例，对其演化稳定策略进行分析。通
+
+过式(13)可知，用户正常访问请求策略选取的复制
+
+动态相位有 3 种，当 qGrant 
+
+uM,D U
+
+ uUM ,G
+
+u N ,G U
+
+ uUN,D
+
+ uUM ,G +uUM ,D
+
+时，对任意的用户正常访问请求 Normal 策略选取
+
+概率
+
+pNormal，有
+
+dpNormal (t) dt
+
+=0
+
+，一旦
+
+qGrant 的取值发
+
+生偏移，dpNormal (t) 就会剧烈变化，其所代表的状态 dt
+
+不具有稳定性；当 qGrant
+
+
+
+u N ,G U
+
+uM ,D U
+ uUN ,D
+
+ uUM ,G  uUM ,G +uUM ,D
+
+时，pNormal= 1 为用户的演化稳定策略；当 qGrant 
+
+uN,G U
+
+uM,D U
+
+ uUM,G
+
+ uUN,D  uUM,G +uUM,D
+
+时，pNormal=0
+
+为用户的演化稳
+
+定策略。
+
+同理，信息资源系统授权策略选取的复制动态
+
+相位有
+
+3
+
+种，当
+
+pNormal
+
+
+
+u N ,G S
+
+uM ,D S
+ uSN ,D
+
+ uSM ,G  uSM ,G +uSM ,D
+
+时，
+
+对 任 意 的 授 权 访 问 策 略 选 取 概 率 qGrant(t) ， 有
+
+dqGrant (t) =0 dt
+
+，该状态不具有稳定性；当
+
+pNormal
+
+
+
+u N ,G S
+
+uM,D S
+ uSN,D
+
+ uSM ,G  uSM,G +uSM ,D
+
+时，qGrant(t)=1
+
+是信息资源系
+
+统的演化稳定策略；当
+
+pNormal
+
+
+
+u N ,G S
+
+uM,D S
+ uSN,D
+
+ uSM ,G  uSM ,G
+
++uSM ,D
+
+时，qGrant(t)=0 是信息资源系统的演化稳定策略。
+
+7 实验仿真与分析
+
+本节对本文提出的隐私风险自适应访问控制 模型的演化博弈过程，利用动力学理论进行仿真， 分析隐私风险自适应访问控制演化博弈模型的最 优访问策略选取问题。
+由 6.2 节可知，该访问控制模型的演化博弈稳
+
+定 状 态 为 Y1  [0, 0]' ， Y2  [0,1]' ， Y3  [1, 0]' 和 Y4  [1,1]' ，下面针对 pNormal 和 qGrant 的不同初始状 态，进行实验仿真。通过仿真可以观察出 pNormal 和 qGrant 的演化趋势，得到最终的演化稳定状态，通过
+演化分析，实现隐私风险访问控制系统中参与者的
+
+策略选择预测，从而选取出最优的访问控制策略。本
+
+文的仿真实验中，根据 6.1 节中的分析对用户的效用
+
+函数设定为 uUN,G  uUM ,G  uUN,D  uUM ,D ，对信息资源系
+
+统的效用函数设定为 uSN ,G  uSM ,D 
+
+uN,D S
+
+ uSM ,G
+
+。
+
+1) 当初始状态为 pNormal =0 ，qGrant [0,1) 时，用
+
+户以概率 1 选取恶意访问 Normal 策略，信息资源
+
+系统以概率 1 选取拒绝访问 Deny 策略或任意其他
+
+混合策略选取授权访问 Grant、拒绝访问 Deny 策略，
+
+通过系统仿真，经过演化，用户和信息资源系统双 方的策略选取都会演化为 pNormal =0 ， qGrant  0 的概
+率，即用户以纯策略选取恶意访问 Malicious，信息 资源系统以纯策略选取拒绝访问 Deny。 pNormal 和 qGrant 的具体演化曲线如图 4 所示。在图 4 中，访问
+请求为正常访问的初始概率 pNormal=0，访问请求被 授权的初始概率 qGrant 在区间[0,1)内，其初始值从 0 到 0.9 变化，步长为 0.1，演化稳定状态都为 pNormal=0， qGrant=0。在达到演化稳定状态 Y1  [0, 0]' 时，风险自
+适应访问控制演化博弈模型的博弈参与者两方博
+
+弈策略选取最优。
+
+图 4 初始状态为 pNormal=0，qGrant∈[0,1)时，隐私风险自适应 访问控制演化博弈模型的演化曲线
+2) 当初始状态为 pNormal =0 ， qGrant =1 时，用户 以概率 1 选取恶意访问 Malicious 策略，信息资源 系统以概率 1 选取授权访问 Grant 策略，通过演化， 该演化博弈模型的博弈双方的策略选取不变， pNormal 和 qGrant 的具体演化曲线如图 5 所示，演化稳 定状态为 pNormal=0，qGrant=1。
+
+2019240-9
+
+·18·
+
+通 信 学 报
+
+第 40 卷
+
+初始概率 pNormal 在区间[0,1)内，其初始值分别从 0.1 到 1 变化，步长为 0.1，访问请求被授权的初始概 率 qGrant=0，演化稳定状态为 pNormal=1，qGrant=0。
+
+图 5 初始状态为时 pNormal=0，qGrant=1，隐私风险自适应 访问控制演化博弈模型的演化曲线
+在图 5 中，尽管该演化过程的最终状态Y2  [0,1]' 是所提出的演化博弈模型的演化稳定状态，但在实际
+应用中，信息资源系统为了遏制恶意访问请求，保护
+系统中的隐私数据，同时尽可能吸引更多用户访问系 统，其不会以纯策略方式选取授权访问 Grant，故当 用户初始访问策略选取为纯策略恶意访问 Malicious 时，会转换为图 4 所示的演化曲线。
+3) 当 初 始 状 态 为 pNormal  (0,1] ， qGrant  (0,1] 时，用户以混合策略方式选取正常访问 Normal、恶 意访问 Malicious，或以纯策略方式（概率为 1）选 取正常访问 Normal，信息资源系统以混合策略方式 选取授权访问 Grant、拒绝访问 Deny，或以纯策略 方式（概率为 1）选取拒绝访问 Deny，博弈模型通 过不断演化，会达到演化稳定状态 Y4  [1,1]' ，即用 户以纯策略方式选取正常访问 Normal，信息资源系 统以混合策略方式选取授权访问 Grant。该状态下 风险自适应访问控制演化博弈模型的博弈策略选 择最优， pNormal 和 qGrant 的演化曲线如图 6 所示。在 图 6 中，访问请求为正常访问的初始概率 pNormal 以 及访问请求被授权的初始概率 qGrant 都在区间[0,1) 内，其初始值分别从 0 到 0.9 变化，步长为 0.1，演 化稳定状态为 pNormal=1，qGrant=1。
+4) 当初始状态为 pNormal  (0,1] ，qGrant =0 时，用 户以混合策略方式选取正常访问 Normal、恶意访问 Malicious，或以纯策略方式（概率为 1）选取正常 访问 Normal，信息资源系统以纯策略方式（概率为 1）选取拒绝访问 Deny，通过不断演化，会达到演 化稳定状态 pNormal =1 ，qGrant =0 ，即用户以纯策略方 式选取正常访问 Normal，信息资源系统以纯策略方 式选取拒绝访问 Deny。pNormal 和 qGrant 的具体演化曲 线如图 7 所示。在图 7 中，访问请求为正常访问的
+
+图 6 初始状态为 pNormal∈(0,1]，qGrant∈(0,1]时，隐私风险 自适应访问控制演化博弈模型的演化曲线
+图 7 初始状态为 pNormal∈(0,1]，qGrant=0 时，隐私风险 自适应访问控制演化博弈模型的演化曲线
+在图 7 中，最终达到的演化状态是风险自适应 访问控制演化博弈模型的演化稳定状态 Y3  [1，0]' 。 但在实际应用中，信息资源系统为了吸引更多用户 访问系统，不会以纯策略方式选取拒绝访问 Deny， 而是以混合策略的方式选取其博弈策略，其演化过 程会转换为图 6 所示的演化曲线。
+由以上仿真结果可知，给定不同的策略选取初始 状态，经过演化，所提出的风险自适应访问控制模型 在演化博弈过程中会达到某个稳定状态。通过观察对 比，本演化博弈模型的模拟演化结果与第 6 节中的理 论分析保持一致，说明该演化博弈模型与现实系统中 的规律相符。因此，本文提出的风险自适应访问控制 演化博弈模型具有有效性，可应用于面向隐私保护的 风险自适应访问控制系统，为访问控制系统的参与者 进行隐私保护访问策略选取提供依据。
+
+2019240-10
+
+第 12 期
+
+丁红发等：基于演化博弈的隐私风险自适应访问控制模型
+
+·19·
+
+表2
+模型 文献[12]模型 文献[19]模型 文献[22]模型 文献[24]模型 文献[26]模型 文献[16]模型 文献[29]模型 文献[15]模型 文献[28]模型 本文所提模型
+
+本文所提模型与已有模型对比
+
+访问控制目的
+
+风险量化
+
+安全保护
+
+静态安全风险量化
+
+安全保护
+
+风险和信任动态量化
+
+云安全保护
+
+多因子聚合风险量化
+
+医疗信息隐私保护
+
+静态隐私风险量化
+
+医疗信息隐私保护
+
+动态隐私风险量化
+
+云安全保护
+
+—
+
+蜂窝网络接入安全
+
+—
+
+数据安全
+
+动态安全风险量化
+
+社交网络隐私保护
+
+静态隐私风险量化
+
+敏感数据隐私保护
+
+隐私风险自适应量化
+
+博弈参与者 — — — — — 二参与者 多参与者 二参与者 多参与者 多参与者
+
+博弈方法 — — — — — 重复博弈 Stackelberg 博弈 非零和合作博弈 多方控制博弈 演化博弈
+
+8 对比与讨论
+在风险访问控制、基于博弈的访问控制和基于 演化博弈的信息安全模型方面均有相应的研究，本 节针对这些研究工作进行对比，如表 2 所示。
+由表 2 可知，相较于文献[12,19,22]，本文所提 出的风险访问控制从系统安全保护扩展至数据隐私 信息保护，同时在有限理性假设下，应用多人演化 博弈对自适应风险访问控制的参与者群体进行了建 模和分析；相较于文献[24,26]，本文将隐私保护的 应用范围推广至一般以隐私数据为中心的系统中， 并利用博弈论对隐私保护的访问策略选择进行了分 析；相较于文献[16,29]，本文不关注系统的安全， 而关注于系统中的敏感数据隐私保护，通过隐私风 险量化对博弈的效用函数进行定义，且放松了对博 弈参与者的绝对理性假设，用演化的思想动态分析 参与者的访问策略选择；相较于文献[15]，本文的主 要目标是隐私保护，将传统访问控制的二人博弈扩 展为有限理性下的多人动态博弈，更加适用于访问 控制的真实场景，风险量化函数也通过信息量的量 化对隐私风险进行描述，并反映到博弈效用函数中； 相较于文献[28]，本文不局限于特定场景的隐私保 护，其适用于通用的隐私保护场景，并且通过对用 户隐私风险和访问请求隐私风险进行动态量化，实 现了隐私风险自适应。在多人博弈场景中，本文所 提模型对参与者的理性假设放松为有限理性，利用 演化的思想对参与者的策略选择进行动态更新，更 加符合现实场景中参与者的访问行为变化特征。
+9 结束语
+隐私保护是以数据为中心的开放系统的核心
+
+问题之一，设计有效的细粒度自适应访问控制模型 能够保护系统中的隐私数据不被恶意、好奇的访问 行为侵犯隐私。本文面向隐私保护，在有限理性假 设下，提出了一种基于演化博弈的隐私风险自适应 访问控制模型，该模型利用隐私信息量化的方法对 访问请求隐私风险和用户隐私风险进行量化，在此 基础上构建了两方群体的演化博弈模型，群体中博 弈参与者不断学习模仿高收益的参与者博弈策略， 最终达到演化稳定状态。通过复制动态方程分析了 所提出的风险自适应访问控制演化博弈模型中参 与者的策略选择变化过程和演化稳定状态形成机 理，提出了演化稳定策略的求解式。通过仿真实验， 对所提自适应隐私风险访问控制模型的有效性进 行了验证，该模型能有效应用于隐私保护的访问控 制；通过与相关文献对比，证明该模型提出了新的 隐私风险自适应量化方法，减少了对系统历史信息 的要求，具有更好的隐私风险动态适应性，并将自 适应隐私风险量化结果用以设计演化博弈的效用 函数；提出了有限理性多参与者的风险访问控制演 化博弈模型，该模型中参与者的博弈策略选择动态 更新，更加适用于真实场景。
+参考文献：
+[1] SANDHU R S, SAMARATI P. Access control: principle and practice[J]. IEEE Communications Magazine, 1994, 32 (9): 40-48.
+[2] 李昊, 张敏, 冯登国, 等. 大数据访问控制研究[J]. 计算机学报, 2017, 40(1): 72-91. LI H, ZHANG M, FENG D G, et al. Research on access control of big data[J]. Journal of Computer, 2017, 40(1): 72-91.
+[3] MCCUNE J M, JAEGER T, BERGER S, et al. Shamon: a system for distributed mandatory access control[C]//2006 22nd Annual Computer Security Applications Conference. ACM, 2006: 23-32.
+[4] DOWNS D D, RUB J R, KUNG K C, et al. Issues in discretionary
+
+2019240-11
+
+·20·
+
+通 信 学 报
+
+第 40 卷
+
+access control[C]//IEEE Symposium on Security and Privacy. IEEE, 1985: 208-208. [5] SANDHU R S, COYNE E J, FEINSTEIN H L, et al. Role-based access control models[J]. Computer, 1996, 29 (2): 38-47. [6] WANG G, LIU Q, WU J. Hierarchical attribute-based encryption for fine-grained access control in cloud storage services[C]//The 17th ACM Conference on Computer and Communications Security. ACM, 2010: 735-737. [7] SERVOS D, OSBORN S L. Current research and open problems in attribute-based access control[J]. ACM Computing Surveys, 2017, 49 (4): 65:1-65:45. [8] DIMMOCK N, BELOKOSZTOLSZKI A, EYERS D, et al. Using trust and risk in role-based access control policies[C]// The Ninth ACM Symposium on Access Control Models and Technologies. ACM, 2004: 156-162. [9] KANDALA S, SANDHU R, BHAMIDIPATI V. An attribute based framework for risk-adaptive access control models[C]//The Sixth International Conference on Availability, Reliability and Security. EuAsia, 2011: 236-241. [10] KRAUTSEVICH L, LAZOUSKI A, MARTINELLI F, et al. Towards attribute-based access control policy engineering using risk[C]//BAUER T, GROSSMANN J, SEEHUSEN F, et al. Risk Assessment and Risk-Driven Testing. Cham: Springer International Publishing, 2014: 80-90. [11] CHENG P C, ROHATGI P, KESER C, et al. Fuzzy multi-level security: an experiment on quantified risk-adaptive access control[C]//2007 IEEE Symposium on Security and Privacy. IEEE, 2007: 222-230. [12] NI Q, BERTINO E, LOBO J. Risk-based access control systems built on fuzzy inferences[C]//The 5th ACM Symposium on Information, Computer and Communications Security. ACM, 2010: 250-260. [13] BOULARES S, ADI K, LOGRIPPO L. Insider threat likelihood assessment for access control systems: quantitative approach[C]//9th International Symposium on Foundations and Practice of Security. ACM, 2017: 135-142. [14] OWEN G. Game theory: 3rd edition[M]. San Diego: Academic Press, 2001. [15] HELIL N, HALIK A, RAHMAN K. Non-zero-sum cooperative access control game model with user trust and permission risk[J]. Applied Mathematics and Computation, 2017, 307: 299-310. [16] GAO L, YAN Z, YANG L T. Game theoretical analysis on acceptance of a cloud data access control system based on reputation[J]. IEEE Transactions on Cloud Computing, 2018: 1. [17] WANG Y, TIAN L, CHEN Z. Game analysis of access control based on user behavior trust[J]. Information, 2019, 10 (4):132. [18] MCGRAW R. Risk-adaptable access control (RAdAC)[R]. NIST Privilege (Access) Management Workshop, (2009)[2019-09-04]. [19] SHAIKH R A, ADI K, LOGRIPPO L. Dynamic risk-based decision methods for access control systems[J]. Computer Security, 2012, 31 (4): 447-464. [20] ARMANDO A, BEZZI M, CERBO F, et al. Balancing trust and risk in access control[C]//OTM Confederated International Conferences. 2015: 660-676. [21] DIAZ-LOPEZ D, DOLERA-TORMO G, GOMEZ-MARMOL F, et al. Dynamic counter-measures for risk-based access control systems[J]. Future Generation Computer Systems, 2016, 55 (C): 321-335. [22] SANTOS D R D, MARINHO R, SCHMITT G R, et al. A framework and risk assessment approaches for risk-based access control in the cloud[J]. Journal of Network and Computer Applications, 2016, 74 (C): 86-97.
+
+[23] DING H, PENG C, TIAN Y, et al. A risk adaptive access control model based on markov for big data in the cloud[J]. International Journal of High Performance Computing and Networking, 2019, 13(4): 464-475.
+[24] WANG Q, JIN H. Quantified risk-adaptive access control for patient privacy protection in health information systems[C]//The 6th ACM Symposium on Information, Computer and Communications Security. ACM, 2011: 406-410.
+[25] 惠榛, 李昊, 张敏, 等. 面向医疗大数据的风险自适应的访问控制 模型[J]. 通信学报, 2015, 36(12): 190-199. HUI Z, LI H, ZHANG M, et al. Risk-adaptive access control model for big data in healthcare[J]. Journal on Communications, 2015, 36 (12): 190-199.
+[26] ZHANG W, LI H, ZHANG M, et al. Privacy-aware risk-adaptive access control in health information systems using topic models[C]//The 23Nd ACM on Symposium on Access Control Models and Technologies. ACM, 2018: 61-67.
+[27] ARMANDO A, BEZZI M, METOUI N, et al. Risk-based privacy-aware information disclosure[J]. International Journal of Secure Software Engineering, 2015, 6 (2): 70-89.
+[28] HU H, AHN G J, ZHAO Z, et al. Game theoretic analysis of multiparty access control in online social networks[C]//The 19th ACM Symposium on Access Control Models and Technologies. ACM, 2014: 93-102.
+[29] LIU C, XING S, SHEN L. Dynamic hybrid-access control in multi-user and multi-femtocell networks via stackelberg game competition[J]. IET Communications, 2016, 10 (7): 862-872.
+[30] SHANNON C E. A mathematical theory of communication[J]. Bell System Technical Journal, 1948, 27: 379-423.
+[31] CSISZáR I, SHIELDS P C. Information theory and statistics: a tutorial[J]. Communications and Information Theory, 2004, 1 (4): 417-528.
+[32] NEWTON J. Evolutionary game theory: a renaissance[J]. Games, 2018, 9 (2): 31.
+[33] 王元卓, 于建业, 邱雯, 等. 网络群体行为的演化博弈模型与分析 方法[J]. 计算机学报, 2015, 38 (2): 282-300. WANG Y Z, YU J Y, QIOU W, et al. Evolutionary game model and analysis methods for network group behavior[J]. Journal of Computer, 2015, 38(2): 282-300.
+
+[作者简介]
+
+丁红发（1988– ），男，河南南阳人，贵州 大学博士生，贵州财经大学讲师，主要研究 方向为数据安全、隐私保护。
+
+彭长根（1963– ），男，贵州锦屏人，博士，贵州大学教授、 博士生导师，主要研究方向为密码学、数据安全、隐私保护等。
+田有亮（1982– ），男，贵州盘县人，博士，贵州大学教授、 博士生导师，主要研究方向为委托计算、区块链、隐私保护等。
+向淑文（1965– ），男，湖南溆浦人，博士，贵州大学教授、 博士生导师，主要研究方向为博弈论、优化算法等。
+
+2019240-12
+

@@ -1,0 +1,159 @@
+
+JavaScript is disabled on your browser. Please enable JavaScript to use all the features on this page. 跳到主要内容 跳到 文章
+爱思唯尔徽标 ScienceDirect
+
+您拥有机构访问权限
+
+    Purchase PDF
+    Access through another institution 
+
+    Nanjing University of Posts and Telecommunications does not subscribe to this content on ScienceDirect.
+
+Article preview
+
+    抽象
+    Introduction
+    Section snippets
+    References (25)
+    Cited by (4) 
+
+爱思唯尔
+Annals of Nuclear Energy
+Volume 183 , April 2023, 109668
+null
+Evaluation of the performance of different feature selection techniques for identification of NPPs transients using deep learning
+作者链接打开叠加面板 Iman Ramezani 、 Naser Vosoughi 、 Khalil Moshkbar-Bakhshayesh 、 Mohammad B. Ghofrani
+显示更多
+添加到 Mendeley
+共享
+引用
+https://doi.org/10.1016/j.anucene.2022.109668 获取权限和内容
+抽象
+
+Accidents that occur at NPPs must be correctly identified so quickly that mitigation actions can be taken in a timely manner. Depending on the type of transient, the operating parameters follow different patterns and it might be possible to identify the transient by monitoring these parameters. Due to the large number of parameters of an NPP , it is necessary to determine the parameters that play a vital role in transient identification. Data-driven methods have shown effective performance for NPP transient identification. To determine the most important input parameters for NPP transient identification, the present paper has utilized a hybrid feature selection method, in which feature subsets are created using several filter methods and then the best feature subset is determined by comparing the training results of a deep Long Short-Term Memory network. According to the results, the Neighbourhood Components Analysis method has selected the best subset of features.
+Introduction
+
+During the operation of a nuclear power plant (NPP), there are many sensors that monitor various parameters of the NPP. When the NPP goes from a normal state to an abnormal state, a transient occurs and according to the classification of the transient, the changes in the NPP parameters follow a unique pattern (Moshkbar-Bakhshayesh and Ghofrani, 2013). By monitoring the changes in the NPP parameters during its operation, the type of transients can be identified in the initial moments. By recognizing the type of transient, preventive measures can be taken to prevent the transient from becoming an accident or to mitigate its consequences.
+
+Due to the changes in many parameters and short time for transient identification, methods based on operator detection and model-based methods have low efficiency. Nowadays many studies in this field are based on data-driven methods, especially artificial neural networks (ANNs). The deep learning approach, which is an advanced branch of machine learning, has shown good performance in dealing with problems involving a large amount of training data, a large number of input features, and long time series (Hochreiter and Schmidhuber, 1996, LeCun et al., 2015). In recent years, deep learning methods have been used successfully in many applications (Schmidhuber, 2015).
+
+To classify NPP transients using an ANN, a number of parameters are used as input. Proper selection of these input parameters will increase the accuracy, generalization, and speed of classification. Determining the number and type of attributes used in transient identification is done by feature selection techniques (Fausett, 1994). Various studies have been conducted on the application of feature selection techniques in NPPs. For example, Zio (2006) has used the genetic algorithm to choose the optimal vector of features for the diagnosis of the NPP transients by a fuzzy classifier (Zio et al., 2006). In another study zhou (2017) has proposed a method to use principal component analysis for selecting the relevant features which has led to significantly reduction in the computation time and keeping the precision of the identification (Zhou et al., 2017). Moshkabr-Bakhshayesh (2021) has compared the efficiency of different feature selection methods in estimating NPP parameters using supervised learning algorithms (Moshkbar-Bakhshayesh, 2021a, Moshkbar-Bakhshayesh, 2021b). There are also other studies, all of which show that feature selection methods will increase accuracy and reduce computational costs (Baraldi et al., 2009, Lin et al., 2017, Zio et al., 2005). However, in the mentioned studies, the conventional ANNs have been used for transient identification, which are not desirable for practical application due to faulty performance in the case of long-term input time series and various transient classes (Santos et al., 2019). Hence, a deep learning approach is proposed for NPP transient identification. Since the training process of deep networks is much more time-consuming than conventional networks (Livni et al., 2014), it is not feasible to use iterative feature selection methods. To address this issue, in the present study, a hybrid feature selection method including statistical and training-based approaches was used to determine the best features.
+
+In the present study, after a description of feature selection approaches in Section 2, the proposed feature selection method is introduced in Section 3. Numerical results related to the implementation of the proposed feature selection method are given in Section 4. The conclusion is presented in Section 5.
+Section snippets
+Feature selection approaches
+
+Feature selection can be defined as the process of reducing the number of input variables by identifying the relevant features and removing those irrelevant or redundant. The feature selection can improve the performance of machine learning algorithms, increase the learning speed, and simplify the model. Moreover, a smaller number of features lead to a reduction in instrumentation costs. Regarding the relationship between the selection algorithm and the learning algorithm, feature selection
+Proposed feature selection method
+
+Considering the limitations of the various feature selection approaches mentioned in Section 2, the proposed method for determining the best features used in identifying NPP transients is a hybrid method as shown in Fig. 4. As discussed in Section 1, the deep learning method is chosen for NPP transient identification. Unlike conventional neural networks, which are often composed of simple interconnected units, deep neural networks, as will be described in Section 3.2., have much more trainable
+Training data set
+
+The data set used to apply the feature selection methods and train the neural network for transient identification, has been generated by a compact full-scope simulator of a VVER-1000 nuclear power plant. The data set consists of 227 different scenarios that are classified into 7 groups based on the initiating events. The transients include anticipated operational occurrences (AOO), design basis accidents (DBA), and normal operation (NO) conditions. The use of data related to the normal
+Conclusion
+
+In the present study, a hybrid feature selection method was used to determine the most important parameters of an NPP for transient identification. In this method, several feature subsets are generated by calculating the score of each feature using several filters. The feature subsets are applied for training a deep LSTM network to determine a feature subset that leads to the best performance of the network in transient identification among the generated subsets.
+
+The training data have been
+CRediT authorship contribution statement
+
+Iman Ramezani: Investigation. Naser Vosoughi: Supervision, Writing – review & editing. Khalil Moshkbar-Bakhshayesh: Conceptualization, Methodology. Mohammad B. Ghofrani: Validation.
+Declaration of Competing Interest
+
+The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
+References (25)
+
+    A.J. Ferreira et al.
+    Efficient feature selection filters for high-dimensional data
+    Pattern Recogn. Lett.
+    (2012)
+    K. Kira et al.
+    A Practical Approach to Feature Selection
+    T.-H. Lin et al.
+    Feature extraction and sensor selection for NPP initiating event identification
+    Ann. Nucl. Energy
+    (2017)
+    K. Moshkbar-Bakhshayesh
+    The ensemble approach in comparison with the diverse feature selection techniques for estimating NPPs parameters using the different learning algorithms of the feed-forward neural network
+    Nucl. Eng. Technol.
+    (2021)
+    K. Moshkbar-Bakhshayesh
+    Investigating the performance of the supervised learning algorithms for estimating NPPs parameters in combination with the different feature selection techniques
+    Ann. Nucl. Energy
+    (2021)
+    K. Moshkbar-Bakhshayesh et al.
+    Transient identification in nuclear power plants: a review
+    Prog. Nucl. Energy
+    (2013)
+    I. Ramezani et al.
+    Applications of soft computing in nuclear power plants: a review
+    Prog. Nucl. Energy
+    (2022)
+    M.C.D. Santos et al.
+    Deep rectifier neural network applied to the accident identification problem in a PWR nuclear power plant
+    Ann. Nucl. Energy
+    (2019)
+    J. Schmidhuber
+    Deep learning in neural networks: an overview
+    Neural Netw.
+    (2015)
+    E. Zio et al.
+    An extended classifiability index for feature selection in nuclear transients
+    Ann. Nucl. Energy
+    (2005)
+
+View more references
+Cited by (4)
+
+    Application of deep learning techniques for nuclear power plant transient identification
+    2023, Annals of Nuclear Energy
+    Show abstract
+    Application of Data-Driven technology in nuclear Engineering: Prediction, classification and design optimization
+    2023, Annals of Nuclear Energy
+    Show abstract
+    Application of Deep Learning Techniques for Nuclear Power Plant Transient Identification
+    2023, SSRN
+    Wheel Defect Detection Using Attentive Feature Selection Sequential Network with Multidimensional Modeling of Acoustic Emission Signals
+    2023, IEEE Transactions on Instrumentation and Measurement
+
+View full text
+© 2022 Elsevier Ltd. All rights reserved.
+推荐文章
+
+    Experimental and theoretical investigations of the γ-rays shielding performance of rock samples from Najran region
+    Annals of Nuclear Energy, Volume 183, 2023, Article 109676
+    Arshad Khan , …, Ayman M. Abdalla
+    Numerical studies of power oscillations induced by sodium boiling in ESFR after ULOF transient
+    Annals of Nuclear Energy, Volume 183, 2023, Article 109642
+    X.-N. Chen , …, M. Flad
+    A leakage correction with burnup-dependent GPS method in two-step core depletion analysis
+    Annals of Nuclear Energy, Volume 183, 2023, Article 109624
+    Hae Sun Jeong , …, Yonghee Kim
+
+Show 3 more articles
+文章计量指标
+引文
+
+    引文索引： 3 
+
+捕获
+
+    Readers: 3 
+
+plumX 徽标
+查看详情
+Elsevier logo with wordmark
+
+    About ScienceDirect
+    Remote access
+    Shopping cart
+    Advertise
+    Contact and support
+    Terms and conditions
+    Privacy policy 
+
+We use cookies to help provide and enhance our service and tailor content and ads. By continuing you agree to the use of cookies .
+
+All content on this site: Copyright © 2023 Elsevier B.V., its licensors, and contributors. All rights are reserved, including those for text and data mining, AI training, and similar technologies. For all open access content, the Creative Commons licensing terms apply.
+RELX group home page
+Feedback 

@@ -1,0 +1,362 @@
+International Journal of Computer Assisted Radiology and Surgery (2023) 18:1077–1084 https://doi.org/10.1007/s11548-023-02863-9
+ORIGINAL ARTICLE
+
+Twin-S: a digital twin for skull base surgery
+Hongchao Shu1 · Ruixing Liang1,2 · Zhaoshuo Li1 · Anna Goodridge1 · Xiangyu Zhang1 · Hao Ding1 · Nimesh Nagururu2 · Manish Sahu1 · Francis X. Creighton2 · Russell H. Taylor1 · Adnan Munawar1 · Mathias Unberath1
+Received: 7 February 2023 / Accepted: 28 February 2023 / Published online: 9 May 2023 © CARS 2023
+Abstract Purpose: Digital twins are virtual replicas of real-world objects and processes, and they have potential applications in the ﬁeld of surgical procedures, such as enhancing situational awareness. We introduce Twin-S, a digital twin framework designed speciﬁcally for skull base surgeries. Methods: Twin-S is a novel framework that combines high-precision optical tracking and real-time simulation, making it possible to integrate it into image-guided interventions. To guarantee accurate representation, Twin-S employs calibration routines to ensure that the virtual model precisely reﬂects all real-world processes. Twin-S models and tracks key elements of skull base surgery, including surgical tools, patient anatomy, and surgical cameras. Importantly, Twin-S mirrors real-world drilling and updates the virtual model at frame rate of 28. Results: Our evaluation of Twin-S demonstrates its accuracy, with an average error of 1.39 mm during the drilling process. Our study also highlights the beneﬁts of Twin-S, such as its ability to provide augmented surgical views derived from the continuously updated virtual model, thus offering additional situational awareness to the surgeon. Conclusion: We present Twin-S, a digital twin environment for skull base surgery. Twin-S captures the real-world surgical progresses and updates the virtual model in real time through the use of modern tracking technologies. Future research that integrates vision-based techniques could further increase the accuracy of Twin-S.
+Keywords Image-guided intervention · Computer vision · Human–computer interaction · Intervention planning and simulation
+
+Introduction
+Digital twins are virtual counterparts of real-world processes, modeling dynamics and properties in real time [1]. Receiving continuous measurements from sensor-rich environments, digital twins can conversely provide computational feedback. Digital twins have been adopted in areas of manufacturing, farming, and product design [2]. In biomedical sciences, digital twins are used in cardiovascular diagnostics [3], insulin pump control [4], etc. Digital twins are also envisioned to aid personalized medication [5] and predict human immune system responses [6].
+Hongchao Shu, Ruixing Liang and Zhaoshuo Li are joint ﬁrst authors.
+B Hongchao Shu
+hshu4@jhu.edu
+1 Johns Hopkins University, Baltimore, MD, USA 2 Johns Hopkins Medicine, Baltimore, MD, USA
+
+In surgical scenarios, digital twins can potentially offer advantages across all surgical stages (Fig. 1). Prior work has explored the use of digital twins in pre-operative planning and immersive training [7]. When used intra-operatively, digital twins can further provide real-time guidance to surgeons for complementary situational awareness and, in turn, facilitate surgical decision making [8–10]. Lastly, digital twins can fully digitize surgical procedures for record-keeping, postoperative evaluation, surgical training, and dataset generation for machine learning algorithm development.
+Some of the earliest works related to the concept of digital twins for surgical assistance date back to 1994. RobotDoc [11,12], a robotic system for orthopedic surgeries, visualized CT pre-operative scans and highlighted drilled tissues for guidance. Subsequently, many solutions have been presented with more advanced model updating techniques and visualizations. For example, Chalasani et al. [13] and Yasin et al. [14] propose to estimate organ shape and stiffness based on force sensing and subsequently provide feedback
+
+123
+
+1078
+
+International Journal of Computer Assisted Radiology and Surgery (2023) 18:1077–1084
+
+to the control system. Concurrent to our work, Shi et al. [15] use the digital twins paradigm in liver tumor surgery, where a virtual model is used to predict the motion of the liver for respiratory compensation. Several other works have used the digital twins framework to realize telesurgery [16,17].
+Augmented reality (AR) and virtual reality (VR) also closely relate to digital twins systems and have been widely adopted for surgical applications [18]. Most prior AR systems overlay the pre-operative scans or plans on the patient anatomy for intra-operative guidance [19]. However, these systems do not update the patient model intra-operatively, limiting their applications [20]. VR systems, on the other hand, mainly focus on simulations for surgical training [21]. These VR systems do not receive measurements from the real world and thus fail to mimic the behaviors of the physical entities in real time [22,23].
+We present a digital twins framework for skull base surgeries, named Twin-S, which can be integrated within various image-guided interventions. We speciﬁcally consider mastoidectomy [24], a surgical approach in the lateral skull base whereby bone is removed with surgical drills to obtain access to the middle and inner ear. Given the complex arrangement of cortical bone, nerves, vasculature, and end organs, surgical stereo microscopes are used to navigate in the small operating ﬁeld. Twin-S combines high-precision optical tracking and real-time simulation [22,23]. We rely on calibration routines to ensure that the virtual representation precisely mimics all real-world processes. Twin-S models and tracks the critical components of skull base surgery, including the surgical tool, patient anatomy, and surgical camera. Twin-S updates the virtual patient anatomy model to account for the real-world tool-to-tissue interactions at a frame rate of 28 FPS.
+We conduct experiments to evaluate the accuracy of each component of Twin-S. We further derive numerical analysis to provide maximum bounds on tracking error and the contribution to the ﬁnal error from different stages. Finally, we illustrate one use case of Twin-S in a mixed reality setup. The contributions of our work can be summarized as follows:
+• We present a digital twin framework for skull base surgery named Twin-S. It models, tracks, and updates all critical components of skull base surgeries in real-time to mimic real-world processes.
+• We conduct evaluations on tracking accuracy and simulation ﬁdelity of Twin-S. We present numerical analysis for the worst-case error bounds.
+• We showcase one application of Twin-S in downstream mixed reality task to provide surgical guidance and context situational awareness.
+
+System components
+
+Building a digital twin system for skull base surgery requires precise modeling, tracking, and updating of the patient’s anatomy, the surgeon’s tool(s), and the surgical camera. In our setup, the system includes a surgical phantom to simulate the patient’s anatomy, a surgical drill as the ablation tool, and a stereo surgical microscope. Twin-S acquires 3D poses of each component via an optical tracker (FusionTrack 500, Atracsys1). The pose measurements are streamed into a physics-based real-time virtual environment built upon AMBF [22,23]. The virtual environment provides computational analysis as feedback to the real-world processes. An overview is shown in Fig. 2.
+
+Modeling of the surgical drill
+
+The 3D model of the surgical tool is obtained from its manufacturer (ANSPACH, Johnson & Johnson2). In Twin-S, we
+assign the drill coordinate frame to the drill tip center. We
+mount the optical tracking markers at the tail of the drill shaft,
+deﬁning the base coordinate of the drill. To ﬁnd the transformation dbFd between the base coordinate and the drill coordinate, we calibrate the rotational dbRd and the translational dbtd components.
+The translational component dbtd is obtained by pivot calibration [25]. For the rotational component dbRd , it is only necessary to calibrate two degrees of freedom as the drill
+is symmetrical along its shaft. The calibration reduces to
+aligning two linear line segments—the shaft axis in the drill
+coordinate (denoted as P) and the optical tracker coordinate
+(denoted as Q). Using the Kabsch algorithm [26], the rotation
+can be recovered as:
+
+d b Rd
+
+=
+
+(HT
+
+H
+
+)
+
+1 2
+
+H −1,
+
+where
+
+H = PT Q.
+
+(1)
+
+The shaft axis in the drill coordinate P is deﬁned to be along the Z-axis and thus is known. To recover the shaft axis in optical tracker coordinate Q, we ﬁx the drill on a robot arm end effector, where the drill holder is by design aligns the drill shaft with the Z-axis of the robot to sufﬁcient accuracy [27]. Therefore, by commanding the robot to move along its Zaxis, we recover the direction of motion Q in the optical tracker coordinate. Given P and Q, dbRd can be recovered.
+
+Modeling of the surgical phantom
+
+We obtain the 3D structure of the surgical phantom using a CT scanner. The phantom is modeled as a binary volume
+
+1 https://www.atracsys-measurement.com/products/fusiontrack-500/. 2 https://www.jnjmedtech.com/en-EMEA/product/anspach-eg1electric-system.
+
+123
+
+International Journal of Computer Assisted Radiology and Surgery (2023) 18:1077–1084
+
+1079
+
+Fig. 1 Overview of our Twin-S digital twin concept and associated applications. Measurements are collected from various sensors deployed in the operating room and sent to the virtual model continu-
+
+ously. The feedback from the computation analysis of the virtual model is provided to the physical entity, which can be used in many downstream applications
+
+Fig. 2 Overview of Twin-S for skull base surgery. Twin-S models,
+tracks, and updates the surgical drill (d), phantom ( p), and camera
+(c) to emulate the clinical setting. An optical tracker (o) provides measurements of object base coordinates (o Fxb), where x is one of
+
+{d, p, c}. By performing calibration, Twin-S recovers the transformation xb Fx between the base coordinate and the model coordinate for
+each object. The real and virtual entities are aligned via transformation o Fx = o Fxb · xb Fx
+
+of occupancy, where voxels corresponding to the bony tissues are marked as occupied and voxels representing air are marked as free space. To track the surgical phantom, we rigidly mount the phantom on a polycarbonate board with optical tracking markers, deﬁning the base coordinate of the phantom. To calibrate the transformation from phantom base to phantom pbFp, we directly compute the transformation between the virtual model and the physical phantom via the point-to-plane ICP registration [28]. We sample 380 points on the physical phantom surface using a tracked pointer tool for the purpose of calibration.
+
+Modeling tool-to-tissue interaction
+When surgeons perform drilling in the real world, we update the surgical phantom in real time. We approximate the drill tip as a sphere. Twin-S detects collisions between the surgical phantom and the drill burr given the tracked positions. The voxels that collide with the drill tip sphere are moved and set to free space to simulate the tissue removal process. More details of the drilling algorithm can be found in prior work [22].
+
+123
+
+1080
+
+International Journal of Computer Assisted Radiology and Surgery (2023) 18:1077–1084
+
+Modeling of the surgical camera
+We obtain the intrinsic parameters and distortion coefﬁcients of the stereo camera using a ChArUco pattern. Rectiﬁcation is then performed to obtain a projective camera model [29]. To track the surgical camera, optical tracking markers are mounted on the handle of the camera, deﬁning the base coordinate frame. A hand-eye calibration routine [30,31] is used to obtain cb Fc. Given the tracked camera, Twin-S generates per-pixel segmentation mask and depth maps based on the object information [22], which can be used for different downstream applications.
+Experiments and results
+In the following sections, we conduct experiments and numerical analysis on Twin-S to characterize its accuracy.
+Optical tracking accuracy
+We conduct experiments to evaluate the accuracy of the optical tracker, as its accuracy directly impacts the results of Twin-S. Throughout the experiment, we put the optical tracker at a ﬁxed location. We mount the optical markers on a three-axis micrometer stage (Fig. 3a). For each experiment trial, we individually move 5 mm along the x-, y-, and z-axis in the micrometer stage local coordinate. We conduct three trials in total, each with a new orientation w.r.t. the optical tracker (Fig. 3b). The histogram of error is plotted in Fig. 3c. The mean error is 0.02 mm, with a standard deviation of 0.02 mm and a maximum error of 0.08 mm. We ﬁnd the sub-millimeter accuracy of the optical tracker sufﬁcient for our purpose.
+Camera calibration accuracy
+We assess the accuracy of camera calibration as it is critical to downstream applications such as mixed reality. To perform a quantitative evaluation of hand-eye calibration, we record a video sequence of a moving camera observing a static ChArUco pattern. We take the ﬁrst video frame as the reference frame. The reference frame is transformed and projected into subsequent video frames. We then evaluate the alignment of the projected pattern and observed pattern. We report the re-projection error (RPE) among all frames of size 1080 × 1920 of a video sequence.
+The hand-eye calibration method has a 16-pixel mean RPE. We further convert the RPE to calibration errors by using the projective relationship between the pixel and Cartesian coordinate. The ratio between the camera-to-ChArUco distance ctu in mm and surgical camera focal length fpx in pixels is equal to the ratio between the calibration error c u
+
+in mm and mean RPE in pixels. In other words, we have ctu/ fpx = c u/RPE. Given the estimate of ctu from physical setup and the calibrated camera focal length f px , the handeye calibration error converts approximately to 1.9 mm.
+Drilling simulation accuracy
+One of the key features of Twin-S is real-time updating of the anatomic model as the patient anatomy is ablated. We conduct an experiment to evaluate the accuracy of the drilling process. A surgical expert is invited to drill the surgical phantom similar to in vivo surgery, emulating the tissue removal during mastoidectomy.
+We compare the updated phantom model of our digital twins after drilling with the 3D structure obtained by a CT scanner (Loop-X, Brainlab3). Point clouds are generated from both the virtual phantom model and the segmentation of the phantom in the CT scan and aligned using ICP. We visualize the mismatch between the virtual estimate of the tissue ablation and the true state of the phantom after the surgery as a heat map in Fig. 4. As the goal is to evaluate the model update accuracy of Twin-S, we report the error in drilled regions only instead of the entire model. The mean error of our virtual model in region A is 1.18 mm with a standard deviation of 0.24 mm, and the mean error in region B is 1.61 mm with the standard deviation of 0.49 mm. The average error of all drilled regions is 1.39 mm with a standard deviation of 0.62 mm. Errors are mostly located around sharp edges, which are affected to some extent by the limited spatial resolution of the CT scan. We further examine if there is correlation between the drilling depth and error, with qualitative results shown in Fig. 5. We do not observe strong correlations between the two variables qualitatively, and the p-value of 1 from our Chi-square test conﬁrms that the variables are indeed statistically independent.
+Overall, the results indicate that Twin-S can update the anatomical model with a precision comparable to conventional optical navigation systems [32], which is expected since spatial tracking in our digital twins largely relies on those systems. However, the average drilling depth of 1.57 mm is shallower than clinical practices [33]. The line-ofsight issues of the optical tracking system currently prohibit us from drilling deeper. It is our future work to optimize the spatial arrangement of the optical tracking markers to resolve the line-of-sight issue and expand our evaluation in deeper regions.
+Numerically analyzing tracking performance
+We analyze the tracking error to shed insight onto sources of error in the tracking performance. We denote the measured
+3 https://www.brainlab.com/loop-x.
+
+123
+
+International Journal of Computer Assisted Radiology and Surgery (2023) 18:1077–1084
+
+1081
+
+Fig. 3 a Optical tracker evaluation setup, four optical tracking markers are ﬁxed on a three-axis micrometer stage. b Relative orientations of the micrometer stage w.r.t the optical tracker. c Histogram of tracking errors
+
+mation is expressed as:
+
+d F∗p = oF∗d−1 · oF∗p,
+
+= (oF∗db · dbF∗d )−1 · oF∗pb · pbF∗p.
+
+(3)
+
+Fig. 4 Evaluation of misalignment between ground-truth CT scan and a phantom point cloud from the virtual model. The lower error indicates better agreement between the CT scan and the virtually updated model from Twin-S
+
+In the following content, we use the rotational component as an example to illustrate our derivation and analysis. We expand the error terms of the rotation part and obtain:
+
+d
+
+R
+
+∗ p
+
+=
+
+db Rd∗−1
+
+·
+
+o Rd∗−b 1
+
+·o
+
+R∗pb
+
+· pb
+
+R
+
+∗ p
+
+,
+
+d R p · I + sk(d αp)
+
+−1
+= db Rd · I + sk(dbαd ) ·
+
+−1
+o Rdb · I + sk(oαdb) ·
+
+o R pb · I + sk(oαpb)
+
+· pb R p · I + sk(pbαp) .
+
+(4)
+
+Fig. 5 Scatter and density plots of depth and simulation error. We have not found statistically signiﬁcant correlation between drilling depth and error ( p-value = 1)
+
+transformation as F∗, which contains error F and deviates from the actual transformation F:
+
+F∗ = F ·
+
+F, where
+
+F=
+
+I + sk(α), ε 0, 1
+
+.
+
+(2)
+
+The α is the rotational error using axis-angle notation, and sk(·) is the skew-symmetric matrix. The ε is the translation error.
+We present an analysis of the relative pose error between phantom and drill, which is critical for modeling tool-totissue interactions. The measured phantom-to-drill transfor-
+
+With re-arrangement, we can obtain four independent components contributing to the rotational error:
+
+d αp = β1 · pbαp + β2, · oαpb + β3 · oαdb + β4 · dbαd , (5)
+
+where β1 =
+
+I , β2 =
+
+pb
+
+R
+
+−1 p
+
+,
+
+β3
+
+=
+
+− pb R−p 1
+
+·
+
+o R−pb1 ·
+
+o Rdb,
+
+and
+
+β4
+
+=
+
+−d
+
+R
+
+−1 p
+
+.
+
+Intuitively,
+
+the
+
+norm of
+
+βi
+
+represents
+
+how much each measurement error contributes to the ﬁnal
+
+inaccuracy.
+
+To derive the numerical upper bound on tracking error,
+
+we use the worst-case tracking accuracy of 0.08 mm for each
+
+optical marker obtained from “opticalspstracking” Section. We also assume a worst-case rotation error of 1◦ for ICP as it
+
+is not directly obtainable. We obtain the estimated worst-case
+
+error norm as:
+
+d α p ≤ β1 · pbα p 2 + β2, · oα pb 2 + β3 · oαdb 2
+2
+123
+
+1082
+
+International Journal of Computer Assisted Radiology and Surgery (2023) 18:1077–1084
+
+Table 1 Computation evaluation of Twin-S
+
+Time proportions of Twin-S
+
+Mean computational time (ms)
+
+Data synchronization
+
+20.5
+
+Pose update
+
+0.2
+
+Simulator volume rendering
+
+12
+
+Collision simulation
+
+3
+
+Overall execution time
+
+35.7
+
++ β4 · dbαd 2,
+
+≤ 1.0 + 0.3 + 0.4 + 1.0 = 2.7◦.
+
+(6)
+
+The rotational error d αp is up to 2.7◦ and dominated by pbαp and dbαd , which are the calibration inaccuracies. A similar analysis can be done on the translation error d εp, with the worst error bound of 8.6 mm. The estimated numerical upper bounds of the tracking error represent the worst-case scenario that Twin-S may produce. In practice, we observe the actual drilling error of 1.39 mm (“Drilling simulation accuracy” section) is much smaller than the estimated upper bounds. Details of the translation error analysis are given in appendix.
+
+Segmentation mask evaluation
+As mentioned in “Modeling of the surgical camera” section, Twin-S can generate per-pixel segmentation mask from the virtual models for downstream applications. Therefore, we evaluate the accuracy of virtually generated segmentation masks and report the Dice scores, where higher Dicer scores indicate better accuracy [34]. To obtain ground truth, we manually label a sequence of 100 frames of size 480 × 640. The Dice score for the drill is computed as 0.725, and the Dice score for the phantom is 0.956. The lower Dice score of the drill in comparison with the phantom is due to the thin shape of the drill, where slight offsets will lead to much lower Dice scores.
+
+Computation evaluation
+We present computation analysis of Twin-S as the real-time update is important for intra-operative uses. The calibration step is a requirement prior to launching the digital twins system such that the virtual models are aligned with the physical objects. Therefore, the calibration process does not impact the run-time performance of Twin-S. The time spent for calibration is approximately 10 min. We conduct a computation evaluation of Twin-S on a laptop of Ubuntu 20.04 equipped with Nvidia 3060 Laptop Graphic card and Intel i5 CPU. The breakdown of the computation time is presented in Table 1. The data synchronization step is the most time-consuming process of 20.5 ms, which aligns the timestamps and pairs the incoming tracking poses from the optical tracker and stereo images from the surgical camera. The overall run time of Twin-S is 35.7 ms (28 FPS).
+Use case in mixed reality
+We explore a mixed reality use case for providing complementary situational awareness using contextually updated virtual content. We consider the scenario where a preoperative plan is available for the desired bone ablation in the temporal bone. We present a temporally adaptive overlay to encode the distance between the current drilled surface and the deeper-seated target. In doing so, we offer depth information that may be difﬁcult for surgeons to observe due to bone dust, blood, etc. To demonstrate this idea with Twin-S, we reverse the drilling process and use the ﬁnal drilled shape as the “pre-planned target” to mimic the targeted application and display the drilling status in previous video frames. Speciﬁcally, Twin-S displays a warmer color when the surface is far from the target, and a cooler color as the revealed anatomy is closer to the target. Qualitative visualizations are shown in Fig. 6. Such an experiment conceptually demonstrates how Twin-S can be applied to intra-operative guidance, albeit the simple human–computer interaction paradigm. It is our future work to build a fully
+
+Fig. 6 An illustration of using Twin-S for mixed reality intra-operative guidance. The color overlays generated from the virtual model encode the distance to the deep-seated target
+123
+
+International Journal of Computer Assisted Radiology and Surgery (2023) 18:1077–1084
+
+1083
+
+functional mixed reality system with more effective graphics interfaces.
+Conclusion
+We present Twin-S, a digital twin framework for skull based surgery. Twin-S models, tracks, and updates virtual counterparts of physical entities in real time with high accuracy. We present thorough analysis on the tracking performance and illustrate how Twin-S can be used for downstream applications.
+In future work, we plan to integrate vision-based tracking algorithms [35] to further improve the accuracy of Twin-S rather than relying solely on optical trackers. We also plan to conduct ex vivo studies to evaluate our system. Moreover, Twin-S can generate large volume of paired data, where microscopic images of the surgical scene are paired with virtually generated labels. Through this pairing, we are able to reduce the cost of dataset labeling and avoid the sim-to-real transfer issue commonly faced by synthetic data [36,37]. It is our future work to demonstrate the application of Twin-S in dataset generation. Lastly, Twin-S enables model-based control [38] applications of varying anatomies, thus improving surgical safety and patient outcomes.
+Supplementary Information The online version contains supplementary material available at https://doi.org/10.1007/s11548-023-028639.
+Acknowledgements This work was supported in part by Johns Hopkins University internal funds, an agreement between Johns Hopkins University and the Multi-Scale Medical Robotics Centre Ltd., and in part by NIDCD K08 Grant DC019708.
+Declarations
+Conﬂict of interest Russell Taylor and Johns Hopkins University (JHU) may be entitled to royalty payments related to technology discussed in this paper, and Dr. Taylor has received or may receive some portion of these royalties. Also, Dr. Taylor is a paid consultant to and owns equity in Galen Robotics, Inc. These arrangements have been reviewed and approved by JHU in accordance with its conﬂict of interest policy.
+References
+1. Inc I (2022) What is a digital twin?. IBM. https://www.ibm.com/ topics/what-is-a-digital-twin. Accessed 13 Aug 2022
+2. Jones D, Snider C, Nassehi A, Yon J, Hicks B (2020) Characterising the digital twin: a systematic literature review. CIRP J Manuf Sci Technol 29:36–52
+3. Martinez-Velazquez R, Gamez R, El Saddik A (2019) Cardio twin: a digital twin of the human heart running on the edge. In: 2019 IEEE international symposium on medical measurements and applications (MeMeA), pp 1–6. IEEE
+4. Breton MD, Kanapka LG, Beck RW, Ekhlaspour L, Forlenza GP, Cengiz E, Schoelwer M, Ruedy KJ, Jost E, Carria L et al (2020)
+
+A randomized trial of closed-loop control in children with type 1 diabetes. N Engl J Med 383(9):836–845 5. Björnsson B, Borrebaeck C, Elander N, Gasslander T, Gawel DR, Gustafsson M, Jörnsten R, Lee EJ, Li X, Lilja S et al (2020) Digital twins to personalize medicine. Genome Med 12:1–4 6. Laubenbacher R, Niarakis A, Helikar T, An G, Shapiro B, MalikSheriff R, Sego T, Knapp A, Macklin P, Glazier J (2022) Building digital twins of the human immune system: toward a roadmap. NPJ Digit Med 5(1):64 7. Coelho G, Rabelo NN, Vieira E, Mendes K, Zagatto G, de Oliveira RS, Raposo-Amaral CE, Yoshida M, de Souza MR, Fagundes CF et al (2020) Augmented reality and physical hybrid model simulation for preoperative planning of metopic craniosynostosis surgery. Neurosurg Focus 48(3):19 8. Chalasani P, Wang L, Roy R, Simaan N, Taylor RH, Kobilarov M (2016) Concurrent nonparametric estimation of organ geometry and tissue stiffness using continuous adaptive palpation. In: Proc. ICRA 9. Wang L, Chen Z, Chalasani P, Yasin RM, Kazanzides P, Taylor RH, Simaan N (2017) Force-controlled exploration for updating virtual ﬁxture geometry in model-mediated telemanipulation. J Mech Robot 9(2):021010 10. Yasin R, Chalasani P, Zevallos N, Shahbazi M, Li Z, Deguet A, Kazanzides P, Choset H, Taylor RH, Simaan N (2020) Evaluation of hybrid control and palpation assistance for situational awareness in telemanipulated task execution. IEEE Trans Med Robot Bionics 3(1):31–43 11. Taylor RH, Mittelstadt BD, Paul HA, Hanson W, Kazanzides P, Zuhars JF, Williamson B, Musits BL, Glassman E, Bargar WL (1994) An image-directed robotic system for precise orthopaedic surgery. IEEE Trans Robot Autom 10(3):261–275 12. Kazanzides P (1999) Robot assisted surgery: the robodoc® experience. In: International symposium on robotics 13. Chalasani P, Wang L, Yasin R, Simaan N, Taylor RH (2018) Preliminary evaluation of an online estimation method for organ geometry and tissue stiffness. IEEE Robot Autom Lett 3(3):1816–1823 14. Yasin R, Chalasani P, Zevallos N, Shahbazi M, Li Z, Deguet A, Kazanzides P, Choset H, Taylor RH, Simaan N (2021) Evaluation of hybrid control and palpation assistance for situational awareness in telemanipulated task execution. TMRB 15. Shi Y, Deng X, Tong Y, Li R, Zhang Y, Ren L, Si W (2022) Synergistic digital twin and holographic augmented-reality-guided percutaneous puncture of respiratory liver tumor. IEEE Trans Human Machine Syst 52(6):1364–1374 16. Laaki H, Miche Y, Tammi K (2019) Prototyping a digital twin for real time remote control over mobile networks: application of remote surgery. IEEE Access 7:20325–20336 17. Bonne S, Panitch W, Dharmarajan K, Srinivas K, Kincade J-L, Low T, Knoth B, Cowan C, Fer D, Thananjeyan B et al (2022) A digital twin framework for telesurgery in the presence of varying network quality of service. In: 2022 IEEE 18th international conference on automation science and engineering (CASE), pp 1325–1332. IEEE 18. Lungu AJ, Swinkels W, Claesen L, Tu P, Egger J, Chen X (2021) A review on the applications of virtual reality, augmented reality and mixed reality in surgical simulation: an extension to different kinds of surgery. Expert Rev Med Dev 18(1):47–62 19. Aguilar-Salinas P, Gutierrez-Aguirre SF, Avila MJ, Nakaji P (2022) Current status of augmented reality in cerebrovascular surgery: a systematic review. Neurosurg Rev 45(3):1951–1964 20. Kockro RA, Tsai YT, Ng I, Hwang P, Zhu C, Agusanto K, Hong LX, Serra L (2009) Dex-ray: augmented reality neurosurgical navigation with a handheld video probe. Neurosurgery 65(4):795–808 21. Agha RA, Fowler AJ (2015) The role and validity of surgical simulation. Int Surg 100(2):350–357 22. Munawar A, Li Z, Kunjam P, Nagururu N, Ding AS, Kazanzides P, Looi T, Creighton FX, Taylor RH, Unberath M (2022) Virtual
+
+123
+
+1084
+
+International Journal of Computer Assisted Radiology and Surgery (2023) 18:1077–1084
+
+reality for synergistic surgical training and data generation. Comput Methods Biomech Biomed Eng Imag Vis 10(4):366–374 23. Munawar A, Li Z, Nagururu N, Trakimas D, Kazanzides P, Taylor RH, Creighton FX (2023) Fully immersive virtual reality for skull-base surgery: surgical training and beyond. arXiv preprint arXiv:2302.13878 24. Razavi CR, Wilkening PR, Yin R, Barber SR, Taylor RH, Carey JP, Creighton FX (2019) Image-guided mastoidectomy with a cooperatively controlled ent microsurgery robot. Otolaryngol Head Neck Surg 161(5):852–855 25. Yaniv Z (2015) Which pivot calibration? In: Medical imaging 2015: imageguided procedures, robotic interventions, and modeling, vol 9415, pp 542–550. SPIE 26. Kabsch W (1976) A solution for the best rotation to relate two sets of vectors. Acta Crystallogr Sect A Crystal Phys Diffract Theoretical General Crystallogr 32(5):922–923 27. Feng L, Wilkening P, Sevimli Y, Balicki M, Olds KC, Taylor RH (2016) Accuracy assessment and kinematic calibration of the robotic endoscopic microsurgical system. In: 2016 38th EMBC, pp. 5091–5094. IEEE 28. Schenker PS (1992) Sensor fusion IV: control paradigms and data structures; proceedings of the meeting, In: SPIE proceedings. Vol. 1611, Nov. 12–15, 1991. Technical report, Society of photo-optical instrumentation engineers, Boston, MA 29. Zhang Z (2000) A ﬂexible new technique for camera calibration. IEEE Transact Pattern Anal Machine Intell 22(11), 1330–1334 30. Horaud R, Dornaika F (1995) Hand-eye calibration. Int J Robot Res 14(3), 195–210 31. Furrer F, Fehr M, Novkovic T, Sommer H, Gilitschenski I, Siegwart R (2018) Evaluation of combined time-offset estimation and handeye calibration on robotic datasets. In: Field and service robotics results of the 11th international conference, pp 145–159. Springer 32. Holland MT, Mansﬁeld K, Mitchell A, Burchiel KJ (2021) Hidden error in optical stereotactic navigation systems and strategy to maximize accuracy. Stereotact Funct Neurosurg 99(5):369-376
+
+33. Kennedy KL, L.J.: Mastoidectomy. https://www.ncbi.nlm.nih.gov/ books/NBK559153. Accessed 5 Feb 2023
+34. Milletari F, Navab N, Ahmadi S-A (2016) V-Net: fully convolutional neural networks for volumetric medical image segmentation. In: 2016 4th International conference on 3D vision (3DV), pp 565– 571
+35. Li Z, Shu H, Liang R, Goodridge A, Sahu M, Creighton FX, Taylor RH, Unberath M (2022) Tatoo: vision-based joint tracking of anatomy and tool for skull-base surgery. arXiv preprint arXiv:2212.14131
+36. Li Z, Liu X, Drenkow N, Ding A, Creighton FX, Taylor RH, Unberath M (2021) Revisiting stereo depth estimation from a sequenceto-sequence perspective with transformers. In: Proceedings of the IEEE/CVF international conference on computer vision, pp 6197–6206
+37. Li Z, Drenkow N, Ding H, Ding AS, Lu A, Creighton FX, Taylor RH, Unberath M (2021) On the sins of image synthesis loss for selfsupervised depth estimation. arXiv preprint arXiv:2109.06163
+38. Li Z, Gordon A, Looi T, Drake J, Forrest C, Taylor RH (2020) Anatomical mesh-based virtual ﬁxtures for surgical robots. In: 2020 IEEE/RSJ international conference on intelligent robots and systems (IROS), pp 3267–3273. IEEE
+Publisher’s Note Springer Nature remains neutral with regard to jurisdictional claims in published maps and institutional afﬁliations.
+Springer Nature or its licensor (e.g. a society or other partner) holds exclusive rights to this article under a publishing agreement with the author(s) or other rightsholder(s); author self-archiving of the accepted manuscript version of this article is solely governed by the terms of such publishing agreement and applicable law.
+
+123
+

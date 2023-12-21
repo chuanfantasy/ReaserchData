@@ -1,17 +1,17 @@
 {
 	"translatorID": "3f50aaac-7acc-4350-acd0-59cb77faf620",
+	"translatorType": 2,
 	"label": "Wikipedia Citation Templates",
 	"creator": "Simon Kornblith",
 	"target": "txt",
 	"minVersion": "1.0.0b4.r1",
-	"maxVersion": "",
+	"maxVersion": null,
 	"priority": 100,
+	"inRepository": true,
 	"displayOptions": {
 		"exportCharset": "UTF-8"
 	},
-	"inRepository": true,
-	"translatorType": 2,
-	"lastUpdated": "2023-01-03 10:30:59"
+	"lastUpdated": "2023-11-05 21:55:00"
 }
 
 /*
@@ -319,7 +319,7 @@ function doExport() {
 		
 		// Don't include access date for journals with no URL
 		if (item.accessDate && !(item.itemType == 'journalArticle' && !item.url)) {
-			properties.accessdate = formatDate(item.accessDate);
+			properties["access-date"] = formatDate(item.accessDate);
 		}
 		
 		if (item.date) {

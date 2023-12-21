@@ -1,0 +1,503 @@
+Polisma - A Framework for Learning Attribute-Based Access Control Policies
+Amani Abu Jabal1(B), Elisa Bertino1, Jorge Lobo2, Mark Law3, Alessandra Russo3, Seraphin Calo4, and Dinesh Verma4
+1 Purdue University, West Lafayette, IN, USA {aabujaba,bertino}@purdue.edu
+2 ICREA - Universitat Pompeo Fabra, Barcelona, Spain jorge.lobo@upf.edu
+3 Imperial College London, London, UK {mark.law09,a.russo}@imperial.ac.uk 4 IBM TJ Watson Research Center, Yorktown Heights, NY, USA
+{scalo,dverma}@us.ibm.com
+Abstract. Attribute-based access control (ABAC) is being widely adopted due to its ﬂexibility and universality in capturing authorizations in terms of the properties (attributes) of users and resources. However, specifying ABAC policies is a complex task due to the variety of such attributes. Moreover, migrating an access control system adopting a low-level model to ABAC can be challenging. An approach for generating ABAC policies is to learn them from data, namely from logs of historical access requests and their corresponding decisions. This paper proposes a novel framework for learning ABAC policies from data. The framework, referred to as Polisma, combines data mining, statistical, and machine learning techniques, capitalizing on potential context information obtained from external sources (e.g., LDAP directories) to enhance the learning process. The approach is evaluated empirically using two datasets (real and synthetic). Experimental results show that Polisma is able to generate ABAC policies that accurately control access requests and outperforms existing approaches.
+Keywords: Authorization rules · Policy mining · Policy generalization
+1 Introduction
+Most modern access control systems are based on the attribute-based access control model (ABAC) [3]. In ABAC, user requests to protected resources are granted or denied based on discretionary attributes of users, resources, and environmental conditions [7]. ABAC has several advantages. It allows one to specify access control policies in terms of domain-meaningful properties of users, resources, and environments. It also simpliﬁes access control policy administration by allowing access decisions to change between requests by simply changing attribute values, without changing the user/resource relationships underlying the
+c Springer Nature Switzerland AG 2020 L. Chen et al. (Eds.): ESORICS 2020, LNCS 12308, pp. 523–544, 2020. https://doi.org/10.1007/978-3-030-58951-6_26
+
+524 A. Abu Jabal et al.
+rule sets [7]. As a result, access control decisions automatically adapt to changes in environments, and in user and resource populations. Because of its relevancy for enterprise security, ABAC has been standardized by NIST and an XML-based speciﬁcation, known as XACML, has been developed by OASIS [20]. There are several XACML enforcement engines, some of which are publicly available (e.g., AuthZForce [18] and Balana [19]). Recently a JSON proﬁle for XACML has been proposed to address the verbosity of the XML notation. However, a major challenge in using an ABAC model is the manual speciﬁcation of the ABAC policies that represent one of the inputs for the enforcement engine. Such a speciﬁcation requires detailed knowledge about properties of users, resources, actions, and environments in the domain of interest [13,22]. One approach to address this challenge is to take advantage of the many data sources that are today available in organizations, such as user directories (e.g., LDAP directories), organizational charts, workﬂows, security tracking’s logs (e.g., SIEM), and use machine learning techniques to automatically learn ABAC policies from data.
+Suitable data for learning ABAC policies could be access requests and corresponding access control responses (i.e., access control decisions) that are often collected in diﬀerent ways and forms, depending on the real-world situation. For example, an organization may log past decisions taken by human administrators [17], or may have automated access control mechanisms based on low-level models, e.g., models that do not support ABAC. If interested in adopting a richer access control model, such an organization could, in principle, use these data to automatically generate access control policies, e.g., logs of past decisions taken by the low-level mechanism could be used as labeled examples for a supervised machine learning algorithm1.
+Learned ABAC policies, however, must satisfy a few key requirements. They must be correct and complete. Informally, an ABAC policy set is correct if it is able to make the correct decision for any access request. It is complete if there are no access requests for which the policy set is not able to make a decision. Such a case may happen when the attributes provided with a request do not satisfy the conditions of any policy in the set.
+To meet these requirements, the following issues need to be taken into account when learning ABAC policies:
+– Noisy examples. The log of examples might contain decisions which are erroneous or inconsistent. The learning process needs to be robust to noise to avoid learning incorrect policies.
+– Overﬁtting. This is a problem associated with machine learning [10] which happens when the learned outcomes are good only at explaining data given as examples. In this case, learned ABAC policies would be appropriate only
+1 Learning policies from logs of access requests does not necessarily mean that there is an existing access control system or that policy learning is aimed to reproduce existing policies or validate them. Such logs may consist of examples of access control decisions provided by a human expert, and learning may be used for example in a coalition environment where a coalition member can get logs from another coalition member to learn policies for similar missions.
+
+Polisma - A Framework for Learning Attribute-Based Access Control Policies 525
+for access requests observed during the learning process and fail to control any other potential access request, so causing the learned policy set to be incomplete. The learning process needs to generalize from past decisions. – Unsafe generalization. Generalization is critical to address overﬁtting. But at the same time generalization should be safe, that is, it should not result in learning policies that may have unintended consequences, thus leading to learned policies that are unsound. The learning process has to balance the trade-oﬀ between overﬁtting and safe generalization.
+This paper investigates the problem of learning ABAC policies, and proposes a learning framework that addresses the above issues. Our framework learns from logs of access requests and corresponding access control decisions and, when available, context information provided by external sources (e.g., LDAP directories). We refer to our framework as Polisma to indicate that our ABAC policy learner uses mining, statistical, and machine learning techniques. The use of multiple techniques enables extracting diﬀerent types of knowledge that complement each other to improve the learning process. One technique captures data patterns by considering the frequency and another one exploits statistics and context information. Furthermore, another technique exploits data similarity. The assembly of these techniques in our framework enables better learning for ABAC policies compared to the other state-of-the-art approaches.
+Polisma consists of four steps. In the ﬁrst step, a data mining technique is used to infer associations between users and resources included in the set of decision examples and based on these associations a set of rules is generated. In the second step, each constructed rule is generalized based on statistically signiﬁcant attributes and context information. In the third step, authorization domains for users and resources (e.g., which resources were accessed using which operations by a speciﬁc user) are considered in order to augment the set of generalized rules with “restriction rules” for restricting access of users to resources by taking into account their authorization domain. Policies learned by those three stages are safe generalizations with limited overﬁtting. To improve the completeness of the learned set, Polisma applies a machine learning (ML) classiﬁer on requests not covered by the learned set of policies and uses the result of the classiﬁcation to label these data and generate additional rules in an “ad-hoc” manner.
+2 Background and Problem Description
+In what follows, we introduce background deﬁnitions for ABAC policies and access request examples, and formulate the problem of learning ABAC policies.
+2.1 ABAC Policies
+Attribute-based access control (ABAC) policies are speciﬁed as Boolean combinations of conditions on attributes of users and protected resources. The following deﬁnition is adapted from Xu et al. [24]:
+
+526 A. Abu Jabal et al.
+Deﬁnition 1 (cf. ABAC Model [24]). An ABAC model consists of the following components:
+– U, R, O, P refer, respectively, to ﬁnite sets of users, resources, operations, and rules.
+– AU refers to a ﬁnite set of user attributes. The value of an attribute a ∈ AU for a user u ∈ U is represented by a function dU (u, a). The range of dU for an attribute a ∈ AU is denoted by VU (a).
+– AR refers to a ﬁnite set of resource attributes. The value of an attribute a ∈ AR for a resource r ∈ R is represented by a function dR(r, a). The range of dR for an attribute a ∈ AR is denote
+– A user attribute expression eU deﬁnes a function that maps every attribute a ∈ AU , to a value in its range or ⊥, eU (a) ∈ VU (a) ∪ {⊥}. Speciﬁcally, eU can be expressed as the set of attribute/value pairs eU = { ai, vi | ai ∈ AU ∧ f (ai) = vi ∈ VU (ai)}. A user ui satisﬁes eU (i.e., it belongs to the set deﬁned by eU ) iﬀ for every user attribute a not mapped to ⊥, a, dU (ui, a) ∈ eU . Similarly, a resource si can be deﬁned by a resource attribute expression eR.
+– A rule ρ ∈ P is a tuple eU , eR, O, d where ρ.eU is a user attribute expression, eR is a resource attribute expression, O ⊆ O is a set of operations, and d is the decision of the rule (d ∈ {permit, deny})2.
+The original deﬁnition of an ABAC rule does not include the notion of “signed rules” (i.e., rules that specify positive or negative authorizations). By default, d = permit, and an access request u, r, o for which there exist at least a rule ρ = eU , eR, O, d in P such that u satisﬁes eU (denoted by u |= eU ), r satisﬁes eR (denoted by r |= eR), and o ∈ O, is permitted. Otherwise, the access request is assumed to be denied. Even though negative authorizations are the default in access control lists, mixed rules are useful when dealing with large sets of resources organized according to hierarchies, and have been widely investigated [21]. They are used in commercial access control systems (e.g., the access control model of SQL Servers provides negative authorizations by means of the DENY authorization command), and they are part of the XACML standard.
+2.2 Access Control Decision Examples
+An access control decision example (referred to as a decision example (l)) is composed of an access request and its corresponding decision. Formally,
+Deﬁnition 2 (Access Control Decisions and Examples (l) ). An access control decision is a tuple u, r, o, d where u is the user who initiated the access request, r is the resource target of the access request, o is the operation requested on the resource, and d is the decision taken for the access request. A decision example l is a tuple u, eU , r, eR, o, d where eU and eR are a user attribute expression, and a resource attribute expression such that u |= eU , and r |= eR, and the other arguments are interpreted as in an access control decision.
+2 Throughout the paper, we will use the dot notation to refer to a component of an entity (e.g., ρ.d refers to the decision of the rule ρ).
+
+Polisma - A Framework for Learning Attribute-Based Access Control Policies 527
+There exists an unknown set F of all access control decisions that should be allowed in the system, but for which we only have partial knowledge through examples. In an example l, the corresponding eU and eR can collect a few attributes (e.g., role, age, country of origin, manager, department, experience) depending on the available log information. Note that an access control decision is an example where eU and eR are the constant functions that assign to any attribute ⊥. We say that an example u, eU , r, eR, o, d belongs to an access control decision set S iﬀ u, r, o, d ∈ S. Logs of past decisions are used to create an access control decision example dataset (see Deﬁnition 3). We say that a set of ABAC policies P controls an access control request u, r, o iﬀ there is a rule ρ = eU , eR, O, d ∈ P that satisﬁes the access request u, r, o . Similarly, we say that the request u, r, o is covered by F iﬀ u, r, o, d ∈ F, for some decision d. Therefore, P can be seen as deﬁning the set of all access decisions for access requests controlled by P and, hence, be compared directly with F - and with some overloading in the notation, we want decisions in P ( u, r, o, d ∈ P) to be decisions in F ( u, r, o, d ∈ F).
+Deﬁnition 3 (Access Control Decision Example Dataset (D)). An access control decision example dataset is a ﬁnite set of decision examples (i.e., D = {l1, . . . , ln}).
+D is expected to be mostly, but not necessarily, a subset of F. D is considered to be noisy if D ⊆ F.
+2.3 Problem Deﬁnition
+Using a set of decision examples, extracted from a system history of access requests and their authorized/denied decisions, together with some context information (e.g., metadata obtained from LDAP directories), we want to learn ABAC policies (see Deﬁnition 4). The context information provides user and resource identiﬁcations, as well as user and resource attributes and their functions needed for an ABAC model. Additionally, it might also provide complementary semantic information about the system in the form of a collection of typed binary relations, T = {t1, . . . , tn}, such that each relation ti relates pairs of attribute values, i.e., ti ⊆ VX (a1)×VY (a2), with X, Y ∈ {U , R}, and a1 ∈ AX , and a2 ∈ AY . For example, one of these relations can represent the organizational chart (department names are related in an is member or is part hierarchical relation) of the enterprise or institution where the ABAC access control system is deployed.
+Deﬁnition 4 (Learning ABAC Policies by Examples and Context (LAP EC)). Given an access control decision example dataset D, and context information comprising the sets U , R, O, the sets AU and AR, one of which could be empty, the functions assigning values to the attributes of the users and resources, and a possibly empty set of typed binary relations, T = {t1, . . . , tn}, LAP EC aims at generating a set of ABAC rules (i.e., P = {ρ1 . . . ρm}) that are able to control all access requests in F.
+
+528 A. Abu Jabal et al.
+
+2.4 Policy Generation Assessment
+
+ABAC policies generated by LAP EC are assessed by evaluation of two quality requirements: correctness, which refers to the capability of the policies to assign a correct decision to any access request (see Deﬁnition 5), and completeness, which refers to ensuring that all actions, executed in the domain controlled by an access control system, are covered by the policies (see Deﬁnition 6). This assessment can be done against example datasets as an approximation of F. Since datasets can be noisy, it is possible that two diﬀerent decision examples for the same request are in the set. Validation will be done only against consistent datasets as we assume that the available set of access control examples is noisefree.
+
+Deﬁnition 5 (Correctness). A set of ABAC policies P is correct with respect to a consistent set of access control decisions D if and only if for every request u, r, o covered by D, u, r, o, d ∈ P → u, r, o, d ∈ D.
+
+Deﬁnition 6 (Completeness). A set of ABAC policies P is complete with respect to a consistent set of access control decisions D if and only if, for every request u, r, o , u, r, o covered by D → u, r, o is controlled by P.
+
+These deﬁnitions allow P to control requests outside D. The aim is twofold. First, when we learn P from an example dataset D, we want P to be correct and complete with respect to D. Second, beyond D, we want to minimize incorrect decisions while maximizing completeness with respect to F. Outside D, we evaluate correctness statistically through cross validation with example datasets which are subsets of F, and calculating Precision, Recall, F1 score, and accuracy of the decisions made by P. We quantify completeness by the Percentage of Controlled Requests (PCR) which is the ratio between the number of decisions made by P among the requests covered by an example dataset and the total number of requests covered by the dataset.
+
+Deﬁnition 7 (Percentage of Controlled Requests (PCR)). Given a subset of access control decision examples N ⊆ F, and a policy set P, the percentage of controlled requests is deﬁned as follows:
+
+P CR = |{ u, r, o
+
+|
+
+u, r, o is covered by N and u, r, o is controlled by P}| |{ u, r, o | u, r, o is covered by N }|
+
+3 The Learning Framework
+Our framework comprises four steps, see Fig. 1. For a running example see Appendix B.
+
+3.1 Rules Mining
+D provides a source of examples of user accesses to the available resources in an organization. In this step, we use association rule mining (ARM) [1] to analyze the association between users and resources.
+
+Polisma - A Framework for Learning Attribute-Based Access Control Policies 529
+
+Thus, rules having
+
+high association metrics
+
+(i.e., support and conﬁ-
+
+dence scores) are kept to
+
+generate access control
+
+rules. ARM is used for
+
+capturing the frequency
+
+and data patterns and
+
+formalize them in rules.
+
+Polisma uses Apriori [2]
+
+(one of the ARM algorithms) to generate rules
+
+Fig. 1. The architecture of Polisma
+
+that are correct and complete with respect to D. This step uses only the exam-
+
+ples in D to mine a ﬁrst set of rules, referred to as ground rules. These ground
+
+rules potentially are overﬁtted (e.g., ρ1 in Fig. 8 in Appendix B) or unsafely-
+
+generalized (e.g., ρ2 in Fig. 8 in Appendix B). Overﬁtted rules impact completeness over F while unsafely-generalized rules impact correctness. Therefore,
+
+Polisma post-processes the ground rules in the next step.
+
+3.2 Rules Generalization
+To address overﬁtting and unsafe generalization associated with the ground rules, this step utilizes the set of user and resource attributes AU , AR provided by either D, external context information sources, or both. Straightforwardly, eU (i.e., user expression) or eR (i.e., resource expression) of a rule can be adapted to expand or reduce the scope of each expression when a rule is overﬁtted or is unsafely generalized, respectively. In particular, each rule is post-processed based on its corresponding user and resource by analyzing AU and AR to statistically “choose” the most appropriate attribute expression that captures the subsets of users and resources having the same permission authorized by the rule according to D. In this way, this step searches for an attribute expression that minimally generalizes the rules.
+Polisma provides two strategies for post-processing ground rules. One strategy, referred to as Brute-force Strategy BS, uses only the attributes associated with users and resources appearing in D. The other strategy assumes that attribute relationship metadata (T ) is also available. Hence, the second strategy, referred to as Structure-based Strategy SS, exploits both attributes and their relationships. In what follows, we describe each strategy.
+
+Brute-Force Strategy (BS). To post-process a ground rule, this strategy searches heuristically for attribute expressions that cover the user and the resource of interest. Each attribute expression is weighted statistically to assess its “safety” level for capturing the authorization deﬁned by the ground rule of interest.
+The safety level of a user attribute expression eU for a ground rule ρ is estimated by the proportion of the sizes of two subsets: a) the subset of decision
+
+530 A. Abu Jabal et al.
+
+Algorithm 1. Brute-force Strategy (BS-U -S) for Generalizing Rules
+
+Require: ρi: a ground rule, ui: the user corresponding to ρi, D, AU .
+
+1: Deﬁne wmax = -∞, aselected= ⊥.
+
+2: for ai ∈ AU do
+
+3: wi = Wuav (ui, ai, dU (ui, ai), D)
+
+4: if wi > wmax then
+
+5:
+
+aselected = ai, wmax = wai
+
+6: end if
+
+7: end for
+
+8: eU ← aselected, dU (ui, aselected)
+
+9: 10:
+
+Create Rule return ρi
+
+ρi
+
+=
+
+eU , ρi.eR, ρi.O, ρi.d
+
+Algorithm 2. Structure-based Strategy (SS) for Generalizing Rules
+
+Require: ρi: a ground rule to be Generalized, ui: the user corresponding to ρi, ri: the resource
+
+corresponding to ρi, T , AU , AR.
+
+1: gi = G(ui, ri, AU , AR, T )
+
+2: x ∈ AU , y ∈ AR = First-Common-Attribute-Value(gi)
+
+3: eU ← x, dU (ui, x) ; eR ← y, dR(ri, y)
+
+4: 5:
+
+Create Rule return ρi
+
+ρi
+
+=
+
+eU , eR, ρi.O, ρi.d
+
+examples in D such that the access requests issued by users satisfy eU while the remaining parts of the decision example (i.e., resource, operation, and decision) match the corresponding ones in ρ; and b) the subset of users who satisfy eU . The safety level of a resource attribute expression is estimated similarly. Thereafter, the attribute expression with the highest safety level is selected to be used for post-processing the ground rule of interest. Formally:
+
+Deﬁnition 8 (User Attribute Expression Weight Wuav(ui, aj, dU (ui, aj),
+
+D)). For a ground rule ρ and its corresponding user ui ∈ U , the weight of a
+
+user attribute expression
+
+aj , dU (ui, aj )
+
+is
+
+deﬁned
+
+by
+
+the
+
+formula:
+
+Wuav
+
+=
+
+|UD |UC
+
+| |
+
+,
+
+where UD = {l ∈ D | dU (ui, aj) = dU (l.u, aj) ∧ l.r ∈ ρ.eR ∧ l.o ∈ ρ.O ∧ ρ.d = l.d}
+
+and UC = {uk ∈ U | dU (ui, aj) = dU (uk, aj)}.
+
+Diﬀerent strategies for selecting attribute expressions are possible. They can be based on a single attribute or a combination of attributes, and they can consider either user attributes, resource attributes, or both. Strategies using only user attributes are referred to as BS-U -S “for a single attribute” and BS-U -C “for a combination of attributes”. Similarly, BS-R-S and BS-R-C are strategies for a single or a combination of resources attributes. The strategies using the attributes of both users and resources are referred to as BS-U R-S and BSU R-C. Due to space limitation, we show only the algorithm using the selection strategy BS-U -S (see Algorithm 1).
+
+Structure-Based Strategy (SS). The BS strategy works without prior knowledge of T . When T is available, it can be analyzed to gather information about “hidden” correlations between common attributes of a user and a resource. Such attributes can potentially enhance rule generalization. For example, users working in a department ti can potentially access the resources owned
+
+Polisma - A Framework for Learning Attribute-Based Access Control Policies 531
+by ti. The binary relations in T are combined to form a directed graph, referred to as Attribute-relationship Graph G (see Deﬁnition 9). Traversing this graph starting from the lowest level in the hierarchy to the highest one allows one to ﬁnd the common attributes values between users and resources. Among the common attribute values, the one with the least hierarchical level, referred to as ﬁrst common attribute value, has heuristically the highest safety level for generalization because the generalization using such attribute value supports the least level of generalization. Subsequently, to post-process a ground rule, this strategy uses T along with AU , AR of both the user and resource of interest to build G. Thereafter, G is used to ﬁnd the ﬁrst common attribute value between the user and resource of that ground rule to be used for post-processing the ground rule of interest (as described in Algorithm 2).
+Deﬁnition 9 (Attribute-relationship Graph G). Given AU , AR, ρ and T , the attribute-relationship graph (G) of ρ is a directed graph composed of vertices V and edges E where
+V = {v | ∀ui ∈ ρ.eU , ∀ai ∈ AU , v = dU (ui, ai)} ∪{v | ∀ri ∈ ρ.eR, ∀ai ∈ AR, v = dR(ri, ai)}, and E = {(v1, v2) | ∃ti ∈ T ∧ (v1, v2) ∈ ti ∧ v1, v2 ∈ V }.
+Proposition 1. Algorithms 1 and 2 output generalized rules that are correct and complete with respect to D.
+As discussed earlier, the ﬁrst step generates ground rules that are either overﬁtted or unsafely-generalized. This second step post-processes unsafely-generalized rules into safely-generalized ones; hence, improving correctness. It may also postprocess overﬁtted rules into safely-generalized ones; hence, improving completeness. However, completeness can be further improved as described in the next subsections.
+3.3 Rules Augmentation Using Domain-Based Restrictions
+“Safe” generalization of ground rules is one approach towards fulﬁlling completeness. Another approach is to analyze the authorization domains of users and resources appearing in D to augment restriction rules, referred to as domainbased restriction rules3. Such restrictions potentially increase safety by avoiding erroneous accesses. Basically, the goal of these restriction rules is to augment negative authorization.
+One straightforward approach for creating domain-based restriction rules is to analyze the authorization domain for each individual user and resource. However, such an approach leads to the creation of restrictions suﬀering from overﬁtting. Alternatively, the analysis can be based on groups of users or resources.
+3 This approach also implicitly improves correctness.
+
+532 A. Abu Jabal et al.
+
+Identifying such groups requires pre-processing AU and AR. Therefore, this step searches heuristically for preferable attributes to use for partitioning the user
+and resource sets. The heuristic prediction for preferable attributes is based on
+selecting an attribute that partitions the corresponding set evenly. Hence, esti-
+mating the attribute distribution of users or resources allows one to measure the ability of the attribute of interest for creating even partitions4. One method
+for capturing the attribute distribution is to compute the attribute entropy as
+deﬁned in Eq. 1. The attribute entropy is maximized when the users are dis-
+tributed evenly among the user partitions using the attribute of interest (i.e., sizes of the subsets in GaUi are almost equal). Thereafter, the attribute with the highest entropy is the preferred one.
+Given the preferred attributes, this step constructs user groups as described in Deﬁnition5 10. These groups can be analyzed with respect to O as described in Algorithm 3 Consequently, user groups GaUi and resource groups GaRi along with O comprise two types of authorization domains: operations performed by
+each user group, and users’ accesses to each resource group. Subsequently, the
+algorithm augments restrictions based on these access domains as follows.
+
+– It generates deny restrictions based on user groups (similar to the example in Fig. 11 in Appendix B). These restriction rules deny any access request from a speciﬁc user group using a speciﬁc operation to access any resource.
+– It generates deny restrictions based on both groups of users and resources. These restriction rules deny any access request from a speciﬁc user group using a speciﬁc operation to access a speciﬁc resource group.
+
+On the other hand, another strategy assumes prior knowledge about preferred attributes to use for partitioning the user and resource sets (referred to as Semantic Strategy (SS)).
+
+Deﬁnition 10 (Attribute-based User Groups GaUi ). Given U and ai ∈ AU , U is divided into is a set of user groups GaUi {g1ai , . . . , gkai } where (giai = {u1, . . . , um} | ∀u , u ∈ gi, dU (u , ai) = dU (u , ai) , m ≤| U |) ∧ (gi ∩ gj = φ |
+i = j) ∧ (k =| VU (ai) |).
+
+Entropy(GaUi
+
+,
+
+ai)
+
+=
+
+(
+
+−1 ln m
+
+m
+
+∗
+
+pj ∗ ln pj ), where m = |GaUi |,
+
+j=1,gj ∈GaUi
+
+pj
+
+=
+
+|gj |
+
+m l=1,gl ∈GaUi
+
+|gl|
+
+(1)
+
+Proposition 2. Step 3 outputs generalized rules that are correct and complete with respect to D.
+
+4 Even distribution tends to generate smaller groups. Each group potentially has a
+similar set of permissions. A large group of an uneven partition potentially includes
+a diverse set of users or resource; hence hindering observing restricted permissions. 5 The deﬁnition of constructing resource groups is analogous to that of user groups.
+
+Polisma - A Framework for Learning Attribute-Based Access Control Policies 533
+3.4 Rules Augmentation Using Machine Learning
+The rules generated from the previous steps are generalized using domain knowledge and data statistics extracted from D. However, these steps do not consider generalization based on the similarity of access requests. Thus, these rules cannot control a new request that is similar to an old one (i.e., a new request has a similar pattern to one of the old requests, but the attribute values of the new request do not match the old ones).
+A possible prediction approach is to use an ML classiﬁer that builds a model based on the attributes provided by D and context information. The generated model implicitly creates patterns of accesses and their decisions, and will be able to predict the decision for any access request based on its similarity to the ones controlled by the rules generated by the previous steps. Thus, this step creates new rules based on these predictions. Once these new rules are created, Polisma repeats Step 2 to safely generalize the ML-based augmented rules. Notice that ML classiﬁcation algorithms might introduce some inaccuracy when performing the prediction. Hence, we utilize this step only for access requests that are not covered by the rules generated by the previous three steps. Thus, the inaccuracy eﬀect associated with the ML classiﬁer is minimized but the correctness and completeness are preserved.
+Note that Polisma is used as a one-time learning. However, if changes arise in terms of regulations, security policies and/or organizational structure of the organization, the learning can be executed again (i.e., on-demand learning).
+4 Evaluation
+In this section, we summarize the experimental methodology and report the evaluation results of Polisma.
+4.1 Experimental Methodology
+Datasets. To evaluate Polisma, we conducted several experiments using two datasets: one is a synthetic dataset (referred to as project management (P M ) [24]), and the other is a real one (referred to as Amazon6). The P M dataset has been generated by the Reliable Systems Laboratory at Stony Brook University based on a probability distribution in which the ratio is 25 for rules, 25 for resources, 3 for users, and 3 for operations. In addition to decision examples, P M is tagged with context information (e.g., attribute relationships and attribute semantics). We used such a synthetic dataset (i.e., P M ) to show the impact of the availability of such semantic information on the learning process and the quality of the generated rules. Regarding the Amazon dataset, it is a historical dataset collected in 2010 and 2011. This dataset is an anonymized sample of access provisioned within the Amazon company. One characteristic of
+6 http://archive.ics.uci.edu/ml/datasets/Amazon+Access+Samples.
+
+534 A. Abu Jabal et al.
+
+Table 1. Overview of datasets
+
+Datasets
+
+Project Management Amazon
+
+(PM)
+
+( AZ)
+
+# of decision examples
+
+550
+
+1000
+
+# of users
+
+150
+
+480
+
+# of resources
+
+292
+
+271
+
+# of operations
+
+7
+
+1
+
+# of examples with a “Permit” decision 505
+
+981
+
+# of examples with a “Deny” decision 50
+
+19
+
+# of User Attributes
+
+5
+
+12
+
+# of Resource Attributes
+
+6
+
+1
+
+the Amazon dataset is that it is sparse (i.e., less than 10% of the attributes are used for each sample). Furthermore, since the Amazon dataset is large (around 700K decision examples), we selected a subset of the Amazon dataset (referred to as AZ). The subset was selected randomly based on a statistical analysis [11] of the size of the Amazon dataset where the size of the selected samples suﬃces a conﬁdence score of 99% and a margin error score of 4%. Table 1 shows statistics about the P M and AZ datasets.
+Comparative Evaluation. We compared Polisma with three approaches. We developed a Na¨ıve ML approach which utilizes an ML classiﬁer to generate rules. A classiﬁcation model is trained using D. Thereafter, the trained model is used to generate rules without using the generalization strategies which are used in Polisma. The rules generated from this approach are evaluated using another set of new decision examples (referred to as N )7. Moreover, we compared Polisma with two recently published state-of-the-art approaches for learning ABAC policies from logs: a) Xu & Stoller Miner [24], and b) Rhapsody by Cotrini et al. [5].
+Evaluation and Settings. On each dataset, Polisma is evaluated by splitting the dataset into training D (70%) and testing N (30%) subsets. We performed a 10-fold cross-validation on D for each dataset. As the ML classiﬁers used for the fourth step of Polisma and the na¨ıve approach, we used a combined classiﬁcation technique based on majority voting where the underlying classiﬁers are Random Forest and kNN8. All experiments were performed on a 3.6 GHz Intel Core i7 machine with 12 GB memory running on 64-bit Windows 7.
+
+7 Datasets are assumed to be noise-free, that is, (N ⊂ F ) ∧ (D ⊂ F ) ∧ (N ∩ D = φ). Note that F is the complete set of control decisions which we will never have in a real system.
+8 Other algorithms can be used. We used Random Forest and kNN classiﬁers since
+they showed better results compared to SVM and Adaboost.
+
+Polisma - A Framework for Learning Attribute-Based Access Control Policies 535
+
+Evaluation Metrics. The correctness of the generated ABAC rules is evaluated using the standard metrics for the classiﬁcation task in the ﬁeld of machine learning. Basically, predicted decisions for a set of access requests are compared with their ground-truth decisions. Our problem is analogous to a two-class classiﬁcation task because the decision in an access control system is either “permit” or “deny”. Therefore, for each type of the decisions, a confusion matrix is prepared to enable calculating the values of accuracy, precision, recall, and F1 score as outlined in Eqs. 2–39.
+
+TP
+
+TP
+
+P recision =
+
+, Recall =
+
+(2)
+
+TP +FP
+
+TP +FN
+
+F 1 Score = 2 · P recision · Recall , Accuracy =
+
+TP +TN
+
+(3)
+
+P recision + Recall
+
+TP +TN +FP +FN
+
+Regarding the completeness of the rules, they are measured using PCR (see Deﬁnition 7).
+
+Fig. 2. Comparison of Na¨ıve, Xu & Stoller Miner, and Polisma Using the P M Dataset
+
+Fig. 3. Comparison of Na¨ıve, Rhapsody, and Polisma Using the AZ Dataset
+
+(a) Polisma (BS-HS-ML)
+
+(b) Polisma (SS-SS-ML)
+
+Fig. 4. Evaluation of Polisma using the P M dataset.
+
+4.2 Experimental Results
+Polisma vs. Other Learning Approaches. Here, Polisma uses the default strategies in each step (i.e., the BS-U R-C strategy in the second step and the HS strategy in the third step10) and the impact of the other strategies in Polisma
+9 F1 Score is the harmonic mean of precision and recall. 10 Since the AZ dataset does not contain resource attributes, BS-R-C (instead of BS-
+U R-C) is executed in the second step and the execution of the third step is skipped.
+
+536 A. Abu Jabal et al.
+Fig. 5. Comparison between the variants of the brute-force strategy (Step 2) using the P M dataset.
+
+Fig. 6. Polisma Evaluation on the Amazon Dataset (a sample subset and the whole set).
+
+Fig. 7. Polisma Evaluation on a sample subset of Amazon Dataset for only positive authorizations.
+
+is evaluated next. The results in Fig. 2 show that Polisma achieves better results compared to the na¨ıve and Xu & Stoller Miner using the P M dataset. In this comparison, we did not include Rhapsody because the default parameters of Rhapsody leads to generating no rule. With respect to Xu & Stoller Miner, Polisma’s F1 score (PCR) improves by a factor of 2.6(2.4). This shows the importance of integrating multiple techniques (i.e., data mining, statistical, and ML techniques) in Polisma to enhance the policy learning outcome. Moreover, Xu & Stoller Miner requires prior knowledge about the structure of context information while Polisma beneﬁts from such information when available. Xu & Stoller Miner [24] generates rules only for positive authorization (i.e., no negative authorization). This might increase the possibility of vulnerabilities and encountering incorrect denials or authorizations. Moreover, Xu & Stoller in their paper [24] used diﬀerent metrics from the classical metrics for data mining that are used in our paper. In their work [24], they used a similarity measure between the generated policy and the real policy which given based on some distance function. However, such a metric does not necessarily reﬂect the correctness of the generated policy (i.e., two policies can be very similar, but their decisions are diﬀerent). In summary, this experiment shows that the level of correctness (as indicated by the precision, recall and F1 score) and completeness (as indicated by the PCR) of the policies that are generated by Polisma is higher than for the policies generated by Xu & Stoller Miner and the na¨ıve approach due to the reasons explained earlier (i.e., the lack of negative authorization rules), as well as generating generalized rules without considering the safety of generalization. Furthermore, as shown in Fig. 3, Polisma also outperforms the na¨ıve
+
+Polisma - A Framework for Learning Attribute-Based Access Control Policies 537
+approach and Rhapsody using the AZ dataset. Rhapsody [5] only considers positive authorization (similar to the problem discussed above about Xu & Stoller Miner [24]); hence increasing the chances of vulnerabilities. In this comparison, we have excluded Xu & Stoller Miner because of the shortage of available resource attributes information in the AZ dataset. Concerning the comparison with the na¨ıve approach, on the P M dataset, the F1 score (PCR) of Polisma improves by a factor of 1.2 (4.1) compared to that of the na¨ıve. On the AZ dataset, Polisma’s F1 score (PCR) improves by a factor of 2.7 (3.3) compared to the na¨ıve. Both Polisma and the na¨ıve approach use ML classiﬁers. However, Polisma uses an ML classiﬁer for generating only some of the rules. This implies that among Polisma steps which improve the results of the generated rules (i.e., Steps 2 and Step 4), the rule generalization step is essential for enhancing the ﬁnal outcome. In summary, the reported results show that the correctness level of the rules generated by Polisma is better than that of the ones generated by Rhapsody and the na¨ıve approach (as indicated by the diﬀerence between the precision, recall, and F1 scores metrics). Meanwhile, the diﬀerence between the completeness level (indicated by PCR) of the generated rules using Polisma and that of Rhapsody is not large. The diﬀerence in terms of completeness and correctness is a result of Rhapsody missing the negative authorization rules.
+Steps Evaluation. Figure 4 shows the evaluation results for the four steps of Polisma in terms of precision, recall, F1 score, accuracy, and PCR. In general, the quality of the rules improves gradually for the two datasets, even when using diﬀerent strategies in each step. The two plots show that the strategies that exploit additional knowledge about user and resource attributes (e.g., T ) produce better results when compared to the ones that require less prior knowledge. Moreover, the quality of the generated rules is signiﬁcantly enhanced after the second and the fourth steps. This shows the advantage of using safe generalization and similarity-based techniques. On the other hand, the third step shows only a marginal enhancement on the quality of rules. However, the rules generated from this step can be more beneﬁcial when a large portion of the access requests in the logs are not allowed by the access control system.
+We also conducted an evaluation on the whole Amazon dataset; the results are shown in Fig. 6. On the whole dataset, Polisma achieves signiﬁcantly improved scores compared to those when using the AZ dataset because Polisma was able to utilize a larger set of decision examples. Nonetheless, given that the size of AZ was small compared to that of the whole Amazon dataset, Polisma outcomes using AZ11 are promising. In summary, the increase of recall can be interpreted as reducing denials of authorized users (i.e., smaller number of falsenegatives). A better precision value is interpreted as being more accurate with the decisions (i.e., smaller number of false-positives). Figures 4a–4b show that most of the reduction of incorrect denials is achieved in Steps 1 and 2, whereas the other steps improve precision which implies more correct decisions (i.e., decreas-
+11 We also experimented samples of diﬀerent sizes (i.e., 2k–5k), the learning results using these sample sizes showed slight improvement of scores.
+
+538 A. Abu Jabal et al.
+ing the number of false-positives and increasing the number of true-positives). As Fig. 7 shows, the results improve signiﬁcantly when considering only positive authorizations. This is due to the fact that the negative examples are few and so they are not suﬃcient in improving the learning of negative authorizations. As shown in the ﬁgure, precision, recall, and F1 score increase indicating that the learned policies are correct. Precision is considered the most eﬀective metric especially for only positive authorizations to indicate the correctness of the generated policies since higher precision implies less incorrect authorizations.
+Variants of the Brute-Force Strategy. As the results in Fig. 5 show, using resource attributes for rules generalization is better than using the user attributes. The reason is that the domains of the resource attributes (i.e., VR(ai) | ai ∈ AR) is larger than that of the user attributes (i.e., VU (aj) | aj ∈ AU ) in the P M dataset. Thus, the selection space of attribute expressions is expanded; hence, it potentially increases the possibility of ﬁnding better attribute expression for safe generalization. In particular, using resources attributes achieves 23% and 19% improvement F1 score and PCR when compared to that of using users attributes producing a better quality of the generated policies in terms of correctness (as indicated by the values of precision, recall, and F1 score) and completeness (as indicated by the PCR value). Similarly, performing the generalization using both user and resource attributes is better than that of using only user attribute or resource attributes because of the larger domains which can be exploited to ﬁnd the best attribute expression for safe generalization. In particular, BS-U R-C shows a signiﬁcant improvement compared to BS-U -C (22% for F1 score (which reﬂects a better quality of policies in terms of correctness), and 25% for PCR (which reﬂects a better quality of policies in terms of completeness)). In conclusion, the best variant of the BS strategy is the one that enables exploring the largest set of possible attribute values to choose the attribute expression which has the highest safety level.
+5 Related Work
+Policy mining has been widely investigated. However, the focus has been on RBAC role mining that aims at ﬁnding roles from existing permission data [16, 23]. More recent work has focused on extending such mining-based approaches to ABAC [5,8,14,15,24]. Xu and Stoller [24] proposed the ﬁrst approach for mining ABAC policies from logs. Their approach iterates over a log of decision examples greedily and constructs candidate rules; it then generalizes these rules by utilizing merging and reﬁnement techniques. Medvet et al. [14] proposed an evolutionary approach which incrementally learns a single rule per group of decision examples utilizing a divide-and-conquer algorithm. Cotrini et al. [5] proposed another rule mining approach, called Rhapsody, based on APRIORI-SD (a machine-learning algorithm for subgroup discovery) [9]. It is incomplete, only mining rules covering a signiﬁcant number of decision examples. The mined rules are then ﬁltered to remove any reﬁnements. All of those approaches [5,14,24] mainly rely on decision
+
+Polisma - A Framework for Learning Attribute-Based Access Control Policies 539
+logs assuming that they are suﬃcient for rule generalization. However, logs, typically being very sparse, might not contain suﬃcient information for mining rules of good quality. Thus, those approaches may not be always applicable. Moreover, neither of those approaches is able to generate negative authorization rules.
+Mocanu et al. [15] proposed a deep learning model trained on logs to learn a Restricted Boltzmann Machine (RBM). Then, the learned model is used to generate candidate rules. Their proposed system is still under development and further testing is needed. Karimi and Joshi [8] proposed to apply clustering algorithms over the decision examples to predict rules, but they don’t support rules generalization. To the best of our knowledge, Polisma is the ﬁrst generic framework that incorporates context information, when available, along with decisions logs to increase accuracy. Another major diﬀerence of Polisma with respect to existing approaches is that Polisma can use ML techniques, such as statistical ML techniques, for policy mining while at the same time being able to generate ABAC rules expressed in propositional logics.
+6 Conclusion and Future Work
+In this paper, we have proposed Polisma, a framework for learning ABAC policies from examples and context information. Polisma comprises four steps using various techniques, namely data mining, statistical, and machine learning. Our evaluations, carried out on a real-world decision log and a synthetic log, show that Polisma is able to learn policies that are both complete and correct. The rules generated by Polisma using the synthetic dataset achieve an F1 score of 0.80 and PCR of 0.95; awhen using the real dataset, the generated rules achieve an F1 score of 0.98 and PCR of 1.0. Furthermore, by using the semantic information available with the synthetic dataset, Polisma improves the F1 score to reach 0.86. As part of future work, we plan to extend our framework by integrating an inductive learner [12] and a probabilistic learner [6]. We also plan to extend our framework to support policy transfer and policy learning explainability. In addition, we plan to extend Polisma with of conﬂict resolution techniques to deal with input noisy data. Another direction is to integrate in Polisma diﬀerent ML algorithms, such as neural networks. Preliminary experiments about using neural networks for learning access control policies have been reported [4]. However, those results show that neural networks are not able to accurately learn negative authorizations and thus work is required to enhance them.
+Acknowledgment. This research was sponsored by the U.S. Army Research Laboratory and the U.K. Ministry of Defence under Agreement Number W911NF-163-0001. The views and conclusions contained in this document are those of the authors and should not be interpreted as representing the oﬃcial policies, either expressed or implied, of the U.S. Army Research Laboratory, the U.S. Government, the U.K. Ministry of Defence or the U.K. Government. The U.S. and U.K. Governments are authorized to reproduce and distribute reprints for Government purposes notwithstanding any copyright notation hereon. Jorge Lobo was also supported
+
+540 A. Abu Jabal et al.
+by the Spanish Ministry of Economy and Competitiveness under Grant Numbers TIN201681032P, MDM20150502, and the U.S. Army Research Oﬃce under Agreement Number W911NF1910432.
+A Additional Algorithms
+Algorithm 3 outlines the third step of Polisma for augmenting rules using domain-based restrictions.
+Algorithm 3. Rules Augmentation using Domain-based Restrictions
+Require: D, U , R, x: a preferable attribute of users, y: a preferable attribute of resources, O.
+1: GU = GUai (U , x); GR = GRai (R, y) 2: ∀ gi ∈ GU , Ogui → {}; ∀ gi ∈ GR, Ogri → {}; ∀ gi ∈ GR, Ugri → {} 3: for li ∈ D do 4: g ← gi ∈ GU | li.u ∈ gi ∧ li.d = P ermit; Ogu → Ogu ∪ li.o 5: Ogr → Ogr ∪ li.o; Ugr → Ugr ∪ li.u 6: end for 7: P → {} 8: for gi ∈ GU do 9: ρi = x, dU (ui, x) , ∗, oi, Deny | ui ∈ gi ∧ oi ∈ (O \ Ogui ); P → P ∪ ρi 10: end for 11: for gi ∈ GR do 12: ρi = x, dU (ui, x) , y, dR(ri, y) , ∗, Deny | ri ∈ gi ∧ ui ∈ (U \ Ugri ); P → P ∪ ρi 13: end for 14: return P
+
+B Running Example of Policy Learning Using Polisma
+Consider a system including users and resources both associated with projects. User attributes, resource attributes, operations, and possible values for two selected attributes are shown in Table 2. Assume that a log of access control decision examples is given.
+
+Table 2. Details about A Project Management System
+
+User Attributes (AU )
+
+{id, role, department, project, technical area}
+
+Resource Attributes (AR) {id, type, department, project, technical area}
+
+Operations List (O)
+
+{request, read, write, setStatus, setSchedule, approve, setCost}
+
+VU (role) VR (type)
+
+{planner, contractor, auditor, accountant, department manager, project leader} {budget, schedule, and task}
+
+Polisma - A Framework for Learning Attribute-Based Access Control Policies 541
+Fig. 8. Examples of ground rules generated from rule mining based on the speciﬁcations of the running example
+B.1 Rules Generalization Brute-Force Strategy (BS). Assume that BS-U R-C is used to generalize ρ2 deﬁned in Fig. 8. AU is {id, role, department, project, technical area} and AR is {id, type, department, project, technical area}. Moreover, ρ2 is able to control the access for the user whose ID is “acct-4’ when accessing a resource whose type is task. The attribute values of the user and resources controlled by ρ2 are analyzed. To generalize ρ2 using BS-U R-C, each attribute value is weighted as shown in Fig. 9. For weighting each user/resource attribute value, the proportion of the sizes of two user/resource subsets is calculated according to Deﬁnition 8.
+In particular, for the value of the “department” attribute corresponding to the user referred by ρ2 (i.e., “d1”) (Fig. 9b), two user subsets are ﬁrst found: a) the subset of the users belonging to department “d1”; and b) the subset of the users belonging to department “d1” and having a permission to perform the “setCost” operation on a resource of type “task” based on D. Then, the ratio of the sizes of these subsets is considered as the weight for the attribute value“d1”. The weights for the other user and resource attributes values are calculated similarly. Thereafter, the user attribute value and resource attribute value with the highest wights are chosen to perform the generalization. Assume that the value of the “department” user attribute is associated with the highest weight and the “project” resource attribute is associated with the highest weight. ρ2 is generalized as: ρ2 = user(department: d1), resource (type: task, project: d1-p1), setCost, permit
+(a) w.r.t. dU (uid= acct−4 , “role”) (b) w.r.t. dU (uid= acct−4 , “department”)
+(c) w.r.t. dU (uid= acc−4 , “project”) (d) w.r.t. dR(rtype= task , “project”)
+Fig. 9. Generalization of ρ2 deﬁned in Fig. 8 using the Brute Force Strategy (BS-U R-C)
+
+542 A. Abu Jabal et al.
+Fig. 10. Generalization of ρ2 deﬁned in Fig. 8 using Structure-based Strategy: An example of Attribute-relationship Graph
+Structure-Based Strategy (SS). Assume that SS is used to generalize ρ2, deﬁned in Fig. 8. Also, suppose that Polisma is given the following information: – The subset of resources R satisfying ρ2.eR has two values for the project
+attribute (i.e., “d1-p1”, “d1-p2”). – The user “acct-4” belongs to the project “d1-p1”. – R and “acct-4” belong to the department “d1”. – T = {(“d1-p1”, “d1”), (“d1-p2”, “d1”)}. G is constructed as shown in Fig. 10. Using G, the two common attributes for “acct-4” and R are “d1-p1” and “d1” and the ﬁrst common attribute is “d1-p1”. Therefore,ρ2 is generalized as follows: ρ2 = user(project: d1-p1), resource (type: task, project: d1-p1), setCost, permit
+B.2 Rules Augmentation Using Domain-Based Restrictions Assume that we decide to analyze the authorization domain by grouping users based on the “role” user attribute. As shown in the top part of Fig. 11, the authorization domains of the user groups having distinct values for the “role” attribute are identiﬁed using the access requests examples of D. These authorization domains allow one to recognize the set of operations authorized per user group. Thereafter, a set of negative authorizations are generated to restrict users having a speciﬁc role from performing speciﬁc operations on resources.
+
+Polisma - A Framework for Learning Attribute-Based Access Control Policies 543
+Fig. 11. Rules augmentation using domain-based restrictions
+B.3 Rules Augmentation Using Machine Learning Assume that D includes a decision example ( li) for a user (id: “pl-1”) accessing a resource (id: “sc-1”) where both of them belong to a department “d1”. Assuming Polisma generated a rule based on li as follows: ρi = user(role: planner, department: d1), resource (type: schedule, department: d1), read, permit Such a rule cannot control a new request by a user (id: “pl-5” for accessing a resource (id: “sc-5”) where both of them belong to another department “d5”). Such a is similar to li. Therefore, a prediction-based approach is required to enable generating another rule.
+References
+1. Agrawal, R., Imielin´ski, T., Swami, A.: Mining association rules between sets of items in large databases. In: ACM SIGMOD Record, vol. 22, pp. 207–216. ACM (1993)
+2. Agrawal, R., Srikant, R.: Fast algorithms for mining association rules. VLDB 1215, 487–499 (1994)
+3. Bertino, E., Ghinita, G., Kamra, A.: Access control for databases: concepts and systems. Found. Trends® Databases 3(1–2), 1–148 (2011)
+4. Cappelletti, L., Valtolina, S., Valentini, G., Mesiti, M., Bertino, E.: On the quality of classiﬁcation models for inferring ABAC policies from access logs. In: Big Data, pp. 4000–4007. IEEE (2019)
+5. Cotrini, C., Weghorn, T., Basin, D.: Mining ABAC rules from sparse logs. In: EuroS&P, pp. 31–46. IEEE (2018)
+6. De Raedt, L., Dries, A., Thon, I., Van den Broeck, G., Verbeke, M.: Inducing probabilistic relational rules from probabilistic examples. In: IJCAI (2015)
+7. Hu, V., et al.: Guide to attribute based access control (ABAC) deﬁnition and considerations (2017). https://nvlpubs.nist.gov/nistpubs/specialpublications/nist. sp.800-162.pdf
+8. Karimi, L., Joshi, J.: An unsupervised learning based approach for mining attribute based access control policies. In: Big Data, pp. 1427–1436. IEEE (2018)
+
+544 A. Abu Jabal et al.
+9. Kavˇsek, B., Lavraˇc, N.: APRIORI-SD: adapting association rule learning to subgroup discovery. Appl. Artif. Intell. 20(7), 543–583 (2006)
+10. Kohavi, R., Sommerﬁeld, D.: Feature subset selection using the wrapper method: overﬁtting and dynamic search space topology. In: KDD, pp. 192–197 (1995)
+11. Krejcie, R.V., Morgan, D.W.: Determining sample size for research activities. Educ. Psychol. Measur. 30(3), 607–610 (1970)
+12. Law, M., Russo, A., Elisa, B., Krysia, B., Jorge, L.: Representing and learning grammars in answer set programming. In: AAAI (2019)
+13. Maxion, R.A., Reeder, R.W.: Improving user-interface dependability through mitigation of human error. Int. J. Hum.-Comput. Stud. 63(1–2), 25–50 (2005)
+14. Medvet, E., Bartoli, A., Carminati, B., Ferrari, E.: Evolutionary inference of attribute-based access control policies. In: Gaspar-Cunha, A., Henggeler Antunes, C., Coello, C.C. (eds.) EMO 2015. LNCS, vol. 9018, pp. 351–365. Springer, Cham (2015). https://doi.org/10.1007/978-3-319-15934-8 24
+15. Mocanu, D., Turkmen, F., Liotta, A.: Towards ABAC policy mining from logs with deep learning. In: IS, pp. 124–128 (2015)
+16. Molloy, I., et al.: Mining roles with semantic meanings. In: SACMAT, pp. 21–30. ACM (2008)
+17. Ni, Q., Lobo, J., Calo, S., Rohatgi, P., Bertino, E.: Automating role-based provisioning by learning from examples. In: SACMAT, pp. 75–84. ACM (2009)
+18. AuthZForce. https://authzforce.ow2.org/ 19. Balana. https://github.com/wso2/balana 20. OASIS eXtensible Access Control Markup Language (XACML) TC. https://www.
+oasis-open.org/committees/tc home.php?wg abbrev=xacml 21. Rabitti, F., Bertino, E., Kim, W., Woelk, D.: A model of authorization for next-
+generation database systems. TODS 16(1), 88–131 (1991) 22. Sadeh, N., et al.: Understanding and capturing people’s privacy policies in a mobile
+social networking application. Pers. Ubiquitous Comput. 13(6), 401–412 (2009) 23. Xu, Z., Stoller, S.D.: Algorithms for mining meaningful roles. In: SACMAT, pp.
+57–66. ACM (2012) 24. Xu, Z., Stoller, S.D.: Mining attribute-based access control policies from logs. In:
+Atluri, V., Pernul, G. (eds.) DBSec 2014. LNCS, vol. 8566, pp. 276–291. Springer, Heidelberg (2014). https://doi.org/10.1007/978-3-662-43936-4 18
+

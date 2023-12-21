@@ -1,0 +1,908 @@
+Journal of Network and Computer Applications 217 (2023) 103697 Contents lists available at ScienceDirect
+Journal of Network and Computer Applications
+journal homepage: www.elsevier.com/locate/jnca
+
+Collective reinforcement learning based resource allocation for digital twin
+service in 6G networks
+Zhongwei Huang a,e, Dagang Li a,b,∗, Jun Cai c, Hua Lu d
+a Macau University of Science and Technology, Macao, 999078, China b Zhuhai-M.U.S.T. Science and Technology Research Institute, Zhuhai, 519031, China c Guangdong Polytechnic Normal University, Guangzhou, 510663, China d Guangdong Communication & Network Institute, Guangzhou, 510663, China e Qianxing Intelligence (Zhuhai) Technology Co., Ltd., Zhuhai, 519000, China
+
+ARTICLE INFO
+Keywords: Digital twin Resource allocation Internet of Things Collective reinforcement learning
+
+ABSTRACT
+The 6th generation (6G) mobile communications technology will realize the interconnection of humans, machines, things as well as virtual space. The development of digital twins (DTs) and 6G has accelerated the Internet of Things (IoT) in an unprecedented way. The combination of DTs and edge intelligence (EI) enables powerful digital space synchronized with the real world constructed in the intelligent edge, bringing real-time, and adaptive services delivery of IoT. However, the dynamic features and heterogeneous resources in 6G-enabled IoT make the resource allocation for computation-intensive and delay-sensitive DTs services more challenging. In this paper, we first define the DTs implementation process as a DT service function chain (DTSFC) and address the resource allocation problem of DTs-empowered networks in form of dynamic DTSFCs orchestration. We further propose a novel collective reinforcement learning (CRL) method which is inspired by human collaboration, to realize the effective resource allocation of DTSFCs. Numerical results verify that the proposed CRL algorithm improves the learning efficiency and generalization ability compared with the benchmarks.
+
+1. Introduction
+Recent advances in digital twin (DT) and 6th generation (6G) mobile communications technology paved the way for the Internet of things (IoT). Digital twins (DTs) enable near-instant connectivity between the physical and virtual worlds, simulate the running rules of physical objects, and help them be practiced in the real world efficiently and cost-effectively (Tao et al., 2019). In particular, DTs are applicable to these scenarios with ‘‘three highs’’ (high risk, high cost, high pollution) and ‘‘four difficulties’’ (difficult to see, difficult to run, difficult to enter, difficult to reproduce). To support the instant response, the DTs synchronized with the real world are constructed in the network edge by real-time perceiving and modeling of the physical entities, connecting all the elements of the IoTs including users, machines, vehicles, and their connected networks, etc. As shown in Fig. 1, a range of IoT use cases (Wu et al., 2021), such as manufacturing, smart transportation, and smart cities benefit from DTs to customize diversified services for users.
+The early DT model contained three dimensions, namely physical equipment, virtual model, and connections between them. Tao et al. (2018) extended the three-dimensional model to five dimensions,
+
+i.e., 𝐷𝑇 = {𝑃 𝑒, 𝑉 𝑒, 𝑆𝑠, 𝐷𝑑, 𝐶𝑛}, where 𝑃 𝑒 represents a physical entity, 𝑉 𝑒 represents a virtual equipment, 𝑆𝑠 represents the DT service, 𝐷𝑑 represents DT data, and 𝐶𝑛 represents the connection between various parts. In addition, 𝑆𝑠 consists of {Function, Input, Output, Quality, State}, 𝑆𝑠 can be scheduled to meet the demands of the 𝑃 𝐸 and 𝑉 𝐸 (Tao et al., 2018). As shown in Fig. 1, the data collected from the physical world will be processed in DT to realize the network modeling, forecasting, and optimization, and the optimized policy in DT will be returned back to the physical network for execution. This modeling and optimizing processes in DT can be regarded as the DT services, and the corresponding functions as well as their sequences are constructed in DT service to realize the specific optimization. For example, the DT service of the manufacturing line maybe includes monitoring and assessment functions, while the intelligent transportation DT requires monitoring, optimization, and control functions. We summarized the commonly used functions in DT service and listed in Table 1 (Glatt et al., 2021).
+In recent years, network function virtualization (NFV) technology has emerged as a promising technology to provide flexible service
+
+∗ Corresponding author at: Macau University of Science and Technology, Macao, 999078, China. E-mail addresses: 2009853via30001@student.must.edu.mo (Z. Huang), dagang.li@ieee.org (D. Li), caijun@gpnu.edu.cn (J. Cai), luhua@gdcni.cn (H. Lu).
+https://doi.org/10.1016/j.jnca.2023.103697 Received 22 February 2023; Received in revised form 16 May 2023; Accepted 28 June 2023 Available online 3 July 2023 1084-8045/© 2023 Elsevier Ltd. All rights reserved.
+
+Z. Huang et al.
+
+Journal of Network and Computer Applications 217 (2023) 103697
+
+Fig. 1. The architecture of digital twin empowered IoT.
+
+Table 1 The commonly used DT functions, applied scenario, and benefits are partially summarized from the literature (Glatt et al., 2021), and we expanded the table based on the real-world case.
+
+DT functions
+
+Applied scenarios
+
+Benefits
+
+Simulation function
+
+∙ virtual testing ∙ process planning ∙ potential risks avoidance
+
+Reduce the number of physical experiments, product design cycles, testing costs, and risks and mistakes
+
+Monitoring function
+
+∙ operation monitoring ∙ fault diagnosis ∙ status monitoring ∙ security monitoring
+
+Identify defects, locate faults, visualize information, and ensure life safety
+
+Assessment function
+
+∙ status assessment ∙ performance assessment
+
+Realize advance forecast, and guide decision
+
+Prediction function
+
+∙ failure prediction ∙ life prediction ∙ quality prediction ∙ behavior prediction ∙ performance prediction
+
+Reduce downtime, avoid catastrophic failure, and improve product quality
+
+Optimization function
+
+∙ design optimization ∙ configuration optimization ∙ performance optimization ∙ energy optimization ∙ process optimization ∙ structure optimization
+
+Improve product development, provide system efficiency, save resources, reduce energy consumption, improve user experience
+
+Controlling function
+
+∙ operation control ∙ remote control ∙ collaborative control
+
+Improve operational accuracy, adapt to environmental changes, improve flexibility, and real-time corresponding control
+
+provision and efficient resource management for the 5G and its beyond networks. Based on NFV, IoT users define a series of virtual network functions (VNFs) of a service function chain (SFC) to flexibly handle massive heterogeneous IoT services (Fu et al., 2019). After decades of development, SFC is not limited to traditional network services. Dong et al. (2022) introduce the SFC embedding idea of NFV from 5G into the Internet of Vehicles (IoV) by decomposing the road condition recognition application of the IoV into a series of functions (i.e., picture split, object detection, object recognition, road condition perception), and embedding these functions into idle vehicles parked near the roadside. Similarly, the computing functions of DT service perform specific functions and consume resources at the instantiated node, and each service still has the critical latency requirement to guarantee the real-time interaction between the physical and virtual worlds. We define this novel DTs implementation service as Digital Twin Service Function Chains (DTSFCs). The implementation of DTs requires a real-time mapping between the physical entities and virtual spaces, its services are delay-sensitive and still have strict delay constraints.
+
+However, due to the limited computing power and battery capacity of IoT equipments (ITEs), the computation-intensive and latencysensitive services need to be offloaded to well-resourced servers. Therefore, edge intelligence (EI) (Zhou et al., 2019) is considered a promising alternative framework to provide a prompt response for IoT applications by deploying auxiliary computing and intelligence at the network edge, compared to cloud computing. By mapping the IoT systems to the digital twins constructed in EI, digital twin enabled-EI (DTEI) improves the efficiency of machine learning (ML) algorithms in EI and reduces the impact of unreliable communication between IoT devices and edge servers. Additionally, the DTEI directly performs the state analysis and operation optimization instead of dedicated devices in IoT, which reduces the deployment cost of IoT system. Despite this, DTEI still faces challenges in realizing efficient resources allocation when providing DTSFCs in complex and dynamic IoT scenarios:
+• Different from the traditional SFCs, the functions in DTSFCs are not just networking functions (e.g., IDS, VPN, NAT, etc Cai et al.,
+
+2
+
+Z. Huang et al.
+
+Journal of Network and Computer Applications 217 (2023) 103697
+
+Fig. 2. The research framework of this paper.
+
+2020) but computing functions (CFs) that process the transmitted data and return the computing results to the subsequent function, which makes the DT services more computation-intensive and latency-sensitive; • The 6G combines multiple access communication technologies such as base stations, satellites, unmanned aerial vehicles, etc, as shown in Fig. 1. Therefore, efficient resource allocation methods for DTSFCs with heterogeneous and dynamic 6G-enables IoT are urgently needed; • Recently, DRL algorithms have been increasingly used for resource allocation in massive IoT. However, deep learning based methods reliant on abundant samples for acquiring accurate and highly generalizable models, the collection of extensive samples proves time-consuming, labor-intensive, and sometimes unavailable in extreme or hazardous environments.
+In this paper, we propose corresponding solutions to address these challenges brought by the new scenarios, as shown in Fig. 2. We propose a novel collective reinforcement learning (CRL) method to realize effective resource allocation of DTSFC in DTEI-empowered IoT. CRL is inspired by human collaboration that jointly combines the agent’s own exploration and strategies from other agents. To our best knowledge, this paper is the first study to address the resource allocation problem of DTEI empowered IoT in form of dynamic DTSFCs orchestration. In short, our contributions list as follows:
+• By carefully analyzing the phases of DTs implementation, we define this novel DTs service as the DTSFC. We further consider the unique properties of IoT services into account, i.e., the specified delay constraints, as well as the dynamic and heterogeneous characteristics of IoT services.
+• We propose a novel CRL-based method to realize the effective resource allocation of DTSFCs, CRL goes beyond traditional DRL by not only focusing on policy exploration but also leveraging the intelligence of other agents to enhance adaptive performance and improve generalization ability. By incorporating the collective knowledge of agents, CRL enables more efficient and versatile learning processes;
+• We use TensorFlow to realize the proposed CRL approach and conduct extensive simulations by considering various delay constraints and dynamic traffic patterns of DTSFCs to verify our proposed method.
+The rest of the paper organizes as follows: we summarize the state-of-the-art related works in Section 2. In Section 3, we describe the framework of DTEI-enabled IoT and define the problem of delayconstrained DTSFCs resource allocation. Our proposed CRL-based DTSFCs orchestration solution is presented in Section 4, and we conduct the performance verification in Section 5. We further discuss the future potentials and current disadvantages of the proposed method in Section 6, and summarize the paper in Section 7.
+
+2. Related work
+We summarize the related works of resource allocation in DTenabled IoT and DRL-based dynamic service orchestration, and compare the contributions, advantages, and disadvantages in detail, as listed in Table 2.
+2.1. Resource allocation in DT empowered IoTs
+To make full use of the scattered and limited resources in IoT, Dai et al. (2020) proposed a digital twin network (DTW) to realize the instant mapping of the IoT system and digital space and investigated the stochastic computation offloading problem in DTW using asynchronous actor–critic (AAC). Sun et al. (2020) also consider the architecture of digital twin (DT) empowered IoT, where DTs capture the characteristics of industrial devices to assist federated learning (FL). To reduce the estimation deviations of DTs from the actual value of the device state, a trusted-based aggregation scheme is proposed in federated learning which is based on deep Q-Network (DQN) algorithm. FL is recognized as an effective technology that enables collaborative computing in resource-decentralized IoTs, and further improves data privacy and system reliability. Lu et al. (2020) introduced an FL and blockchainempowered framework for digital twin 6G wireless networks (DTWN). They address the joint edge association and communication resource allocation problem of DTWN that aims to minimize the system latency and develop a multi-agent RL method to find the optimal solution. The energy consumption of performing DT implementation cannot be ignored in the resource-constrained IoT. Therefore, Zhang et al. (2021) proposed an energy-efficient FL framework for DT-empowered IoT. To reduce the system energy consumption, they jointly address the DTs training server selection and resource allocation problem of the proposed framework and use a DQN-based algorithm to solve it.
+These researches paved the way for DTs-empowered IoT, and have studied multiple forms of resource allocation problems, e.g., computation offloading (Dai et al., 2020), edge association (Lu et al., 2020), and real-time IoT traffic routing (Abujassar et al., 2021), etc. However, how to best allocate resources at the edge to support the DTs implementation in IoT, i.e. in the form of dynamic DTSFC orchestration, is still in the blank stage and needs further research.
+2.2. DRL for dynamic SFC orchestration in IoT
+Recently, deep reinforcement learning (DRL) methods have been recognized as promising methods for dynamic resource management. Fu et al. (2019) proposed a deep Q-learning (DQL) based scheme to achieve dynamic SFC embedding in complex IoT scenarios that aim to minimize service delay. Chen et al. (2021) investigated the distributed orchestration of SFCs in IoT and introduced double DQN-based methods to deploy VNFs and embed SFCs for cost-minimizing. However, the DQL and DQN-based approaches could only obtain the optimal strategy in the discrete action space. Guo et al. (2019) introduced the consortium blockchain and A3C-based scheme to construct a trust SFC orchestration framework, aims to minimize orchestration overhead, they focus
+
+3
+
+Z. Huang et al.
+
+Table 2 Summary of relevant literatures.
+
+Research
+
+Contributions
+
+Dai et al. (2020)
+
+Address the stochastic computation offloading problem in DTW
+
+Sun et al. (2020)
+
+Propose a trust-based aggregation in DT-driven IIoT
+
+Lu et al. (2020) Zhang et al. (2021)
+
+Propose FL and BC-empowered framework for digital twin 6G wireless networks
+Propose energy-efficient FL framework for DT-empowered IoT
+
+Fu et al. (2019) Chen et al. (2021)
+
+Decompose the complex VNFs into smaller virtual network function components to make more effective decisions
+Formulate the joint optimization problem to maximize total utility and decompose it into SFC selection and dynamic SFC orchestration
+
+Guo et al. (2019) Schneider et al. (2021) Zhu et al. (2022)
+
+Integrates blockchain into the distributed SFC orchestration model to realize trusted resource sharing; propose a time-slotted model to support dynamic service migration
+Propose a novel DRL approach that learns how to best coordinate services and is geared towards realistic assumptions
+Propose a hybrid SFC deployment framework, which adopts the centralized training and distributed execution paradigm
+
+Li et al. (2022a)
+
+Propose a blockchain-enabled cloud–edge collaborative resource allocation and task offloading scheme for the IoT system through 6G networks
+
+Tang et al. (2022)
+
+Proposes a distributed edge intelligence sharing scheme between different edge nodes
+
+Method Lyapunov optimization technique; AAC Lyapunov optimization technique; DQN MARL
+double-DQN; dueling-DQN
+DQL
+Resource-aware matching algorithm; DQN
+Blockchain; A3C
+DDPG
+Game theory; MARL
+DQN; CRL
+CDRL
+
+Journal of Network and Computer Applications 217 (2023) 103697
+
+Pros
+Jointly optimize offloading decision, transmission power, bandwidth, and computation resource
+Considering the deviation of the DT from the true value in the trust-weighted aggregation strategy
+Jointly considering edge association and communication resource allocation to minimize the time cost
+Address the energy consumption of performing FL and maintaining the virtual object in the digital space
+Consider the dynamic natures of network conditions and IoT-traffic, which is more realistic in practical IoT
+Taking the timeliness, available resources and obtained reward into account
+Both congestion control and dynamic SFC migration are taken into account.
+
+Cons Did not compare to other continuous DRL method, but only to DQN
+DQN-based approach requires a large number of samples for training
+The proposed framework does not fully reflect the characteristics of 6G network
+The characteristics of the industrial IoT are not fully considered
+DQL could only obtain the optimal strategy in the discrete action space
+Two-stage optimization may introduce additional coordination problems; DQN could only obtain the optimal strategy in the discrete action space Did not take the dynamic nature of IoT services into account; A3C-based algorithm may suffer from local optimum
+
+The proposed model-free approach adapts to various objectives and traffic patterns
+Combines the advantages of the distributed solution and centralized solution
+Joint optimizing the offloading decision, block interval, and transmission power
+Consider the local learning at each edge node and collective learning between different edge nodes
+
+They only verified the method on small networks, and the performance of the method on large networks is unknown
+MARL needs to pay attention to the joint action of all other agents, the dimension of the joint space will increase as the number of agents increases
+They did not consider the throughput of the blockchain system, and impact of the consensus latency with the increasing BSs
+The AI model and intelligence sharing are carried out based on some common assumptions, e.g., possible AI tasks, the quality and energy cost requirement, etc.
+
+on the trust issue of IoT and the proposed A3C-based methods may suffer from local optimum due to the agent parallel training. Schneider et al. (2021) proposed a DDPG-based service coordination method called DeepCoord, which jointly controls service scaling and placement as well as flow scheduling. However, traditional single-agent DRL methods are not applicable to large-scale IoT scenarios. It takes a long time for agents to converge from a larger amount of data. Recently, the distributed multi-agents RL (MARL) methods are increasingly used for resource allocation in larger-scale IoT scenarios, Zhu et al. (2022) propose a hybrid SFC deployment framework, which adopts the centralized training and distributed execution paradigm, they formulate the problem as a multiuser competition game model and solved it by MARL. Nevertheless, MARL needs to pay attention to the joint state and action of all other agents, the dimension of the joint space will increase as the number of agents increases. Therefore, lightweight and efficient multiagent collaboration is necessary. Li et al. (2022a) investigated 6G and blockchain technologies to improve network performance and assure the authenticity of data sharing for MEC-enabled IoT. Meanwhile, a
+
+unique intelligent optimization method called collective RL is developed to realize intelligent resource allocation, meet distributed training results sharing, and minimize excessive system resource consumption. Although DRL considerably enhances decision-making capacity and learning speed in dynamic IoT, huge repetitive model training is ubiquitous due to customers’ inescapable requirements for the same sorts of data and training results. Furthermore, a smaller volume of data samples will result in model over-fitting. Tang et al. (2022) proposed a distributed edge intelligence sharing scheme to address these issues, which allows distributed edge nodes to economically improve learning performance by sharing their learned intelligence, where a novel collective deep reinforcement learning (CDRL) algorithm is designed to obtain the optimal intelligence sharing policy, which consists of local DRL learning at each edge node and collective learning between different edge nodes.
+In addition, current SFC orchestration methods did not take the properties of the IoT services into account, while in this paper, we consider the unique characteristic of IoT service in three aspects: (1)
+
+4
+
+Z. Huang et al.
+
+Journal of Network and Computer Applications 217 (2023) 103697
+
+Table 3 Symbols used in this paper.
+
+Symbol
+
+Description
+
+𝐷𝑇𝑖 (𝑡) 𝑁
+𝑠𝑖 𝐹
+𝐿 𝐶𝑓𝑖 𝜔𝑖 𝜆𝑖 𝛩𝑖 𝐺
+𝑉
+𝐸 𝑏𝑒𝑠𝑙 𝑟𝑣𝑠𝑓 𝑐𝑎𝑝𝑣𝑐𝑝𝑢 𝑏𝑒𝑠𝑙 𝑐𝑎𝑝𝑒𝑏𝑤 𝑥𝑣𝑠𝑓 𝑦𝑒𝑠𝑙
+
+DTSFC generated by device 𝑖 at time slot 𝑡 Total amount of device in IoT, 𝑖 ∈ 𝑁 Service chain of DTSFC 𝐷𝑇𝑖, 𝑠, 𝑠𝑖 ∈ 𝑆 A set of VFs chained in 𝑠𝑖, 𝑓 ∈ 𝐹 A set of virtual links between VFs, 𝑙 ∈ 𝐿 The computation requirement of VF 𝑓 in DTSFC 𝐷𝑇𝑖 Transmitted data size of DTSFC 𝐷𝑇𝑖 Data rate of DTSFC 𝐷𝑇𝑖 Maximum delay tolerance of DTSFC 𝐷𝑇𝑖 The substrate edge network The set of physical nodes, 𝑣 ∈ 𝑉 The set of physical links, 𝑒 ∈ 𝐸 The bandwidth requirement for 𝑙 of 𝑠 mapped on 𝑒 The resource requirement of VF 𝑓 of 𝑠 deployed on 𝑣
+The computational capacity of node 𝑣
+The bandwidth requirement of link 𝑙 mapped on 𝑒 The bandwidth capacity of physical link 𝑒 Indicates whether VF 𝑓 ∈ 𝑠 is deployed on node 𝑣
+Indicates whether virtual link 𝑙 ∈ 𝑠 is mapped to link 𝑒
+
+Specific delay constraints of IoT service are studied than just delay minimization; (2) We consider four increasingly complex and realistic traffic arrival patterns in the system model to simulate the dynamic nature of industrial IoT service; (3) We further study the generalization ability of the model by knowledge transfer. In the large-scale and heterogeneous IoT, services are often from different domains with great distinction, the generalization ability of the trained model is extremely important since a more general agent can significantly improve the efficiency and reduce training costs.
+3. System model and problem formulation
+In this section, we present the system description, dynamic resource allocation of DTSFC, and the mathematical model of DTSFC orchestration.
+3.1. System description
+The DTSFC requires real-time service delivery to ensure orderly production and collaboration between equipment in IoT. This paper intends to design a DTEI-driven DTSFC orchestration architecture and combine the global awareness of software-defined everything controller (SDXC) and flexible orchestration of virtual function orchestrator (VFO) to realize efficient resource allocation of DTSFCs. As shown in Fig. 1, this architecture mainly includes three layers:
+Physical IoT layer: The physical IoT layer composes various entities of the IoT, such as sensors, vehicles, and other equipment. These devices continuously perceive the running status of the physical system and generate massive data. These data will be utilized to analyze the status and optimize resource allocation to improve system efficiency.
+Edge intelligence layer: the MEC server equipped with AI capacity is deployed in this layer and connected with the base station by wire link to support the DTs implementation. Heterogeneous data generated from various ITEs are transmitted to the edge server through the 6G wireless network. Both communication and computation resources are limited in the network edge, which should be efficiently allocated to customize the dynamic DTSFCs.
+Cloud platform layer: In case of the QoS or resource requirements of the service cannot be guaranteed in the EI layer, the edge will collaborate with the cloud to provide the services, but the delay constraint may be sacrificed. In this paper, we mainly focus on the resource allocation of the edge layer, so the cloud layer is not displayed.
+
+3.2. Dynamic resources allocation of DTSFCs
+
+The early stage of DT implementation in IoT requires mass com-
+putation to model, simulate, and render the DTs. After the DTs were
+constructed, the DTs model will be updated in real-time according to
+the data collected by ITEs of the physical IoT, as well as mapping the
+decisions made in DTs to the physical entities. These kinds of services
+have strict delay constraints and account for most of the DTSFCs.
+Therefore, this paper focuses on dealing with this kind of DTSFCs.
+Assume that the DTSFC 𝐷𝑇𝑖(𝑡) generated by device 𝑖 at time slot 𝑡 is represented by a tuple 𝐷𝑇𝑖(𝑡) = {𝑠𝑖(𝑡), 𝐶𝑓𝑖 (𝑡), 𝜔𝑖(𝑡), 𝜆𝑖, 𝛩𝑖}, 𝑖 ∈ 𝑁, where 𝑠𝑖 = {𝑓1, 𝑓2, … , 𝑓𝑚}, 𝑠𝑖 ∈ 𝑆, represents the service chain which chained by a serial of components 𝑓𝑚 that implement corresponding functions of DTSFC, 𝑚 ≤ |𝐹 |, |𝐹 | is the total number of chained components. 𝐶𝑓𝑖 (𝑡) represents the computation requirement to process the VF 𝑓 of DTSFC
+𝐷𝑇𝑖, 𝜔𝑖(𝑡) represents the transmitted data size of DTSFC, the transmitted data of DTSFC including collected data returns from the physical world
+to DTs for fusion training, and AI models trained in DTs which need
+to be mapped to physical devices. 𝜆𝑖 is the data rate of DTSFC, 𝛩𝑖 represents the maximum delay tolerance of the delay-sensitive DTSFC,
+the service will be dropped if service delay exceeds the max tolerance.
+Lets 𝐺 = ⟨𝑉 , 𝐸⟩ represents the substrate edge network, which consists
+of multiple nodes 𝑣 and links 𝑒. Each node 𝑣 ∈ 𝑉 has a computation capacity 𝑐𝑎𝑝𝑣𝑐𝑝𝑢, we mainly consider the CPU processing frequency due to the computing function in DTSFCs. Each link 𝑒 ∈ 𝐸 has a maximum data rate 𝑐𝑎𝑝𝑒𝑏𝑤 and interconnects two nodes bidirectionally.
+Benefit from the flexible orchestrate capabilities of the VFO and the
+global awareness and control capabilities of the SDXC. The process of
+DTSFC resource allocation is divided into two stages: virtual functions
+(VFs) embedding and traffic scheduling between them (Liu et al., 2020;
+Cai et al., 2021). VFO first embeds VFs to the substrate node with
+sufficient resources to process, and then SDXC schedules the traffic flow
+through the VFs in a pre-defined order to customize the corresponding services. To this end, we define two binary variables 𝑥𝑣𝑠𝑓 and 𝑦𝑒𝑠𝑙 to represent the orchestration decisions. 𝑥𝑣𝑠𝑓 = {0, 1} is equal to 1 if a VF 𝑓 from 𝑠𝑖 is mapped to the physical node 𝑣, otherwise, it equals 0 (i.e., VFs embedding). Likewise, 𝑦𝑒𝑠𝑙 = {0, 1} is equal to 1 if virtual link 𝑙 ∈ 𝐿 from 𝑠𝑖 is mapped on physical link 𝑒 ∈ 𝐸, otherwise 𝑦𝑒𝑠𝑙 = 0 (i.e., flow scheduling). Considering the above-mentioned scenario, we
+present an optimization model for DTSFC resource allocation problem
+which aims to minimize service delay, while ensuring the service QoS
+and meeting the resources constraints. The symbols used in the paper
+are summarized in Table 3.
+
+3.3. Minimizing DTSFCs delay with delay constraint
+
+In this subsection, we first define the end-to-end delay 𝛩𝑠 of DTSFC, then propose the mathematical formulations of minimizing the 𝐷𝑒𝑠𝑛𝑑 , meanwhile, ensuring the delay tolerance 𝛩𝑠 of DTSFC.
+The end-to-end delay 𝐷𝑒𝑠𝑛𝑑 of DTSFC consists of three parts: VF processing delay, data transmission delay, and link propagation delay.
+The VF processing delay 𝐷𝑝𝑠 is calculated by the ratio of the total number of CPU cycles required for task processing and the processing
+power (i.e., CPU frequency) of the instantiated node:
+
+𝐷𝑝𝑠
+
+=
+
+∣𝐹 ∣
+∑
+𝑓 =1
+
+𝐶𝑓𝑖 𝑟𝑣𝑠𝑓
+
+𝑥𝑣𝑠𝑓
+
+,
+
+∀𝑖
+
+∈
+
+𝑁,
+
+∀𝑣
+
+∈
+
+𝑉
+
+,
+
+∀𝑠
+
+∈
+
+𝑆,
+
+(1)
+
+where 𝑥𝑣𝑠𝑓 indicates whether the VF 𝑓 of service 𝑠 is embedded to physical node 𝑣 to process, 𝐶𝑓𝑖 is the computation requirements of VF 𝑓 in DTSFC 𝐷𝑇𝑖, and 𝑟𝑣𝑠𝑓 is the computing power that node 𝑣 allocated to process the VF 𝑓 of 𝑠. |𝐹 | represents the total number of VFs. The
+total process delay is the sum of all VFs. The data transmission delay 𝐷𝑡𝑠 is determined by the data size
+divided by available bandwidth of links:
+
+∣𝐿∣
+
+𝐷𝑡𝑠
+
+=
+
+∑
+𝑙=1
+
+𝜔𝑖 𝑏𝑒𝑠𝑙
+
+𝑦𝑒𝑠𝑙 ,
+
+∀𝑖
+
+∈
+
+𝑁,
+
+∀𝑒
+
+∈
+
+𝐸,
+
+∀𝑠
+
+∈
+
+𝑆,
+
+(2)
+
+5
+
+Z. Huang et al.
+
+where 𝑦𝑒𝑠𝑙 indicates whether the virtual link 𝑙 between (j-1)th VF and jth VF is mapped to the physical link 𝑒, 𝜔𝑖 represents the transmitted
+data size of DTSFC, i.e., the size of return data from physical devices or
+
+AI models trained in DTs, 𝑏𝑒𝑠𝑙 is the required bandwidth that physical link 𝑒 allocated to transmit the flow of DTSFC.
+
+According to Fu et al. (2019), the link propagation delay 𝐷𝑔𝑠 is
+
+determined by 𝐷𝑔𝑠
+
+=
+
+𝑙𝑒𝑛 , where 𝑙𝑒𝑛 indicates the DTSFC length and
+𝑐
+
+𝑐 is the propagation speed of signals determined by the physical link
+
+medium. Therefore, the end-to-end delay of DTSFC can be represented
+
+as:
+
+𝐷𝑒𝑠𝑛𝑑 = 𝐷𝑝𝑠 + 𝐷𝑡𝑠 + 𝐷𝑔𝑠 , ∀𝑠 ∈ 𝑆.
+
+(3)
+
+The optimization objective expressed as (4), minimizes the overall service end-to-end delay:
+
+∣𝑆 ∣
+
+𝑜𝑏𝑗 ∶ 𝑚𝑖𝑛 ∑ 𝐷𝑒𝑠𝑛𝑑 , ∀𝑠 ∈ 𝑆.
+
+(4)
+
+𝑠=1
+
+𝑠.𝑡. 0 ≤ 𝐷𝑒𝑠𝑛𝑑 ≤ 𝛩𝑠, ∀𝑠 ∈ 𝑆.
+
+(5)
+
+∑ ∑ (𝑟𝑣𝑠𝑓 ⋅ 𝑥𝑣𝑠𝑓 ) < 𝑐𝑎𝑝𝑣𝑐𝑝𝑢, ∀𝑠 ∈ 𝑆.
+
+(6)
+
+𝑣∈𝑉 𝑓 ∈𝐹
+
+∑ ∑ (𝑏𝑒𝑠𝑙 ⋅ 𝑦𝑒𝑙 ) < 𝑐𝑎𝑝𝑒𝑏𝑤, ∀𝑠 ∈ 𝑆.
+
+(7)
+
+𝑒∈𝐸 𝑙∈𝐿
+
+∑ ∑ 𝑥𝑣𝑠𝑓 =∣ 𝐹 ∣, ∀𝑠 ∈ 𝑆.
+
+(8)
+
+𝑣∈𝑉 𝑓 ∈𝐹
+
+∑ 𝑥𝑣𝑠𝑓 = 1, ∀𝑠 ∈ 𝑆.
+
+(9)
+
+𝑣∈𝑉
+
+∑ ∑ 𝑦𝑒𝑠𝑙 =∣ 𝐿 ∣, ∀𝑠 ∈ 𝑆.
+𝑒∈𝐸 𝑙∈𝐿
+
+(10)
+
+𝑒𝑢𝑣
+
+∑
+∈𝐸,𝑙𝑝𝑞
+
+∈𝐿
+
+𝑦𝑒𝑙𝑝𝑢𝑞𝑣
+
+−
+
+∑
+𝑒𝑣𝑢 ∈𝐸 ,𝑙𝑞𝑝 ∈𝐿
+
+𝑦𝑒𝑙𝑞𝑣𝑝𝑢
+
+=
+
+0, ∀𝑝, 𝑞
+
+∈
+
+𝐹 , ∀𝑢, 𝑣
+
+∈
+
+𝑉.
+
+(11)
+
+The constraints of this optimization problem are described in (5)–
+(11): Firstly, (5) guarantees each service must be processed within
+the delay tolerance 𝛩𝑠 consider in IoT to ensure reliable DT services implementation. The computation requirements of VFs mapped on the
+physical nodes cannot exceed the node resources capacity, therefore, (6) guarantees the resource utilization constraint, where 𝑟𝑣𝑠𝑓 represents the allocated computing resource to VF 𝑓 of 𝑠 at node 𝑣, 𝑐𝑎𝑝𝑣𝑐𝑝𝑢 is the processing capacity of physical node 𝑣. Likewise, constraint (7) avoids link’s bandwidth over-utilization, where 𝑏𝑒𝑠𝑙 indicates the bandwidth requirement of link 𝑙 of 𝑠 mapped on 𝑒, and 𝑐𝑎𝑝𝑣𝑏𝑤 is the bandwidth capacity of physical link 𝑒. All VFs of 𝑠 must be instantiated on physical
+nodes and chained together to provide corresponding services, which is
+defined in (8). Nevertheless, each VF of 𝑠 can be deployed on only one
+physical node, which is guaranteed by (9). Similarly, the virtual links
+between each pair of VFs must be embedded in physical links, as shown
+in constraint (10). The incoming flow must be equal to the outgoing
+flow for all nodes, as defined in (11), where 𝑙𝑝𝑞 and 𝑒𝑢𝑣 indicate a virtual link and a physical link whose incoming and outcoming VF (or nodes)
+are 𝑝 and 𝑞 (or 𝑢 and 𝑣).
+
+4. CRL based DTSFCs resource allocation approach
+
+In this section, we first formulate the problem as a Markov decision process (MDP) and propose a CRL-based solution to solve this problem.
+
+4.1. MDP-based problem formulation
+
+In this paper, we assume that IoT service requests arrive in continuous-time steps and vary over time. The proposed DTSFCs orchestration model involves IoT service requests arriving, being embedded or rejected, and departing after being processed. The substrate network scenarios, as well as traffics of IoT, change dynamically over time, and the movement of the IoT terminal results in the random
+
+Journal of Network and Computer Applications 217 (2023) 103697
+
+arrival of service requests. In a dynamic environment where the un-
+
+derlying networks are changing randomly, an intuitionistic model can
+
+be achieved using Markov stochastic processes (Liu et al., 2020).
+
+The DTSFC orchestration problem also has Markov property since the
+
+network state of the current time slot depends on the previous service
+
+embedded in the underlying network. To this end, we can formulate
+
+the DTSFCs orchestration problem of IoT as a MDP and address it by
+
+RL method. The essential elements of RL-based tasks represent by a
+
+three-tuple  = ⟨, , ⟩, which are defined as follows:
+State space: (𝑡) = ⟨𝐺(𝑡), 𝐷𝑇𝑖(𝑡), ∣ 𝑖 ∈ 𝑁⟩ denotes the system state at time 𝑡, where 𝐺(𝑡) = ⟨𝑉 , 𝐸⟩ represents the current network state including the node and link resources capacity, 𝐷𝑇𝑖(𝑡) = {𝑠𝑖(𝑡), 𝐶𝑓𝑖 (𝑡), 𝜔𝑖(𝑡), 𝜆𝑖, 𝛩𝑖}, represents the DTSFC of device 𝑖 required at time 𝑡.
+Action space: (𝑡) = ⟨𝑝𝑣,𝑠,𝑓,𝑣′ ∣ 𝑣, 𝑣′ ∈ 𝑉 , 𝑠 ∈ 𝑆, 𝑓 ∈ 𝐹 ⟩ denotes the action set taken at time 𝑡, where 𝑝𝑣,𝑠,𝑓,𝑣′ ∈ [0, 1] is the probability for scheduling a flow arriving at node 𝑣, requesting VF 𝑓 of service 𝑠 to be
+
+processed at node 𝑣′. We only define the flow scheduling strategy and
+
+leave the VFs embedding as hidden actions (Liu et al., 2020), which
+
+means if traffic needs to be processed in node 𝑣, the corresponding VF
+
+must be deployed on node 𝑣 first.
+
+Reward function: the DRL method aims to find an optimal policy to
+
+maximize
+
+the
+
+long-term
+
+cumulative
+
+reward
+
+(𝑡)
+
+=
+
+∑𝑇
+𝑡=1
+
+𝑟(𝑡), 𝑡
+
+∈
+
+𝑇
+
+while
+
+following the policy, where 𝑟(𝑡) it the instant reward of the current time.
+
+We use two delay criteria from Schneider et al. (2021) to obtain the
+
+instant reward 𝑟𝑖. (1) Hard-deadline: the smaller the service delay, the higher the instant reward is (𝑟 ∈ [−1, 1]), the service will be discarded
+
+if the service delay exceeds the hard-deadline limit, and set to punish
+reward 𝑟 = -1. (2) Soft-deadline-exp: Contains two delay limits 𝑑𝑠𝑠𝑜𝑓𝑡 and 𝑑𝑠ℎ𝑎𝑟𝑑 , and 𝑑𝑠𝑠𝑜𝑓𝑡 < 𝑑𝑠ℎ𝑎𝑟𝑑 . Delay reward is maximal (𝑟 = 1) if the service delay is smaller than the soft deadline 𝑑𝑠𝑠𝑜𝑓𝑡 and then gradually
+diminishes with an increasing delay up to hard deadline 𝑑𝑠ℎ𝑎𝑟𝑑 (𝑟 ∈ [0, 1]), if the delay is large than 𝑑𝑠ℎ𝑎𝑟𝑑 , this flow will be dropped.
+
+4.2. Problem solution with CRL
+
+In this paper, we propose a novel collective reinforcement learning method (CRL) that combines agents’ exploration and extension of other agents to achieve the optimal resource allocation of DTSFC. CRL is inspired by human collaboration (Yu, 2021), imagine that when humans are looking for a restaurant, we either exploring a new restaurant, but we may face the risk of being disappointed or consulting other people’s opinions in advance without actually being there. Similar to human learning and cooperative behavior, CRL learns its strategy meanwhile integrating the knowledge from other agents, thereby improving the learning efficiency, using fewer samples to learn more general strategies, and improving its generalization ability. The architecture of collective RL is shown in Fig. 3.
+It can be concluded from the structure that CRL is fundamentally different from multi-agent reinforcement learning (MARL): (1) in MARL, the agent changes the environment through actions, thereby affecting other agents, while CRL affects other agents through direct knowledge transfer between agents, in short, MARL indirectly affects other agents, while CRL directly affects other agents; (2) the MARL agent cannot make decisions independently (except independent Q learning), because the agent’s policy network needs to know the observations of all other agents, and the entire state space is the sum of the partial observations of all agents, 𝑆 = [𝑜1, 𝑜2, … , 𝑜𝑚], CRL can make independent decisions and pass its decision-making knowledge to other agents, that is, MARL collaborated on sharing observations, and CRL collaborated on collaborative knowledge; (3) agent in MARL needs to pay attention to the joint state and action of all other agents. However, the dimension of the joint space will increase as the number of agents increases, so it is difficult to apply to large-scale scenarios, and CRL solves this problem.
+
+6
+
+Z. Huang et al.
+
+Journal of Network and Computer Applications 217 (2023) 103697
+
+Fig. 3. The architecture of collective reinforcement learning.
+
+4.2.1. From DRL to CRL The traditional DRL method aims to find an optimal policy 𝜋(𝑎|𝑠) to
+maximize the cumulative reward while following that policy.
+
+𝑚𝑎𝑥
+𝜋
+
+𝑅(𝑠𝑡,
+
+𝑠𝑡)
+
+=
+
+𝑟𝑡
+
++
+
+𝛾[E𝑠𝑡+1,𝑎𝑡+1 𝑄(𝑠𝑡+1,
+
+𝑎𝑡+1 )],
+
+(12)
+
+where 𝛾 is the discount factor of the future returns.
+Different from the sole objective DRL algorithms, an entropy 𝐻(𝜋(𝑎 ∣ 𝑠)) is added to the value function 𝑄(𝑠𝑡, 𝑎𝑡) of the soft actor–critic (SAC) (Haarnoja et al., 2018) algorithm to ensure the agent can explore continually. The coefficients 𝜖𝑒𝑝 balance the exploitation-exploration trade-off during the exploration process. The agent tries to maximize the system reward through local learning in an unknown environment through its own experience. Therefore, the quality of exploration is crucial in the learning process of the SAC algorithm. Exploring leads to new unknown successful behaviors, choosing strategies that the system does not know about, and possibly learning more. Therefore, the SAC algorithm learns the policy by performing an approximate exploration of the following value function:
+
+𝑄(𝑠𝑡,
+
+𝑎𝑡)
+
+=
+
+𝑚𝑎𝑥
+𝜋
+
+𝑅(𝑠𝑡,
+
+𝑠𝑡)
+
++
+
+𝜖𝑒𝑝 𝐻 (𝜋 (𝑎|𝑠)) ⏟⏞⏞⏞⏞⏞⏟⏞⏞⏞⏞⏞⏟
+
+.
+
+𝐸𝑥𝑝𝑙𝑜𝑟𝑎𝑡𝑖𝑜𝑛
+
+(13)
+
+Although exploration incentives encourage agents to take ‘‘competitive’’ actions, agents still struggle to adapt to new environments without pre-training. For example, in the larger-scale and multiple domains IoT scenarios, each domain has its own networking operator, running a different protocol, domains are often reluctant to share data with third parties due to privacy issues, and the finite training samples of the single domain further limit the adaptability of the training model. Therefore, similar to the way humans ask for other people’s opinions when making decisions, the extension 𝐸(𝜋(𝑎 ∣ 𝑠)) is added in novel CRL to enable agents to actively cooperate with other agents, i.e., combine the knowledge of other agents. Set 𝜖𝑒𝑡 the extension trade-off factor. The value function of CRL 𝑄𝑐 (𝑠𝑡, 𝑎𝑡) can be expressed as:
+
+𝑄𝑐 (𝑠𝑡,
+
+𝑎𝑡)
+
+=
+
+𝑚𝑎𝑥
+𝜋
+
+𝑅(𝑠𝑡,
+
+𝑎𝑡)
+
++
+
+𝜖𝑒𝑝 𝐻 (𝜋 (𝑎|𝑠)) ⏟⏞⏞⏞⏞⏞⏟⏞⏞⏞⏞⏞⏟
+
++
+
+𝜖𝑒𝑡𝐸(𝜋(𝑎|𝑠)), ⏟⏞⏞⏞⏞⏟⏞⏞⏞⏞⏟
+
+𝑒𝑥𝑝𝑙𝑜𝑟𝑎𝑡𝑖𝑜𝑛
+
+𝑒𝑥𝑡𝑒𝑛𝑠𝑖𝑜𝑛
+
+(14)
+
+where the exploration incentive 𝐻(𝜋(𝑎|𝑠)) can be calculated by the
+KL-divergence of the actual model 𝑃 and the learning model 𝑃𝜃𝑡 distribution, in the same way, the extensions 𝐸(𝜋(𝑎 ∣ 𝑠)) can be calculated by the KL-divergence of the actual model 𝑃 and other agent’s model 𝑃̃
+distribution (Yu, 2021).
+
+Based on the above definition, the value function of CRL can be rewritten as:
+
+𝑄𝑐 (𝑠𝑡, 𝑎𝑡)
+
+=
+
+𝑚𝑎𝑥
+𝜋
+
+𝑅(𝑠𝑡, 𝑠𝑡)
+
+−𝜖𝑒𝑝[𝑙𝑜𝑔𝑃𝜃𝑡 (𝑠𝑡+1|𝑠𝑡, 𝑎𝑡) − 𝑙𝑜𝑔𝑃𝜃𝑡−𝑙 (𝑠𝑡+1|𝑠𝑡, 𝑎𝑡)]
+
+⏟⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏟⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏟
+
+𝑒𝑥𝑝𝑙𝑜𝑟𝑎𝑡𝑖𝑜𝑛
+
+(15)
+
+−𝜖𝑒𝑡[𝑙𝑜𝑔𝑃𝜃𝑡 (𝑠𝑡+1|𝑠𝑡, 𝑎𝑡) − 𝑙𝑜𝑔𝑃̃𝜃𝑡−𝑙+1 (̃𝑠𝑡+1|̃𝑠𝑡, 𝑎̃𝑡)] . ⏟⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏟⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏟
+
+𝑒𝑥𝑡𝑒𝑛𝑠𝑖𝑜𝑛
+
+Algorithm 1 CRL-based DTSFCs orchestration algorithm
+
+Require: 𝜖𝑒𝑝, 𝜖𝑒𝑡, 𝛾; Ensure: 𝑝𝑣,𝑠,𝑓 ,𝑣′ , 𝑥𝑣𝑠𝑓 , 𝑦𝑒𝑠𝑙 ; 1: Initialize network parameters: 𝜙, 𝜃, 𝜗;
+
+2: for each episode do
+
+3: for each environment step do
+
+4:
+
+choose action 𝑎 ←𝜋←←←(←⋅←|←𝑠←←,←𝜙←←←)←← current state 𝑠 ;
+
+5:
+
+observe
+
+(𝑠′,
+
+𝑟)
+
+𝑒𝑥𝑒𝑐𝑢𝑡𝑒
+←←←←←←←←←←←←←←←
+
+action
+
+𝑎;
+
+6:
+
+replay
+
+buffer
+
+𝐷
+
+𝑢𝑝𝑑𝑎𝑡𝑒
+←←←←←←←←←←←←←
+
+(𝑠,
+
+𝑎, 𝑟, 𝑠′)
+
+;
+
+7: end for
+
+8: for each gradient step do do
+
+𝑠𝑎𝑚𝑝𝑙𝑒
+
+9:
+
+(s, a, r, s’) ←←←←←←←←←←←←←← from 𝐷 for training:
+
+10:
+
+calculate 𝑄𝑐 (𝑠𝑡, 𝑎𝑡) ← according to novel 𝑄𝑐 (𝑠𝑡, 𝑎𝑡) (15) ;
+
+11:
+
+𝜃 ← update the parameters of value network 𝑄 by loss
+
+function 𝐿(𝜃);
+
+12:
+
+𝜗 ← 𝜃 + 𝜏𝜃, soft update the parameters of target value
+
+network 𝑄;
+
+13:
+
+𝜙 ← update the parameters of policy network 𝜋 by loss
+
+function 𝐿(𝜙);
+
+14:
+
+output the optimal strategy: 𝑝𝑣,𝑠,𝑓,𝑣′ , 𝑥𝑣𝑠𝑓 , 𝑦𝑒𝑠𝑙;
+
+15: end for
+
+16: end for
+
+4.2.2. Work flow of CRL-based resource allocation algorithm The CRL algorithm inherits the actor–critic architecture, therefore,
+it incorporates four key components: (1) an actor–critic architecture with a separate policy deep neural network (DNN) (named as an actor) and value function DNNs (named as a critic); (2) an off-policy formulation which enables reuse of the past experience stored in the replay memory for sample efficiency, and (3) entropy maximization to ensure stability and exploration of unknown policies. (4) an extension
+
+7
+
+Z. Huang et al.
+Table 4 Simulation settings.
+Network topology Node computation capacity CPU cycles required by VFs Link bandwidth Input data size of DTSFC CFs number of DTSFC Traffic requests
+
+11–110 computing nodes [1, 5] GHz [3, 5]M cycles [0.5, 1] Gbps [1, 10] Mb [3, 6] VFs 4 increasingly complex and realistic traffic patterns
+
+to enable agents to actively cooperate with other agents and share intelligence, thus improving the generalization ability.
+The learning process of CRL is shown in Algorithm 1. First, the actor utilizes a parameterized DNN to approximate policy 𝜋𝜙(⋅|𝑠), selects and executes an action 𝑎 at current environment state 𝑠 (lines 4–5). The system goes to the next state 𝑠′, and obtains an instant reward 𝑟. After that, the experience tuple ⟨𝑠, 𝑎, 𝑟, 𝑠′⟩ is stored in replay buffer 𝐷 (line 6). To mitigate the temporal correlations between different samples, the critic randomly samples the experience ⟨𝑠, 𝑎, 𝑟, 𝑠′⟩ from the replay buffer to train the value network 𝑄 and target value network 𝑄 (ling 9).
+
+𝐿(𝜃)
+
+=
+
+E[
+
+1 2
+
+(𝑄𝑐𝜃
+
+(𝑠,
+
+𝑎)
+
+−
+
+𝑐
+𝑄
+
+(𝑠,
+
+𝑎))2].
+
+(16)
+
+Then, the loss function 𝐿(𝜃) of the mean squared error (MSE) between value function 𝑄𝑐 and target 𝑄𝑐 , will be back-propagated to
+
+update the parameters 𝜃 of value network 𝑄 using stochastic gradient
+
+descent method (lines 10–11), the target value network 𝑄 conduct a
+
+soft update form 𝑄 (line 12), while policy network parameter 𝜙 is
+
+updated by gradient descent of KL-divergence 𝐿(𝜙) (line 13). Finally,
+
+the CRL agent outputs the optimal strategy (line 14).
+
+𝐿(𝜙) = E[𝐷𝐾𝐿(𝜋𝜙(⋅ ∣ 𝑠) ∥ 𝜋′(⋅|𝑠))].
+
+(17)
+
+4.2.3. Algorithm complexity analysis Note that the improvement of the algorithm in this study is to
+reshape the reward on the value function, that is, to incorporate the extensive knowledge of other agents, and that the algorithm’s training procedure is the same as that of the SAC algorithm. As a result, the algorithm proposed in this study requires no additional training.
+The computational complexity mainly comes from DNN training and parameter update (Sun et al., 2021). As a result, the computational complexity of a DNN with back-propagation and gradient descent is 𝑂(𝑔ℎ𝐾𝑏), where 𝑔 and ℎ represent the number of layers and neurons in each layer, respectively; 𝐾 represents the number of episodes; and 𝑏 represents the mini-batch size. The proposed CRL algorithm composes of two DNNs: actor and critic, since the actor and critic have the same network structure, therefore, the computational complexity of the proposed algorithm is 𝑂(2𝑔ℎ𝐾𝑏).
+
+5. Simulations results and discussions
+
+This section describes the simulation setup and discusses the results to verify the pros and cons of our proposed method compared with the baseline algorithms.
+
+5.1. Simulations setup
+
+5.1.1. Simulation scenarios
+We conduct extensive simulations on real-world network topology
+selected from the Internet Topology zoo (Knight et al., 2011), the
+topology scale is selected from 11 nodes to 110 nodes, and assign heterogeneous node computation capacities 𝑐𝑎𝑝𝑣𝑐𝑝𝑢 between [1, 5] GHz, i.e., CPU frequency. The number of CPU cycles required by VFs is set to [3, 5] M cycles. We set link transmission bandwidth 𝑐𝑎𝑝𝑒𝑏𝑤 between [0.5, 1] Gbps.
+
+Journal of Network and Computer Applications 217 (2023) 103697
+We randomly generate the DTSFC with [3, 6] VFs, each VF has the computing requirement of [3, 5]M cycles, and the size of input data transferred by DTSFC during the real-time sync phase is set to [1, 10] Mb. We assume all service flows to have a unit data rate but consider four increasingly complex and realistic traffic patterns to simulate the dynamic DTSFCs requesting scenarios of IoT: (1) Detarrival, the request flows arrive at each ingress in fixed intervals of 10 time-steps. (2) Poisson arrival, request flows arrive with a mean interarrival interval of 10 time-steps. (3) MMPP-arrival, a more realistic traffic arrival pattern that follows a Markov modulated Poisson process (MMPP) (Fischer and Meier-Hellstern, 1993). (4) Real-world traffic traces, which were recorded from the Abilene network (Orlowski et al., 2010). The specific simulation settings are shown in Table 4.
+5.1.2. Baseline DRL algorithms At present, numerous research has proved that DRL-based methods
+are substantially superior to the traditional heuristic and exact algorithms (Cai et al., 2021; Li et al., 2022b; Liu et al., 2020). Therefore, this paper only compares advanced DRL-based methods as follows:
+Deep deterministic policy gradient (DDPG): the policy gradientbased DRL orchestration algorithm of SFCs, we keep the hyperparameter settings of the original paper (Schneider et al., 2021). The authors open source code on GitHub.1 We reuse this code as one of the comparison algorithms.
+Soft actor–critic (SAC): the exploration maximum based-DRL algorithm, and configures the following hyper-parameters: (1) learning rate = 0.01, (2) discount factor 𝛾 = 0.99. (3) batch size ∣ 𝑏 ∣ = 64 and buffer size ∣ 𝐵 ∣ = 10000. Recently, the SAC algorithm has been applied to resource management problems, e.g., optimizing the energy management in a hybrid electric bus (Wu et al., 2020).
+The simulation using Python 3.6 and TensorFlow 1.14 with CUDA 10.0 and implemented in PyCharm using remote Ubuntu 16.04 server equipped with Intel(R) Core(TM) i7-7820X CPU @ 3.60 GHz, GeForce RTX 2080 Ti GPU. The implementation follows the common OpenAI Gym interface, which can be easily extended to other DRL algorithms. We train the agents of three algorithms in 100–500 episodes, each containing 2000 time steps. The trained agent is automatically used for DTSFCs orchestration, we output the average results of all DTSFCs at the end.
+5.2. Learning curves comparison
+We first verify the learning curves of the DRL algorithms under different parameter settings to obtain the best performance. The exploration coefficient 𝜖𝑒𝑝 controls the trade-off between exploration and exploitation both in SAC and CRL. Haarnoja et al. (2018) also proposed an automatic-learning 𝜖𝑒𝑝 mechanism by giving a target entropy 𝛷. The learning curves of fixed (i.e., 𝜖𝑒𝑝 = 0.01) and automatic learning 𝜖𝑒𝑝 are first compared. As shown in Fig. 4(a), DRL (i.e., SAC and CRL) with auto-learning 𝜖𝑒𝑝 and target entropy 𝛷 at −1 can get rapid convergence and max accumulate reward, where 𝛷 is calculated by the dimensions of action space, i.e., 𝛷 = −𝑑𝑖𝑚() (Haarnoja et al., 2018).
+Then we verify the learning efficiency of three algorithms under the same environment setting. We first verify the extension coefficients 𝜖𝑒𝑡 of CRL range from 0.1 to 0.5 and find that 𝜖𝑒𝑡 = 0.2 leads to the best learning performance in our simulation. The learning curves show that both CRL and SAC have a significant superiority over the DDPG algorithm, indicating the entropy maximize-based algorithm is extensively explored to learn the optimal strategy more quickly. However, the SAC may plunge into a poor situation because of random exploration, but it can quickly jump out of the trap and learn a better strategy than before. Nevertheless, the learning efficiency of CRL is better than that of SAC, it obtains a higher reward from the beginning and is even more stable than the original SAC algorithm due to collective learning.
+1 https://github.com/RealVNF/DeepCoord
+
+8
+
+Z. Huang et al.
+
+Journal of Network and Computer Applications 217 (2023) 103697
+
+Fig. 4. Learning curve of optimal parameter setting.
+
+Fig. 5. Deployment performance of hard-deadline 25.
+
+Fig. 6. End-to-end delay of soft-deadline-exp 20–50.
+
+5.3. Performance with different delay constraints
+5.3.1. Hard deadline constraint We employ two delay metrics to verify the algorithm’s perfor-
+mance, as discussed in Section 4.1. We first verified the algorithms’ performance by dealing with hard-deadline constraints under increasingly complex traffic patterns, concerning the service success rate, and end-to-end delay.
+Figs. 5(a)–(d) show the performance of each algorithm in multiple traffic patterns with hard-deadline at 25 ms. The blue and orange histograms denote the success flow rate and the service end-to-end delay, respectively. All three algorithms can adapt to the hard delay constraint well, (i.e., the service delay of less than 25 ms), because services that exceed this constraint of the hard deadline will be discarded, so the successful flow percentage is the critical measure of the algorithm performance. As shown in Fig. 5, the successful flow of CRL is much higher than that of SAC (about 10%–20%) and slightly better than
+
+DDPG (about 5%–10%), which can maintain the highest success flow rate about 70%–85% encountered with different traffic patterns.
+5.3.2. Exponential soft deadline constraints In the subsequent simulations, we verify the algorithms with the
+exponential soft deadline constraint i.e., soft-deadline-exp to evaluate their ability to adapt to more complicated delay situations. The deadline is set from 20 ms to 50 ms.
+Figs. 6(a)–(d) show the service delay at different soft-deadline-exp limits encountered with multiple traffic patterns. In general, as the delay limits increase, the average service delay also increases accordingly to allow more services in the network. While the delay limit at 20 ms is too strict for any algorithm to meet, therefore the delay limits are exceeded among all three algorithms when the delay limits are relaxed, DDPG and CRL can quickly adapt at 25 ms limit. Although the service delays of CRL are slightly higher than that of the DDPG’s (about
+
+9
+
+Z. Huang et al.
+
+Journal of Network and Computer Applications 217 (2023) 103697
+
+Fig. 8. Running time comparison.
+
+Fig. 7. Successful flow of soft-deadline-exp 20–50.
+
+2-3 ms), the delay is still within the delay limits as DDPG, so the quality of service is not degraded.
+Figs. 7(a)–(d) show the success flow rate of each algorithm under different traffic patterns. In each sub-graph, the successful flow rate of each algorithm increases with the soft-deadline-exp, as more services can meet the constraints. When the traffic gradually becomes more complicated from det-arrival, rand-arrival, mmpp-arrival to real-world traffic trace, the successful flow rate drops slightly for CRL and SAC, while the traffic pattern changes has obvious impacts on DDPG, and CRL always maintains the highest successful flow rate. The above results indicate that strengthening the exploration in value function can indeed improve the adaptability of DRL algorithms. Considering that CRL still meets the delay limit while at the same time achieving a higher success flow rate, as shown in Fig. 7, it surely learns a better strategy.
+5.4. Running time comparison
+The running time is an important indicator of algorithm’s scalability and computational cost, we verify the algorithm’s running time with the increasing DTSFCS lengths and topology scales. The running time of one episode DTSFCs orchestration is compared, and the DTSFCs arrive at an average interval of 10-time steps. As shown in Fig. 8, SAC has the shortest running time in two situations (about 2-10s shorter than CRL and 5-70s shorter than DDPG), followed by CRL, while DDPG has the longest running time, because DDPG aims at minimizing the service delay, an extensive search is required to find the short path, therefore, the increasing network scale has the significant impact on DDPG. Although CRL combines intelligence extension to learn better strategies, its complexity is far less than searching the short path.
+The learning curve presented in Fig. 4 demonstrates that the agent converges well after 100 episodes of training. Remarkably, this convergence is achieved within a small computational cost, typically ranging from 30 min to a few hours, according to one episode running time shown in Fig. 8. This efficiency is particularly notable when compared to the computational requirements of other large-scale models, e.g., DeepMind’s AlphaGo Zero was trained over almost 5 million games. During the practical application phase, the trained agent can be directly employed for service orchestration without further training and only requires fine-tuning when applied to different scenarios. This approach allows for efficient and effective utilization of the trained model in real-world applications.
+
+Fig. 9. Self-adapted to unseen traffic scenarios.
+5.5. Generalization ability comparison
+Training a new model is time-consuming and resource-intensive, so it is crucial that the model has good generalization ability, especially in the dynamic IoT environment with changing traffic patterns and network loads.
+5.5.1. Generalizes to unseen pattern We first investigate the performance of all algorithms to unseen
+traffic patterns. We first train the agents on the simplest det-arrival traffic and test them directly with other complex and realistic traffic, the results are shown in Fig. 9(a). All algorithms were affected by the mismatch between the training and test pattern, but DDPG was affected the most (40% decline at worst). While CRL and SAC can maintain a relatively higher service successful flow rate (30% decline at worst).
+5.5.2. Generalizes to changing load We also study the adaptability of three algorithms to changing
+traffic load, which is indicated by the traffic ingress node number. We trained the agents with ingress = 3 and tested them with ingress = 1, 2, 4, and 5 in real-world traffic. As shown in Fig. 9(b), the results show a similar trend as in traffic patterns, but less significant (15% decline at worst).
+In short, all these algorithms obtained their good performance from their capability to learn well from the training data, therefore unseen patterns and traffic loads will affect their performance. But our proposed collective intelligence-based CRL algorithm still maintains a clear advantage over the SAC and DDPG algorithms indicating that CRL can indeed learn a more generalized strategy than a deterministic strategy.
+6. Discussion
+In the future 6G era, as we progress towards intelligence networking, the evolution of networks will witness a significant shift from mere information exchange to intelligent decision-making and intelligence exchange (Yu, 2021). This transformation necessitates the deployment
+
+10
+
+Z. Huang et al.
+of numerous agents or AI models, coexisting within the network, each catering to specific objectives or serving distinct user groups. Deep learning models, reliant on abundant samples and labels, are crucial for acquiring accurate and highly generalizable models. Similarly, the DRL approach entails an experience collection phase where training samples are generated internally. Nonetheless, the collection of an extensive dataset proves time-consuming, labor-intensive, and sometimes impossible in extreme or hazardous environments. To address this challenge, the CRL-based learning method facilitates agents in acquiring comprehensive models with robust generalization capabilities through knowledge collaboration. By leveraging the collective knowledge of multiple agents, CRL not only saves time and reduces redundant training efforts but also tackles the issue of learning appropriate models even in the absence of specific samples.
+However, it is important to acknowledge that the current CRL-based methodology is still in its exploratory stage, and certain challenges persist. For example, ensuring the secure transfer of knowledge between agents and verifying the positive impact of transferred knowledge on performance are critical aspects that require further research and resolution.
+7. Conclusion and future work
+In this paper, we have investigated the dynamic resource allocation mechanism for the digital twin service within the context of 6G IoT networks. Our study begins by introducing a novel architecture called DTEI, which effectively enables efficient and cost-effective service delivery for IoT applications. Building upon this architecture, we proceed to model real-time DT implementation in IoT as dynamic DTSFCs. To address the unique characteristics of IoT services, we propose a novel approach known as Collective Reinforcement Learning (CRL) to tackle the orchestration problem associated with DTSFCs. Through extensive simulations, we demonstrate that our proposed CRL method outperforms existing state-of-the-art DRL algorithms, exhibits good convergence, effectively adapts to service delay constraints, and significantly improves both throughput and generalization capabilities. Furthermore, CRL leverages the knowledge cooperation among agents, also exhibits promising potential in terms of reducing training time, minimizing redundant model training, and enabling the acquisition of a comprehensive model even in scenarios where sample availability is limited. We are currently working on integrating privacy protection mechanisms and reputation systems into multi-agent collaboration scenarios. These endeavors aim to ensure secure and trustworthy collaboration among agents while preserving privacy and maintaining a reliable reputation system.
+CRediT authorship contribution statement
+Zhongwei Huang: Conceptualization, Methodology, Investigation, Software, Formal analysis, Writing – original draft, Writing – review & editing. Dagang Li: Conceptualization, Methodology, Investigation, Writing – review & editing, Funding acquisition. Jun Cai: Supervision, Resources, Funding acquisition, Writing – review & editing. Hua Lu: Supervision, Funding acquisition, Writing – review & editing, Project administration.
+Declaration of competing interest
+The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
+Data availability
+Data will be made available on request
+
+Journal of Network and Computer Applications 217 (2023) 103697
+Acknowledgments
+This work was supported by the National Key R&D Program of China No. 2019YFB1804400, and Macau University of Science and Technology Faculty Research Grants No. FRG-21-031-IINGI.
+References
+Abujassar, R.S., Yaseen, H., Al-Adwan, A.S., 2021. A highly effective route for real-time traffic using an IoT smart algorithm for tele-surgery using 5G networks. J. Sens. Actuator Netw. 10 (2), 30.
+Cai, J., Huang, Z., Liao, L., Luo, J., Liu, W.X., 2021. APPM: adaptive parallel processing mechanism for service function chains. IEEE Trans. Netw. Serv. Manag. 18 (2), 1540–1555.
+Cai, J., Huang, Z., Luo, J., Liu, Y., Zhao, H., Liao, L., 2020. Composing and deploying parallelized service function chains. J. Netw. Comput. Appl. 163, 102637.
+Chen, H., Wang, S., Li, G., Nie, L., Wang, X., Ning, Z., 2021. Distributed orchestration of service function chains for edge intelligence in the industrial internet of things. IEEE Trans. Ind. Inform. (Early Access).
+Dai, Y., Zhang, K., Maharjan, S., Zhang, Y., 2020. Deep reinforcement learning for stochastic computation offloading in digital twin networks. IEEE Trans. Ind. Inform. 17 (7), 4968–4977.
+Dong, L., Gao, H., Wu, W., Gong, Q., Dechasa, N.C., Liu, Y., 2022. Dependence-aware edge intelligent function offloading for 6G-based IoV. IEEE Trans. Intell. Transp. Syst.
+Fischer, W., Meier-Hellstern, K., 1993. The Markov-modulated Poisson process (MMPP) cookbook. Perform. Eval. 18 (2), 149–171.
+Fu, X., Yu, F.R., Wang, J., Qi, Q., Liao, J., 2019. Dynamic service function chain embedding for NFV-enabled IoT: A deep reinforcement learning approach. IEEE Trans. Wireless Commun. 19 (1), 507–519.
+Glatt, M., Sinnwell, C., Yi, L., Donohoe, S., Ravani, B., Aurich, J.C., 2021. Modeling and implementation of a digital twin of material flows based on physics simulation. J. Manuf. Syst. 58, 231–245.
+Guo, S., Dai, Y., Xu, S., Qiu, X., Qi, F., 2019. Trusted cloud-edge network resource management: DRL-driven service function chain orchestration for IoT. IEEE Internet Things J. 7 (7), 6010–6022.
+Haarnoja, T., Zhou, A., Hartikainen, K., Tucker, G., Ha, S., Tan, J., Kumar, V., Zhu, H., Gupta, A., Abbeel, P., et al., 2018. Soft actor-critic algorithms and applications. arXiv preprint arXiv:1812.05905.
+Knight, S., Nguyen, H.X., Falkner, N., Bowden, R., Roughan, M., 2011. The internet topology zoo. IEEE J. Sel. Areas Commun. 29 (9), 1765–1775.
+Li, M., Pei, P., Yu, F.R., Si, P., Li, Y., Sun, E., Zhang, Y., 2022a. Cloud–edge collaborative resource allocation for blockchain-enabled Internet of Things: A collective reinforcement learning approach. IEEE Internet Things J. 9 (22), 23115–23129.
+Li, G., Zhou, H., Feng, B., Zhang, Y., Yu, S., 2022b. Efficient provision of service function chains in overlay networks using reinforcement learning. IEEE Trans. Cloud Comput. 10 (1), 383–395.
+Liu, Y., Lu, H., Li, X., Zhang, Y., Xi, L., Zhao, D., 2020. Dynamic service function chain orchestration for NFV/MEC-enabled IoT networks: A deep reinforcement learning approach. IEEE Internet Things J. 8 (9), 7450–7465.
+Lu, Y., Huang, X., Zhang, K., Maharjan, S., Zhang, Y., 2020. Low-latency federated learning and blockchain for edge association in digital twin empowered 6G networks. IEEE Trans. Ind. Inform. 17 (7), 5098–5107.
+Orlowski, S., Wessäly, R., Pióro, M., Tomaszewski, A., 2010. SNDlib 1.0—Survivable network design library. Networks 55 (3), 276–286.
+Schneider, S., Khalili, R., Manzoor, A., Qarawlus, H., Schellenberg, R., Karl, H., Hecker, A., 2021. Self-learning multi-objective service coordination using deep reinforcement learning. IEEE Trans. Netw. Serv. Manag. 18 (3), 3829–3842.
+Sun, W., Lei, S., Wang, L., Liu, Z., Zhang, Y., 2020. Adaptive federated learning and digital twin for industrial internet of things. IEEE Trans. Ind. Inform. 17 (8), 5605–5614.
+Sun, C., Wu, X., Li, X., Fan, Q., Wen, J., Leung, V.C., 2021. Cooperative computation offloading for multi-access edge computing in 6G mobile networks via soft actor critic. IEEE Trans. Netw. Sci. Eng. 1. http://dx.doi.org/10.1109/TNSE.2021. 3076795 (Early Access).
+Tang, Q., Xie, R., Yu, F.R., Chen, T., Zhang, R., Huang, T., Liu, Y., 2022. Collective deep reinforcement learning for intelligence sharing in the internet of intelligence-empowered edge computing. IEEE Trans. Mob. Comput. (Early Access).
+Tao, F., Zhang, M., Liu, Y., Nee, A., 2018. Digital twin driven prognostics and health management for complex equipment. CIRP Ann. 67 (1), 169–172. http://dx. doi.org/10.1016/j.cirp.2018.04.055, URL: https://www.sciencedirect.com/science/ article/pii/S0007850618300799.
+Tao, F., Zhang, H., Liu, A., Nee, A.Y.C., 2019. Digital twin in industry: State-of-the-art. IEEE Trans. Ind. Inform. 15 (4), 2405–2415. http://dx.doi.org/10.1109/TII.2018. 2873186.
+
+11
+
+Z. Huang et al.
+Wu, J., Wei, Z., Li, W., Wang, Y., Li, Y., Sauer, D.U., 2020. Battery thermal-and healthconstrained energy management for hybrid electric bus based on soft actor-critic DRL algorithm. IEEE Trans. Ind. Inform. 17 (6), 3751–3761.
+Wu, Y., Zhang, K., Zhang, Y., 2021. Digital twin networks: a survey. IEEE Internet Things J. 8 (18), 13789–13804.
+Yu, F.R., 2021. From information networking to intelligence networking: Motivations, scenarios, and challenges. IEEE Netw. 35 (6), 209–216.
+Zhang, J., Liu, Y., Qin, X., Xu, X., 2021. Energy-efficient federated learning framework for digital twin-enabled industrial internet of things. In: Proc. 2021 IEEE 32nd Annual International Symposium on Personal, Indoor and Mobile Radio Communications. PIMRC, pp. 1160–1166.
+Zhou, Z., Chen, X., Li, E., Zeng, L., Luo, K., Zhang, J., 2019. Edge intelligence: Paving the last mile of artificial intelligence with edge computing. Proc. IEEE 107 (8), 1738–1762.
+Zhu, Y., Yao, H., Mai, T., He, W., Zhang, N., Guizani, M., 2022. Multiagent reinforcement-learning-aided service function chain deployment for Internet of Things. IEEE Internet Things J. 9 (17), 15674–15684.
+Zhongwei Huang is currently pursuing the Ph.D. degree in Artificial Intelligence with the School of Computer Science and Engineering, Macau University of Science and Technology, Macau, China. He is also a visiting scholar at the Guangdong Laboratory of Artificial Intelligence and Digital Economy (SZ), 2022. His current research interests include Network Function Virtualization (NFV), Deep Reinforcement Learning (DRL), and its application in the Internet of Things (IoTs).
+
+Journal of Network and Computer Applications 217 (2023) 103697
+Dagang Li is currently an assistant professor at Macau University of Science and Technology, Macau SAR, China. He received his Bachelor‘s degree from Huazhong University of Science and Technology in Wuhan, China, and Ph.D. from Katholieke Universiteit Leuven in Leuven, Belgium. His research interests include artificial intelligence and its applications in future networks.
+Jun Cai is currently a professor and dean of the School of Cyber Security, Guangdong Polytechnic Normal University, Guangzhou, China. He received the B.S. degree from Hunan Normal University, Changsha, China, the M.S. degree from Jinan University, Guangzhou, China, and the Ph.D. degree from Sun Yat-Sen University, China in 2003, 2006, and 2012, respectively. He is interested in the research of network function virtualization (NFV), software-defined networks (SDN), and complex networks.
+Hua Lu, Director of Network Technology Innovation Center, Guangdong Communication & Network Institute. Distinguished Professor of Shenzhen Research Institute, Beijing University of Posts and Telecommunications. Distinguished Expert of ‘‘Technology China’’ Future Network Professional Technology Service Team. Research directions include: 5G/6G core network, edge computing, new network architecture, software-defined network, P4 programmable, virtualization, etc.
+
+12
+

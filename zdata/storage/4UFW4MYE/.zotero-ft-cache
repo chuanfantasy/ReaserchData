@@ -1,0 +1,200 @@
+
+JavaScript is disabled on your browser. Please enable JavaScript to use all the features on this page. 跳到主要内容 跳到文章
+Elsevier logo 科学直通
+
+    Journals & Books 
+
+My Account Sign in
+
+    通过 您的机构 访问
+    购买 PDF 
+
+文章预览
+
+    抽象
+    介绍
+    章节片段
+    参考资料 （44）
+    被引用 （15） 
+
+爱思唯尔
+Ad Hoc 网络
+第94卷 ， 十一月 2019， 101939
+Ad Hoc 网络
+用于处理mMTC的无线网络动态访问控制的深度强化学习机制 ☆
+作者链接打开叠加面板 迭戈· 帕切科-帕拉莫 一个 , 路易斯· 泰洛-奥昆多 b , 维森特 普拉 c , 豪尔赫· 马丁内斯-鲍塞特 c
+显示更多
+添加到 Mendeley
+共享
+引用
+https://doi.org/10.1016/j.adhoc.2019.101939 获取权限和内容
+抽象
+
+为了提供有效的 大规模物联网设备部署 ，需要解决的一个重要问题是 访问控制。在 5G 蜂窝网络 中，接入类限制 （ACB） 方法旨在通过延迟随机访问请求来增加总成功访问概率。这种机制可以通过禁止率进行控制，该限制率可以很容易地适应人对人（H2H）通信盛行的网络。然而，在 大规模部署 的场景中， 例如 物联网 应用中的场景，如何设置此参数以及如何适应动态流量条件并不明显。我们提出了一种双重 深度强化学习 机制来适应动态条件下ACB的禁止率。该算法使用同步 H2H 和机器对机器 （M2M） 流量进行训练，但我们对每种类型的流量执行单独的性能评估。结果表明，所提出的机制能够达到H100H和M2M UE的2%成功接入率，并降低平均前导码传输次数，同时略微影响平均接入时延，即使在负载非常高的场景下也是如此。此外，在不同参数的变化下，其性能保持稳定。
+介绍
+
+物联网 （IoT） 是一个无处不在的互连对象网络，它们从不同的环境中收集信息，与物理世界交互，并使用现有的互联网基础设施为信息传输、分析和应用程序提供服务。物联网设备具有截然不同的计算能力、能源限制和无线接入技术。因此，物联网架构需要以可靠性和实时性高效处理大量设备。物联网环境的主要推动因素之一是机器类通信（MTC）[1]，[2]。与 H2H 通信不同，MTC 引入了新的流量模式：通常，它们会生成定期或由特定事件触发的小型报告。MTC流量的独特性需要专门的、可互操作的通信技术[3]，[4]。蜂窝网络是满足这些要求并处理这一新兴流量的很大一部分的自然选择[5]。现有的基础设施、广泛的区域覆盖和高性能功能等特性使基于蜂窝的MTC能够以惊人的速度增长，从而实现一类全新的无处不在的应用和服务，如智能计量、电子医疗、智能交通、环境监测等[6]。
+
+从网络的角度来看，大规模MTC（mMTC）的独特特性带来了重大挑战，即使对于最先进的技术，例如5G及以后的技术[4]。大多数基于mMTC的应用和场景通常涉及大量的设备。在那里，一个基本问题是在随机访问信道中的信令拥塞导致的过载情况下有效管理网络资源。事实上，虽然连接对象的数量正在增加，但当前的蜂窝网络可能还没有准备好支持这一新趋势，因为它们最初是为不同的流量类型而设计的。
+
+3GPP建议将接入类限制（ACB）[7]、[8]作为解决蜂窝网络拥塞的一种机制。ACB 允许根据禁止率和禁止时间以概率方式禁止 UE;基站广播这些参数。考虑到在流量可变的场景中为这些参数找到最佳配置的复杂性，我们开发了一种基于强化学习 （RL） 方法的实时配置选择方案来动态调整阻塞率。所提出的方案能够利用基站的本地信息对流量变化做出快速反应。我们的实验基于真实的流量行为，利用蜂窝网络运营商的跟踪来增强蜂窝网络中同时H2H和M2M流量的访问控制。
+
+我们严格遵循 3GPP 指令，因此我们提出的解决方案符合当前网络部署中随机访问程序的规范，因此可以成功集成到系统中。本文的主要贡献总结如下
+
+    •
+
+    我们通过调整ACB阻塞率来减少随机访问信道（RACH）上的拥塞，从而设计了一种用于动态访问控制的深度强化学习算法。我们依靠深度神经网络的泛化能力来增强阻塞率对新交通条件的适应性。
+    •
+
+    我们按照 3GPP 为此类研究建议的流量模型，在广泛的 MTC 访问请求强度下，根据网络关键性能指标评估我们的解决方案的性能，同时使用来自蜂窝网络运营商的真实轨迹来考虑真实的 H2H 流量。我们确定深度强化学习解决方案的最佳参数。
+    •
+
+    我们比较了深度强化学习算法与基于Q-Learning的解和著名的D-ACB动态解在不同交通条件下的解[9]。我们展示了我们的新提案如何能够降低 M2M 设备的能耗，同时允许所有 UE 成功访问系统。
+
+本文的其余部分组织如下。在第 2 节中，我们对不同的研究进行了文献综述，这些研究评估了 ACB 的性能及其所提出的动态操作算法。然后，在第 3 节中，我们描述了 LTE-A 随机访问过程，详细介绍了 UE 在初始访问网络、四向消息握手和回退过程中可用的资源。在第 3.1 节中，我们介绍了 3GPP 建议的 ACB 机制，并详细介绍了它是如何工作的以及 UE 如何获取限制参数。在第 4 节中，我们介绍了两种不同的基于强化学习的 ACB 方案，以解决根据不断变化的网络流量动态调整禁止率的问题。接下来，在第 5 节中，我们首先描述了我们评估所提出的基于强化学习的 ACB 方案的场景;然后，我们测试和分析了它们对不同参数和网络条件的敏感性，在关键性能指标（KPI）方面显示了最相关的结果。此外，我们还将基于强化学习的解决方案与著名的动态解决方案D-ACB [9]进行了比较。最后，在第 6 节中，我们得出结论。
+章节片段
+相关工作
+
+使用数据分析工具来提高蜂窝网络的性能是近年来受到广泛关注的趋势。考虑到电信公司为了提供服务而需要收集的大量数据，这种方法似乎很直观。这些数据库由呼叫详细记录 （CDR） 组成，这些记录提供有关网络使用情况的不同类型的信息，并且它们已被用于提供不同的应用程序。例如，在 [10] 中，作者
+随机访问程序和访问控制方案
+
+在 LTE-A 中，当 UE 想要访问蜂窝网络时，它会执行随机访问过程。随机访问信道 （RACH） 用于向连接请求发出信号;它允许在预定义的时间/频率资源中，以下称为随机访问机会（RAO）[30]，[31]。基站有许多前导码可用于初始访问网络。这些前导码由Zadoff-Chu序列生成，因为它们具有良好的相关性[31]，[32]，并通过以下方式传输
+强化学习机制的实现
+
+在本节中，我们将介绍两种不同 ACB 机制的实现。第一个基于经典的Q-Learning[36]，这是一种偏离策略的算法，它使用估计来计算优化系统长期奖励的行动。第二种是基于双深度Q学习[37]，它使用深度神经网络来生成一个将Q值分配给状态的函数。
+
+本文实现的经典Q-Learning机制最初是
+绩效评估
+
+在本节中，我们首先描述了我们训练和评估拟议的ACB适应机制的场景条件;然后，我们测试并分析了它们对不同参数和网络条件的敏感性。最后，我们将所提出的两种机制与众所周知的动态解进行了比较。
+
+我们的训练和实验是在M2M和H2H UE共存的单个细胞上完成的。H2H 流量是从意大利电信意大利电信的呼叫详细记录 （CDR） 中获取的，
+结论
+
+在这项工作中，我们提出了一种双深度 Q-Learning ACB 方案，旨在动态调整大规模机器类型通信的 ACB 禁止率。该机制与标准兼容，并且仅考虑基站上可用的信息。为了评估我们的解决方案对 H2H UE 的影响，我们认为 H2H 和 M2M UE 共存。此外，我们使用从电信公司的CDR获得的真实迹线来表示H2H通信。其机制是
+利益冲突
+
+作者没有报告潜在的利益冲突。
+
+Diego Pacheco-Paramo 于 2004 年获得哥伦比亚波哥大安第斯大学电子工程学士学位。他分别于2009年和2013年在西班牙瓦伦西亚理工大学获得硕士和博士学位。2012年，他是亚特兰大佐治亚理工学院宽带无线网络实验室的客座研究员。2014-2015年在信息、网络与通信实验室从事博士后研究
+参考资料 （44）
+
+    一个。 Biral 等人。
+    M2M大规模接入在无线蜂窝网络中面临的挑战
+    数字通信。净。
+    (2015)
+    I.F. Akyildiz 等人。
+    5G 路线图：10 项关键使能技术
+    计算。净。
+    (2016)
+    K. Kumar 等人。
+    分析印度蜂窝通信特性，实现网络节能运营
+    通讯（NCC），2015年第二十一届全国学术会议
+    (2015)
+    米。 Tavana 等人。
+    使用卡尔曼滤波器对LTE M2M过载进行自适应接入类限制的拥塞控制
+    计算。净。
+    (2018)
+    Y. Yu 等.
+    面向异构无线网络的深度强化学习多址接入
+    2018 IEEE通信国际会议（ICC）
+    (2018)
+    T. 塔勒布 等人。
+    3GPP 网络中的机器类型通信：潜力、挑战和解决方案
+    IEEE通讯。磁。
+    (2012)
+    六. Ghavimi 等人。
+    2GPP LTE/LTE-A 网络中的 M3M 通信：架构、业务要求、挑战和应用
+    IEEE通讯。生存。教程
+    (2015)
+    3GPP，TS 22.368，机器类通信的服务要求,...
+    Z. Dawy 等人。
+    迈向大规模机器类型的蜂窝通信
+    IEEE无线通信。
+    (2017)
+    3GPP、TS 36.331、无线电资源控制 （RRC）、协议规范,... 
+
+查看更多参考资料
+被引用 （15）
+
+    基于深度学习的 5G 及以后网络地面通信物理层安全性：一项调查
+    2023， 物理传播
+    显示摘要
+    Deep reinforcement learning based flexible preamble allocation for RAN slicing in 5G networks
+    2022, Computer Networks
+    Citation Excerpt :
+
+    In general, these works are focused on optimizing the allocation of resources and increasing the quality of service (QoS). One relevant study on RACH proposes ACB barring rate adaptation using Q-learning to increase the success probability of M2M communications with low impact on H2H communication [27]. Another study employs RL to optimize the joint allocation of fiber and radio resources for Cloud RANs.
+    Show abstract
+    Reinforcement and deep reinforcement learning for wireless Internet of Things: A survey
+    2021, Computer Communications
+    Citation Excerpt :
+
+    We have to note that the values of the various parameters of the implemented RL system are missing in the paper. The problem of dynamic access control in 5G cellular networks has been studied also by Pacheco-Paramo et al. [86]. The authors proposed a real-time configuration selection scheme based on the DRL mechanism to dynamically adjust the access class barring rate according to the changing traffic conditions and minimize collision cases.
+    Show abstract
+    Delay-aware dynamic access control for mMTC in wireless networks using deep reinforcement learning
+    2020, Computer Networks
+    Citation Excerpt :
+
+    However, in these proposals is assumed that the base station has complete knowledge of the number of UEs contending for resources in the network, which is impractical. In our previous work [3], we proposed a Double Deep Q-Learning (DDQL) solution that was able to adapt to dynamic traffic conditions through the barring rate but suffered from high delays. In this work, we present a new mechanism that considerably reduces the access mean delay while maintaining the successful access rate concerning our previous proposal.
+    Show abstract
+    Impact of information update generation on the radio access network of cellular Internet of Things
+    2023, Telecommunication Systems
+    An Energy-Efficient DL-Aided Massive Multiple Access Scheme for IoT Scenarios in Beyond 5G Networks
+    2023, IEEE Internet of Things Journal
+
+View all citing articles on Scopus
+
+Diego Pacheco-Paramo received the BS degree in electronics engineering from the Universidad de los Andes, Bogotá, Colombia, in 2004. He received the MS and PhD degrees from the Universitat Politécnica de Valéncia, Spain, in 2009 and 2013, respectively. During 2012, he was a visitor researcher in the Broadband Wireless Networking Laboratory, Georgia Institute of Technology, Atlanta. From 2014 to 2015, he was a postdoctoral researcher in the Laboratory of Information, Networking and Communication Sciences (LINCS) in Paris, France. Since 2016 he is an Assistant Professor at Universidad Sergio Arboleda in Bogotá, Colombia. His current research interests lie in the areas of Internet of Things, machine learning for networking, and 5G.
+
+Luis Tello-Oquendo received the electronic and computer engineering degree (Hons.) from Escuela Superior Politécnica de Chimborazo (ESPOCH), Ecuador, in 2010, the M.Sc. degree in telecommunication technologies, systems, and networks, and the Ph.D. degree (Cum Laude) in telecommunications from Universitat Politécnica de Valéncia (UPV), Spain, in 2013 and 2018, respectively. From 2013 to 2018 he was Graduate Research Assistant with the Broadband Internetworking Research Group, UPV. From 2016 to 2017 he was a Research Scholar with the Broadband Wireless Networking Laboratory, Georgia Institute of Technology, Atlanta, GA, USA. He is currently a Research Faculty with the College of Engineering, Universidad Nacional de Chimborazo. His research interest include machine type communications, wireless software-defined networks, 5G and beyond cellular systems, Internet of Things, machine learning. He is a member of the IEEE and ACM. He received the Best Academic Record Award from the Escuela Técnica Superior de Ingenieros de Telecomunicación, UPV, in 2013, and the IEEE ComSoc Award for attending the IEEE ComSoc Summer School at The University of New Mexico, Albuquerque, NM, USA, in 2017.
+
+Vicent Pla received the Telecommunication Engineering (B.E. & M.E.) and Ph.D. degrees from the Universitat Politécnica de Valéncia (UPV), Spain, in 1997 and 2005, respectively, and the B.Sc. in Mathematics from the Universidad Nacional de Educación a Distancia (UNED), Spain, in 2015. In 1999, he joined the Department of Communications at the UPV, where he is currently a Professor. His research interests lie primarily in the area of modeling and performance analysis of communication networks. During the past few years, most of his research activity has focused on traffic and resource management in wireless networks. In these areas he has published numerous papers in refereed journals and conference proceedings, and has been an active participant in several research projects.
+
+Jorge Martinez-Bauset received the Ph.D. degree from the Universitat Politécnica de Valéncia (UPV), Valencia, Spain, in 1997. He also received the 1997 Alcatel Spain Best Ph.D. Thesis Award in Access Networks. He is currently a Professor with the UPV. From 19871991, he was with QPSX Communications, Perth, Australia, working with the team that designed the first IEEE 802.6 MAN. Since 1991, he has been with the Department of Communications, UPV. His research interests are in the area of performance evaluation and traffic control for multi-service networks.
+
+☆
+
+    The research of D. Pacheco-Paramo was supported by Universidad Sergio Arboleda, P.I. Tecnologías para la inclusión social y la competitividad económica. O.E.6. The research of L. Tello-Oquendo was conducted under project CONV.2018-ING010. Universidad Nacional de Chimborazo. The research of V. Pla and J. Martinez-Bauset was supported by Grant PGC2018-094151-B-I00 (MCIU/AEI/FEDER,UE).
+
+View full text
+© 2019 Elsevier B.V. All rights reserved.
+推荐文章
+
+    基于元启发式的车载自组网数据传播最优路径
+    《计算机与电气工程》，第 76 卷，2019 年，第 40-55 页
+    玛尼莎 ·查哈尔 ， 桑迪普· 哈里特
+    分布式 Q 学习随机存取 mMTC 网络中的吞吐量和延迟
+    计算机网络，卷 206， 2022， 文章 108787
+    乔瓦尼·马西尔·费雷拉 · 席尔瓦 ， 陶菲克 ·阿布朗
+    用于气象站网络多模态地基云分类的深度张量融合网络
+    Ad Hoc Networks，第 96 卷，2020 年，文章 101991
+    李梅 ， ...， 张忠
+
+显示 3 更多文章
+文章计量指标
+引文
+
+    引文索引： 13 
+
+捕获
+
+    读者： 35 
+
+plumX 徽标
+查看详情
+Elsevier logo with wordmark
+
+    About ScienceDirect
+    Remote access
+    Shopping cart
+    Advertise
+    Contact and support
+    Terms and conditions
+    Privacy policy 
+
+We use cookies to help provide and enhance our service and tailor content and ads. By continuing you agree to the use of cookies .
+
+All content on this site: Copyright © 2023 Elsevier B.V., its licensors, and contributors. All rights are reserved, including those for text and data mining, AI training, and similar technologies. For all open access content, the Creative Commons licensing terms apply.
+RELX group home page
+反馈 
