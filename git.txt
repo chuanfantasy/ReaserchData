@@ -2,3 +2,5 @@ git add .
 git commit -m "new"
 git remote -v
 git push origin master
+git remote add github https://github.com/chuanfantasy/ReaserchData.git
+ git push github master:main
