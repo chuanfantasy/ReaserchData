@@ -3,4 +3,13 @@ git commit -m "new"
 git remote -v
 git push origin master
 git remote add github https://github.com/chuanfantasy/ReaserchData.git
- git push github master:main
+git push github master
+140.82.112.3	github.com
+151.101.1.6	github.global.ssl.fastly.net
+151.101.65.6	github.global.ssl.fastly.net
+151.101.129.6	github.global.ssl.fastly.net
+151.101.193.6	github.global.ssl.fastly.net
+185.199.108.153	assets-cdn.github.com
+185.199.109.153	assets-cdn.github.com
+185.199.110.153	assets-cdn.github.com
+185.199.111.153	assets-cdn.github.com
